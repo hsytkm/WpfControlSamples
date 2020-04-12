@@ -10,9 +10,6 @@
         Height="450" Width="800">
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
-        <TabItem Header="SettingValues" >
-            <menus:SettingValuesMenuTab />
-        </TabItem>
 
         <TabItem Header="Presentation" >
             <menus:PresentationMenuTab />
@@ -20,6 +17,14 @@
 
         <TabItem Header="InitiateCommands" >
             <menus:InitiateCommandsMenuTab />
+        </TabItem>
+
+        <TabItem Header="SettingValues" >
+            <menus:SettingValuesMenuTab />
+        </TabItem>
+
+        <TabItem Header="EditingText" >
+            <menus:EditingTextMenuTab />
         </TabItem>
 
         <TabItem Header="DisplayCollections" >
@@ -30,13 +35,10 @@
             <menus:IndicateActivityMenuTab />
         </TabItem>
 
-        <TabItem Header="Blank2" >
+        <TabItem Header="Blank" >
             <menus:BlankPage />
         </TabItem>
 
-        <TabItem Header="Blank3" >
-            <menus:BlankPage />
-        </TabItem>
     </TabControl>
 
 </Window>

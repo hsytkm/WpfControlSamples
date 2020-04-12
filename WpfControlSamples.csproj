@@ -31,13 +31,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Views\Menus\EditingText\PasswordBoxPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\EditingText\TextBoxPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\EditingText\EditingTextMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Presentation\TextBlockPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Presentation\LabelPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\SettingValues\ComboBoxPage.xaml">
+    <Page Update="Views\Menus\DisplayCollections\ComboBoxPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\SettingValues\CheckBoxPage.xaml">
