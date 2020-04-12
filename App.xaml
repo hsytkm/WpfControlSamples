@@ -1,0 +1,31 @@
+﻿<Application x:Class="WpfControlSamples.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfControlSamples"
+             xmlns:vc="clr-namespace:WpfControlSamples.Views.Converters"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BoolToVisiConverter" />
+            <vc:InverseBooleanToVisibilityConverter x:Key="InvBoolToVisiConverter" />
+            <vc:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+
+            <!-- Xamarin(UWP)のフォントサイズを定義 -->
+            <sys:Double x:Key="FontSizeDefault">14</sys:Double>
+            <sys:Double x:Key="FontSizeMicro">15.667</sys:Double>
+            <sys:Double x:Key="FontSizeSmall">18.667</sys:Double>
+            <sys:Double x:Key="FontSizeMedium">22.667</sys:Double>
+            <sys:Double x:Key="FontSizeLarge">32</sys:Double>
+            <sys:Double x:Key="FontSizeBody">14</sys:Double>
+            <sys:Double x:Key="FontSizeHeader">46</sys:Double>
+            <sys:Double x:Key="FontSizeTitle">24</sys:Double>
+            <sys:Double x:Key="FontSizeSubtitle">20</sys:Double>
+            <sys:Double x:Key="FontSizeCaption">12</sys:Double>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Views/Resources/MyTabControlStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

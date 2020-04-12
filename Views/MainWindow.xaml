@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfControlSamples.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfControlSamples.Views"
+        xmlns:menus="clr-namespace:WpfControlSamples.Views.Menus"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="450" Width="800">
+
+    <TabControl Style="{StaticResource MyTabControlStyle1}" >
+
+        <TabItem Header="InitiateCommands" >
+            <menus:InitiateCommandsMenuTab />
+        </TabItem>
+
+        <TabItem Header="DisplayCollections" >
+            <menus:DisplayCollectionsMenuTab />
+        </TabItem>
+
+        <TabItem Header="IndicateActivity" >
+            <menus:IndicateActivityMenuTab />
+        </TabItem>
+
+        <TabItem Header="Blank2" >
+            <menus:BlankPage />
+        </TabItem>
+
+        <TabItem Header="Blank3" >
+            <menus:BlankPage />
+        </TabItem>
+    </TabControl>
+
+</Window>

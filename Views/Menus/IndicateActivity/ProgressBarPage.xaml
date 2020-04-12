@@ -1,0 +1,44 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ProgressBarPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <ContentControl.Resources>
+        <ResourceDictionary Source="../../Resources/BusyAnimationStyle.xaml"/>
+    </ContentControl.Resources>
+
+    <StackPanel Margin="10" >
+        <Button Height="100"
+                FontSize="{StaticResource FontSizeMedium}"
+                Command="{Binding StartProcess, Mode=OneTime}" >
+            <Button.Content>
+                <TextBlock>
+                    <Run Text="HeavyProcess (Wait " />
+                    <Run Text="{Binding WaitSeconds, Mode=OneWay}" FontWeight="Bold" Foreground="Blue" />
+                    <Run Text=" sec)" />
+                </TextBlock>
+            </Button.Content>
+        </Button>
+
+        <TextBlock Margin="0,20" >
+            <Run Text="{Binding ProgressRatio, Mode=OneWay, StringFormat='ProgressRatio: {0:P2}'}" />
+            <LineBreak />
+            <Run Text="{Binding IsProcessing, Mode=OneWay, StringFormat='IsProcessing: {0}'}" />
+        </TextBlock>
+
+        <ProgressBar Minimum="0" Maximum="1"
+                     Value="{Binding ProgressRatio, Mode=OneWay}" />
+
+        <Grid Margin="20" Background="Gray" Width="200" Height="100" >
+            <Viewbox Width="40" Height="40" >
+                <Control Style="{StaticResource BusyAnimationStyle}"
+                         Visibility="{Binding IsProcessing, Converter={StaticResource BoolToVisiConverter}, Mode=OneWay}"  />
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+
+</ContentControl>
