@@ -40,6 +40,21 @@
     <Page Update="Views\Menus\EditingText\EditingTextMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\LayoutSingle\ScrollViewerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutSingle\ViewboxPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutSingle\ExpanderPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutSingle\LayoutSingleMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutSingle\BorderPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Presentation\TextBlockPage.xaml">
       <SubType>Designer</SubType>
     </Page>

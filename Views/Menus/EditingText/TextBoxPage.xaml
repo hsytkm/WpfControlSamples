@@ -41,6 +41,12 @@
             </StackPanel>
         </Border>
 
+        <!-- 読み出し専用 -->
+        <Border Padding="20,10" Background="LightSteelBlue" >
+            <TextBox IsReadOnly="True"
+                     Text="This is readonly TextBlock. (cannot input charactors)" />
+        </Border>
+
         <!-- 複数行 -->
         <Border Padding="20,10" Background="LightGreen" >
             <StackPanel>
