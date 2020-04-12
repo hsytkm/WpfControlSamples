@@ -10,7 +10,7 @@
     <StackPanel Margin="10" >
 
         <!-- ビルドアクション：リソース -->
-        <Label Content="BuildAction: Resource" />
+        <TextBlock Text="BuildAction: Resource" />
 
         <StackPanel Orientation="Horizontal" >
             <!-- どちらの指定でも表示される -->
@@ -22,8 +22,8 @@
 
         
         <!-- ビルドアクション：埋め込みリソース -->
-        <Label Margin="0,10,0,0"
-               Content="BuildAction: EmbeddedResource" />
+        <TextBlock Margin="0,10,0,0"
+                   Text="BuildAction: EmbeddedResource" />
 
         <Image Source="{Binding MyEmbeddedImage, Mode=OneTime}"
                Width="100" Height="100" />

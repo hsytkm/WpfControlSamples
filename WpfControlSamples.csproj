@@ -18,7 +18,6 @@
     <Folder Include="Models\" />
     <Folder Include="Infrastructures\" />
     <Folder Include="Views\Controls\" />
-    <Folder Include="Views\Converters\" />
     <Folder Include="Views\MarkupExtensions\" />
     <Folder Include="Views\Behaviors\" />
     <Folder Include="Views\Resources\" />
@@ -27,6 +26,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Images\EmbeddedResource1.png" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
     <Resource Include="Resources\Images\Resource1.png" />
   </ItemGroup>
 
@@ -35,6 +35,21 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Presentation\LabelPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\SettingValues\ComboBoxPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\SettingValues\CheckBoxPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\SettingValues\RadioButtonPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\SettingValues\SliderPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\SettingValues\SettingValuesMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

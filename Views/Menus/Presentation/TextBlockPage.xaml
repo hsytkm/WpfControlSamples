@@ -13,7 +13,6 @@
         </Style>
     </ContentControl.Resources>
 
-
     <StackPanel Margin="10" >
 
         <TextBlock Text="Default TextBlock, デフォルト テキストブロック" />

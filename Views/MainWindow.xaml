@@ -10,6 +10,9 @@
         Height="450" Width="800">
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
+        <TabItem Header="SettingValues" >
+            <menus:SettingValuesMenuTab />
+        </TabItem>
 
         <TabItem Header="Presentation" >
             <menus:PresentationMenuTab />
