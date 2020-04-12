@@ -1,0 +1,38 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.LabelPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <StackPanel Margin="10" >
+
+        <Label Content="Default Label, デフォルト ラベル" />
+
+        <Label Foreground="Blue"
+               Content="文字をちょい表示場合は、軽量な TextBlock を使うこと" />
+
+        <!-- &#xD; がCRで、&#xA; がLFを表す -->
+        <Label Content="下記文字を半角にすれば、Label.Content でも改行される。&#xD;&#xA;　CR=＆＃ｘＤ；  LF=＆＃ｘＡ；"
+               Background="LightBlue" />
+
+        <StackPanel Margin="10" Background="LightPink" >
+            <!-- http://gushwell.ldblog.jp/archives/52279486.html -->
+            <Label Content="アクセスキーに割り当てられているため、UnderBar は表示されない" />
+
+            <Label Target="{Binding ElementName=textBox1}"
+                   Content="TextBox1 にフォーカス移動するなら Alt+T を押してね (_T)" />
+            <TextBox Margin="10" Name="textBox1" />
+
+            <Label Target="{Binding ElementName=textBox2}" >
+                <AccessText Text="TextBox2 にフォーカス移動するなら Alt+A を押してね (_A) &#xD;&#xA;AccessTextを使うと、TextWrappingとかも設定できるよ"
+                            TextWrapping="Wrap" />
+            </Label>
+            <TextBox Margin="10" Name="textBox2" />
+        </StackPanel>
+
+    </StackPanel>
+
+</ContentControl>

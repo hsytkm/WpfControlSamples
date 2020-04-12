@@ -7,17 +7,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove=".gitattributes" />
+    <None Remove=".gitignore" />
+    <None Remove="Resources\Images\EmbeddedResource1.png" />
+    <None Remove="Resources\Images\Resource1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="Models\" />
     <Folder Include="Infrastructures\" />
-    <Folder Include="Extensions\" />
     <Folder Include="Views\Controls\" />
     <Folder Include="Views\Converters\" />
     <Folder Include="Views\MarkupExtensions\" />
-    <Folder Include="Views\Menus\" />
     <Folder Include="Views\Behaviors\" />
     <Folder Include="Views\Resources\" />
     <Folder Include="Views\Triggers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\EmbeddedResource1.png" />
+    <Resource Include="Resources\Images\Resource1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\Menus\Presentation\TextBlockPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Presentation\LabelPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

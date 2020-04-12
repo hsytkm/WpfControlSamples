@@ -1,0 +1,33 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ImagePage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <StackPanel Margin="10" >
+
+        <!-- ビルドアクション：リソース -->
+        <Label Content="BuildAction: Resource" />
+
+        <StackPanel Orientation="Horizontal" >
+            <!-- どちらの指定でも表示される -->
+            <Image Source="/Resources/Images/Resource1.png"
+                   Width="100" Height="100" />
+            <Image Source="/WpfControlSamples;component/Resources/Images/Resource1.png"
+                   Width="100" Height="100" />
+        </StackPanel>
+
+        
+        <!-- ビルドアクション：埋め込みリソース -->
+        <Label Margin="0,10,0,0"
+               Content="BuildAction: EmbeddedResource" />
+
+        <Image Source="{Binding MyEmbeddedImage, Mode=OneTime}"
+               Width="100" Height="100" />
+
+    </StackPanel>
+
+</ContentControl>

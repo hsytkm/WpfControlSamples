@@ -11,6 +11,10 @@
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
 
+        <TabItem Header="Presentation" >
+            <menus:PresentationMenuTab />
+        </TabItem>
+
         <TabItem Header="InitiateCommands" >
             <menus:InitiateCommandsMenuTab />
         </TabItem>

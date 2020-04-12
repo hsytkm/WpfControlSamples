@@ -15,9 +15,6 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    /// <summary>
-    /// ProcessingPage.xaml の相互作用ロジック
-    /// </summary>
     public partial class ProgressBarPage : ContentControl
     {
         public ProgressBarPage()

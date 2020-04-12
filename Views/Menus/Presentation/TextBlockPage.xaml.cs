@@ -11,21 +11,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfControlSamples.Extensions;
 using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class ButtonPage : ContentControl
+    public partial class TextBlockPage : ContentControl
     {
-        public ICommand ButtonClick => _buttonClick ??
-            (_buttonClick = new MyCommand<string>(t => MessageBox.Show(t + " is pushed!", "PushPush")));
-        private ICommand _buttonClick;
-
-        public ButtonPage()
+        public TextBlockPage()
         {
             InitializeComponent();
-
-            DataContext = ButtonClick;
         }
     }
 }
