@@ -16,26 +16,11 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class CheckBoxPage : ContentControl
+    public partial class GroupBoxPage : ContentControl
     {
-        public CheckBoxPage()
+        public GroupBoxPage()
         {
             InitializeComponent();
-
-            DataContext = new CheckBoxViewModel();
         }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e) { }
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e) { }
-    }
-
-    class CheckBoxViewModel : MyBindableBase
-    {
-        public bool CheckFlag
-        {
-            get => _checkFlag;
-            set => SetProperty(ref _checkFlag, value);
-        }
-        private bool _checkFlag = true;
     }
 }

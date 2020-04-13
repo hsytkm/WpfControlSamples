@@ -24,12 +24,8 @@
         <local:RadioButtonPage />
     </TabItem>
 
-    <TabItem Header="Calendar" >
-        <local:BlankPage />
-    </TabItem>
-
-    <TabItem Header="DatePicker" >
-        <local:BlankPage />
+    <TabItem Header="CalendarDate" >
+        <local:CalendarPage />
     </TabItem>
 
 </TabControl>

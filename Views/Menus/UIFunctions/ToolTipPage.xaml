@@ -1,0 +1,58 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ToolTipPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <StackPanel Margin="10" >
+
+        <TextBlock >
+            <Run Text="InitialShowDelay: ツールヒントが開くまでの時間 (msec)" />
+            <LineBreak />
+            <Run Text="ShowDuration: ツールヒントが表示される時間 (msec)" />
+            <LineBreak />
+            <Run Text="BetweenShowDelay: 調べたけどよく分からんかった" Foreground="Red" />
+            <LineBreak />
+        </TextBlock>
+        
+        <TextBlock Margin="10"
+                   Padding="5"
+                   Background="LightGray"
+                   ToolTip="This is default ToolTip."
+                   Text="マウスオーバーで ToolTip が表示されます１" />
+
+        <TextBlock Margin="10"
+                   Padding="20"
+                   Background="LightGray"
+                   ToolTipService.InitialShowDelay="1000"
+                   ToolTipService.ShowDuration="3000"
+                   ToolTipService.BetweenShowDelay="2000"
+                   ToolTipService.Placement="Right" 
+                   ToolTipService.PlacementRectangle="50,0,0,0"
+                   ToolTipService.HorizontalOffset="10" 
+                   ToolTipService.VerticalOffset="20"
+                   ToolTipService.HasDropShadow="True"
+                   ToolTipService.ShowOnDisabled="True" 
+                   ToolTipService.IsEnabled="True"
+                   ToolTipOpening="TextBlock_ToolTipOpening"
+                   ToolTipClosing="TextBlock_ToolTipClosing"
+                   Text="マウスオーバーで ToolTip が表示されます２" >
+            
+            <TextBlock.ToolTip>
+                <StackPanel Orientation="Horizontal" >
+                    <Border Background="Blue"
+                            Margin="0,0,5,0"
+                            Width="15" Height="10" CornerRadius="8" />
+                    <TextBlock Foreground="Blue"
+                               FontWeight="Bold"
+                               Text="ツールチップです" />
+                </StackPanel>
+            </TextBlock.ToolTip>
+        </TextBlock>
+
+    </StackPanel>
+
+</ContentControl>

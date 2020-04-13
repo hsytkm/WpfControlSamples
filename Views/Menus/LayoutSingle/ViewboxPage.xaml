@@ -8,8 +8,24 @@
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
-    <StackPanel Margin="10" >
+    <ContentControl.Resources>
+        <ResourceDictionary Source="../../Resources/CharImageStyle.xaml" />
+    </ContentControl.Resources>
 
-    </StackPanel>
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Text="Viewboxは内部のコントロールのサイズを調整してくれる" />
+
+        <Slider DockPanel.Dock="Top"
+                x:Name="slider1" Minimum="10" Maximum="1000" />
+
+        <TextBlock DockPanel.Dock="Top"
+                   Text="{Binding Value, ElementName=slider1, StringFormat='Size: {0}'}" />
+
+        <Viewbox Width="{Binding Value, ElementName=slider1}"
+                 Height="{Binding Value, ElementName=slider1}" >
+            <Control Style="{StaticResource CharImageStyle}" />
+        </Viewbox>
+    </DockPanel>
 
 </ContentControl>

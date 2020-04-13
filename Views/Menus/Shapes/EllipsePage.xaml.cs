@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,26 +17,11 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class CheckBoxPage : ContentControl
+    public partial class EllipsePage : ContentControl
     {
-        public CheckBoxPage()
+        public EllipsePage()
         {
             InitializeComponent();
-
-            DataContext = new CheckBoxViewModel();
         }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e) { }
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e) { }
-    }
-
-    class CheckBoxViewModel : MyBindableBase
-    {
-        public bool CheckFlag
-        {
-            get => _checkFlag;
-            set => SetProperty(ref _checkFlag, value);
-        }
-        private bool _checkFlag = true;
     }
 }

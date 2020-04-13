@@ -15,10 +15,38 @@
 
     <StackPanel Margin="10" >
 
-        <CheckBox IsChecked="{Binding CheckFlag, Mode=TwoWay}" />
+        <CheckBox Content="Default"
+                  IsChecked="{Binding CheckFlag, Mode=TwoWay}"
+                  Checked="CheckBox_Checked"
+                  Unchecked="CheckBox_Unchecked" />
 
-        <CheckBox IsChecked="{Binding CheckFlag, Mode=TwoWay, Converter={StaticResource NotBoolConverter}}" />
+        <CheckBox Content="Background=Red"
+                  Background="Red"
+                  IsChecked="{Binding CheckFlag, Mode=TwoWay, Converter={StaticResource NotBoolConverter}}" />
 
+        <CheckBox IsChecked="{Binding CheckFlag, Mode=TwoWay}" >
+            <CheckBox.Content>
+                <TextBlock Background="LightPink"
+                           Foreground="Red"
+                           Text="Content Background=LightPink" />
+            </CheckBox.Content>
+        </CheckBox>
+
+        <!-- ToggleButton -->
+        <TextBlock Margin="0,20"
+                   Foreground="Blue" FontSize="{StaticResource FontSizeMicro}"
+                   Text="CheckBox is derived from ToggleButton." />
+        <StackPanel Orientation="Horizontal" >
+            <ToggleButton x:Name="_toggleButton"
+                          Content="ToggleButton"
+                          Height="40" Width="200"
+                          IsChecked="{Binding CheckFlag, Mode=TwoWay}" />
+            <TextBlock Margin="10"
+                       VerticalAlignment="Center"
+                       FontSize="{StaticResource FontSizeSmall}"
+                       Text="{Binding IsChecked, ElementName=_toggleButton, StringFormat='IsChecked: {0}'}" />
+        </StackPanel>
+        
     </StackPanel>
 
 </ContentControl>

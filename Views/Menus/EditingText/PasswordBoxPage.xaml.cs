@@ -34,5 +34,11 @@ namespace WpfControlSamples.Views.Menus
             set => SetProperty(ref _userPassword, value);
         }
         private string _userPassword;
+
+        public ICommand EnterOkCommand => _enterOkCommand ??
+            (_enterOkCommand = new MyCommand(() =>
+                MessageBox.Show("Password is " + UserPassword, "Title")));
+        private ICommand _enterOkCommand;
+
     }
 }

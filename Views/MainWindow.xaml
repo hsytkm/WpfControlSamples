@@ -11,10 +11,22 @@
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
 
+        <TabItem Header="Shapes" >
+            <menus:ShapesMenuTab />
+        </TabItem>
+
+        <TabItem Header="UIFunctions" >
+            <menus:UIFunctionsMenuTab />
+        </TabItem>
+        
         <TabItem Header="LayoutSingle" >
             <menus:LayoutSingleMenuTab />
         </TabItem>
-        
+
+        <TabItem Header="LayoutMultiple" >
+            <menus:LayoutMultipleMenuTab />
+        </TabItem>
+
         <TabItem Header="Presentation" >
             <menus:PresentationMenuTab />
         </TabItem>

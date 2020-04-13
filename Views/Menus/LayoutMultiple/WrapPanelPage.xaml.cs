@@ -16,26 +16,25 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class CheckBoxPage : ContentControl
+    public partial class WrapPanelPage : ContentControl
     {
-        public CheckBoxPage()
+        public WrapPanelPage()
         {
             InitializeComponent();
-
-            DataContext = new CheckBoxViewModel();
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e) { }
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e) { }
-    }
-
-    class CheckBoxViewModel : MyBindableBase
-    {
-        public bool CheckFlag
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            get => _checkFlag;
-            set => SetProperty(ref _checkFlag, value);
+            SwitchOrientation(true);
         }
-        private bool _checkFlag = true;
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            SwitchOrientation(false);
+        }
+
+        private void SwitchOrientation(bool isHorizontal)
+        {
+            DataContext = isHorizontal ? Orientation.Horizontal : Orientation.Vertical;
+        }
     }
 }

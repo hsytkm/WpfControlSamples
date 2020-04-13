@@ -1,0 +1,98 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.TreeViewPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <ContentControl.Resources>
+        <Style x:Key="ExpandedTreeViewItemStyle" TargetType="{x:Type TreeViewItem}" >
+            <Setter Property="IsExpanded" Value="True" />
+        </Style>
+
+        <Style x:Key="ExpandedTreeViewStyle" TargetType="{x:Type TreeView}" >
+            <Setter Property="ItemContainerStyle" Value="{StaticResource ExpandedTreeViewItemStyle}" />
+        </Style>
+    </ContentControl.Resources>
+    
+    <Grid Margin="10" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2"
+                   FontSize="{StaticResource FontSizeSmall}"
+                   Text="Left: only xaml ,  Right: CodeBehind filter color" />
+
+        <!-- Left side (xamlのみで記述) -->
+        <TreeView Grid.Row="1" Grid.Column="0"
+                  Style="{StaticResource ExpandedTreeViewStyle}" >
+            <TreeViewItem Header="HeaderA" >
+                <TreeViewItem Header="Department1" Style="{StaticResource ExpandedTreeViewItemStyle}" >
+                    <TreeViewItem Header="Worker1-1" />
+                    <TreeViewItem Header="Worker1-2" />
+                </TreeViewItem>
+                
+                <TreeViewItem IsExpanded="True" >
+                    <TreeViewItem.Header>
+                        <CheckBox Content="Department2" />
+                    </TreeViewItem.Header>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <CheckBox Content="Worker2-1" />
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <Button Content="Worker2-2" />
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                </TreeViewItem>
+            </TreeViewItem>
+
+            <TreeViewItem Header="HeaderB" >
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <RadioButton Content="WorkerB-1" GroupName="GroupB" />
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <RadioButton Content="WorkerB-2" GroupName="GroupB" IsChecked="True" />
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <RadioButton Content="WorkerB-3" GroupName="GroupB" />
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+            </TreeViewItem>
+        </TreeView>
+
+        <!-- Right side -->
+        <TreeView Grid.Row="1" Grid.Column="1"
+                  ItemsSource="{Binding Colors, Mode=OneWay}" >
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}" >
+                    <Setter Property="IsExpanded" Value="True" />
+                </Style>
+            </TreeView.ItemContainerStyle>
+            
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type local:TreeColors}"
+                                          ItemsSource="{Binding Child, Mode=OneWay}">
+                    <TextBlock Text="{Binding Name, Mode=OneWay}"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+    </Grid>
+
+</ContentControl>

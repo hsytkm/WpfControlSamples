@@ -8,8 +8,9 @@
                 d:DesignHeight="450" d:DesignWidth="800">
 
     <StackPanel Margin="10" >
+        <TextBlock Margin="0,0,0,20"
+                   Text="GroupBoxとペアで使うとベネ" />
 
-        <TextBlock Text="RadioButtons" />
         <Border Padding="20" Background="LightGray" >
             <WrapPanel>
                 <RadioButton Content="Check1" Margin="0,0,20,0"

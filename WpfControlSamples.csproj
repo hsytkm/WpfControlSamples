@@ -20,7 +20,6 @@
     <Folder Include="Views\Controls\" />
     <Folder Include="Views\MarkupExtensions\" />
     <Folder Include="Views\Behaviors\" />
-    <Folder Include="Views\Resources\" />
     <Folder Include="Views\Triggers\" />
   </ItemGroup>
 
@@ -31,6 +30,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Views\Menus\DisplayCollections\TreeViewPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\DisplayCollections\ListBoxPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\EditingText\PasswordBoxPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -38,6 +43,33 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\EditingText\EditingTextMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutMultiple\CanvasPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutMultiple\WrapPanelPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutMultiple\DockPanelPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutMultiple\StackPanelPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutMultiple\UniformGridPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutMultiple\GroupBoxPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutMultiple\GridSplitterPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutMultiple\LayoutMultipleMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutMultiple\GridPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\LayoutSingle\ScrollViewerPage.xaml">
@@ -64,6 +96,9 @@
     <Page Update="Views\Menus\DisplayCollections\ComboBoxPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\SettingValues\CalendarPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\SettingValues\CheckBoxPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -74,6 +109,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\SettingValues\SettingValuesMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Shapes\ShapesMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Shapes\EllipsePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\ToolTipPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\UIFunctionsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

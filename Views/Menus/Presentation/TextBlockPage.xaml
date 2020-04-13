@@ -69,6 +69,17 @@
             <Run Text="UltraLight  "  FontWeight="UltraLight" />
         </TextBlock>
 
+        <!-- StringFormat -->
+        <TextBlock Background="LightCoral" >
+            <Run Text="{Binding ., Mode=OneWay, StringFormat='DataContext.ToString(): {0}'}" />
+            <LineBreak />
+            <Run Text="{Binding ., Mode=OneWay, StringFormat='Percent1: {0:P1}'}" />
+            <LineBreak />
+            <Run Text="Percent6:" />
+            <Run Text="{Binding ., Mode=OneWay, StringFormat='{}{0:P6}'}" />
+            <LineBreak />
+        </TextBlock>
+
     </StackPanel>
 
 </ContentControl>

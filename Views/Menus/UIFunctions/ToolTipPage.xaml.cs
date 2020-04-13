@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,26 +17,21 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class CheckBoxPage : ContentControl
+    public partial class ToolTipPage : ContentControl
     {
-        public CheckBoxPage()
+        public ToolTipPage()
         {
             InitializeComponent();
-
-            DataContext = new CheckBoxViewModel();
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e) { }
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e) { }
-    }
-
-    class CheckBoxViewModel : MyBindableBase
-    {
-        public bool CheckFlag
+        private void TextBlock_ToolTipOpening(object sender, ToolTipEventArgs e)
         {
-            get => _checkFlag;
-            set => SetProperty(ref _checkFlag, value);
+            Debug.WriteLine("ToolTipOpening");
         }
-        private bool _checkFlag = true;
+
+        private void TextBlock_ToolTipClosing(object sender, ToolTipEventArgs e)
+        {
+            Debug.WriteLine("ToolTipClosing");
+        }
     }
 }
