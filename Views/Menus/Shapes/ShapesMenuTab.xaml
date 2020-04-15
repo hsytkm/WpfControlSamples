@@ -12,12 +12,12 @@
         <local:EllipsePage />
     </TabItem>
 
-    <TabItem Header="Path" >
-        <local:BlankPage />
+    <TabItem Header="Polygon" >
+        <local:PolygonPage />
     </TabItem>
 
-    <TabItem Header="Polygon" >
-        <local:BlankPage />
+    <TabItem Header="Path" >
+        <local:PathPage />
     </TabItem>
 
 </TabControl>

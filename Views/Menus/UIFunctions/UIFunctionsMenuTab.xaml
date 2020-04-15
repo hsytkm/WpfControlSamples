@@ -13,15 +13,15 @@
     </TabItem>
 
     <TabItem Header="Popup" >
-        <local:BlankPage />
+        <local:PopupPage />
     </TabItem>
 
     <TabItem Header="Menu" >
-        <local:BlankPage />
+        <local:MenuPage />
     </TabItem>
 
-    <TabItem Header="Separator" >
-        <local:BlankPage />
+    <TabItem Header="MessageBox" >
+        <local:MessageBoxPage />
     </TabItem>
-
+    
 </TabControl>

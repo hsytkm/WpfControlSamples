@@ -1,0 +1,38 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.PathPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- 【WPF】Pathで線形を書く（直線のみ）
+         https://qiita.com/LemonLeaf/items/c089bbb497f53b59e0b4
+    -->
+    <Canvas Margin="10" >
+        <TextBlock Text="Path"
+                   FontSize="{StaticResource FontSizeSmall}" />
+
+        <!-- 直線を続けて書く -->
+        <Path Stroke="Red" StrokeThickness="10" Data="M10,0 l30,0 0,40 20,0 0,-40 20,0 "
+              Canvas.Left="30" Canvas.Top="30" />
+
+        <!-- 絶対座標で指定する場合 -->
+        <Path Stroke="Green" StrokeThickness="10" Data="M50,10 L50,200"
+              Canvas.Left="50" Canvas.Top="100" />
+
+        <!-- 相対座標で指定する場合 -->
+        <Path Stroke="Yellow" StrokeThickness="10" Data="M0,130 l0,130"
+              Canvas.Left="80" Canvas.Top="120" />
+
+        <!-- 三角形を書く場合 -->
+        <Path Stroke="Pink" StrokeThickness="10" Data="M0,0 L100,0 50,80 z"
+              Canvas.Left="130" Canvas.Top="200" />
+
+        <!-- 複数の線形を含むPath -->
+        <Path Stroke="Blue" StrokeThickness="10" Data="M10,10 l100,0 m0,10 l0,50"
+              Canvas.Left="200" Canvas.Top="250" />
+
+    </Canvas>
+</ContentControl>

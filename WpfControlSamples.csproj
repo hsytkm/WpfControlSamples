@@ -19,7 +19,6 @@
     <Folder Include="Infrastructures\" />
     <Folder Include="Views\Controls\" />
     <Folder Include="Views\MarkupExtensions\" />
-    <Folder Include="Views\Behaviors\" />
     <Folder Include="Views\Triggers\" />
   </ItemGroup>
 
@@ -111,16 +110,49 @@
     <Page Update="Views\Menus\SettingValues\SettingValuesMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Shapes\PathPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Shapes\PolygonPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Shapes\ShapesMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Shapes\EllipsePage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\UIFunctions\MessageBoxPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\MenuPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\PopupPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\UIFunctions\ToolTipPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\UIFunctions\UIFunctionsMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\BindingSourcePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\BindablePropertyPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\AttachedPropertyPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\ValueConverterPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\MultiValueConverterPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\XamlFunctionsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

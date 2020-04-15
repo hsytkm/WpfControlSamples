@@ -31,6 +31,13 @@ namespace WpfControlSamples.Views.Menus
     {
         public IList<TreeColors> Colors { get; }
 
+        public TreeColors SelectedColors
+        {
+            get => _selectedColors;
+            set => SetProperty(ref _selectedColors, value);
+        }
+        private TreeColors _selectedColors;
+
         public TreeViewViewModel()
         {
             var sourceChild = Models.SampleData.WpfColors.Select(x => new TreeColors(x.Name)).ToList();
@@ -75,5 +82,7 @@ namespace WpfControlSamples.Views.Menus
 
         public TreeColors(string name, IList<TreeColors> child) =>
             (Name, Child) = (name, child);
+
+        public override string ToString() => Name;
     }
 }

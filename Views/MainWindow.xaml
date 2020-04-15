@@ -11,6 +11,10 @@
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
 
+        <TabItem Header="XamlFunctions" >
+            <menus:XamlFunctionsMenuTab />
+        </TabItem>
+
         <TabItem Header="Shapes" >
             <menus:ShapesMenuTab />
         </TabItem>

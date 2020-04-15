@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,15 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfControlSamples.Extensions;
+using WpfControlSamples.Infrastructures;
 
-namespace WpfControlSamples.Views
+namespace WpfControlSamples.Views.Menus
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class ValueConverterPage : ContentControl
     {
-        public MainWindow()
+        public ValueConverterPage()
         {
             InitializeComponent();
         }
