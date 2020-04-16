@@ -20,8 +20,8 @@
         <local:ValueConverterPage />
     </TabItem>
 
-    <TabItem Header="BindingProp" >
-        <local:BindablePropertyPage />
+    <TabItem Header="DependencyProp" >
+        <local:DependencyPropertyPage />
     </TabItem>
 
     <TabItem Header="AttachedProp" >

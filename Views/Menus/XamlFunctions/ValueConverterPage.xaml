@@ -5,11 +5,67 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
                 xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                xmlns:system="clr-namespace:System;assembly=System.Runtime"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
+    <ContentControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
+            </Style>
+
+            <conv:DoubleToIntegerConverter x:Key="DoubleToIntConverter" />
+        </ResourceDictionary>
+    </ContentControl.Resources>
+
     <StackPanel Margin="10" >
+        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                   Text="IValueConverter" FontSize="{StaticResource FontSizeMedium}" />
+
+        <!-- DoubleToIntConverter -->
+        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                   Text="入力値doubleに指定値を乗算する&#xD;&#xA;(use ConverterParameter)&#xD;&#xA;DoubleToIntConverter" />
+        <StackPanel Background="LightGray" Margin="10" >
+            <Slider x:Name="slider1" Margin="30,0" Minimum="0" Maximum="1" />
+
+            <TextBlock Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Raw value is {0:f2}'}" />
+
+            <TextBlock Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Raw value * 100 is {0}',
+                                      Converter={StaticResource DoubleToIntConverter},
+                                      ConverterParameter=100}" />
+
+            <TextBlock Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Raw value * 255 is {0}',
+                                      Converter={StaticResource DoubleToIntConverter},
+                                      ConverterParameter=255}" />
+        </StackPanel>
+
+        <!-- BooleanToObjectConverter -->
+        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                   Text="bool値に応じてobjectを切り替える&#xD;&#xA;BooleanToObjectConverter" />
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Switch State" />
+            <CheckBox x:Name="checkBox1" Margin="20,0" />
+            <TextBlock>
+                <TextBlock.Text>
+                    <Binding Source="{x:Reference checkBox1}" Path="IsChecked" >
+                        <Binding.Converter>
+                            <conv:BooleanToObjectConverter TrueObject="switch is true."
+                                                           FalseObject="switch is false." />
+                        </Binding.Converter>
+                    </Binding>
+                </TextBlock.Text>
+                <TextBlock.Foreground>
+                    <Binding Source="{x:Reference checkBox1}" Path="IsChecked" >
+                        <Binding.Converter>
+                            <conv:BooleanToObjectConverter TrueObject="Blue"
+                                                           FalseObject="Gray" />
+                        </Binding.Converter>
+                    </Binding>
+                </TextBlock.Foreground>
+            </TextBlock>
+        </StackPanel>
 
     </StackPanel>
-
 </ContentControl>

@@ -13,6 +13,11 @@
             <conv:BooleansAreAllTrueVisibleConverter x:Key="BoolsAllTrueVisibleConverter"/>
             <conv:BooleansAreAllFalseCollapsedConverter x:Key="BoolsAllFalseCollapsedConverter"/>
 
+            <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
+            </Style>
+
             <Style TargetType="{x:Type CheckBox}" >
                 <Setter Property="Margin" Value="0,5" />
             </Style>
@@ -20,6 +25,9 @@
     </ContentControl.Resources>
 
     <StackPanel Margin="10" >
+        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                   Text="MultiValueConverter" />
+
         <CheckBox x:Name="check1" Content="Check1" />
         <CheckBox x:Name="check2" Content="Check2" IsChecked="True" />
         <CheckBox x:Name="check3" Content="Check3" />

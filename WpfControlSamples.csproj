@@ -140,7 +140,7 @@
     <Page Update="Views\Menus\XamlFunctions\BindingSourcePage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\XamlFunctions\BindablePropertyPage.xaml">
+    <Page Update="Views\Menus\XamlFunctions\DependencyPropertyPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\AttachedPropertyPage.xaml">
