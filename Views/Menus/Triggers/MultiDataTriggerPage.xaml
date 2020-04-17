@@ -1,0 +1,108 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.MultiDataTriggerPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- [WPF] 複数のトリガー条件を組み合わせた時に AND だけでなく OR で判断する方法
+           http://gootara.org/library/2017/01/wpfao.html
+    -->
+
+    <ContentControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
+            </Style>
+
+            <conv:BooleansAnyMultiValueConverter x:Key="BoolsAnyConverter" />
+        </ResourceDictionary>
+    </ContentControl.Resources>
+
+    <ContentControl.DataContext>
+        <local:MultiDataTriggerViewModel />
+    </ContentControl.DataContext>
+
+    <StackPanel Margin="10" >
+        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                   Text="MultiDataTrigger" />
+
+        <TextBlock Margin="10"
+                   Text="Change Background color when flag in viewmodel switched." />
+
+        <CheckBox x:Name="checkBox1"
+                  Margin="10"
+                  Content="Switch1"
+                  IsChecked="{Binding IsEnable, Mode=TwoWay}" />
+
+        <CheckBox x:Name="checkBox2"
+                  Margin="10"
+                  Content="Switch2" />
+
+        <Ellipse StrokeThickness="5" Stroke="Red"
+                 Width="60" Height="60" >
+            <Ellipse.Style>
+                <Style TargetType="{x:Type Ellipse}" >
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsEnable, Mode=OneWay}" Value="True" />
+                                <Condition Binding="{Binding Source={x:Reference Name=checkBox2}, Path=IsChecked}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            
+                            <Setter Property="Fill" Value="Pink" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
+
+        <!-- AND -->
+        <TextBlock FontSize="{StaticResource FontSizeMedium}" >
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}" >
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Source={x:Reference Name=checkBox1}, Path=IsChecked}" Value="True" />
+                                <Condition Binding="{Binding Source={x:Reference Name=checkBox2}, Path=IsChecked}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+
+                            <Setter Property="TextDecorations" Value="Baseline" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="Blue" />
+                            <Setter Property="Text" Value="AND" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- OR -->
+        <TextBlock FontSize="{StaticResource FontSizeMedium}" >
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}" >
+                    <Style.Triggers>
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding Converter="{StaticResource BoolsAnyConverter}">
+                                    <Binding Source="{x:Reference Name=checkBox1}" Path="IsChecked" />
+                                    <Binding Source="{x:Reference Name=checkBox2}" Path="IsChecked" />
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+
+                            <Setter Property="Text" Value="OR" />
+                            <Setter Property="Foreground" Value="Blue" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+    </StackPanel>
+
+</ContentControl>

@@ -1,0 +1,74 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.MarkupExtensionPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:mkup="clr-namespace:WpfControlSamples.Views.MarkupExtensions"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <ContentControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
+            </Style>
+            <system:Int32 x:Key="int32value">123</system:Int32>
+        </ResourceDictionary>
+    </ContentControl.Resources>
+
+    <StackPanel Margin="10" >
+        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                   Text="MarkupExtension"
+                   FontSize="{StaticResource FontSizeLarge}" />
+
+        <!-- Color.FromArgb() -->
+        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                   Text="ARGB to Brush(Color)" />
+        <StackPanel Orientation="Horizontal" >
+            <Panel.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="{x:Type Border}" >
+                        <Setter Property="Width" Value="40" />
+                        <Setter Property="Height" Value="40" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                </ResourceDictionary>
+            </Panel.Resources>
+
+            <Border>
+                <Border.Background>
+                    <mkup:RgbBrushExtension R="0" G="255" B="128" A="255" />
+                </Border.Background>
+            </Border>
+            <Border Background="{mkup:RgbBrushExtension R=171, G=255, B=128}" />
+
+            <!-- Extension は省略可能 -->
+            <Border Background="{mkup:RgbBrush R=0, G=0, B=128}" />
+            <Border Background="{mkup:RgbBrush A=128}" />
+        </StackPanel>
+
+        <!-- Image of embedded resource
+             WPFでは Imageコントロール に 埋め込みリソース画像をそのまま突っ込めるので実装していません。
+        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                   Text="埋め込みリソース形式の画像をBinding&#xD;&#xA;EmbeddedImageResourceExtension" />
+        <TextBlock Text="Resources.Images.EmbeddedResource1.png"
+                   FontSize="{StaticResource FontSizeSmall}"
+                   Foreground="Blue" />
+        <Image Source="{mkup:EmbeddedImageResource Source=Resources.Images.EmbeddedResource1.png}" />
+         -->
+        
+        <!-- StaticResource を string に組み込んで、Textプロパティに表示 -->
+        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                   Text="StaticResource&#xD;&#xA;StringFormatExtension" />
+        <TextBlock FontSize="{StaticResource FontSizeSmall}"
+                   Text="{mkup:StringFormat StaticResourceKey=int32value,
+                                            StringFormat='int32value of StaticResource is {0}.'}"
+                   Foreground="Blue" />
+
+    </StackPanel>
+
+</ContentControl>

@@ -12,7 +12,8 @@
 
         <!-- Red -->
         <Expander DockPanel.Dock="Top"
-                  ExpandDirection="Right" >
+                  ExpandDirection="Right"
+                  Foreground="Red" Background="Pink" >
             <Expander.Header>
                 <TextBlock Text="{Binding RedName, Mode=OneWay}" />
             </Expander.Header>
@@ -28,7 +29,8 @@
         <Expander DockPanel.Dock="Left"
                   ExpandDirection="Down" >
             <Expander.Header>
-                <TextBlock Text="{Binding BlueName, Mode=OneWay}" />
+                <TextBlock Text="{Binding BlueName, Mode=OneWay}"
+                           Foreground="Blue" Background="LightBlue" />
             </Expander.Header>
 
             <ScrollViewer>
@@ -48,7 +50,8 @@
             <ScrollViewer>
                 <TextBox Padding="10,5"
                          IsReadOnly="True"
-                         Text="{Binding GreenColors, Mode=OneWay}" />
+                         Text="{Binding GreenColors, Mode=OneWay}"
+                         Foreground="Green" Background="LightCyan" />
             </ScrollViewer>
         </Expander>
 

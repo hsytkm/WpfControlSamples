@@ -18,7 +18,6 @@
     <Folder Include="Models\" />
     <Folder Include="Infrastructures\" />
     <Folder Include="Views\Controls\" />
-    <Folder Include="Views\MarkupExtensions\" />
     <Folder Include="Views\Triggers\" />
   </ItemGroup>
 
@@ -42,6 +41,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\EditingText\EditingTextMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\ItemTemplate\ItemTemplateSelectorPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\ItemTemplate\ItemTemplateMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\LayoutMultiple\CanvasPage.xaml">
@@ -122,6 +127,21 @@
     <Page Update="Views\Menus\Shapes\EllipsePage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Triggers\MultiDataTriggerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Triggers\PropertyTriggerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Triggers\EventTriggerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Triggers\DataTriggerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Triggers\TriggersMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\UIFunctions\MessageBoxPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -135,6 +155,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\UIFunctions\UIFunctionsMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\MarkupExtensionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\MarkupPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\BindingSourcePage.xaml">

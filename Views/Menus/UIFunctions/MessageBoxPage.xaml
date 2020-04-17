@@ -51,8 +51,11 @@
             <TextBlock FontSize="{StaticResource FontSizeMedium}"
                        Text="MessageBoxImage" />
 
-            <TextBlock Margin="20,10"
-                       Text="MessageBoxImageには重複した定義値がいくつかある" />
+            <TextBlock Margin="20,10">
+                <Run Text="MessageBoxImageには重複した定義値がいくつかある" />
+                <LineBreak/>
+                <Run Text="種類によってサウンドも異なるっぽい" />
+            </TextBlock>
 
             <ComboBox Margin="20,10"
                       ItemsSource="{Binding MessageBoxImages, Mode=OneTime}"

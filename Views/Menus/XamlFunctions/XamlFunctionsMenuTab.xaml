@@ -9,7 +9,7 @@
       Style="{StaticResource MyTabControlStyle2}" >
 
     <TabItem Header="Markup" >
-        <local:BlankPage />
+        <local:MarkupPage />
     </TabItem>
 
     <TabItem Header="BindingSource" >
@@ -28,8 +28,8 @@
         <local:AttachedPropertyPage />
     </TabItem>
 
-    <TabItem Header="IMarkupExt" >
-        <local:BlankPage />
+    <TabItem Header="MarkupExt" >
+        <local:MarkupExtensionPage />
     </TabItem>
 
     <TabItem Header="EventToCommand" >
