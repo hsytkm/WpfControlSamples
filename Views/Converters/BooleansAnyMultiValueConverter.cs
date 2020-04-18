@@ -6,7 +6,7 @@ using System.Windows.Data;
 namespace WpfControlSamples.Views.Converters
 {
     [ValueConversion(typeof(bool[]), typeof(bool))]
-    public class BooleansAnyMultiValueConverter : IMultiValueConverter
+    class BooleansAnyMultiValueConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

@@ -17,7 +17,7 @@
     </TabItem>
 
     <TabItem Header="RichTextBox" >
-        <local:BlankPage />
+        <local:RichTextBoxPage />
     </TabItem>
 
 </TabControl>

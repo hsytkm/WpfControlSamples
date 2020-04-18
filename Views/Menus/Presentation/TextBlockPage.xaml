@@ -26,6 +26,10 @@
             <Run Text="改行しています。" />
         </TextBlock>
 
+        <!-- &#xD; がCRで、&#xA; がLFを表す らしい https://www.nuits.jp/entry/2016/07/30/213257 -->
+        <TextBlock Text="改行文字 &#xD;&#xA;　CR=＆＃ｘＤ；  LF=＆＃ｘＡ；　←これを半角にする"
+                   Background="Gray" />
+
         <!-- Wrap
                表示幅を超えた文字列に対して標準の改行アルゴリズムによる処理が行われ、
                挿入位置を判断できない場合でも改行が行われます。

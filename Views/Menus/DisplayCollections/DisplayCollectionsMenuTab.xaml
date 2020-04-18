@@ -21,7 +21,7 @@
     </TabItem>
 
     <TabItem Header="DataGrid" >
-        <local:BlankPage />
+        <local:DataGridPage />
     </TabItem>
 
 </TabControl>

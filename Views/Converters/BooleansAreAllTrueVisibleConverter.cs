@@ -6,7 +6,7 @@ using System.Windows.Data;
 namespace WpfControlSamples.Views.Converters
 {
     [ValueConversion(typeof(bool[]), typeof(Visibility))]
-    public class BooleansAreAllTrueVisibleConverter : IMultiValueConverter
+    class BooleansAreAllTrueVisibleConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

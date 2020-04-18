@@ -32,8 +32,8 @@ namespace WpfControlSamples.Views.Menus
         private static IList<(string Name, Color Color)> Colors =>
             Models.SampleData.WpfColors;
 
-        public IList<string> ItemsSource { get; } =
-            Colors.Select(x => x.Name).ToList();
+        #region ComboBox1
+        public IList<string> ItemsSource { get; } = Colors.Select(x => x.Name).ToList();
 
         public string SelectedItem
         {
@@ -41,21 +41,40 @@ namespace WpfControlSamples.Views.Menus
             set
             {
                 if (SetProperty(ref _selectedItem, value))
-                    SelectedColor = Colors.First(x => x.Name == value).Color;
+                {
+                    var x = Colors.First(x => x.Name == value);
+                    SelectedNameColor = new ComboboxColor(x.Name, x.Color);
+                }
             }
         }
         private string _selectedItem;
+        #endregion
 
-        public Color SelectedColor
+        #region ComboBox2
+        public IList<ComboboxColor> ItemsSourceNameColor { get; } =
+            Colors.Select(x => new ComboboxColor(x.Name, x.Color)).ToList();
+
+        public ComboboxColor SelectedNameColor
         {
-            get => _selectedColor;
-            set => SetProperty(ref _selectedColor, value);
+            get => _selectedNameColor;
+            set => SetProperty(ref _selectedNameColor, value);
         }
-        private Color _selectedColor;
+        private ComboboxColor _selectedNameColor;
+        #endregion
 
         public ComboBoxViewModel()
         {
-            SelectedItem = Colors.First().Name;
+            SelectedItem = ItemsSource.First();
+            SelectedNameColor = ItemsSourceNameColor.First();
         }
+    }
+
+    class ComboboxColor
+    {
+        public string Name { get; }
+        public Color Color { get; }
+        public ComboboxColor(string name, Color color) =>
+            (Name, Color) = (name, color);
+        public override string ToString() => Name;
     }
 }

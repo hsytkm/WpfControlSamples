@@ -10,8 +10,9 @@
         Height="450" Width="800">
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
-        <TabItem Header="Triggers" >
-            <menus:TriggersMenuTab />
+        
+        <TabItem Header="Test" >
+            <menus:RichTextBoxPage />
         </TabItem>
         <!-- ↑仮置き↑ -->
 
@@ -61,6 +62,10 @@
 
         <TabItem Header="ItemTemplate" >
             <menus:ItemTemplateMenuTab />
+        </TabItem>
+
+        <TabItem Header="Triggers" >
+            <menus:TriggersMenuTab />
         </TabItem>
 
         <TabItem Header="Blank" >

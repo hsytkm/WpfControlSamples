@@ -9,16 +9,108 @@
 
     <StackPanel Margin="10" >
 
+        <TextBlock Margin="0,0,0,5"
+                   FontSize="{StaticResource FontSizeSmall}"
+                   Text="Default Style" />
         <ComboBox ItemsSource="{Binding ItemsSource, Mode=OneTime}"
                   SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
 
-        <Border Margin="20"
-                Width="100" Height="100"
-                Background="{Binding SelectedColor, Mode=OneWay,
-                                     Converter={StaticResource ColorToBrushConverter}}" />
+        <TextBlock Margin="0,20,0,5"
+                   FontSize="{StaticResource FontSizeSmall}"
+                   Text="Custom Style" />
+        <ComboBox ItemsSource="{Binding ItemsSourceNameColor, Mode=OneTime}"
+                  SelectedItem="{Binding SelectedNameColor, Mode=TwoWay}" >
 
-        <TextBlock Text="{Binding SelectedItem, Mode=OneWay}"
-                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <!-- 各選択項目のStyle -->
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Width="15" Height="15"
+                                Margin="10,5"
+                                Background="{Binding Color, Mode=OneTime, Converter={StaticResource ColorToBrushConverter}}" />
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" >
+                            <Run Text="{Binding Name, Mode=OneTime}" />
+                            <Run Text="{Binding Color, Mode=OneTime}" />
+                        </TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+            <!-- ComboBox全体のStyle(特に何もしてない) -->
+            <ComboBox.Template>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Grid>
+                        <ToggleButton x:Name="ToggleButton"
+                                      Focusable="False"
+                                      ClickMode="Press"
+                                      IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <ContentPresenter x:Name="ContentSite"
+                                          IsHitTestVisible="False"
+                                          Content="{TemplateBinding SelectionBoxItem}"
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                          Margin="3,3,23,3"
+                                          VerticalAlignment="Stretch"
+                                          HorizontalAlignment="Left" />
+                        <TextBox x:Name="PART_EditableTextBox"
+                                 Style="{x:Null}"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Bottom"
+                                 Margin="3,3,23,3"
+                                 Focusable="True"
+                                 Background="Transparent"
+                                 Visibility="Hidden"
+                                 IsReadOnly="{TemplateBinding IsReadOnly}" >
+                            <TextBox.Template>
+                                <ControlTemplate TargetType="{x:Type TextBox}" >
+                                    <Border Name="PART_ContentHost" Focusable="False" />
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+
+                        <Popup x:Name="Popup"
+                               Placement="Bottom"
+                               IsOpen="{TemplateBinding IsDropDownOpen}"
+                               AllowsTransparency="True"
+                               Focusable="False"
+                               PopupAnimation="Slide">
+                            <Grid x:Name="DropDown"
+                                  SnapsToDevicePixels="True"
+                                  Background="White"
+                                  MinWidth="{TemplateBinding ActualWidth}"
+                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <Border x:Name="DropDownBorder"
+                                        BorderBrush="Red" BorderThickness="3" >
+                                    <ScrollViewer Margin="4,6,4,6"
+                                                  SnapsToDevicePixels="True">
+                                        <Border BorderBrush="Blue" BorderThickness="2" >
+                                            <StackPanel IsItemsHost="True"
+                                                        KeyboardNavigation.DirectionalNavigation="Contained" />
+                                        </Border>
+                                    </ScrollViewer>
+                                </Border>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </ComboBox.Template>
+        </ComboBox>
+
+        <!-- Preview -->
+        <Ellipse Margin="0,20"
+                 Width="100" Height="100"
+                 Fill="{Binding SelectedNameColor.Color, Mode=OneWay,
+                                Converter={StaticResource ColorToBrushConverter}}" />
+
+        <TextBlock FontSize="{StaticResource FontSizeSmall}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Text="{Binding SelectedNameColor.Name, Mode=OneWay}"
+                   Foreground="{Binding SelectedNameColor.Color, Mode=OneWay,
+                                        Converter={StaticResource ColorToBrushConverter}}" />
 
     </StackPanel>
 

@@ -5,10 +5,17 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
-                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                xmlns:trig="clr-namespace:WpfControlSamples.Views.Triggers"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
+    <!-- WPF4.5入門 その58「Behavior」
+         https://blog.okazuki.jp/category/XAML?page=1419259848
+    -->
+    <ContentControl.DataContext>
+        <local:EventTriggerViewModel />
+    </ContentControl.DataContext>
+    
     <ContentControl.Resources>
         <ResourceDictionary>
             <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
@@ -18,30 +25,117 @@
         </ResourceDictionary>
     </ContentControl.Resources>
 
-    <StackPanel Margin="10" >
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
-                   Text="EventTrigger" />
+    <ScrollViewer Margin="10" >
+        <StackPanel>
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                       Text="EventTrigger" />
 
-        <Border Margin="20,10"  Padding="10" Background="LightBlue" >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseLeftButtonDown">
-                    <i:LaunchUriOrFileAction Path="https://www.google.com" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+            <!-- i:CallMethodAction  指定したメソッドを呼び出します -->
+            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="i:CallMethodAction" />
+            <Border Margin="20,10" Padding="10" Background="LightSalmon" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:CallMethodAction TargetObject="{Binding}" MethodName="ViewModelMethod" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
 
-            <TextBlock Text="Open Google.com when mouse left is clicked." />
-        </Border>
+                <TextBlock Text="Call Method when mouse left button is clicked."  />
+            </Border>
 
-        <Border Margin="20,10"  Padding="10" Background="LightPink" >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseRightButtonDown">
-                    <local:MessageTestAction Message="EventTrigger Test!" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+            <!-- i:ChangePropertyAction プロパティの値を指定した値にできます -->
+            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="i:ChangePropertyAction" />
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left" Text="Enter/Leave Mouse" />
+                <Ellipse x:Name="ellipse1"
+                         StrokeThickness="5" Stroke="Red"
+                         Width="60" Height="60" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter" >
+                            <i:ChangePropertyAction TargetName="ellipse1"
+                                                    PropertyName="Fill"
+                                                    Value="Pink" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave" >
+                            <i:ChangePropertyAction TargetName="ellipse1"
+                                                    PropertyName="Fill"
+                                                    Value="LightGray" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Ellipse>
+            </DockPanel>
 
-            <TextBlock Text="Show MessageBox when mouse right is clicked." />
-        </Border>
-        
-    </StackPanel>
+            <!-- i:ControlStoryboardAction ストーリーボードを再生/停止などの操作をすることができます -->
+            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="i:ControlStoryboardAction" />
+
+            <!-- i:GoToStateAction VisualStateを変更することができます -->
+            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="i:GoToStateAction" />
+
+            <!-- i:InvokeCommandAction 指定したCommandを呼び出します -->
+            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="i:InvokeCommandAction" />
+            <DockPanel>
+                <Border DockPanel.Dock="Left"
+                        Margin="20,10" Padding="10" Background="LightGreen" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding MessageCommand}"
+                                                   CommandParameter="Enter" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding MessageCommand}"
+                                                   CommandParameter="Leave" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <TextBlock Text="Invoke Command when MouseEnter and MouseLeave." />
+                </Border>
+                <TextBlock Foreground="Blue"
+                           FontSize="{StaticResource FontSizeMedium}"
+                           VerticalAlignment="Center"
+                           Text="{Binding Message, Mode=OneWay}" />
+            </DockPanel>
+            <DockPanel>
+                <Border DockPanel.Dock="Left"
+                        Margin="20,10" Padding="10" Background="LightSteelBlue" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseMove">
+                            <i:InvokeCommandAction Command="{Binding MouseMoveToPointCommand}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <TextBlock Text="Invoke Command when MouseMove." />
+                </Border>
+                <TextBlock Foreground="Blue"
+                           FontSize="{StaticResource FontSizeMedium}"
+                           VerticalAlignment="Center"
+                           Text="{Binding MousePoint, Mode=OneWay}" />
+            </DockPanel>
+
+            <!-- i:LaunchUriOrFileAction 指定したUriかファイルを開きます-->
+            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="i:LaunchUriOrFileAction" />
+            <Border Margin="20,10" Padding="10" Background="LightBlue" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:LaunchUriOrFileAction Path="https://www.google.com" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <TextBlock Text="Open Google.com when mouse left button is clicked." />
+            </Border>
+
+            <!-- Custom TriggerAction<T> -->
+            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="Custom TriggerAction&lt;T&gt;" />
+            <Border Margin="20,10" Padding="10" Background="LightPink" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseRightButtonDown">
+                        <trig:MyMessageTestAction Message="EventTrigger Test!" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <TextBlock Text="Show MessageBox when mouse right button is clicked." />
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
 
 </ContentControl>

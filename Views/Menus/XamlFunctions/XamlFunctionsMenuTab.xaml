@@ -32,10 +32,6 @@
         <local:MarkupExtensionPage />
     </TabItem>
 
-    <TabItem Header="EventToCommand" >
-        <local:BlankPage />
-    </TabItem>
-
     <TabItem Header="MultiValueConv" >
         <local:MultiValueConverterPage />
     </TabItem>

@@ -23,23 +23,42 @@ namespace WpfControlSamples.Views.Menus
         public EventTriggerPage()
         {
             InitializeComponent();
+
+            Mouse.GetPosition((IInputElement)this);
         }
     }
 
-    class MessageTestAction : TriggerAction<DependencyObject>
+    class EventTriggerViewModel : MyBindableBase
     {
-        public static readonly DependencyProperty MessageProperty
-            = DependencyProperty.Register(nameof(Message), typeof(string), typeof(MessageTestAction), null);
+        public ICommand MessageCommand => _messageCommand ??
+            (_messageCommand = new MyCommand<string>(msg => Message = msg));
+        private ICommand _messageCommand;
 
         public string Message
         {
-            get => (string)this.GetValue(MessageProperty);
-            set => this.SetValue(MessageProperty, value);
+            get => _message;
+            private set => SetProperty(ref _message, value);
         }
+        private string _message;
 
-        protected override void Invoke(object parameter)
+        public ICommand MouseMoveToPointCommand => _mouseMoveToPointCommand ??
+            (_mouseMoveToPointCommand = new MyCommand<FrameworkElement>(fe =>
+            {
+                var point = Mouse.GetPosition((IInputElement)fe);
+                MousePoint = $"MousePoint: ({point.X:f1}, {point.Y:f1})";
+            }));
+        private ICommand _mouseMoveToPointCommand;
+
+        public string MousePoint
         {
-            MessageBox.Show(Message);
+            get => _mousePoint;
+            private set => SetProperty(ref _mousePoint, value);
+        }
+        private string _mousePoint;
+
+        public void ViewModelMethod()
+        {
+            MessageBox.Show("Call ViewModelMethod!!");
         }
     }
 }

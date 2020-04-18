@@ -1,0 +1,108 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.DataGridPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:vc="clr-namespace:WpfControlSamples.Views.Converters"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- WPF DataGridを使ってみた
+           https://qiita.com/kuro4/items/6be2e1e95db4714c8d7a
+    
+         DataGridの基本的な事
+           http://tawamuredays.blog.fc2.com/blog-entry-71.html
+    -->
+    <ContentControl.DataContext>
+        <local:DataGridViewModel />
+    </ContentControl.DataContext>
+
+    <ContentControl.Resources>
+        <ResourceDictionary>
+            <vc:Array2dToDataTableConverter x:Key="Array2ToTableConverter" />
+        </ResourceDictionary>
+    </ContentControl.Resources>
+
+    <ScrollViewer Margin="10" >
+        <StackPanel>
+            <!-- Pattern1 -->
+            <TextBlock FontSize="{StaticResource FontSizeSmall}"
+                       Text="ItemsSource=DataTable  (Left:Default, Right Custom Style)" />
+            <DockPanel Margin="10,5,0,0">
+                <!-- DataTable を ItemsSource にバインド -->
+                <DataGrid DockPanel.Dock="Left" Margin="0,0,20,0"
+                          ItemsSource="{Binding DataTableSource1, Mode=OneWay}" />
+
+                <!-- 二次元配列 を Converter で DataTable に変換して、ItemsSource にバインド -->
+                <DataGrid DockPanel.Dock="Left" 
+                          ItemsSource="{Binding Source2dArray, Mode=OneWay, Converter={StaticResource Array2ToTableConverter}}"
+                          IsReadOnly="True"
+                          CanUserReorderColumns="False"
+                          CanUserSortColumns="False"
+                          CanUserResizeRows="False"
+                          CanUserResizeColumns="False"
+                          SelectionUnit="Cell"
+                          SelectionMode="Extended"
+                          HeadersVisibility="None"
+                          VirtualizingStackPanel.IsVirtualizing="True" />
+
+                <TextBlock Foreground="LightGray"
+                           Text="ここにコントロール置くと、&#xD;&#xA;DataGridの端が描画されない" />
+            </DockPanel>
+
+            <!-- Pattern2 -->
+            <TextBlock Margin="0,10"
+                       FontSize="{StaticResource FontSizeSmall}"
+                       Text="ItemsSource=IList&lt;Item&gt;  (Left:Default, Right Custom Style)" />
+            <DockPanel Margin="10,5,0,0">
+                <DataGrid DockPanel.Dock="Left" Margin="0,0,20,0"
+                          ItemsSource="{Binding Products, Mode=OneWay}" />
+
+                <DataGrid ItemsSource="{Binding Products, Mode=OneWay}"
+                          CanUserReorderColumns="False"
+                          CanUserSortColumns="False"
+                          CanUserResizeRows="False"
+                          CanUserResizeColumns="False"
+                          SelectionUnit="Cell"
+                          SelectionMode="Extended"
+                          AutoGenerateColumns="False"
+                          VirtualizingStackPanel.IsVirtualizing="True"
+                          VirtualizingStackPanel.VirtualizationMode="Standard" >
+                <DataGrid.Columns>
+                        <!-- Bland は setter が存在しないので書き替えられない -->
+                        <DataGridTextColumn Header="ブランド名"
+                                            Binding="{Binding Bland, Mode=OneWay}"/>
+                        
+                        <!-- Name は setter が存在するが、OneWay でバインドしているので書き替えられない -->
+                        <DataGridTextColumn Header="商品名"
+                                            Binding="{Binding Name, Mode=OneWay}"/>
+                        
+                        <DataGridComboBoxColumn Header="製造元"
+                                                SelectedValueBinding="{Binding Maker, Mode=TwoWay}"
+                                                DisplayMemberPath="Label"
+                                                SelectedValuePath="Value" >
+                            <DataGridComboBoxColumn.ItemsSource>
+                                <!-- ドロップダウン表示には表示クラスが必要でメンドイ -->
+                                <x:Array Type="{x:Type local:ProductMakerToComboBox}" >
+                                    <local:ProductMakerToComboBox Label="パナ" Value="Panasonic" />
+                                    <local:ProductMakerToComboBox Label="ソニー" Value="Sony" />
+                                    <local:ProductMakerToComboBox Label="キヤノン" Value="Canon" />
+                                </x:Array>
+                            </DataGridComboBoxColumn.ItemsSource>
+                        </DataGridComboBoxColumn>
+                        
+                        <DataGridCheckBoxColumn Header="在庫"
+                                                Binding="{Binding HasStock, Mode=TwoWay}"/>
+                        
+                        <DataGridTextColumn Header="値段"
+                                            Binding="{Binding Price, Mode=TwoWay}"
+                                            Foreground="Green" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</ContentControl>
