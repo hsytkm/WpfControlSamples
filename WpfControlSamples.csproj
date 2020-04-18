@@ -6,6 +6,11 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove=".gitattributes" />
     <None Remove=".gitignore" />
@@ -28,6 +33,9 @@
 
   <ItemGroup>
     <Page Update="Views\Menus\DisplayCollections\DataGridPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\DisplayCollections\ListBox2Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\DisplayCollections\TreeViewPage.xaml">

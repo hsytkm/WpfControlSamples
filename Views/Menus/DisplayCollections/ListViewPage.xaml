@@ -29,13 +29,70 @@
                   SelectedItem="{Binding SelectedColor, Mode=TwoWay}"
                   SelectionMode="Single"
                   ScrollViewer.VerticalScrollBarVisibility="Visible"
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  VirtualizingStackPanel.IsVirtualizing="True"
+                  VirtualizingStackPanel.VirtualizationMode="Recycling"
+                  AlternationCount="2" >
 
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}" >
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     <Setter Property="VerticalContentAlignment" Value="Stretch" />
                     <Setter Property="Padding" Value="3" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <Grid Name="backgroundPanel">
+                                    <Grid.ColumnDefinitions>
+                                        <!-- 1.データ表示に必要な列  2.余白部の列 -->
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <ContentControl Name="foreground" IsTabStop="False" >
+                                        <!-- 以下でカラムのアイテムの余白を設定できる -->
+                                        <GridViewRowPresenter Name="rowPresenter" />
+                                    </ContentControl>
+
+                                    <!-- GridViewRowPresenterのColumnsとバインド -->
+                                    <ItemsControl ItemsSource="{Binding ElementName=rowPresenter, Path=Columns}"
+                                                  IsTabStop="False"
+                                                  VirtualizingStackPanel.IsVirtualizing="True"
+                                                  VirtualizingStackPanel.VirtualizationMode="Recycling" >
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel Orientation="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <!-- 右側に罫線を引く、Border幅は列の表示幅にバインドする -->
+                                                <Border BorderBrush="Gray"
+                                                        BorderThickness="0,0,1,0"
+                                                        Width="{Binding ActualWidth}"/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+
+                                    <!-- クリックに反応させるため背景を透明化 -->
+                                    <Border Grid.Column="1" Background="Transparent" />
+                                </Grid>
+
+                                <ControlTemplate.Triggers>
+                                    <!-- ListViewカラムを交互に背景色変え(ListView に AlternationCount="2" が必要) -->
+                                    <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                        <Setter TargetName="backgroundPanel"
+                                                Property="Background" Value="LightGray" />
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="backgroundPanel"
+                                                Property="Background" Value="LightBlue" />
+                                        <Setter Property="Foreground" Value="Blue" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
             </ListView.ItemContainerStyle>
             
@@ -48,6 +105,14 @@
                                     DisplayMemberBinding="{Binding ColorLevel}" />
                 </GridView>
             </ListView.View>
+
+            <!-- 仮想化してるつもり(効果を評価できてない。効果を雰囲気だけ見た) -->
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
         </ListView>
     </DockPanel>
 

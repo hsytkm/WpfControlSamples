@@ -8,8 +8,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Style="{StaticResource MyTabControlStyle2}" >
 
-    <TabItem Header="ListBox" >
+    <TabItem Header="ListBox(Single)" >
         <local:ListBoxPage />
+    </TabItem>
+
+    <TabItem Header="ListBox(Multiple)" >
+        <local:ListBox2Page />
     </TabItem>
 
     <TabItem Header="ListView" >

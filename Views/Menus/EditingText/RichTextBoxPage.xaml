@@ -6,6 +6,7 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
                 xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                xmlns:helpers="clr-namespace:WpfControlSamples.Views.Helpers"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
@@ -49,15 +50,15 @@
                    FontSize="{StaticResource FontSizeMicro}"
                    Text="Binding to FlowDocument" />
         <RichTextBox Margin="10,0,0,0" 
-                     local:RichTextBoxHelper.Document="{Binding Document, Mode=OneWay}" />
+                     helpers:RichTextBoxHelper.Document="{Binding Document, Mode=OneWay}" />
         
         <!-- 3. 添付プロパティとConverterで柔軟にBinding -->
         <TextBlock Margin="10,20,0,3"
                    FontSize="{StaticResource FontSizeMicro}"
                    Text="Binding to FlowDocument through Converter" />
         <RichTextBox Margin="10,0,0,0" 
-                     local:RichTextBoxHelper.Document="{Binding RichTextSource,
-                                                                Converter={StaticResource RichTextToFlowDocConverter}}" />
+                     helpers:RichTextBoxHelper.Document="{Binding RichTextSource,
+                                                                  Converter={StaticResource RichTextToFlowDocConverter}}" />
 
     </StackPanel>
 

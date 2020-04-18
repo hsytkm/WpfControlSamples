@@ -12,7 +12,7 @@ namespace WpfControlSamples.Views.MarkupExtensions
 
         public byte B { set; get; }
 
-        public byte A { set; get; } = 255;
+        public byte A { set; get; } = byte.MaxValue;
 
         public override object ProvideValue(IServiceProvider serviceProvider) =>
             new SolidColorBrush(Color.FromArgb(A, R, G, B));

@@ -31,7 +31,7 @@ namespace WpfControlSamples.Views.Menus
         private static bool IsValidBgColor(object value)
         {
             var isValid = (value is string);
-            Debug.WriteLine($"{nameof(AttachedBgColor)}_validateValue: {isValid}");
+            //Debug.WriteLine($"{nameof(AttachedBgColor)}_validateValue: {isValid}");
             return isValid;
         }
 
@@ -42,7 +42,7 @@ namespace WpfControlSamples.Views.Menus
                 var color = GetExistColorKeyValue(name).Color;
                 control.Background = new SolidColorBrush(color);
             }
-            Debug.WriteLine($"{nameof(AttachedBgColor)}_propertyChanged: {oldValue} -> {newValue}");
+            //Debug.WriteLine($"{nameof(AttachedBgColor)}_propertyChanged: {oldValue} -> {newValue}");
         }
 
         // 値を補正できる ※Coerce=(人に)強制して(力ずくで)～させる
@@ -51,7 +51,7 @@ namespace WpfControlSamples.Views.Menus
             var color = (value is string name)
                 ? GetExistColorKeyValue(name) : GetDefaultBgColorKeyValue();
 
-            Debug.WriteLine($"{nameof(AttachedBgColor)}_coerceValue: {value} -> {color}");
+            //Debug.WriteLine($"{nameof(AttachedBgColor)}_coerceValue: {value} -> {color}");
             return color.Name;
         }
 

@@ -12,7 +12,7 @@
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
         
         <TabItem Header="Test" >
-            <menus:RichTextBoxPage />
+            <menus:ListBox2Page />
         </TabItem>
         <!-- ↑仮置き↑ -->
 

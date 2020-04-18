@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WpfControlSamples.Views.Behaviors
+namespace WpfControlSamples.Views.Helpers
 {
     // パスワードを平文Bindingするのセキュアでない
     class PasswordBoxHelper : DependencyObject

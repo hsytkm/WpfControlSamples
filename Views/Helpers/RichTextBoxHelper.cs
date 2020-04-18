@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Markup;
 
-namespace WpfControlSamples.Views.Menus
+namespace WpfControlSamples.Views.Helpers
 {
     // WPFのRichTextBoxにBindingする https://qiita.com/soi/items/ac970626af21aa5a362f
     class RichTextBoxHelper : DependencyObject
