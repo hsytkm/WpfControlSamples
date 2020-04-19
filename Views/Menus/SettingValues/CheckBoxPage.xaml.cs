@@ -37,5 +37,27 @@ namespace WpfControlSamples.Views.Menus
             set => SetProperty(ref _checkFlag, value);
         }
         private bool _checkFlag = true;
+
+        public bool? ThreeStateFlag
+        {
+            get => _threeStateFlag;
+            set
+            {
+                if (SetProperty(ref _threeStateFlag, value))
+                {
+                    ThreeStateText = value.HasValue ? value.Value.ToString() : "null";
+                }
+            }
+        }
+        private bool? _threeStateFlag = null;
+
+        public string ThreeStateText
+        {
+            get => _threeStateText;
+            set => SetProperty(ref _threeStateText, value);
+        }
+        private string _threeStateText;
+
+
     }
 }

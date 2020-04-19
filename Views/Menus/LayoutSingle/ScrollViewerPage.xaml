@@ -13,17 +13,28 @@
                    Margin="0,0,0,10"
                    Text="Left: ScrollViewer Content: TextBox &#xD;&#xA;Right: TextBox ScrollViewer Property" />
 
-        <ScrollViewer>
-            <TextBox IsReadOnly="True"
-                     Background="AliceBlue"
-                     Text="{Binding .}" />
-        </ScrollViewer>
-
-        <TextBox DockPanel.Dock="Left"
-                 IsReadOnly="True"
-                 Background="Bisque"
+        <TextBox DockPanel.Dock="Right"
+                 Background="LightPink"
                  ScrollViewer.VerticalScrollBarVisibility="Visible"
                  Text="{Binding .}" />
+
+        <Button DockPanel.Dock="Top"
+                Content="Scroll Top"
+                Click="ScrollViewer_ScrollToTop" />
+
+        <Button DockPanel.Dock="Top"
+                Content="Scroll Center"
+                Click="ScrollViewer_ScrollToCenter" />
+
+        <Button DockPanel.Dock="Top"
+                Content="Scroll Bottom"
+                Click="ScrollViewer_ScrollToBottom" />
+
+        <ScrollViewer x:Name="scrollViewer" >
+            <TextBox IsReadOnly="True"
+                     Background="LightBlue"
+                     Text="{Binding .}" />
+        </ScrollViewer>
 
     </DockPanel>
 

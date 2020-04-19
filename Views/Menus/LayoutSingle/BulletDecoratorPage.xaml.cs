@@ -16,29 +16,11 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class CalendarPage : ContentControl
+    public partial class BulletDecoratorPage : ContentControl
     {
-        public CalendarPage()
+        public BulletDecoratorPage()
         {
             InitializeComponent();
         }
-    }
-
-    class CalendarViewModel : MyBindableBase
-    {
-        public DateTime? Date1
-        {
-            get => _date1;
-            set => SetProperty(ref _date1, value);
-        }
-        private DateTime? _date1;
-
-        public DateTime? Date2
-        {
-            get => _date2;
-            set => SetProperty(ref _date2, value);
-        }
-        private DateTime? _date2;
-
     }
 }

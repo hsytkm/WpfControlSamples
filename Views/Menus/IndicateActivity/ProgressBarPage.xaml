@@ -39,6 +39,12 @@
                          Visibility="{Binding IsProcessing, Converter={StaticResource BoolToVisiConverter}, Mode=OneWay}"  />
             </Viewbox>
         </Grid>
+
+        <TextBlock Margin="20,10" Text="以下は進捗表示なし (IsIndeterminate=True)" />
+        <ProgressBar Margin="20,0"
+                     Height="10"
+                     IsIndeterminate="{Binding IsProcessing, Mode=OneWay}" />
+
     </StackPanel>
 
 </ContentControl>

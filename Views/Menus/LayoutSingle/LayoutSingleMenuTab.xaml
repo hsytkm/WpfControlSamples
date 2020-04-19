@@ -25,4 +25,8 @@
         <local:ViewboxPage />
     </TabItem>
 
+    <TabItem Header="BulletDecorator" >
+        <local:BulletDecoratorPage />
+    </TabItem>
+
 </TabControl>

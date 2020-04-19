@@ -20,6 +20,10 @@
         <local:DataTriggerPage />
     </TabItem>
 
+    <TabItem Header="TimerTrigger" >
+        <local:TimerTriggerPage />
+    </TabItem>
+
     <TabItem Header="MultiTrigger" >
         <local:MultiTriggerPage />
     </TabItem>

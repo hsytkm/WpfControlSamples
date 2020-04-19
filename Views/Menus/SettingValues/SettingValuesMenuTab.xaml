@@ -28,4 +28,8 @@
         <local:CalendarPage />
     </TabItem>
 
+    <TabItem Header="FileDialog" >
+        <local:FileDialogPage />
+    </TabItem>
+
 </TabControl>

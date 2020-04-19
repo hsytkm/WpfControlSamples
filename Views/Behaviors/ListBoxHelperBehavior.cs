@@ -39,14 +39,14 @@ namespace WpfControlSamples.Views.Behaviors
             var selectedItems = NotifySelectedItems;
             if (selectedItems is null) return;
 
-            if (e.AddedItems.Count > 0)
+            if (e.AddedItems != null)
             {
                 foreach (var item in e.AddedItems)
                 {
                     selectedItems.Add(item);
                 }
             }
-            if (e.RemovedItems.Count > 0)
+            if (e.RemovedItems != null)
             {
                 foreach (var item in e.RemovedItems)
                 {

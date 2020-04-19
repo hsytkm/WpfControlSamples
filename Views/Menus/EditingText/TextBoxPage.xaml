@@ -53,11 +53,12 @@
                 <TextBlock Text="multiline" />
 
                 <TextBox AcceptsReturn="True"
-                     TextWrapping="Wrap"
-                     VerticalContentAlignment="Top"
-                     Height="100"
-                     VerticalScrollBarVisibility="Visible"
-                     Text="{Binding InputText3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                         AcceptsTab="True"
+                         TextWrapping="Wrap"
+                         VerticalContentAlignment="Top"
+                         Height="100"
+                         VerticalScrollBarVisibility="Visible"
+                         Text="{Binding InputText3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock Margin="0,20" Background="LightGray"
                            Text="{Binding InputText3, Mode=OneWay}" />

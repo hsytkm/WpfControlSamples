@@ -12,4 +12,8 @@
         <local:ProgressBarPage />
     </TabItem>
 
+    <TabItem Header="StatusBar" >
+        <local:StatusBarPage />
+    </TabItem>
+    
 </TabControl>

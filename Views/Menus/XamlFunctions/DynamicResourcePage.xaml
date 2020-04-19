@@ -1,0 +1,66 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.DynamicResourcePage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                xmlns:mkup="clr-namespace:WpfControlSamples.Views.MarkupExtensions"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <ContentControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
+            </Style>
+
+            <Style TargetType="{x:Type Border}" >
+                <Setter Property="Width" Value="100" />
+                <Setter Property="Height" Value="100" />
+            </Style>
+
+            <!-- Resource1(Button_Click1) と同じ設定にしています -->
+            <SolidColorBrush x:Key="MyColorBrush" Color="Blue" />
+            <ImageBrush x:Key="MyImageBrush" ImageSource="/Resources/Images/Resource1.png" />
+        </ResourceDictionary>
+    </ContentControl.Resources>
+
+    <StackPanel Margin="10" >
+        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                   Text="StaticResource / DynamicResource" />
+
+        <Grid Height="40" Margin="10" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Change to Resource1" Click="Button_Click1" />
+            <Button Grid.Column="1" Content="Change to Resource2" Click="Button_Click2" />
+        </Grid>
+
+        <Grid Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" >
+                <TextBlock Text="StaticResource" HorizontalAlignment="Center" />
+                <Border Background="{StaticResource MyColorBrush}" />
+                <Border Background="{StaticResource MyImageBrush}" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" >
+                <TextBlock Text="DynamicResource" HorizontalAlignment="Center" />
+                <Border Background="{DynamicResource MyColorBrush}" />
+                <Border Background="{DynamicResource MyImageBrush}" />
+            </StackPanel>
+        </Grid>
+
+
+    </StackPanel>
+
+</ContentControl>

@@ -8,6 +8,10 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Style="{StaticResource MyTabControlStyle2}" >
 
+    <TabItem Header="DynamicResource" >
+        <local:DynamicResourcePage />
+    </TabItem>
+
     <TabItem Header="Markup" >
         <local:MarkupPage />
     </TabItem>
@@ -34,6 +38,10 @@
 
     <TabItem Header="MultiValueConv" >
         <local:MultiValueConverterPage />
+    </TabItem>
+
+    <TabItem Header="ApplicationCommands" >
+        <local:ApplicationCommandsPage />
     </TabItem>
 
 </TabControl>

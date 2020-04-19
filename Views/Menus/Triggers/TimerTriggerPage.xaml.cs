@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,29 +17,23 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class CalendarPage : ContentControl
+    public partial class TimerTriggerPage : ContentControl
     {
-        public CalendarPage()
+        public TimerTriggerPage()
         {
             InitializeComponent();
         }
     }
 
-    class CalendarViewModel : MyBindableBase
+    class TimerTriggerViewModel : MyBindableBase
     {
-        public DateTime? Date1
+        public int Count
         {
-            get => _date1;
-            set => SetProperty(ref _date1, value);
+            get => _count;
+            private set => SetProperty(ref _count, value);
         }
-        private DateTime? _date1;
+        private int _count;
 
-        public DateTime? Date2
-        {
-            get => _date2;
-            set => SetProperty(ref _date2, value);
-        }
-        private DateTime? _date2;
-
+        public void IncrementCounter() => ++Count;
     }
 }

@@ -53,6 +53,70 @@
             <TextBlock Background="LightPink" Text="This is Popup!" />
         </Popup>
 
+
+        <!-- ポップアップ3 -->
+        <StackPanel>
+            <Panel.Resources>
+                <Style TargetType="{x:Type Popup}" >
+                    <Setter Property="AllowsTransparency" Value="True" />
+                    <Setter Property="StaysOpen" Value="False" />
+                    <Setter Property="VerticalOffset" Value="0" />
+                    <Setter Property="HorizontalOffset" Value="0" />
+                    <Setter Property="PopupAnimation" Value="Scroll" />
+                </Style>
+            </Panel.Resources>
+            
+            <CheckBox x:Name="checkBox3"
+                      Margin="0,30"
+                      Content="4方向Popup"
+                      HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+            <Popup IsOpen="{Binding IsChecked, ElementName=checkBox3}"
+                   PlacementTarget="{Binding ElementName=checkBox3}"
+                   AllowsTransparency="True"
+                   StaysOpen="False"
+                   VerticalOffset="0" HorizontalOffset="0"
+                   PopupAnimation="Fade" Placement="Left" >
+                <Border Background="LightBlue" BorderBrush="Black" BorderThickness="1" >
+                    <TextBlock Text="Popup Left" />
+                </Border>
+            </Popup>
+
+            <Popup IsOpen="{Binding IsChecked, ElementName=checkBox3}"
+                   PlacementTarget="{Binding ElementName=checkBox3}"
+                   AllowsTransparency="True"
+                   StaysOpen="False"
+                   VerticalOffset="0" HorizontalOffset="0"
+                   PopupAnimation="None" Placement="Top" >
+                <Border Background="LightPink" BorderBrush="Black" BorderThickness="1" >
+                    <TextBlock Text="Popup Top" />
+                </Border>
+            </Popup>
+
+            <Popup IsOpen="{Binding IsChecked, ElementName=checkBox3}"
+                   PlacementTarget="{Binding ElementName=checkBox3}"
+                   AllowsTransparency="True"
+                   StaysOpen="False"
+                   VerticalOffset="0" HorizontalOffset="0"
+                   PopupAnimation="Scroll" Placement="Right" >
+                <Border Background="LightGreen" BorderBrush="Black" BorderThickness="1" >
+                    <TextBlock Text="Popup Right" />
+                </Border>
+            </Popup>
+
+            <Popup IsOpen="{Binding IsChecked, ElementName=checkBox3}"
+                   PlacementTarget="{Binding ElementName=checkBox3}"
+                   AllowsTransparency="True"
+                   StaysOpen="False"
+                   VerticalOffset="0" HorizontalOffset="0"
+                   PopupAnimation="Slide" Placement="Bottom" >
+                <Border Background="LightSalmon" BorderBrush="Black" BorderThickness="1" >
+                    <TextBlock Text="Popup Bottom" />
+                </Border>
+            </Popup>
+
+        </StackPanel>
+
     </StackPanel>
 
 </ContentControl>

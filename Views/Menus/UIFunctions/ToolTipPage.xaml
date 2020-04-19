@@ -17,16 +17,25 @@
             <Run Text="BetweenShowDelay: 調べたけどよく分からんかった" Foreground="Red" />
             <LineBreak />
         </TextBlock>
-        
+
         <TextBlock Margin="10"
                    Padding="5"
                    Background="LightGray"
                    ToolTip="This is default ToolTip."
-                   Text="マウスオーバーで ToolTip が表示されます１" />
+                   Text="マウスオーバーで ToolTip が表示されます1" />
+
+        <TextBlock Margin="10"  
+                   Padding="20"
+                   Background="LightBlue"
+                   Text="マウスオーバーで ToolTip(Image) が表示されます2" >
+            <TextBlock.ToolTip>
+                <Image Source="/Resources/Images/Resource1.png" Height="100" />
+            </TextBlock.ToolTip>
+        </TextBlock>
 
         <TextBlock Margin="10"
                    Padding="20"
-                   Background="LightGray"
+                   Background="LightPink"
                    ToolTipService.InitialShowDelay="1000"
                    ToolTipService.ShowDuration="3000"
                    ToolTipService.BetweenShowDelay="2000"
@@ -39,7 +48,7 @@
                    ToolTipService.IsEnabled="True"
                    ToolTipOpening="TextBlock_ToolTipOpening"
                    ToolTipClosing="TextBlock_ToolTipClosing"
-                   Text="マウスオーバーで ToolTip が表示されます２" >
+                   Text="マウスオーバーで ToolTip が表示されます3" >
             
             <TextBlock.ToolTip>
                 <StackPanel Orientation="Horizontal" >

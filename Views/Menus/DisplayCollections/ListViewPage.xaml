@@ -10,7 +10,7 @@
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
                    Foreground="Red"
-                   Text="シングル選択しか実装してないけど、マルチ選択も可能♪" />
+                   Text="シングル選択しか実装してないけど、ListBoxのようにマルチ選択もできる" />
 
         <StackPanel DockPanel.Dock="Top"
                     Margin="0,10"

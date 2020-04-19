@@ -26,5 +26,25 @@ namespace WpfControlSamples.Views.Menus
             DataContext = string.Join(Environment.NewLine,
                 Models.SampleData.WpfColors.Select(x => x.Name));
         }
+
+        private void ScrollViewer_ScrollToTop(object sender, RoutedEventArgs e)
+        {
+            scrollViewer.ScrollToTop();
+        }
+
+        private void ScrollViewer_ScrollToCenter(object sender, RoutedEventArgs e)
+        {
+            var extentHeight = scrollViewer.ExtentHeight;
+            var viewportHeight = scrollViewer.ViewportHeight;
+
+            // 表示範囲(Viewport)の中央がセンターになるようにする
+            var offset = (extentHeight / 2d) - (viewportHeight / 2d);
+            scrollViewer.ScrollToVerticalOffset(offset);
+        }
+        
+        private void ScrollViewer_ScrollToBottom(object sender, RoutedEventArgs e)
+        {
+            scrollViewer.ScrollToBottom();
+        }
     }
 }

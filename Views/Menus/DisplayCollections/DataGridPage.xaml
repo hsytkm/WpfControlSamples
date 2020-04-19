@@ -69,15 +69,47 @@
                           AutoGenerateColumns="False"
                           VirtualizingStackPanel.IsVirtualizing="True"
                           VirtualizingStackPanel.VirtualizationMode="Standard" >
-                <DataGrid.Columns>
-                        <!-- Bland は setter が存在しないので書き替えられない -->
-                        <DataGridTextColumn Header="ブランド名"
-                                            Binding="{Binding Bland, Mode=OneWay}"/>
-                        
-                        <!-- Name は setter が存在するが、OneWay でバインドしているので書き替えられない -->
-                        <DataGridTextColumn Header="商品名"
-                                            Binding="{Binding Name, Mode=OneWay}"/>
-                        
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                            <DataGridTemplateColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="ブランド名" />
+                                        <Separator />
+                                        <TextBlock Text="商品名" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.HeaderTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <!-- Bland は setter が存在しないので書き替えられない -->
+                                        <TextBlock Text="{Binding Bland, Mode=OneWay}" />
+                                        <Separator />
+                                        <!-- Name は setter が存在するが、OneWay でバインドしているので書き替えられない -->
+                                        <TextBlock Text="{Binding Name, Mode=OneWay}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <!--
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBox Text="{Binding Bland}" />
+                                        <Separator />
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                            -->
+                        </DataGridTemplateColumn>
+
                         <DataGridComboBoxColumn Header="製造元"
                                                 SelectedValueBinding="{Binding Maker, Mode=TwoWay}"
                                                 DisplayMemberPath="Label"

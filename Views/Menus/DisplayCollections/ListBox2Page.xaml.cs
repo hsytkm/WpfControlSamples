@@ -28,6 +28,16 @@ namespace WpfControlSamples.Views.Menus
 
             DataContext = new ListBox2ViewModel();
         }
+
+        private void SelectAllExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            listBox.SelectAll();
+        }
+
+        private void UnselectAllExecuted(object sender, RoutedEventArgs e)
+        {
+            listBox.UnselectAll();
+        }
     }
 
     class ListBox2ViewModel : MyBindableBase
@@ -47,7 +57,7 @@ namespace WpfControlSamples.Views.Menus
             new ObservableCollection<object>();
 
         // 選択中のアイテムリスト
-        private readonly IList<ColorListViewItem> SelectingColors = new List<ColorListViewItem>();
+        private readonly IList<ColorListViewItem> _selectingColors = new List<ColorListViewItem>();
 
         public ListBox2ViewModel()
         {
@@ -62,24 +72,24 @@ namespace WpfControlSamples.Views.Menus
                 case NotifyCollectionChangedAction.Add:
                     foreach (ColorListViewItem item in e.NewItems)
                     {
-                        SelectingColors.Add(item);
+                        _selectingColors.Add(item);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (ColorListViewItem item in e.OldItems)
                     {
-                        if (SelectingColors.Contains(item))
-                            SelectingColors.Remove(item);
+                        if (_selectingColors.Contains(item))
+                            _selectingColors.Remove(item);
                     }
                     break;
                 case NotifyCollectionChangedAction.Reset:
-                    SelectingColors.Clear();
+                    _selectingColors.Clear();
                     break;
                 default:
                     Debug.Assert(true, e.Action.ToString());
                     break;
             }
-            SelectedColors = string.Join(", ", SelectingColors.Select(x => x.Name));
+            SelectedColors = string.Join(", ", _selectingColors.Select(x => x.Name));
         }
 
     }

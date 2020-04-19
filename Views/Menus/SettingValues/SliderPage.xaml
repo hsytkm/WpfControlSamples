@@ -11,36 +11,65 @@
 
     <StackPanel Margin="10" >
 
+        <StackPanel Background="LightBlue" >
+            <TextBlock Text="Slider Style default" />
+            <Slider Minimum="{Binding SliderMin, Mode=OneTime}"
+                    Maximum="{Binding SliderMax, Mode=OneTime}"
+                    Value="{Binding SliderValue, Mode=TwoWay}" />
 
-        <TextBlock Text="Slider Style default" />
-        <Slider Minimum="{Binding SliderMin, Mode=OneTime}"
-                Maximum="{Binding SliderMax, Mode=OneTime}"
-                Value="{Binding SliderValue, Mode=TwoWay}" />
+            <!-- Marginがないと画面端が操作しづらい
+                 目盛りは設定できない
+                 SmallChange: 矢印キーで操作したときの変化量
+                 LargeChange: マウスで軸をクリックしたときの変化量
+            -->
+            <TextBlock Text="Slider Style test" />
+            <Slider Margin="30,5"
+                    SmallChange="0.333333333"
+                    LargeChange="2"
+                    TickPlacement="Both" 
+                    Minimum="{Binding SliderMin, Mode=OneTime}"
+                    Maximum="{Binding SliderMax, Mode=OneTime}"
+                    Value="{Binding SliderValue, Mode=TwoWay}" />
 
-        <!-- Slider: Marginがないと画面端が操作しづらい -->
-        <!-- Slider: Stepは設定できない -->
-        <TextBlock Text="Slider Style test" />
-        <Slider Margin="30,5"
-                Minimum="{Binding SliderMin, Mode=OneTime}"
-                Maximum="{Binding SliderMax, Mode=OneTime}"
-                Value="{Binding SliderValue, Mode=TwoWay}" />
 
-
-        <TextBlock Margin="0,20"
-                   FontSize="{StaticResource FontSizeMedium}"
-                   Text="{Binding SliderValue, Mode=OneWay, StringFormat='SliderValue:  {0}'}" />
+            <TextBlock Margin="0,20"
+                       FontSize="{StaticResource FontSizeMedium}"
+                       Text="{Binding SliderValue, Mode=OneWay, StringFormat='SliderValue:  {0}'}" />
+        </StackPanel>
 
         <!-- IntSlider -->
-        <Slider Minimum="{Binding SliderMin, Mode=OneTime}"
-                Maximum="{Binding SliderMax, Mode=OneTime}" >
-            <i:Interaction.Behaviors>
-                <vb:IntSliderBehavior IntValue="{Binding SliderIntValue, Mode=OneWayToSource}" />
-            </i:Interaction.Behaviors>
-        </Slider>
+        <DockPanel Margin="0,10" Background="LightPink" >
+            <Panel.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="{x:Type Slider}">
+                        <Setter Property="SmallChange" Value="1" />
+                        <Setter Property="LargeChange" Value="1" />
+                        <Setter Property="Minimum" Value="{Binding SliderMin, Mode=OneTime}" />
+                        <Setter Property="Maximum" Value="{Binding SliderMax, Mode=OneTime}" />
+                        <Setter Property="Margin" Value="10" />
+                    </Style>
+                </ResourceDictionary>
+            </Panel.Resources>
+            
+            <Slider DockPanel.Dock="Left"
+                    Orientation="Vertical"
+                    TickPlacement="BottomRight" >
+                <i:Interaction.Behaviors>
+                    <vb:IntSliderBehavior IntValue="{Binding SliderIntValue, Mode=OneWayToSource}" />
+                </i:Interaction.Behaviors>
+            </Slider>
 
-        <TextBlock Margin="0,20"
-                   FontSize="{StaticResource FontSizeMedium}"
-                   Text="{Binding SliderIntValue, Mode=OneWay, StringFormat='SliderIntValue:  {0}'}" />
+            <Slider DockPanel.Dock="Top"
+                    TickPlacement="TopLeft" >
+                <i:Interaction.Behaviors>
+                    <vb:IntSliderBehavior IntValue="{Binding SliderIntValue, Mode=OneWayToSource}" />
+                </i:Interaction.Behaviors>
+            </Slider>
+
+            <TextBlock Margin="0,20"
+                       FontSize="{StaticResource FontSizeMedium}"
+                       Text="{Binding SliderIntValue, Mode=OneWay, StringFormat='SliderIntValue:  {0}'}" />
+        </DockPanel>
 
     </StackPanel>
 
