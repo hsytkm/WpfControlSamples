@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Media;
+using WpfControlSamples.Extensions;
 
 namespace WpfControlSamples.Views.Converters
 {
@@ -26,7 +27,7 @@ namespace WpfControlSamples.Views.Converters
             paragraph.Inlines.Add(new Run()
             {
                 Text = bindingSource.Text,
-                Foreground = new SolidColorBrush(bindingSource.Color),
+                Foreground = bindingSource.Color.ToFreezedSolidColorBrush(),
                 FontSize = bindingSource.FontSize,
                 //FontWeight = FontWeights.UltraBold,
             });

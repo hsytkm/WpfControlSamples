@@ -22,8 +22,12 @@
                    Style="{StaticResource TitleTextBlockStyle}"
                    Text="DependencyProperty" />
 
+        <!-- 読み取り専用の依存関係プロパティ を バインド -->
         <TextBlock DockPanel.Dock="Top"
-                   Text="Please enter your age. (range is 0-128)" />
+                   Margin="0,5"
+                   Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}},
+                                  Path=AgeMax, Mode=OneWay,
+                                  StringFormat='Please enter your age. (range is 0-{0})'}" />
 
         <TextBox DockPanel.Dock="Top"
                  Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}},

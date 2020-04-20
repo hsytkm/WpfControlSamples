@@ -12,7 +12,7 @@
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
         
         <TabItem Header="Test" >
-            <menus:DataGridPage />
+            <menus:CollectionViewPage />
         </TabItem>
         <!-- ↑仮置き↑ -->
 

@@ -23,5 +23,17 @@
     <TabItem Header="MessageBox" >
         <local:MessageBoxPage />
     </TabItem>
+
+    <TabItem Header="ToolBar" >
+        <local:ToolBarPage />
+    </TabItem>
+
+    <TabItem Header="ContextMenu" >
+        <local:ContextMenuPage />
+    </TabItem>
+
+    <TabItem Header="DispatcherObject" >
+        <local:DispatcherObjectPage />
+    </TabItem>
     
 </TabControl>

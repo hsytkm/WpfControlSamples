@@ -12,7 +12,9 @@ namespace WpfControlSamples.Views.Converters
         {
             if (value is Color color)
             {
-                return new SolidColorBrush(color);
+                var brush = new SolidColorBrush(color);
+                brush.Freeze();
+                return brush;
             }
             throw new NotSupportedException(value.ToString());
         }
@@ -21,3 +23,4 @@ namespace WpfControlSamples.Views.Converters
             throw new NotImplementedException();
     }
 }
+ 

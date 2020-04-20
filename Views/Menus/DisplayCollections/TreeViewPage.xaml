@@ -18,23 +18,14 @@
             <Setter Property="ItemContainerStyle" Value="{StaticResource ExpandedTreeViewItemStyle}" />
         </Style>
     </ContentControl.Resources>
-    
-    <Grid Margin="10" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.ColumnSpan="2"
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
                    FontSize="{StaticResource FontSizeSmall}"
                    Text="Left: only xaml ,  Right: CodeBehind filter color" />
 
-        <!-- Left side (xamlのみで記述) -->
-        <TreeView Grid.Row="1" Grid.Column="0"
+        <!-- Left side: Item を xamlのみで記述 -->
+        <TreeView DockPanel.Dock="Left"
                   Margin="0,0,10,0"
                   Style="{StaticResource ExpandedTreeViewStyle}" >
             <TreeViewItem Header="HeaderA" >
@@ -80,32 +71,53 @@
         </TreeView>
 
         <!-- Right side -->
-        <DockPanel Grid.Row="1" Grid.Column="1" >
-            <TextBlock DockPanel.Dock="Top"
-                       Margin="0,5"
-                       Text="{Binding SelectedColors, Mode=OneWay, StringFormat='Selected Item: {0}'}" />
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,5"
+                   Text="{Binding SelectedColors, Mode=OneWay, StringFormat='Selected Item: {0}'}" />
 
-            <TreeView ItemsSource="{Binding Colors, Mode=OneWay}" >
-                <!-- TreeView の SelectedItem は何故かバインドできない… -->
-                <i:Interaction.Behaviors>
-                    <vb:TreeViewHelperBehavior SelectedItem="{Binding SelectedColors, Mode=OneWayToSource}" />
-                </i:Interaction.Behaviors>
+        <TreeView DockPanel.Dock="Top"
+                  ItemsSource="{Binding Colors, Mode=OneWay}"
+                  Height="200" >
+            <!-- TreeView の SelectedItem は何故かバインドできない… -->
+            <i:Interaction.Behaviors>
+                <vb:TreeViewHelperBehavior SelectedItem="{Binding SelectedColors, Mode=OneWayToSource}" />
+            </i:Interaction.Behaviors>
 
-                <TreeView.ItemContainerStyle>
-                    <Style TargetType="{x:Type TreeViewItem}" >
-                        <Setter Property="IsExpanded" Value="True" />
-                    </Style>
-                </TreeView.ItemContainerStyle>
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}" >
+                    <Setter Property="IsExpanded" Value="True" />
+                </Style>
+            </TreeView.ItemContainerStyle>
 
-                <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type local:TreeColors}"
-                                              ItemsSource="{Binding Child, Mode=OneWay}">
-                        <TextBlock Text="{Binding Name, Mode=OneWay}"/>
-                    </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>
-            </TreeView>
-        </DockPanel>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type local:TreeColors}"
+                                          ItemsSource="{Binding Child, Mode=OneWay}" >
+                    <TextBlock Text="{Binding Name, Mode=OneWay}"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
 
-    </Grid>
+        <!-- WPF にしかない便利機能、階層を持ったデータを表示する HierarchicalDataTemplate
+               https://qiita.com/okazuki/items/38da615f4a9880fb9d59 -->
+        <Border Margin="20" Height="80" Background="LightBlue" >
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontSize="{StaticResource FontSizeMicro}" >
+                <Run Text="上のデータを ContextMenu を使って表示" />
+                <LineBreak />
+                <Run Text="(マウス右クリック)" />
+            </TextBlock>
+
+            <Border.ContextMenu>
+                <ContextMenu ItemsSource="{Binding Colors, Mode=OneWay}" >
+                    <ContextMenu.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Child, Mode=OneWay}" >
+                            <TextBlock Text="{Binding Name, Mode=OneWay}" />
+                        </HierarchicalDataTemplate>
+                    </ContextMenu.ItemTemplate>
+                </ContextMenu>
+            </Border.ContextMenu>
+        </Border>
+
+    </DockPanel>
 
 </ContentControl>

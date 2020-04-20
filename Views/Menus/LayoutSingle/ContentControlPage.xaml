@@ -1,0 +1,111 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ContentControlPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <ContentControl.Resources>
+        <ResourceDictionary>
+            <!-- Use TemplateBinding -->
+            <ControlTemplate x:Key="CardViewTemplate1" TargetType="{x:Type local:CardView}" >
+                <Border Margin="30,0"
+                        BorderThickness="4"
+                        BorderBrush="{TemplateBinding BorderColorBrush}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Margin="5,5" Background="{TemplateBinding CardColorBrush}" >
+                            <TextBlock Text="{TemplateBinding CardTitle}"
+                                       Foreground="{TemplateBinding TextColorBrush}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="{StaticResource FontSizeTitle}"
+                                       FontWeight="Bold" 
+                                       FontStyle="Italic" />
+                        </Border>
+                        <TextBlock Grid.Column="1"
+                                   Foreground="DarkGray"
+                                   FontSize="{StaticResource FontSizeSubtitle}"
+                                   LineHeight="1.5" 
+                                   HorizontalAlignment="Center" >
+                            <Run Text="{TemplateBinding CardTitle}" />
+                            <LineBreak />
+                            <Run Text="{TemplateBinding CardDescription}" />
+                        </TextBlock>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+
+            <!-- Use RelativeSource -->
+            <ControlTemplate x:Key="CardViewTemplate2" TargetType="{x:Type local:CardView}" >
+                <Border Margin="50,0"
+                        CornerRadius="30"
+                        DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                        BorderThickness="3"
+                        BorderBrush="{Binding BorderColorBrush}"
+                        Background="{Binding CardColorBrush}" >
+                    <StackPanel>
+                        <TextBlock Text="{Binding CardTitle}"
+                                   Foreground="{Binding TextColorBrush}"
+                                   HorizontalAlignment="Center"
+                                   FontSize="{StaticResource FontSizeLarge}"
+                                   FontWeight="Bold" />
+                        <TextBlock Text="{Binding CardDescription}"
+                                   Foreground="{Binding TextColorBrush}"
+                                   FontSize="{StaticResource FontSizeMicro}"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Border>
+            </ControlTemplate>
+          
+        </ResourceDictionary>
+    </ContentControl.Resources>
+
+    <ScrollViewer Margin="10" >
+        <StackPanel>
+            <TextBlock DockPanel.Dock="Top"
+                       Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
+                       Text="ContentControl" />
+
+            <TextBlock Text="Default Card" />
+            <local:CardView />
+
+            <TextBlock Text="Default Template Card" Margin="0,20,0,0" />
+            <local:CardView CardTitle="au"
+                            CardDescription="CashCard"
+                            CardColorBrush="White" 
+                            TextColorBrush="DarkOrange"
+                            BorderColorBrush="LightGray" />
+            <TextBlock Text="Override Custom Template1  (Use TemplateBinding)"
+                       Margin="0,20,0,0" />
+            <local:CardView Template="{StaticResource CardViewTemplate1}" 
+                            CardTitle="CocaCora"
+                            CardDescription="PointCard"
+                            CardColorBrush="Red" 
+                            TextColorBrush="White"
+                            BorderColorBrush="Red" />
+
+            <!-- TemplateBindingとTemplateParentの違い
+                   https://como-2.hatenadiary.org/entry/20130611/1370961558
+            
+                 TemplatedParent じゃないと、TwoWayバインドできないらしい（未確認）
+            -->
+            <TextBlock Text="Override Custom Template2  (Use RelativeSource)"
+                       Margin="0,20,0,0" />
+            <local:CardView Template="{StaticResource CardViewTemplate2}" 
+                            CardTitle="ニトリ"
+                            CardDescription="StampCard"
+                            CardColorBrush="MediumTurquoise" 
+                            TextColorBrush="White"
+                            BorderColorBrush="MediumTurquoise" />
+
+        </StackPanel>
+    </ScrollViewer>
+
+</ContentControl>

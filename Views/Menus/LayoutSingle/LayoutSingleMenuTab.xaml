@@ -8,6 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Style="{StaticResource MyTabControlStyle2}" >
 
+    <TabItem Header="ContentControl" >
+        <local:ContentControlPage />
+    </TabItem>
 
     <TabItem Header="Border" >
         <local:BorderPage />

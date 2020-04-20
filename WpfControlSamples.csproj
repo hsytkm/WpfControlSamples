@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="Models\" />
     <Folder Include="Infrastructures\" />
     <Folder Include="Views\Controls\" />
   </ItemGroup>
@@ -89,6 +88,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\LayoutMultiple\GridPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutSingle\ContentControlPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutSingle\CardView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\LayoutSingle\BulletDecoratorPage.xaml">
@@ -167,6 +172,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Triggers\TriggersMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\DispatcherObjectPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\ContextMenuPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\ToolBarPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\UIFunctions\MessageBoxPage.xaml">

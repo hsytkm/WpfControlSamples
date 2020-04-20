@@ -73,6 +73,8 @@
             <Run Text="UltraLight  "  FontWeight="UltraLight" />
         </TextBlock>
 
+        <!-- 斜体 FontStyle="Italic" -->
+
         <!-- StringFormat -->
         <TextBlock Background="LightCoral" >
             <Run Text="{Binding ., Mode=OneWay, StringFormat='DataContext.ToString(): {0}'}" />

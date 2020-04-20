@@ -22,9 +22,9 @@ namespace WpfControlSamples.Views.Menus
             InitializeComponent();
         }
 
-        private const int MinAge = 0;
-        private const int MaxAge = 128;
+        private const int AgeMin = 0;
 
+        #region 依存関係プロパティ (Age)
         public static readonly DependencyProperty AgeProperty =
             DependencyProperty.Register(
                 name: nameof(Age),
@@ -73,13 +73,44 @@ namespace WpfControlSamples.Views.Menus
         {
             if (int.TryParse(value.ToString(), out var oldAge))
             {
-                var newAge = Math.Max(MinAge, Math.Min(MaxAge, oldAge));
+                var newAge = Math.Max(AgeMin, Math.Min(AgeMax, oldAge));
 
                 this.AppendLog($"coerceValue: {oldAge} -> {newAge}");
                 return newAge.ToString();
             }
             return value;
         }
+        #endregion
+
+        #region 読み取り専用の依存関係プロパティ (AgeMax)
+        // WPF4.5入門 その43 「読み取り専用の依存関係プロパティ」https://blog.okazuki.jp/entry/2014/08/18/083455
+
+        // RegisterReadOnlyメソッドでDependencyPropertyKeyを取得
+        private static readonly DependencyPropertyKey AgeMaxPropertyKey =
+            DependencyProperty.RegisterReadOnly(
+                name: nameof(AgeMax),
+                propertyType: typeof(int),
+                ownerType: typeof(DependencyPropertyPage),
+                typeMetadata: new PropertyMetadata(defaultValue: 128),
+                validateValueCallback: new ValidateValueCallback(IsValidAgeMax));
+
+        // DependencyPropertyは、DependencyPropertyKeyから取得する
+        public static readonly DependencyProperty AgeMaxProperty = AgeMaxPropertyKey.DependencyProperty;
+
+        // getは普段通りで、setはDependencyPropertyKeyを使って行う
+        public int AgeMax
+        {
+            get => (int)GetValue(AgeMaxProperty);
+            private set => SetValue(AgeMaxPropertyKey, value);
+        }
+
+        private static bool IsValidAgeMax(object value)
+        {
+            // ◆読み取り専用の値検証って何なんやろ？なぞい
+            return true;
+        }
+
+        #endregion
 
         private readonly StringBuilder _stringBuilder = new StringBuilder();
 

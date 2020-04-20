@@ -28,4 +28,8 @@
         <local:DataGridPage />
     </TabItem>
 
+    <TabItem Header="CollectionView" >
+        <local:CollectionViewPage />
+    </TabItem>
+
 </TabControl>

@@ -31,22 +31,27 @@ namespace WpfControlSamples.Views.Menus
         {
             var color = Colors.Blue;
             var uri = new Uri("pack://application:,,,/Resources/Images/Resource1.png"); // 画像は「リソース」
-            SetResources(color, uri);
+            SetResources(ref color, uri);
         }
 
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
             var color = Colors.Red;
             var uri = new Uri("pack://application:,,,/Resources/Images/Resource2.png"); // 画像は「リソース」
-            SetResources(color, uri);
+            SetResources(ref color, uri);
         }
 
-        private void SetResources(Color color, Uri uri)
+        private void SetResources(ref Color color, Uri uri)
         {
             //var brush = (SolidColorBrush)this.FindResource(_colorBrushResourceKey);
 
-            this.Resources[_colorBrushResourceKey] = new SolidColorBrush(color);
-            this.Resources[_imageBrushResourceKey] = new ImageBrush(new BitmapImage(uri));
+            this.Resources[_colorBrushResourceKey] = color.ToFreezedSolidColorBrush();
+
+            var bitmapImage = new BitmapImage(uri);
+            bitmapImage.Freeze();
+            var imageBrush = new ImageBrush(bitmapImage);
+            imageBrush.Freeze();
+            this.Resources[_imageBrushResourceKey] = imageBrush;
         }
     }
 }

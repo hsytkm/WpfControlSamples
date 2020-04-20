@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using WpfControlSamples.Extensions;
 
 namespace WpfControlSamples.Views.Menus
 {
@@ -40,7 +41,7 @@ namespace WpfControlSamples.Views.Menus
            if (sender is Control control && newValue is string name)
             {
                 var color = GetExistColorKeyValue(name).Color;
-                control.Background = new SolidColorBrush(color);
+                control.Background = color.ToFreezedSolidColorBrush();
             }
             //Debug.WriteLine($"{nameof(AttachedBgColor)}_propertyChanged: {oldValue} -> {newValue}");
         }
