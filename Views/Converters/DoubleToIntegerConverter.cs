@@ -20,5 +20,6 @@ namespace WpfControlSamples.Views.Converters
             if (parameter is string s) return double.Parse(s);
 
             throw new NotSupportedException();
-        }    }
+        }
+    }
 }

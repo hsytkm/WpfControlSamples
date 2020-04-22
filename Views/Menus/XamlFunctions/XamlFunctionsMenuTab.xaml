@@ -40,6 +40,14 @@
         <local:MultiValueConverterPage />
     </TabItem>
 
+    <TabItem Header="RoutedEvent" >
+        <local:RoutedEventPage />
+    </TabItem>
+
+    <TabItem Header="AttachedEvent" >
+        <local:AttachedEventPage />
+    </TabItem>    
+
     <TabItem Header="ApplicationCommands" >
         <local:ApplicationCommandsPage />
     </TabItem>

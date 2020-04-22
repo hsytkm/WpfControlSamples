@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,24 +17,17 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class GroupBoxPage : ContentControl
+    public partial class AttachedEventPage : ContentControl
     {
-        public GroupBoxPage()
+        public AttachedEventPage()
         {
             InitializeComponent();
-
-            DataContext = new GroupBoxViewModel();
         }
-    }
 
-    class GroupBoxViewModel : MyBindableBase
-    {
-        public bool IsEnableRadioGroup
+        private void Border_Click(object sender, RoutedEventArgs e)
         {
-            get => _isEnableRadioGroup;
-            set => SetProperty(ref _isEnableRadioGroup, value);
+            var now = DateTime.Now;
+            DataContext = $"Button in Border was clicked. ({now})";
         }
-        private bool _isEnableRadioGroup = true;
-
     }
 }

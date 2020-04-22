@@ -33,7 +33,7 @@ namespace WpfControlSamples.Views.Menus
             };
 
             var ret = dialog.ShowDialog();
-            DataContext = (ret.HasValue && ret.Value) ? dialog.FileName : "キャンセルされました";
+            openPathTextBlock.Text = (ret.HasValue && ret.Value) ? dialog.FileName : "キャンセルされました";
         }
 
         private void FileSaveButton_Click(object sender, RoutedEventArgs e)
@@ -45,8 +45,25 @@ namespace WpfControlSamples.Views.Menus
             };
 
             var ret = dialog.ShowDialog();
-            DataContext = (ret.HasValue && ret.Value) ? dialog.FileName : "キャンセルされました";
+            savePathTextBlock.Text = (ret.HasValue && ret.Value) ? dialog.FileName : "キャンセルされました";
         }
+    }
+
+    class FileDialogViewModel : MyBindableBase
+    {
+        public string SelectedOpenPath
+        {
+            get => _selectedOpenPath;
+            set => SetProperty(ref _selectedOpenPath, value);
+        }
+        private string _selectedOpenPath;
+
+        public string SelectedSavePath
+        {
+            get => _selectedSavePath;
+            set => SetProperty(ref _selectedSavePath, value);
+        }
+        private string _selectedSavePath;
 
     }
 }

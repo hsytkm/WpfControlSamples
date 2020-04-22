@@ -11,14 +11,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfControlSamples.Extensions;
 
 namespace WpfControlSamples.Views.Menus
 {
     public partial class CardView : ContentControl
     {
         public static readonly DependencyProperty BorderColorBrushProperty = DependencyProperty.Register(
-            nameof(BorderColorBrush), typeof(Brush), typeof(CardView), new PropertyMetadata(Colors.Gray.ToFreezedSolidColorBrush()));
+            nameof(BorderColorBrush), typeof(Brush), typeof(CardView), new PropertyMetadata(Brushes.Gray));
         public Brush BorderColorBrush
         {
             get => (Brush)GetValue(BorderColorBrushProperty);
@@ -26,7 +25,7 @@ namespace WpfControlSamples.Views.Menus
         }
 
         public static readonly DependencyProperty CardColorBrushProperty = DependencyProperty.Register(
-            nameof(CardColorBrush), typeof(Brush), typeof(CardView), new PropertyMetadata(Colors.Black.ToFreezedSolidColorBrush()));
+            nameof(CardColorBrush), typeof(Brush), typeof(CardView), new PropertyMetadata(Brushes.Black));
         public Brush CardColorBrush
         {
             get => (Brush)GetValue(CardColorBrushProperty);
@@ -34,7 +33,7 @@ namespace WpfControlSamples.Views.Menus
         }
 
         public static readonly DependencyProperty TextColorBrushProperty = DependencyProperty.Register(
-            nameof(TextColorBrush), typeof(Brush), typeof(CardView), new PropertyMetadata(Colors.White.ToFreezedSolidColorBrush()));
+            nameof(TextColorBrush), typeof(Brush), typeof(CardView), new PropertyMetadata(Brushes.White));
         public Brush TextColorBrush
         {
             get => (Brush)GetValue(TextColorBrushProperty);

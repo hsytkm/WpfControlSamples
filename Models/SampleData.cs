@@ -14,11 +14,19 @@ namespace WpfControlSamples.Models
             Enumerable.Range(1, 20).Select(x => "Data " + x).ToList();
 
         /// <summary>
-        /// Xamarin.Forms.Colorの色リスト
+        /// Xamarin.Forms.Colorsのリスト
         /// </summary>
         public static IList<(string Name, Color Color)> WpfColors { get; } =
             typeof(Colors).GetProperties(BindingFlags.Static | BindingFlags.Public)
                 .Select(x => (x.Name, (Color)x.GetValue(null)))
+                .ToList();
+
+        /// <summary>
+        /// Xamarin.Forms.Brushesのリスト
+        /// </summary>
+        public static IList<(string Name, SolidColorBrush Brush)> WpfSolidColorBrushes { get; } =
+            typeof(Brushes).GetProperties(BindingFlags.Static | BindingFlags.Public)
+                .Select(x => (x.Name, (SolidColorBrush)x.GetValue(null)))
                 .ToList();
 #if false
         /// <summary>

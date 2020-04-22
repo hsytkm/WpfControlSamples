@@ -32,4 +32,8 @@
         <local:CollectionViewPage />
     </TabItem>
 
+    <TabItem Header="CollectionSource" >
+        <local:CollectionViewSourcePage />
+    </TabItem>
+
 </TabControl>

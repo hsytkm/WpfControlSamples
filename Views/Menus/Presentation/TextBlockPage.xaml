@@ -13,79 +13,97 @@
         </Style>
     </ContentControl.Resources>
 
-    <StackPanel Margin="10" >
+    <ScrollViewer Margin="10" >
+        <StackPanel>
+            <TextBlock Text="Default TextBlock, デフォルト テキストブロック" />
 
-        <TextBlock Text="Default TextBlock, デフォルト テキストブロック" />
+            <TextBlock Foreground="Blue" FontWeight="Bold"
+                       Text="TextBlock は Label より軽量！ (FrameworkElementから直で派生してる)" />
 
-        <TextBlock Foreground="Blue" FontWeight="Bold"
-                   Text="TextBlock は Label より軽量！ (FrameworkElementから直で派生してる)" />
+            <TextBlock Background="LightBlue" >
+                <Run Text="Run と LineBreak で" />
+                <LineBreak/>
+                <Run Text="改行しています。" />
+            </TextBlock>
 
-        <TextBlock Background="LightBlue" >
-            <Run Text="Run と LineBreak で" />
-            <LineBreak/>
-            <Run Text="改行しています。" />
-        </TextBlock>
+            <!-- &#xD; がCRで、&#xA; がLFを表す らしい https://www.nuits.jp/entry/2016/07/30/213257 -->
+            <TextBlock LineHeight="30"
+                       Text="ライン幅 と 改行文字 &#xD;&#xA;　CR=＆＃ｘＤ；  LF=＆＃ｘＡ； &#xD;&#xA;　↑これを半角にする"
+                       Background="LightGray" />
 
-        <!-- &#xD; がCRで、&#xA; がLFを表す らしい https://www.nuits.jp/entry/2016/07/30/213257 -->
-        <TextBlock Text="改行文字 &#xD;&#xA;　CR=＆＃ｘＤ；  LF=＆＃ｘＡ；　←これを半角にする"
-                   Background="Gray" />
+            <!-- Wrap
+                   表示幅を超えた文字列に対して標準の改行アルゴリズムによる処理が行われ、
+                   挿入位置を判断できない場合でも改行が行われます。
+                 WrapWithOverflow
+                   表示幅を超えた文字列に対して改行アルゴリズムで改行の挿入位置を判断できない場合には、
+                   行がブロック幅を超えて表示されることがあります。
+            -->
+            <TextBlock TextWrapping="WrapWithOverflow" Background="LightPink" >
+                ウィンドウ幅に応じて自動で改行されるよ。
+            </TextBlock>
 
-        <!-- Wrap
-               表示幅を超えた文字列に対して標準の改行アルゴリズムによる処理が行われ、
-               挿入位置を判断できない場合でも改行が行われます。
-             WrapWithOverflow
-               表示幅を超えた文字列に対して改行アルゴリズムで改行の挿入位置を判断できない場合には、
-               行がブロック幅を超えて表示されることがあります。
-        -->
-        <TextBlock TextWrapping="WrapWithOverflow" Background="LightPink" >
-            ウィンドウ幅に応じて自動で改行されるよ。
-        </TextBlock>
+            <!-- エスケープ    "<"は &lt;   ">"は &gt;  -->
+            <TextBlock Text="&lt;Panel Margin=&quot;10,0&quot; /&gt;   &amp;" />
+            <TextBlock Text="{}{で始まる場合は先頭に {} 付ける（先頭の{}は表示されない)" />
 
-        <!-- エスケープ    "<"は &lt;   ">"は &gt;  -->
-        <TextBlock Text="&lt;Panel Margin=&quot;10,0&quot; /&gt;   &amp;" />
-        <TextBlock Text="{}{で始まる場合は先頭に {} 付ける（先頭の{}は表示されない)" />
+            <!-- テキスト線 -->
+            <TextBlock>
+                <Run Text="打消し線  " TextDecorations="Strikethrough" Foreground="Red" />
+                <Run Text="オーバー  " TextDecorations="OverLine" Foreground="Green" />
+                <Run Text="ベース線  " TextDecorations="Baseline" Foreground="Blue" />
+                <Run Text="アンダー  " TextDecorations="Underline" Foreground="Purple" />
+            </TextBlock>
 
-        <!-- テキスト線 -->
-        <TextBlock>
-            <Run Text="打消し線  " TextDecorations="Strikethrough" Foreground="Red" />
-            <Run Text="オーバー  " TextDecorations="OverLine" Foreground="Green" />
-            <Run Text="ベース線  " TextDecorations="Baseline" Foreground="Blue" />
-            <Run Text="アンダー  " TextDecorations="Underline" Foreground="Purple" />
-        </TextBlock>
+            <!-- 太字 -->
+            <TextBlock TextWrapping="Wrap" Background="LightGreen" >
+                <Run Text="Black  "       FontWeight="Black" />
+                <Run Text="Bold  "        FontWeight="Bold" />
+                <Run Text="DemiBold  "    FontWeight="DemiBold" />
+                <Run Text="ExtraBlack  "  FontWeight="ExtraBlack" />
+                <Run Text="ExtraBold  "   FontWeight="ExtraBold" />
+                <Run Text="ExtraLight  "  FontWeight="ExtraLight" />
+                <Run Text="Heavy  "       FontWeight="Heavy" />
+                <Run Text="Light  "       FontWeight="Light" />
+                <Run Text="Medium  "      FontWeight="Medium" />
+                <Run Text="Normal  "      FontWeight="Normal" />
+                <Run Text="Regular  "     FontWeight="Regular" />
+                <Run Text="SemiBold  "    FontWeight="SemiBold" />
+                <Run Text="Thin  "        FontWeight="Thin" />
+                <Run Text="UltraBlack  "  FontWeight="UltraBlack" />
+                <Run Text="UltraBold  "   FontWeight="UltraBold" />
+                <Run Text="UltraLight  "  FontWeight="UltraLight" />
+            </TextBlock>
 
-        <!-- 太字 -->
-        <TextBlock TextWrapping="Wrap" Background="LightYellow" >
-            <Run Text="Black  "       FontWeight="Black" />
-            <Run Text="Bold  "        FontWeight="Bold" />
-            <Run Text="DemiBold  "    FontWeight="DemiBold" />
-            <Run Text="ExtraBlack  "  FontWeight="ExtraBlack" />
-            <Run Text="ExtraBold  "   FontWeight="ExtraBold" />
-            <Run Text="ExtraLight  "  FontWeight="ExtraLight" />
-            <Run Text="Heavy  "       FontWeight="Heavy" />
-            <Run Text="Light  "       FontWeight="Light" />
-            <Run Text="Medium  "      FontWeight="Medium" />
-            <Run Text="Normal  "      FontWeight="Normal" />
-            <Run Text="Regular  "     FontWeight="Regular" />
-            <Run Text="SemiBold  "    FontWeight="SemiBold" />
-            <Run Text="Thin  "        FontWeight="Thin" />
-            <Run Text="UltraBlack  "  FontWeight="UltraBlack" />
-            <Run Text="UltraBold  "   FontWeight="UltraBold" />
-            <Run Text="UltraLight  "  FontWeight="UltraLight" />
-        </TextBlock>
+            <!-- 斜体 -->
+            <TextBlock TextWrapping="Wrap" Background="LightSeaGreen" >
+                <Run Text="Italic  "      FontStyle="Italic" />
+                <Run Text="Normal  "      FontStyle="Normal" />
+                <Run Text="Oblique  "     FontStyle="Oblique" />
+            </TextBlock>
 
-        <!-- 斜体 FontStyle="Italic" -->
+            <!-- StringFormat -->
+            <TextBlock Background="LightCoral" >
+                <Run Text="{Binding ., Mode=OneWay, StringFormat='DataContext.ToString(): {0}'}" />
+                <LineBreak />
+                <Run Text="{Binding ., Mode=OneWay, StringFormat='Percent1: {0:P1}'}" />
+                <LineBreak />
+                <Run Text="Percent6:" />
+                <Run Text="{Binding ., Mode=OneWay, StringFormat='{}{0:P6}'}" />
+                <LineBreak />
+            </TextBlock>
 
-        <!-- StringFormat -->
-        <TextBlock Background="LightCoral" >
-            <Run Text="{Binding ., Mode=OneWay, StringFormat='DataContext.ToString(): {0}'}" />
-            <LineBreak />
-            <Run Text="{Binding ., Mode=OneWay, StringFormat='Percent1: {0:P1}'}" />
-            <LineBreak />
-            <Run Text="Percent6:" />
-            <Run Text="{Binding ., Mode=OneWay, StringFormat='{}{0:P6}'}" />
-            <LineBreak />
-        </TextBlock>
-
-    </StackPanel>
+            <!-- ハイパーリンク -->
+            <TextBlock>
+                ハイパーリンクのサンプルです。
+                <Hyperlink NavigateUri="https://docs.microsoft.com/ja-jp/dotnet/api/system.windows.controls.textblock"
+                           ToolTip="{Binding NavigateUri, RelativeSource={RelativeSource Self}}"
+                           RequestNavigate="Hyperlink_RequestNavigate" >
+                    ここをクリック
+                </Hyperlink>
+                すると、Microsoft Docs TextBlockクラス のウェブページが開きます！
+            </TextBlock>
+            
+        </StackPanel>
+    </ScrollViewer>
 
 </ContentControl>

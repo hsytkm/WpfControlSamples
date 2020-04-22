@@ -58,7 +58,7 @@ namespace WpfControlSamples.Views.Menus
         {
             var paragraph = new Paragraph();
             paragraph.Inlines.Add(new Run("RichTextBox2 : "));
-            paragraph.Inlines.Add(new Run(innerText) { Foreground = Colors.BlueViolet.ToFreezedSolidColorBrush() });
+            paragraph.Inlines.Add(new Run(innerText) { Foreground = Brushes.BlueViolet });
             return new FlowDocument(paragraph);
         }
         #endregion

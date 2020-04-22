@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,24 +17,22 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class GroupBoxPage : ContentControl
+    public partial class MediaElementPage : ContentControl
     {
-        public GroupBoxPage()
+        public MediaElementPage()
         {
             InitializeComponent();
-
-            DataContext = new GroupBoxViewModel();
         }
     }
 
-    class GroupBoxViewModel : MyBindableBase
+    class MediaElementViewModel : MyBindableBase
     {
-        public bool IsEnableRadioGroup
+        public string MovieFilePath
         {
-            get => _isEnableRadioGroup;
-            set => SetProperty(ref _isEnableRadioGroup, value);
+            get => _movieFilePath;
+            set => SetProperty(ref _movieFilePath, value);
         }
-        private bool _isEnableRadioGroup = true;
+        private string _movieFilePath;
 
     }
 }

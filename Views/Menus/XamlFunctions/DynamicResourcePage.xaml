@@ -3,6 +3,7 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:system="clr-namespace:System;assembly=System.Runtime"
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
                 xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
                 xmlns:mkup="clr-namespace:WpfControlSamples.Views.MarkupExtensions"
@@ -16,14 +17,28 @@
                 <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
             </Style>
 
+            <Style x:Key="ResourceTextBlockStyle" TargetType="{x:Type TextBlock}" >
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="FontSize" Value="{StaticResource FontSizeMicro}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+
             <Style TargetType="{x:Type Border}" >
-                <Setter Property="Width" Value="100" />
-                <Setter Property="Height" Value="100" />
+                <Setter Property="Width" Value="80" />
+                <Setter Property="Height" Value="80" />
             </Style>
 
             <!-- Resource1(Button_Click1) と同じ設定にしています -->
-            <SolidColorBrush x:Key="MyColorBrush" Color="Blue" />
-            <ImageBrush x:Key="MyImageBrush" ImageSource="/Resources/Images/Resource1.png" />
+            <SolidColorBrush x:Key="MyColorBrushKey" Color="Blue" />
+            <ImageBrush x:Key="MyImageBrushKey" ImageSource="/Resources/Images/Resource1.png" />
+            <system:String x:Key="MyMessageKey">リソース１</system:String>
+
+            <local:SolidColorBrushToNameConverter x:Key="SolidColorBrushToNameConverter" />
+
+            <!-- DynamicResource に Converter を適用するための対応
+                 https://stackoverflow.com/questions/4805351/use-ivalueconverter-with-dynamicresource -->
+            <conv:BindingProxy x:Key="MyColorBrushKeyProxy" Data="{DynamicResource MyColorBrushKey}" />
         </ResourceDictionary>
     </ContentControl.Resources>
 
@@ -37,8 +52,10 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="Change to Resource1" Click="Button_Click1" />
-            <Button Grid.Column="1" Content="Change to Resource2" Click="Button_Click2" />
+            <Button Grid.Column="0" Content="Change to Resource1"
+                    Click="Button_Click1" IsEnabled="{Binding . ,Mode=OneWay, Converter={StaticResource NotBoolConverter}}"/>
+            <Button Grid.Column="1" Content="Change to Resource2"
+                    Click="Button_Click2" IsEnabled="{Binding . ,Mode=OneWay}" />
         </Grid>
 
         <Grid Margin="0,10">
@@ -48,15 +65,36 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" >
-                <TextBlock Text="StaticResource" HorizontalAlignment="Center" />
-                <Border Background="{StaticResource MyColorBrush}" />
-                <Border Background="{StaticResource MyImageBrush}" />
+                <TextBlock Style="{StaticResource ResourceTextBlockStyle}"
+                           Text="StaticResource" />
+                <Border Background="{StaticResource MyColorBrushKey}" />
+                <Border Background="{StaticResource MyImageBrushKey}" />
+                <TextBlock Style="{StaticResource ResourceTextBlockStyle}"
+                           Text="{StaticResource MyMessageKey}" />
+
+                <!-- StaticResource の ColorBrush を Converter で string にしてバインド -->
+                <TextBlock Style="{StaticResource ResourceTextBlockStyle}"
+                           Text="{Binding Source={StaticResource MyColorBrushKey}, 
+                                          Converter={StaticResource SolidColorBrushToNameConverter},
+                                          Mode=OneWay}"
+                           Foreground="{StaticResource MyColorBrushKey}" />
             </StackPanel>
 
             <StackPanel Grid.Column="1" >
-                <TextBlock Text="DynamicResource" HorizontalAlignment="Center" />
-                <Border Background="{DynamicResource MyColorBrush}" />
-                <Border Background="{DynamicResource MyImageBrush}" />
+                <TextBlock Style="{StaticResource ResourceTextBlockStyle}"
+                           Text="DynamicResource" />
+                <Border Background="{DynamicResource MyColorBrushKey}" />
+                <Border Background="{DynamicResource MyImageBrushKey}" />
+                <TextBlock Style="{StaticResource ResourceTextBlockStyle}"
+                           Text="{DynamicResource MyMessageKey}" />
+
+                <!-- (StaticResource を介した) DynamicResource の ColorBrush を Converter で string にしてバインド -->
+                <TextBlock Style="{StaticResource ResourceTextBlockStyle}"
+                           Text="{Binding Source={StaticResource MyColorBrushKeyProxy},
+                                          Path=Data,
+                                          Converter={StaticResource SolidColorBrushToNameConverter},
+                                          Mode=OneWay}"
+                           Foreground="{DynamicResource MyColorBrushKey}" />
             </StackPanel>
         </Grid>
 

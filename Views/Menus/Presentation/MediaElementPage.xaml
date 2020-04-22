@@ -1,0 +1,63 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.MediaElementPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:trig="clr-namespace:WpfControlSamples.Views.Triggers"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800" >
+
+    <ContentControl.DataContext>
+        <local:MediaElementViewModel />
+    </ContentControl.DataContext>
+    
+    <ContentControl.Resources>
+        <ResourceDictionary>
+            <conv:PathStringToUriConverter x:Key="StringToUriConverter" />
+        </ResourceDictionary>
+    </ContentControl.Resources>
+
+    <DockPanel Margin="10" >
+
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10,0,0"
+                   FontSize="{StaticResource FontSizeMedium}"
+                   Text="MediaElement" />
+
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10,0,0"
+                   Foreground="Red" >
+            <Run Text="ちゃんと使ったことない。" />
+            <LineBreak />
+            <Run Text="デフォの LoadedBehavior=Play だと、Source変化時に自動再生される" />
+        </TextBlock>
+
+        <StackPanel DockPanel.Dock="Top"
+                    Orientation="Horizontal" Margin="10" >
+
+            <Button Margin="20,10,0,0" Padding="10"
+                        Content="Open movie path" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <trig:OpenFileDialogAction
+                                Title="動画ファイルを開く"
+                                Filter="MP4ファイル|*.mp4"
+                                SelectedFilePath="{Binding MovieFilePath, Mode=OneWayToSource}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <TextBlock Margin="10,0,0,0"
+                       TextWrapping="Wrap" VerticalAlignment="Center"
+                       Text="{Binding MovieFilePath, Mode=OneWay}" />
+        </StackPanel>
+
+        <!-- デフォルトの LoadedBehavior=Play だと、Source変化時に自動再生される -->
+        <MediaElement Source="{Binding MovieFilePath, Mode=OneWay, Converter={StaticResource StringToUriConverter}}" />
+        
+    </DockPanel>
+
+</ContentControl>

@@ -32,4 +32,8 @@
         <local:FileDialogPage />
     </TabItem>
 
+    <TabItem Header="FileDrop" >
+        <local:FileDropPage />
+    </TabItem>
+
 </TabControl>

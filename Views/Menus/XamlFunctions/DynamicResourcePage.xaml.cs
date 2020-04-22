@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,39 +21,65 @@ namespace WpfControlSamples.Views.Menus
 {
     public partial class DynamicResourcePage : ContentControl
     {
-        private const string _colorBrushResourceKey = "MyColorBrush";
-        private const string _imageBrushResourceKey = "MyImageBrush";
+        private const string _colorBrushResourceKey = "MyColorBrushKey";
+        private const string _imageBrushResourceKey = "MyImageBrushKey";
+        private const string _myMessageResourceKey = "MyMessageKey";
 
         public DynamicResourcePage()
         {
             InitializeComponent();
+
+            SwitchResource(isEnableResource1: true);
         }
 
         private void Button_Click1(object sender, RoutedEventArgs e)
         {
-            var color = Colors.Blue;
-            var uri = new Uri("pack://application:,,,/Resources/Images/Resource1.png"); // 画像は「リソース」
-            SetResources(ref color, uri);
+            SwitchResource(isEnableResource1: true);
         }
 
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
-            var color = Colors.Red;
-            var uri = new Uri("pack://application:,,,/Resources/Images/Resource2.png"); // 画像は「リソース」
-            SetResources(ref color, uri);
+            SwitchResource(isEnableResource1: false);
         }
 
-        private void SetResources(ref Color color, Uri uri)
+        private void SwitchResource(bool isEnableResource1)
         {
-            //var brush = (SolidColorBrush)this.FindResource(_colorBrushResourceKey);
+            // SolidColorBrush
+            this.Resources[_colorBrushResourceKey] = isEnableResource1 ? Brushes.Blue : Brushes.Red;
 
-            this.Resources[_colorBrushResourceKey] = color.ToFreezedSolidColorBrush();
-
-            var bitmapImage = new BitmapImage(uri);
+            // ImageBrush
+            var uriString = isEnableResource1
+                ? "pack://application:,,,/Resources/Images/Resource1.png"   // 画像は「リソース」
+                : "pack://application:,,,/Resources/Images/Resource2.png";  // 画像は「リソース」
+            var bitmapImage = new BitmapImage(new Uri(uriString));
             bitmapImage.Freeze();
             var imageBrush = new ImageBrush(bitmapImage);
             imageBrush.Freeze();
             this.Resources[_imageBrushResourceKey] = imageBrush;
+
+            // String
+            this.Resources[_myMessageResourceKey] = isEnableResource1 ? "リソース１" : "Resource2";
+
+            DataContext = isEnableResource1;
         }
+    }
+
+    [ValueConversion(typeof(SolidColorBrush), typeof(string))]
+    class SolidColorBrushToNameConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is null) return null;
+            if (value is SolidColorBrush brush)
+            {
+                return Models.SampleData.WpfSolidColorBrushes
+                    .FirstOrDefault(x => x.Brush.Color == brush.Color).Name;
+            }
+
+            throw new NotSupportedException();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
+            throw new NotSupportedException();
     }
 }

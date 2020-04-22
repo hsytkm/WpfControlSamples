@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="Infrastructures\" />
-    <Folder Include="Views\Controls\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +32,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\Menus\DisplayCollections\CollectionViewSourcePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\DisplayCollections\DataGridPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -114,6 +131,9 @@
     <Page Update="Views\Menus\LayoutSingle\BorderPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Presentation\MediaElementPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Presentation\TextBlockPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -121,6 +141,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\DisplayCollections\ComboBoxPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\SettingValues\FileDropPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\SettingValues\FileDialogPage.xaml">
@@ -151,6 +174,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Shapes\EllipsePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Systems\PropetriesResourcesPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Systems\SystemsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Triggers\TimerTriggerPage.xaml">
@@ -199,6 +228,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\ApplicationCommandsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\AttachedEventPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\RoutedEventPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\DynamicResourcePage.xaml">

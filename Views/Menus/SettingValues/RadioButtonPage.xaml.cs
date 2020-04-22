@@ -49,5 +49,12 @@ namespace WpfControlSamples.Views.Menus
         }
         private bool _checkFlag3;
 
+        public bool IsEnableRadioGroup
+        {
+            get => _isEnableRadioGroup;
+            set => SetProperty(ref _isEnableRadioGroup, value);
+        }
+        private bool _isEnableRadioGroup = true;
+
     }
 }

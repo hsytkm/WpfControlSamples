@@ -8,21 +8,43 @@
                 d:DesignHeight="450" d:DesignWidth="800">
 
     <DockPanel Margin="10" >
+
+        <!-- ViewModel に SelecttedItem をバインドして表示してる(個人的にベタな実装) -->
         <StackPanel DockPanel.Dock="Top"
-                    Margin="0,10"
+                    Margin="0,10,0,0"
                     Orientation="Horizontal" >
-            <Frame Width="15" Height="15"
-                   Margin="10,0"
+            <TextBlock Text="Binding SelectedItem :" FontWeight="Bold" FontStyle="Italic" />
+            <Frame Width="12" Height="12"
+                   Margin="20,0"
                    Background="{Binding SelectedColor.Color, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" />
             <TextBlock>
-                <Run Text="Selected Color : " FontWeight="Bold" />
+                <Run Text="Selected Color : " />
                 <Run Text="{Binding SelectedColor.Name, Mode=OneWay}"
                      Foreground="{Binding SelectedColor.Color, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}"/>
             </TextBlock>
         </StackPanel>
 
+        <!-- IsSynchronizedWithCurrentItem == true だと、ItemsSource の選択項目を直で参照できるので、ViewModel にバインド用プロパティが要素が不要。
+             「Viewの選択項目に応じて、ViewModel から Modelを～する」には向いてないのかな？
+             WPF4.5入門 その56「コレクションのバインディング」 https://blog.okazuki.jp/entry/2014/10/29/220236
+        -->
+        <StackPanel DockPanel.Dock="Top"
+                    Margin="0,10"
+                    Orientation="Horizontal" >
+            <TextBlock Text="Use IsSynchronizedWithCurrentItem :" FontWeight="Bold" FontStyle="Italic" />
+            <Frame Width="12" Height="12"
+                   Margin="20,0"
+                   Background="{Binding SourceColors/Color, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" />
+            <TextBlock>
+                <Run Text="Selected Color : " />
+                <Run Text="{Binding SourceColors/Name, Mode=OneWay}"
+                     Foreground="{Binding SourceColors/Color, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}"/>
+            </TextBlock>
+        </StackPanel>
+
         <ListBox ItemsSource="{Binding SourceColors, Mode=OneWay}"
                  SelectedItem="{Binding SelectedColor, Mode=TwoWay}"
+                 IsSynchronizedWithCurrentItem="True"
                  SelectionMode="Single"
                  VirtualizingStackPanel.IsVirtualizing="True"
                  VirtualizingStackPanel.VirtualizationMode="Recycling" >

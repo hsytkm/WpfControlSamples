@@ -51,14 +51,21 @@
         </WrapPanel>
 
         <GroupBox Margin="0,20"
-                  Header="GroupBoxとペアで使うとベネ!"
                   Padding="20" Background="LightBlue" >
+            <GroupBox.Header>
+                <CheckBox Content="GroupBoxとペアで使うとベネ!"
+                          IsChecked="{Binding IsEnableRadioGroup, Mode=TwoWay}"/>
+            </GroupBox.Header>
+
             <WrapPanel>
                 <RadioButton Content="Check1" Margin="0,0,20,0"
+                             IsEnabled="{Binding IsEnableRadioGroup, Mode=OneWay}"
                              IsChecked="{Binding CheckFlag1, Mode=TwoWay}" />
                 <RadioButton Content="Check2" Margin="0,0,20,0"
+                             IsEnabled="{Binding IsEnableRadioGroup, Mode=OneWay}"
                              IsChecked="{Binding CheckFlag2, Mode=TwoWay}" />
                 <RadioButton Content="Check3"
+                             IsEnabled="{Binding IsEnableRadioGroup, Mode=OneWay}"
                              IsChecked="{Binding CheckFlag3, Mode=TwoWay}" />
             </WrapPanel>
         </GroupBox>

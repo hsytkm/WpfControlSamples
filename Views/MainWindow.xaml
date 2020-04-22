@@ -1,33 +1,45 @@
 ﻿<Window x:Class="WpfControlSamples.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        xmlns:sysext="clr-namespace:System;assembly=System.Runtime.Extensions"
         xmlns:local="clr-namespace:WpfControlSamples.Views"
         xmlns:menus="clr-namespace:WpfControlSamples.Views.Menus"
+        xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+        xmlns:ctrl="clr-namespace:WpfControlSamples.Views.Controls"
+        xmlns:trig="clr-namespace:WpfControlSamples.Views.Triggers"
+        xmlns:behavior="clr-namespace:WpfControlSamples.Views.Behaviors"
+        xmlns:helper="clr-namespace:WpfControlSamples.Views.Helpers"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="450" Width="800">
+        Height="450" Width="800" >
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
         
         <TabItem Header="Test" >
-            <menus:CollectionViewPage />
+            <menus:FileDropPage />
         </TabItem>
         <!-- ↑仮置き↑ -->
 
+        <TabItem Header="Systems" >
+            <menus:SystemsMenuTab />
+        </TabItem>
+
         <TabItem Header="XamlFunctions" >
             <menus:XamlFunctionsMenuTab />
+        </TabItem>
+
+        <TabItem Header="UIFunctions" >
+            <menus:UIFunctionsMenuTab />
         </TabItem>
 
         <TabItem Header="Shapes" >
             <menus:ShapesMenuTab />
         </TabItem>
 
-        <TabItem Header="UIFunctions" >
-            <menus:UIFunctionsMenuTab />
-        </TabItem>
-        
         <TabItem Header="LayoutSingle" >
             <menus:LayoutSingleMenuTab />
         </TabItem>
@@ -68,7 +80,7 @@
             <menus:TriggersMenuTab />
         </TabItem>
 
-        <TabItem Header="Blank" >
+        <TabItem Header="About" >
             <menus:BlankPage />
         </TabItem>
 

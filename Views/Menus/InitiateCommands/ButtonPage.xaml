@@ -9,13 +9,15 @@
 
     <StackPanel Margin="10" >
 
-        <Button Content="Button1"
-                Height="80"
+        <Button Margin="10"
+                Content="Button1 (Width/Height)"
+                Width="220" Height="80"
                 Command="{Binding .}"
                 CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" />
 
-        <Button Content="ボタン2"
-                Height="80"
+        <Button Margin="10"
+                Content="ボタン2 (Padding)"
+                Padding="20"
                 Command="{Binding .}"
                 CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" />
 
