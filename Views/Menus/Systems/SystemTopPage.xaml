@@ -1,0 +1,30 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.SystemTopPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                xmlns:prop="clr-namespace:WpfControlSamples.Properties"
+                xmlns:ctrl="clr-namespace:WpfControlSamples.Views.Controls"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <ContentControl.DataContext>
+        <local:SystemTopViewModel />
+    </ContentControl.DataContext>
+    
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10,0,0"
+                   FontSize="{StaticResource FontSizeLarge}"
+                   Text="{Binding AppName, Mode=OneTime}" />
+
+        <ctrl:HyperlinkTextBlock Margin="20"
+                                 FontSize="{StaticResource FontSizeMicro}"
+                                 NavigateUri="https://github.com/hsytkm/WpfControlSamples" />
+
+    </DockPanel>
+
+</ContentControl>

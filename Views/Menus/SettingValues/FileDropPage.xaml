@@ -15,10 +15,6 @@
     </ContentControl.DataContext>
     
     <DockPanel Margin="10" >
-        <TextBlock DockPanel.Dock="Top"
-                   Margin="10"
-                   Text="以下はデフォルト。使ったことない" />
-
         <StackPanel DockPanel.Dock="Top"
                     Orientation="Horizontal" >
 

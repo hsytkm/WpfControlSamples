@@ -15,7 +15,7 @@ namespace WpfControlSamples.Views.Controls
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register(
                 nameof(Text), typeof(string), typeof(ScrollEndTextBlock),
-                typeMetadata: new FrameworkPropertyMetadata(default(string),
+                new FrameworkPropertyMetadata(default(string),
                     (sender, e) => ((ScrollEndTextBlock)sender).OnTextPropertyChanged(e.OldValue, e.NewValue)));
 
         public string Text

@@ -8,6 +8,26 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Style="{StaticResource MyTabControlStyle2}" >
 
+    <TabItem Header="Top" >
+        <local:SystemTopPage />
+    </TabItem>
+
+    <TabItem Header="Environment.Propetries" >
+        <local:EnvironmentPage />
+    </TabItem>
+
+    <TabItem Header="Environment.Directries" >
+        <local:EnvDirectoryPage />
+    </TabItem>
+
+    <TabItem Header="Assembly" >
+        <local:AssemblyPage />
+    </TabItem>
+
+    <TabItem Header="FileVersionInfo" >
+        <local:FileVerInfoPage />
+    </TabItem>
+
     <TabItem Header="PropetriesResources" >
         <local:PropetriesResourcesPage />
     </TabItem>

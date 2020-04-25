@@ -28,7 +28,7 @@ namespace WpfControlSamples.Models
             typeof(Brushes).GetProperties(BindingFlags.Static | BindingFlags.Public)
                 .Select(x => (x.Name, (SolidColorBrush)x.GetValue(null)))
                 .ToList();
-#if false
+
         /// <summary>
         /// System.Environmentのstaticプロパティ
         /// </summary>
@@ -94,8 +94,6 @@ namespace WpfControlSamples.Models
         }
         private static IList<NameValueKey> _environmentDirectories;
 
-
-
         /// <summary>
         ///  System.Reflection.Assembly
         /// </summary>
@@ -137,6 +135,6 @@ namespace WpfControlSamples.Models
             }
         }
         private static IList<NameValueKey> _fileVersionInfoList;
-#endif
+
     }
 }

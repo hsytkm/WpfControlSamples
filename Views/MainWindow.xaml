@@ -18,11 +18,11 @@
         Height="450" Width="800" >
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
-        
+        <!-- 
         <TabItem Header="Test" >
-            <menus:FileDropPage />
+            <menus:SystemTopPage />
         </TabItem>
-        <!-- ↑仮置き↑ -->
+        ↑仮置き↑ -->
 
         <TabItem Header="Systems" >
             <menus:SystemsMenuTab />

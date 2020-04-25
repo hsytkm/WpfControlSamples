@@ -176,6 +176,21 @@
     <Page Update="Views\Menus\Shapes\EllipsePage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Systems\FileVerInfoPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Systems\AssemblyPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Systems\EnvDirectoryPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Systems\EnvironmentPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Systems\SystemTopPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Systems\PropetriesResourcesPage.xaml">
       <SubType>Designer</SubType>
     </Page>
