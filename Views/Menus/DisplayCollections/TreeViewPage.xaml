@@ -6,6 +6,7 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
                 xmlns:vb="clr-namespace:WpfControlSamples.Views.Behaviors"
+                xmlns:helper="clr-namespace:WpfControlSamples.Views.Helpers"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
@@ -78,7 +79,7 @@
         <TreeView DockPanel.Dock="Top"
                   ItemsSource="{Binding Colors, Mode=OneWay}"
                   Height="200" >
-            <!-- TreeView の SelectedItem は何故かバインドできない… -->
+            <!-- TreeView の SelectedItem はバインドできない… -->
             <i:Interaction.Behaviors>
                 <vb:TreeViewHelperBehavior SelectedItem="{Binding SelectedColors, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>

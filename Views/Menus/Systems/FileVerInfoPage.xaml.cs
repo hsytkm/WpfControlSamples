@@ -23,7 +23,7 @@ namespace WpfControlSamples.Views.Menus
         {
             InitializeComponent();
 
-            DataContext = Models.SampleData.FileVersionInfoList;
+            DataContext = Models.SystemData.FileVersionInfoList;
         }
     }
 }

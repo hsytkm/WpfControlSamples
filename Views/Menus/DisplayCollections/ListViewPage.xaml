@@ -4,8 +4,15 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
+
+    <ContentControl.Resources>
+        <ResourceDictionary>
+            <conv:ListViewIndexConverter x:Key="ListViewIndexConverter"/>
+        </ResourceDictionary>
+    </ContentControl.Resources>
 
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
@@ -118,8 +125,21 @@
             </ListView.ItemContainerStyle>
             
             <ListView.View>
+                <!-- 項目ごとに色変えたかったけど無理っぽい -->
                 <GridView>
-                    <!-- 項目ごとに色変えたかったけど無理っぽい -->
+                    <!-- 項目ごとに連番を表示する（仮想化を有効にしてると意図通りに動作しない）
+                            NG：VirtualizingStackPanel.VirtualizationMode="Recycling"
+                            OK：VirtualizingStackPanel.VirtualizationMode="Standard" -->
+                    <GridViewColumn Header="No" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Width="30" TextAlignment="Center"
+                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                                          AncestorType={x:Type ListViewItem}}, 
+                                                          Converter={StaticResource ListViewIndexConverter}}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="Name" Width="100"
                                     DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Level"

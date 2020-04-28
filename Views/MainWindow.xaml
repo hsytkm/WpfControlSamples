@@ -20,7 +20,7 @@
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
         <!-- 
         <TabItem Header="Test" >
-            <menus:SystemTopPage />
+            <menus:ListViewPage />
         </TabItem>
         ↑仮置き↑ -->
 

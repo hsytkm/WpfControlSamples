@@ -20,4 +20,8 @@
         <local:RichTextBoxPage />
     </TabItem>
 
+    <TabItem Header="WatermarkedTextBox" >
+        <local:WatermarkPage />
+    </TabItem>
+
 </TabControl>

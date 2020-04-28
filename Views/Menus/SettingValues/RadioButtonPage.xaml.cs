@@ -56,5 +56,19 @@ namespace WpfControlSamples.Views.Menus
         }
         private bool _isEnableRadioGroup = true;
 
+        public enum SampleType
+        {
+            TYPE1,
+            TYPE2,
+            TYPE3
+        };
+
+        public SampleType Sample
+        {
+            get => _sample;
+            set => SetProperty(ref _sample, value);
+        }
+        private SampleType _sample;
+
     }
 }

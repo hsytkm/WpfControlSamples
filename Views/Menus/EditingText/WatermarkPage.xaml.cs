@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,13 +16,11 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class EnvDirectoryPage : ContentControl
+    public partial class WatermarkPage : ContentControl
     {
-        public EnvDirectoryPage()
+        public WatermarkPage()
         {
             InitializeComponent();
-
-            DataContext = Models.SystemData.EnvironmentDirectories;
         }
     }
 }

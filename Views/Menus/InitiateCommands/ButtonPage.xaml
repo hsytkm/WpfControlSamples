@@ -21,6 +21,18 @@
                 Command="{Binding .}"
                 CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" />
 
+        <StackPanel Margin="20" Orientation="Horizontal" >
+            <Button Height="40" Width="120"
+                    Content="Start Process"
+                    Command="{Binding StartCommand, Mode=OneTime,
+                                      RelativeSource={RelativeSource FindAncestor, AncestorType=local:ButtonPage}}" />
+
+            <Button Height="40" Width="120" Margin="20,0,0,0"
+                    Content="Stop Process"
+                    Command="{Binding StopCommand, Mode=OneTime,
+                                      RelativeSource={RelativeSource FindAncestor, AncestorType=local:ButtonPage}}" />
+        </StackPanel>
+
     </StackPanel>
 
 </ContentControl>

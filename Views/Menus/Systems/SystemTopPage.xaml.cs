@@ -29,7 +29,6 @@ namespace WpfControlSamples.Views.Menus
 
     class SystemTopViewModel : MyBindableBase
     {
-        public string AppName { get; } =
-            FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductName;        
+        public string AppName { get; } = App.Current.SampleModelContext.AppName;
     }
 }

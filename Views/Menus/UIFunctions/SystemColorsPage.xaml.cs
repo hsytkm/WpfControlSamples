@@ -17,13 +17,11 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class EnvDirectoryPage : ContentControl
+    public partial class SystemColorsPage : ContentControl
     {
-        public EnvDirectoryPage()
+        public SystemColorsPage()
         {
             InitializeComponent();
-
-            DataContext = Models.SystemData.EnvironmentDirectories;
         }
     }
 }

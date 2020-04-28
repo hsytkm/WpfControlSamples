@@ -4,25 +4,47 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
-    <StackPanel Margin="10" >
+    <ContentControl.Resources>
+        <ResourceDictionary>
+            <conv:EnumToBooleanConverter x:Key="EnumToBool"/>
+        </ResourceDictionary>
+    </ContentControl.Resources>
 
-        <Border Padding="20" Background="LightGray" >
+    <StackPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
+                   Text="RadioButtonPage" />
+
+        <!-- Group1 -->
+        <TextBlock Text="Group1: GroupBox" Margin="10,0,0,0"
+                   FontSize="{StaticResource FontSizeMicro}" />
+        <GroupBox Margin="20,10" Padding="20" Background="LightBlue" >
+            <GroupBox.Header>
+                <CheckBox Content="GroupBoxとペアで使うとベネ!"
+                          IsChecked="{Binding IsEnableRadioGroup, Mode=TwoWay}"/>
+            </GroupBox.Header>
+
             <WrapPanel>
                 <RadioButton Content="Check1" Margin="0,0,20,0"
+                             IsEnabled="{Binding IsEnableRadioGroup, Mode=OneWay}"
                              IsChecked="{Binding CheckFlag1, Mode=TwoWay}" />
                 <RadioButton Content="Check2" Margin="0,0,20,0"
+                             IsEnabled="{Binding IsEnableRadioGroup, Mode=OneWay}"
                              IsChecked="{Binding CheckFlag2, Mode=TwoWay}" />
                 <RadioButton Content="Check3"
+                             IsEnabled="{Binding IsEnableRadioGroup, Mode=OneWay}"
                              IsChecked="{Binding CheckFlag3, Mode=TwoWay}" />
             </WrapPanel>
-        </Border>
+        </GroupBox>
 
-        <!-- GroupName設定 -->
-        <TextBlock Text="Set GroupName" Margin="0,20,0,0"/>
-        <WrapPanel>
+        <!-- Group2 -->
+        <TextBlock Text="Group2: Set GroupName" Margin="10,10,0,0"
+                   FontSize="{StaticResource FontSizeMicro}" />
+        <WrapPanel Margin="30,10" Background="LightGray" >
             <WrapPanel.Resources>
                 <Style x:Key="RadioGroup1Style" TargetType="{x:Type RadioButton}" >
                     <Setter Property="Margin" Value="0,0,20,0" />
@@ -50,25 +72,31 @@
                          Content="France" />
         </WrapPanel>
 
-        <GroupBox Margin="0,20"
-                  Padding="20" Background="LightBlue" >
-            <GroupBox.Header>
-                <CheckBox Content="GroupBoxとペアで使うとベネ!"
-                          IsChecked="{Binding IsEnableRadioGroup, Mode=TwoWay}"/>
-            </GroupBox.Header>
-
-            <WrapPanel>
-                <RadioButton Content="Check1" Margin="0,0,20,0"
-                             IsEnabled="{Binding IsEnableRadioGroup, Mode=OneWay}"
-                             IsChecked="{Binding CheckFlag1, Mode=TwoWay}" />
-                <RadioButton Content="Check2" Margin="0,0,20,0"
-                             IsEnabled="{Binding IsEnableRadioGroup, Mode=OneWay}"
-                             IsChecked="{Binding CheckFlag2, Mode=TwoWay}" />
-                <RadioButton Content="Check3"
-                             IsEnabled="{Binding IsEnableRadioGroup, Mode=OneWay}"
-                             IsChecked="{Binding CheckFlag3, Mode=TwoWay}" />
-            </WrapPanel>
-        </GroupBox>
+        <!-- Group3: IsChecked に Enum を Binding する -->
+        <TextBlock Text="Group3: Binding Enum" Margin="10,10,0,0"
+                   FontSize="{StaticResource FontSizeMicro}" />
+        <StackPanel Margin="20,20,0,0" Orientation="Horizontal" Background="LightBlue" >
+            <RadioButton Content="タイプ1" Margin="0,0,20,0"
+                         IsChecked="{Binding Path=Sample, Mode=TwoWay,
+                                             Converter={StaticResource EnumToBool},
+                                             ConverterParameter=TYPE1,
+                                             UpdateSourceTrigger=PropertyChanged}" />
+            <RadioButton Content="タイプ2" Margin="0,0,20,0"
+                         IsChecked="{Binding Path=Sample, Mode=TwoWay,
+                                             Converter={StaticResource EnumToBool},
+                                             ConverterParameter=TYPE2,
+                                             UpdateSourceTrigger=PropertyChanged}" />
+            <RadioButton Content="タイプ3" Margin="0,0,20,0"
+                         IsChecked="{Binding Path=Sample, Mode=TwoWay,
+                                             Converter={StaticResource EnumToBool},
+                                             ConverterParameter=TYPE3,
+                                             UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+        <TextBlock Margin="20,10,0,0" Foreground="Blue"
+                   FontSize="{StaticResource FontSizeMicro}" >
+            <Run Text="Selected Enum :  " />
+            <Run Text="{Binding Sample, Mode=OneWay}" FontWeight="Bold" />
+        </TextBlock>
 
     </StackPanel>
 

@@ -23,7 +23,7 @@ namespace WpfControlSamples.Views.Menus
         {
             InitializeComponent();
 
-            DataContext = Models.SampleData.AssemblyList;
+            DataContext = Models.SystemData.AssemblyList;
         }
     }
 }
