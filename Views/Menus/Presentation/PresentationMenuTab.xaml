@@ -24,4 +24,8 @@
         <local:MediaElementPage />
     </TabItem>
 
+    <TabItem Header="EmbeddedFont" >
+        <local:EmbeddedFontPage />
+    </TabItem>
+
 </TabControl>

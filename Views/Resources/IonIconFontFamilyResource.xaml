@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime" >
+
+    <!-- IconFont
+         フォントバイナリの在り処
+            https://github.com/ionic-team/ionicons/blob/master/docs/fonts/ionicons.ttf
+    -->
+    <FontFamily x:Key="IoniconsFont">pack://application:,,,/Resources/Fonts/#Ionicons</FontFamily>
+
+    <!-- Glyph -->
+    <system:String x:Key="PlusMarkIcon">&#xf101;</system:String>
+    <system:String x:Key="AndroidIcon">&#xf225;</system:String>
+    <system:String x:Key="AppleIcon">&#xf229;</system:String>
+    <system:String x:Key="WindowsIcon">&#xf32f;</system:String>
+    <system:String x:Key="GoodIcon">&#xf392;</system:String>
+    <system:String x:Key="BadIcon">&#xf391;</system:String>
+    <system:String x:Key="HeartIcon">&#xf308;</system:String>
+    <system:String x:Key="TwitterIcon">&#xf2b0;</system:String>
+    <system:String x:Key="GitHubIcon">&#xf239;</system:String>
+    <system:String x:Key="PlayStationIcon">&#xf245;</system:String>
+    <system:String x:Key="XBoxIcon">&#xf34c;</system:String>
+    <system:String x:Key="StillCamIcon">&#xf2ad;</system:String>
+    <system:String x:Key="MovieCamIcon">&#xf39f;</system:String>
+    <system:String x:Key="TakumiIcon">&#x5320;</system:String>
+
+</ResourceDictionary>
+    
