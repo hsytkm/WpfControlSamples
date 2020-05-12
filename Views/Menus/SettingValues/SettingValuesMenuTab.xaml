@@ -12,10 +12,14 @@
         <local:SliderPage />
     </TabItem>
 
-    <TabItem Header="ComboBox" >
+    <TabItem Header="ComboBox1" >
         <local:ComboBoxPage />
     </TabItem>
 
+    <TabItem Header="ComboBox2" >
+        <local:ComboBox2Page />
+    </TabItem>
+    
     <TabItem Header="CheckBox" >
         <local:CheckBoxPage />
     </TabItem>

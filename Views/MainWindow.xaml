@@ -17,12 +17,27 @@
         Title="MainWindow"
         Height="450" Width="800" >
 
+    <!-- チェックしたいウェブサイト
+
+        かずきさん44 FrameworkPropertyMetadata が理解できてない
+            https://blog.okazuki.jp/entry/2014/08/18/213553
+    
+        かずきさん49 アニメーション2
+            https://blog.okazuki.jp/entry/2014/08/31/200320
+
+        かずきさん53 VisualStateManager
+            https://blog.okazuki.jp/entry/2014/09/08/203943
+    
+        かずきさん54 カスタムコントロール
+            https://blog.okazuki.jp/entry/2014/09/08/221209
+    -->
+    
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
-        <!-- 
+        
         <TabItem Header="Test" >
-            <menus:ListViewPage />
+            <menus:ComboBox2Page />
         </TabItem>
-        ↑仮置き↑ -->
+        <!-- ↑仮置き↑ -->
 
         <TabItem Header="Systems" >
             <menus:SystemsMenuTab />
@@ -78,6 +93,14 @@
 
         <TabItem Header="Triggers" >
             <menus:TriggersMenuTab />
+        </TabItem>
+
+        <TabItem Header="Adorners" >
+            <menus:AdornersMenuTab />
+        </TabItem>
+
+        <TabItem Header="Animations" >
+            <menus:AnimationsMenuTab />
         </TabItem>
 
         <TabItem Header="About" >

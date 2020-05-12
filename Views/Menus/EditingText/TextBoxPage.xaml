@@ -47,7 +47,7 @@
                      Text="This is readonly TextBlock. (cannot input charactors)" />
         </Border>
 
-        <!-- 複数行 -->
+        <!-- 複数行 (TextWrapping) -->
         <Border Padding="20,10" Background="LightGreen" >
             <StackPanel>
                 <TextBlock Text="multiline" />

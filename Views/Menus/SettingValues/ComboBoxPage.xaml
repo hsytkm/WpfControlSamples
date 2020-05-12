@@ -10,6 +10,10 @@
     <StackPanel Margin="10" >
 
         <TextBlock Margin="0,0,0,5"
+                   FontSize="{StaticResource FontSizeMedium}"
+                   Text="ComboBox (1)" />
+
+        <TextBlock Margin="0,0,0,5"
                    FontSize="{StaticResource FontSizeSmall}"
                    Text="Default Style" />
         <ComboBox ItemsSource="{Binding ItemsSource, Mode=OneTime}"
@@ -112,6 +116,9 @@
                    Foreground="{Binding SelectedNameColor.Color, Mode=OneWay,
                                         Converter={StaticResource ColorToBrushConverter}}" />
 
+        <TextBlock Margin="10,0" Foreground="Red"
+                   Text="ComboBoxへの文字入力もできるけど実装してない…" />
+        
     </StackPanel>
 
 </ContentControl>

@@ -1,0 +1,57 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ComboBox2Page"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <StackPanel Margin="10" >
+
+        <TextBlock Margin="0,0,0,5"
+                   FontSize="{StaticResource FontSizeMedium}"
+                   Text="ComboBox (2)" />
+
+        <!-- ComboBox.ItemsSource に ListCollectionView を直接バインドしているが、
+             CollectionViewPage.xaml.cs のように CollectionViewSource.GetDefaultView() を使った方が
+             疎結合でベターだと思う。
+        -->
+        <TextBlock Margin="10,0,0,5"
+                   Text="ComboBoxのItemsSourceをグルーピングする" />
+        <ComboBox Margin="10,0"
+                  ItemsSource="{Binding ItemsSource, Mode=OneTime}" >
+            <ComboBox.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Border Background="LightPink" >
+                                <TextBlock Text="{Binding Name, Mode=OneTime}"
+                                           Margin="10,3" FontWeight="Bold" />
+                            </Border>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ComboBox.GroupStyle>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding CharactorName, Mode=OneTime}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ComboBox>
+
+        <TextBlock Margin="10,20,0,5"
+                   Text="ComboBoxにDictionaryをバインドする" />
+        <ComboBox Margin="10,0"
+                  ItemsSource="{Binding Charactors, Mode=OneTime}"
+                  DisplayMemberPath="Key"
+                  SelectedValuePath="Value"
+                  SelectedValue="{Binding SelectedCharactorName, Mode=TwoWay}" />
+
+        <TextBlock Margin="20,10"
+                   FontSize="{StaticResource FontSizeMicro}"
+                   Text="{Binding SelectedCharactorName, Mode=OneWay, StringFormat='Stand is {0}.'}" />
+    </StackPanel>
+
+</ContentControl>

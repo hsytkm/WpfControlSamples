@@ -51,6 +51,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Views\Menus\Adorners\ResizeHandleAdornerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Adorners\GhostAdornerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Adorners\ResizableTextBoxPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Animations\AnimationsMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Animations\PointAnimationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Animations\ColorAnimationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Animations\DoubleAnimationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\DisplayCollections\CollectionViewSourcePage.xaml">
       <SubType>Designer</SubType>
     </Page>

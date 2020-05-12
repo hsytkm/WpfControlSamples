@@ -17,7 +17,7 @@
         <TextBlock Margin="0,5"
                    Text="xamlのみで実現(TextBoxに名前を付ける必用がありだるい…)" />
         <Grid Margin="10,5" >
-            <TextBox x:Name="textBox" />
+            <TextBox x:Name="textBox1" />
 
             <TextBlock Margin="5,0,0,0" IsHitTestVisible="False" Foreground="DarkGray"
                        Text="This is watermark1." >
@@ -25,18 +25,57 @@
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Visibility" Value="Collapsed"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, Source={x:Reference Name=textBox}}" Value="" >
+                            <DataTrigger Binding="{Binding Text, Source={x:Reference Name=textBox1}}" Value="" >
                                 <Setter Property="Visibility" Value="Visible"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
+
+            <!-- クリアボタン(文字が長くなるとボタンと被るが何もしていない…) -->
+            <Button Margin="0,0,5,0" HorizontalAlignment="Right" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click" >
+                        <i:ChangePropertyAction TargetName="textBox1" PropertyName="Text" Value="" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <ControlTemplate.Triggers>
+                                        <!-- 1. Textが空なら、LightGray -->
+                                        <!-- 2. Textが空でなければ、Black -->
+                                        <!-- 3. Textが空でなくマウスオーバーなら、Blue -->
+                                        <DataTrigger Binding="{Binding Text, Source={x:Reference Name=textBox1}}" Value="" >
+                                            <Setter Property="Foreground" Value="LightGray" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Text, Source={x:Reference Name=textBox1}, Converter={StaticResource EmptyStringToTrueConverter}}" Value="False" >
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </DataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Text, Source={x:Reference Name=textBox1}, Converter={StaticResource EmptyStringToTrueConverter}}" Value="False" />
+                                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Foreground" Value="Blue" />
+                                        </MultiDataTrigger>
+                                    </ControlTemplate.Triggers>
+
+                                    <TextBlock Text="×■" FontWeight="Bold"
+                                               Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
 
         <TextBlock Margin="0,20,0,5"
-                   Text="添付プロパティで実現（ウェブコピペ）" />
-        <!-- -->
+                   Text="添付プロパティで実現（ウェブコピペ） ※やる気出たらクリアボタンを内蔵させたい…" />
         <AdornerDecorator Margin="10,5" >
             <TextBox>
                 <helper:WatermarkService.Watermark>
