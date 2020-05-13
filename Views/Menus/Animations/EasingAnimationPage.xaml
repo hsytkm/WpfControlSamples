@@ -1,0 +1,101 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.EasingAnimationPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:ctrl="clr-namespace:WpfControlSamples.Views.Controls"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- WPFサンプル:イージング関数(easing function)を使用する (1)
+            http://gushwell.ldblog.jp/archives/52332203.html
+
+         WPFサンプル:イージング関数(easing function)を使用する (2)
+            http://gushwell.ldblog.jp/archives/52332325.html
+
+         イージング関数
+            https://docs.microsoft.com/ja-jp/dotnet/framework/wpf/graphics-multimedia/easing-functions
+    -->
+
+    <ContentControl.Resources>
+        <Storyboard x:Key="myAnimation1" >
+            <DoubleAnimation Storyboard.TargetName="scale"
+                             Storyboard.TargetProperty="ScaleX" 
+                             From="1" To="20" Duration="00:00:03" >
+                <DoubleAnimation.EasingFunction>
+                    <PowerEase Power="10" EasingMode="EaseIn"/>
+                </DoubleAnimation.EasingFunction>
+
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="scale"
+                             Storyboard.TargetProperty="ScaleY"
+                             From="1" To="20" Duration="00:00:03" >
+                <DoubleAnimation.EasingFunction>
+                    <PowerEase Power="10" EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        
+        <Storyboard x:Key="myAnimation2" >
+            <DoubleAnimation Storyboard.TargetName="blurEffect"
+                             Storyboard.TargetProperty="Radius"
+                             From="20" To="0" Duration="0:0:05" >
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Style TargetType="{x:Type Button}" >
+            <Setter Property="Padding" Value="15,10" />
+            <Setter Property="Margin" Value="10,0" />
+        </Style>
+    </ContentControl.Resources>
+    
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="EasingFunction" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="10,10,0,0"
+                   Foreground="Red" FontWeight="Bold"
+                   Text="色々なパターンの加速度を指定できるけど調べる気がしない…" />
+
+        <WrapPanel DockPanel.Dock="Top" Margin="0,10"
+                   Orientation="Horizontal" >
+            <Button Content="縦横ズーム" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{Binding Source={StaticResource myAnimation1}}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <Button Content="ぼやかす" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{Binding Source={StaticResource myAnimation2}}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+        </WrapPanel>
+
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                   IsHitTestVisible="False"
+                   Text="どがーん" >
+            <TextBlock.RenderTransform>
+                <ScaleTransform x:Name="scale"
+                                ScaleX="1" ScaleY="1" 
+                                CenterX="25" CenterY="10" />
+            </TextBlock.RenderTransform>
+
+            <TextBlock.Effect>
+                <BlurEffect x:Name="blurEffect" Radius="0" />
+            </TextBlock.Effect>
+        </TextBlock>
+        
+    </DockPanel>
+
+</ContentControl>

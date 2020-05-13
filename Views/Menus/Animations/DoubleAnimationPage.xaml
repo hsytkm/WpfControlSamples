@@ -10,7 +10,8 @@
                 d:DesignHeight="450" d:DesignWidth="800">
 
     <!-- WPF4.5入門 その48 「WPFのアニメーション その１」 https://blog.okazuki.jp/entry/2014/08/27/214003 -->
-
+    <!-- WPFサンプル:オブジェクトを回転させるアニメーション http://gushwell.ldblog.jp/archives/52332053.html -->
+    
     <ContentControl.Resources>
         <!-- To は 絶対値 -->
         <Storyboard x:Key="rect1AnimationTo200" >
@@ -25,7 +26,15 @@
                              To="10"
                              Duration="0:0:2.5" />
         </Storyboard>
-        
+
+        <!-- From も 絶対値 -->
+        <Storyboard x:Key="rect1AnimationFrom0To300" >
+            <DoubleAnimation Storyboard.TargetName="rect1"
+                             Storyboard.TargetProperty="(Canvas.Left)"
+                             From="0" To="300"
+                             Duration="0:0:0.2" />
+        </Storyboard>
+
         <!-- By は 相対値 -->
         <Storyboard x:Key="rect1AnimationByPlus20" >
             <DoubleAnimation Storyboard.TargetName="rect1"
@@ -67,64 +76,100 @@
                    Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
                    Text="DoubleAnimation" />
 
-        <TextBlock DockPanel.Dock="Top"
-                   Margin="10,5,0,0"
-                   Text="DoubleAnimation To/By" />
-        <Canvas Margin="10" Background="LightGray" >
-            <StackPanel Canvas.Top="10" Canvas.Left="10" Orientation="Horizontal" >
-                <Button Content="To 200" >
-                    <Button.Triggers>
-                        <EventTrigger RoutedEvent="Button.Click">
-                            <BeginStoryboard Storyboard="{StaticResource rect1AnimationTo200}" />
-                        </EventTrigger>
-                    </Button.Triggers>
-                </Button>
-                <Button Content="To 10" >
-                    <Button.Triggers>
-                        <EventTrigger RoutedEvent="Button.Click">
-                            <BeginStoryboard Storyboard="{StaticResource rect1AnimationTo10}" />
-                        </EventTrigger>
-                    </Button.Triggers>
-                </Button>
-                <Button Content="By +20" >
-                    <Button.Triggers>
-                        <EventTrigger RoutedEvent="Button.Click">
-                            <BeginStoryboard Storyboard="{StaticResource rect1AnimationByPlus20}" />
-                        </EventTrigger>
-                    </Button.Triggers>
-                </Button>
-                <Button Content="By -10" >
-                    <Button.Triggers>
-                        <EventTrigger RoutedEvent="Button.Click">
-                            <BeginStoryboard Storyboard="{StaticResource rect1AnimationByMinus10}" />
-                        </EventTrigger>
-                    </Button.Triggers>
-                </Button>
-                <Button Content="To 100 (Rep 3.2s)" >
-                    <Button.Triggers>
-                        <EventTrigger RoutedEvent="Button.Click">
-                            <BeginStoryboard Storyboard="{StaticResource rect1AnimationTo100RepeatSec}" />
-                        </EventTrigger>
-                    </Button.Triggers>
-                </Button>
-                <Button Content="By 10 (Rep x2)" >
-                    <Button.Triggers>
-                        <EventTrigger RoutedEvent="Button.Click">
-                            <BeginStoryboard Storyboard="{StaticResource rect1AnimationBy10RepeatTimes}" />
-                        </EventTrigger>
-                    </Button.Triggers>
-                </Button>
-            </StackPanel>
-
+        <TextBlock DockPanel.Dock="Top" Margin="10,5,0,0"
+                   Text="Move Rectangle" />
+        <WrapPanel DockPanel.Dock="Top" Margin="20,5,0,0"
+                   Orientation="Horizontal" >
+            <Button Content="To 200" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource rect1AnimationTo200}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Content="To 10" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource rect1AnimationTo10}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Content="From 0 To 300" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource rect1AnimationFrom0To300}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Content="By +20" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource rect1AnimationByPlus20}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Content="By -10" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource rect1AnimationByMinus10}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Content="To 100 (Rep 3.2s)" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource rect1AnimationTo100RepeatSec}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Content="By 10 (Rep x2)" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource rect1AnimationBy10RepeatTimes}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+        </WrapPanel>
+        <Canvas DockPanel.Dock="Top" Margin="20,10" Height="50" Background="LightBlue" >
             <Border x:Name="rect1"
-                    Canvas.Top="60" Canvas.Left="100"
-                    Width="80" Height="50" Background="Blue" >
+                    Canvas.Top="10" Canvas.Left="50"
+                    Width="80" Height="30" Background="Blue" >
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                            Foreground="White"
                            Text="{Binding ., Mode=OneWay, StringFormat={}{0:f2}}" />
             </Border>
         </Canvas>
-        
+
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="10,5,0,0"
+                   Text="Rotate Rectangle" />
+        <Button x:Name="button1" Height="80" Width="140" Content="Click Me" >
+            <Button.Resources>
+                <!-- 回転角/幅/背景色を同時に変えている -->
+                <Storyboard x:Key="rotateAnimation" FillBehavior="HoldEnd" >
+                    <DoubleAnimation Storyboard.TargetName="button1Rotate"
+                                     Storyboard.TargetProperty="Angle"
+                                     From="0" To="360" Duration="0:0:05" />
+                    <DoubleAnimation Storyboard.TargetName="button1"
+                                     Storyboard.TargetProperty="Width"
+                                     From="0" To="140" Duration="0:0:05" />
+                    <ColorAnimation Storyboard.TargetName="button1Brush"
+                                    Storyboard.TargetProperty="Color"
+                                    From="Yellow" To="LightGreen" Duration="0:0:05" />
+                </Storyboard>
+            </Button.Resources>
+            <Button.RenderTransform>
+                <RotateTransform x:Name="button1Rotate" Angle="0" CenterX="70" CenterY="40" />
+            </Button.RenderTransform>
+            <Button.Background>
+                <SolidColorBrush x:Name="button1Brush" Color="LightGreen" />
+            </Button.Background>
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click" >
+                    <BeginStoryboard Storyboard="{Binding Source={StaticResource rotateAnimation}}" />
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
     </DockPanel>
 
 </ContentControl>

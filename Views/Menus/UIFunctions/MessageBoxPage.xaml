@@ -20,6 +20,8 @@
         <StackPanel Background="LightBlue" >
             <TextBlock FontSize="{StaticResource FontSizeMedium}"
                        Text="MessageBoxButton" />
+            <TextBlock Margin="20,5" Foreground="Red"
+                       Text="MessageBox は モーダル 固定" />
 
             <TextBlock FontSize="{StaticResource FontSizeSmall}"
                        Margin="20,0"

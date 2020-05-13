@@ -46,10 +46,14 @@
 
     <TabItem Header="AttachedEvent" >
         <local:AttachedEventPage />
-    </TabItem>    
+    </TabItem>
 
     <TabItem Header="ApplicationCommands" >
         <local:ApplicationCommandsPage />
     </TabItem>
 
+    <TabItem Header="ObjectDataProvider" >
+        <local:ObjectDataProviderPage />
+    </TabItem>
+    
 </TabControl>

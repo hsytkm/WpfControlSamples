@@ -1,0 +1,87 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ObjectDataProviderPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- 方法 : XAML でデータをバインディング可能にする
+            https://docs.microsoft.com/ja-jp/dotnet/framework/wpf/data/how-to-make-data-available-for-binding-in-xaml
+
+         WPFサンプル:ObjectDataProviderを使いメソッドをバインドする (1)
+            http://gushwell.ldblog.jp/archives/52333267.html
+
+         データバインディング
+            http://www.kanazawa-net.ne.jp/~pmansato/wpf/wpf_databinding.htm
+    -->
+
+    <ContentControl.Resources>
+        <!-- 1.引数なしctorでインスタンス化して、プロパティsetterコール -->
+        <local:PersonProvider1 x:Key="myPersonSource1" FullName="Jonathan Jostar" />
+
+        <!-- 2.引数ありctorでインスタンス化 -->
+        <ObjectDataProvider x:Key="myPersonSource2"
+                            ObjectType="{x:Type local:PersonProvider2}" >
+            <ObjectDataProvider.ConstructorParameters>
+                <system:String>Joseph</system:String>
+                <system:String>Jostar</system:String>
+            </ObjectDataProvider.ConstructorParameters>
+        </ObjectDataProvider>
+
+        <!-- 3.引数ありctorでインスタンス化してからメソッドをコール (PropertyChanged対応) -->
+        <ObjectDataProvider x:Key="myPersonSource3"
+                            ObjectType="{x:Type local:PersonProvider3}" >
+            <ObjectDataProvider.ConstructorParameters>
+                <system:String>Kujo</system:String>
+            </ObjectDataProvider.ConstructorParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="SetFirstNameKey"
+                            ObjectInstance="{StaticResource myPersonSource3}"
+                            MethodName="SetFirstName" >
+            <ObjectDataProvider.MethodParameters>
+                <system:String>Jotaro</system:String>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </ContentControl.Resources>
+
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top" Margin="0,10,0,0"
+                   FontSize="{StaticResource FontSizeMedium}"
+                   Text="ObjectDataProvider" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="10,10,0,0"
+                   FontSize="{StaticResource FontSizeMicro}"
+                   Text="xamlでclassをインスタンス化してバインドできるが、使い処が思い浮かばない…" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="20,20,0,0" Foreground="Blue"
+                   Text="1.引数なしctorでインスタンス化して、プロパティsetterコール" />
+        <TextBlock DockPanel.Dock="Top" Margin="40,10,0,0"
+                   FontSize="{StaticResource FontSizeMicro}"
+                   Text="{Binding Source={StaticResource myPersonSource1}, Path=FullName,
+                                  StringFormat='Person1 : &quot;{0}&quot;.'}" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="20,30,0,0" Foreground="Blue"
+                   Text="2.引数ありctorでインスタンス化" />
+        <TextBlock DockPanel.Dock="Top" Margin="40,10,0,0"
+                   FontSize="{StaticResource FontSizeMicro}"
+                   Text="{Binding Source={StaticResource myPersonSource2}, Path=FullName,
+                                  StringFormat='Person2 : &quot;{0}&quot;.'}" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="20,30,0,0" Foreground="Blue"
+                   Text="3.引数ありctorでインスタンス化してからメソッドをコール (PropertyChanged対応)" />
+        <TextBox DockPanel.Dock="Top" Margin="40,10,0,0"
+                 Text="{Binding Source={StaticResource SetFirstNameKey},
+                                Path=MethodParameters[0],
+                                BindsDirectlyToSource=True, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock DockPanel.Dock="Top" Margin="40,10,0,0"
+                   FontSize="{StaticResource FontSizeMicro}"
+                   Text="{Binding Source={StaticResource myPersonSource3}, Path=FullName,
+                                  StringFormat='Person3 : &quot;{0}&quot;.'}" />
+
+    </DockPanel>
+
+</ContentControl>

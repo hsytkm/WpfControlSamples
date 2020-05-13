@@ -28,6 +28,10 @@
         <local:MessageBoxPage />
     </TabItem>
 
+    <TabItem Header="ShowWindow" >
+        <local:ShowWindowPage />
+    </TabItem>
+
     <TabItem Header="ToolBar" >
         <local:ToolBarPage />
     </TabItem>
@@ -36,12 +40,20 @@
         <local:ContextMenuPage />
     </TabItem>
 
+    <TabItem Header="NavigationService" >
+        <local:NavigationServicePage />
+    </TabItem>
+
     <TabItem Header="DispatcherObject" >
         <local:DispatcherObjectPage />
     </TabItem>
 
     <TabItem Header="DispatcherTimer" >
         <local:DispatcherTimerPage />
+    </TabItem>
+
+    <TabItem Header="UnhandledException" >
+        <local:DispatcherUnhandledExceptionPage />
     </TabItem>
 
 </TabControl>

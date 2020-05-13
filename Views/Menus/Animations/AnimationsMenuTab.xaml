@@ -20,4 +20,12 @@
         <local:PointAnimationPage />
     </TabItem>
 
+    <TabItem Header="ThicknessAnimation" >
+        <local:ThicknessAnimationPage />
+    </TabItem>
+
+    <TabItem Header="EasingAnimation" >
+        <local:EasingAnimationPage />
+    </TabItem>
+
 </TabControl>

@@ -63,6 +63,12 @@
     <Page Update="Views\Menus\Animations\AnimationsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Animations\ThicknessAnimationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Animations\EasingAnimationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Animations\PointAnimationPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -100,6 +106,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\EditingText\EditingTextMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\ItemTemplate\VisualStateManagerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\ItemTemplate\DataTemplatePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\ItemTemplate\ItemTemplateSelectorPage.xaml">
@@ -246,6 +258,30 @@
     <Page Update="Views\Menus\Triggers\TriggersMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\UIFunctions\NavigationServiceContent3Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\NavigationServiceContent2Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\NavigationServiceContent1Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\NavigationServicePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\ShowWindowSubDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\ShowWindowSub.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\ShowWindowPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIFunctions\DispatcherUnhandledExceptionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\UIFunctions\SystemColorsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -277,6 +313,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\ApplicationCommandsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\ObjectDataProviderPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\AttachedEventPage.xaml">

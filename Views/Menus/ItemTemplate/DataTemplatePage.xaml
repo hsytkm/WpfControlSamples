@@ -1,0 +1,42 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.DataTemplatePage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- WPFサンプル:DataTemplateでデータの表示形式を定義する
+         http://gushwell.ldblog.jp/archives/52328626.html
+    -->
+
+    <ContentControl.Resources>
+        <DataTemplate DataType="{x:Type system:DateTime}" >
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>
+                    <Run Text="{Binding Path=Year, Mode=OneWay}" Foreground="Blue" />
+                    <Run Text=" ねん  " />
+                    <Run Text="{Binding Path=Month, Mode=OneWay}" Foreground="Blue" />
+                    <Run Text=" がつ  " />
+                    <Run Text="{Binding Path=Day, Mode=OneWay}" Foreground="Blue" />
+                    <Run Text=" にち" />
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </ContentControl.Resources>
+
+    <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="DataTemplate" />
+
+        <TextBlock Margin="10,10,0,0" Foreground="Blue"
+                   Text="DateTime.Now の 表示形式を DataTemplate で指定している。" />
+        
+        <ContentControl Margin="20,10" FontSize="{StaticResource FontSizeSmall}"
+                        Content="{Binding ., Mode=OneTime}" />
+        
+    </StackPanel>
+
+</ContentControl>

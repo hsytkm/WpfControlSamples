@@ -1,0 +1,48 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.NavigationServicePage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- WPFサンプル:NavigationServiceを使ったページ遷移
+           http://gushwell.ldblog.jp/archives/52335648.html
+    -->
+
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="NavigationService" />
+
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal" >
+            <Button x:Name="prevButton"
+                    Content="Prev"
+                    Margin="10,0" Padding="5" Width="100"
+                    Click="Button_Click_Prev" />
+
+            <Button x:Name="nextButton"
+                    Content="Next"
+                    Margin="10,0" Padding="5" Width="100"
+                    Click="Button_Click_Next" />
+
+            <TextBlock Margin="30,0,30,0"
+                       FontSize="{StaticResource FontSizeMicro}"
+                       HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Text="{Binding ., Mode=OneWay, StringFormat={}{0} Page}" />
+        </StackPanel>
+
+        <TextBlock DockPanel.Dock="Top" Margin="5,5,0,0"
+                   Foreground="Blue" FontSize="{StaticResource FontSizeMicro}"
+                   Text="Frame の中に Page が表示される（Xamarin.Forms の Frame と全然違う)" />
+
+        <Frame x:Name="myFrame" Margin="10"
+               NavigationUIVisibility="Hidden"
+               Loaded="Frame_Loaded"
+               Navigated="Frame_Navigated"/>
+
+    </DockPanel>
+
+</ContentControl>

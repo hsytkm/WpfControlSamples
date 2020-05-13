@@ -25,19 +25,19 @@
         かずきさん49 アニメーション2
             https://blog.okazuki.jp/entry/2014/08/31/200320
 
-        かずきさん53 VisualStateManager
-            https://blog.okazuki.jp/entry/2014/09/08/203943
-    
         かずきさん54 カスタムコントロール
             https://blog.okazuki.jp/entry/2014/09/08/221209
+    
+        WPFサンプル・目次 の 2D Graphics 全て
+            http://gushwell.ldblog.jp/archives/52313900.html
     -->
     
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
-        
+        <!-- 
         <TabItem Header="Test" >
-            <menus:ComboBox2Page />
+            <menus:NavigationServicePage />
         </TabItem>
-        <!-- ↑仮置き↑ -->
+        ↑仮置き↑ -->
 
         <TabItem Header="Systems" >
             <menus:SystemsMenuTab />
@@ -101,10 +101,6 @@
 
         <TabItem Header="Animations" >
             <menus:AnimationsMenuTab />
-        </TabItem>
-
-        <TabItem Header="About" >
-            <menus:BlankPage />
         </TabItem>
 
     </TabControl>

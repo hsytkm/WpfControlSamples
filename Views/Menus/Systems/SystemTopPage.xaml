@@ -15,16 +15,43 @@
         <local:SystemTopViewModel />
     </ContentControl.DataContext>
     
-    <DockPanel Margin="10" >
-        <TextBlock DockPanel.Dock="Top"
-                   Margin="0,10,0,0"
+    <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0"
                    FontSize="{StaticResource FontSizeLarge}"
                    Text="{Binding AppName, Mode=OneTime}" />
 
-        <ctrl:HyperlinkTextBlock Margin="20"
+        <ctrl:HyperlinkTextBlock Margin="10,10"
                                  FontSize="{StaticResource FontSizeMicro}"
                                  NavigateUri="https://github.com/hsytkm/WpfControlSamples" />
 
-    </DockPanel>
+        <TextBlock Margin="20,10" LineHeight="24" >
+            ・ WPF の 標準コントロール のサンプル集です。
+            <LineBreak />
+            
+            ・ .NET Core 3.1 + C# 8.0 で動作確認しています。 (2020年5月時点)
+            <LineBreak />
+            
+            ・ NuGet パッケージは XamlBehaviorsWpf のみ導入しています。
+            <LineBreak />
+            
+            　(MVVMインフラの Prism / Livet や ReactiveExtensions は導入していません)
+            <LineBreak />
+            
+            ・ 
+            <Hyperlink NavigateUri="https://github.com/hsytkm/XFControlSamples"
+                       ToolTip="{Binding NavigateUri, RelativeSource={RelativeSource Self}}"
+                       RequestNavigate="Hyperlink_RequestNavigate" >
+                XFControlSamples
+            </Hyperlink>
+            
+            の構成に似せて作りましたが、割と揃いませんでした。
+            <LineBreak />
+
+            ・ 今後の人生で知らないことを見つけたら、サンプルを追加していきましょう～
+            <LineBreak />
+
+        </TextBlock>
+
+    </StackPanel>
 
 </ContentControl>

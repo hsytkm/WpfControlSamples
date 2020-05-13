@@ -29,7 +29,7 @@
 
             <!-- &#xD; がCRで、&#xA; がLFを表す らしい https://www.nuits.jp/entry/2016/07/30/213257 -->
             <TextBlock LineHeight="30"
-                       Text="ライン幅 と 改行文字 &#xD;&#xA;　CR=＆＃ｘＤ；  LF=＆＃ｘＡ； &#xD;&#xA;　↑これを半角にする"
+                       Text="行間(ライン幅) と 改行文字 &#xD;&#xA;　CR=＆＃ｘＤ；  LF=＆＃ｘＡ； &#xD;&#xA;　↑これを半角にする"
                        Background="LightGray" />
 
             <!-- Wrap
@@ -43,7 +43,7 @@
                 ウィンドウ幅に応じて自動で改行されるよ。
             </TextBlock>
 
-            <!-- エスケープ    "<"は &lt;   ">"は &gt;  -->
+            <!-- エスケープ    < は &lt;     > は &gt;     " は &quot;   -->
             <TextBlock Text="&lt;Panel Margin=&quot;10,0&quot; /&gt;   &amp;" />
             <TextBlock Text="{}{で始まる場合は先頭に {} 付ける（先頭の{}は表示されない)" />
 

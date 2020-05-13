@@ -4,7 +4,9 @@
              xmlns:local="clr-namespace:WpfControlSamples"
              xmlns:vc="clr-namespace:WpfControlSamples.Views.Converters"
              xmlns:sys="clr-namespace:System;assembly=System.Runtime"
-             StartupUri="Views/MainWindow.xaml">
+             StartupUri="Views/MainWindow.xaml"
+             DispatcherUnhandledException="Application_DispatcherUnhandledException" >
+    
     <Application.Resources>
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BoolToVisiConverter" />

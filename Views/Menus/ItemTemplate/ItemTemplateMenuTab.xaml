@@ -8,6 +8,14 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Style="{StaticResource MyTabControlStyle2}" >
 
+    <TabItem Header="DataTemplate" >
+        <local:DataTemplatePage />
+    </TabItem>
+
+    <TabItem Header="VisualStateManager" >
+        <local:VisualStateManagerPage />
+    </TabItem>
+
     <TabItem Header="ItemTemplateSelector" >
         <local:ItemTemplateSelectorPage />
     </TabItem>
