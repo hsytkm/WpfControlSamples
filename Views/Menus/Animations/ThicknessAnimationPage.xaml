@@ -28,7 +28,7 @@
 
         <Style TargetType="{x:Type Button}" >
             <Setter Property="Padding" Value="30,10" />
-            <Setter Property="Margin" Value="0,0,10,0" />
+            <Setter Property="Margin" Value="10,5" />
         </Style>
     </ContentControl.Resources>
     
@@ -38,7 +38,6 @@
                    Text="ThicknessAnimation" />
 
         <Button DockPanel.Dock="Top"
-                Margin="10,0" 
                 Content="Margin 0,0,0,0" >
             <Button.Triggers>
                 <EventTrigger RoutedEvent="Button.Click" >
@@ -48,7 +47,6 @@
         </Button>
 
         <Button DockPanel.Dock="Top"
-                Margin="10,0" 
                 Content="Margin 0 -> 100,50" >
             <Button.Triggers>
                 <EventTrigger RoutedEvent="Button.Click" >

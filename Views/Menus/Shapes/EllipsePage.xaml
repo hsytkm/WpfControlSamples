@@ -7,51 +7,33 @@
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
-    <Canvas Margin="10" >
-        <TextBlock Text="Line / Ellipse / Rectangle"
-                   FontSize="{StaticResource FontSizeSmall}" />
+    <StackPanel Margin="10" >
+        <TextBlock FontSize="{StaticResource FontSizeMedium}"
+                   Text="Ellipse / Rectangle" />
 
-        <Line X1="10" Y1="30" X2="300" Y2="60"
-              Stroke="Cyan"
-              StrokeThickness="10" />
+        <Canvas>
+            <Ellipse Canvas.Left="10" Canvas.Top="25" 
+                     Width="100" Height="50"
+                     Fill="Blue" />
 
-        <Line X1="10" Y1="10" X2="150" Y2="150"
-              StrokeThickness="50"
-              Canvas.Left="140" Canvas.Top="40" >
-            <Line.Stroke>
-                <RadialGradientBrush GradientOrigin="0.5,0.5"
-                                     Center="0.5,0.5"
-                                     RadiusX="0.5" RadiusY="0.5" >
-                    <RadialGradientBrush.GradientStops>
-                        <GradientStop Color="Red" Offset="0" />
-                        <GradientStop Color="GreenYellow" Offset="0.25" />
-                    </RadialGradientBrush.GradientStops>
-                </RadialGradientBrush>
-            </Line.Stroke>
-        </Line>
+            <Ellipse Canvas.Left="40" Canvas.Top="80"
+                     Width="100" Height="100"
+                     Fill="Pink"
+                     Stroke="Red"
+                     StrokeThickness="4" />
 
-        <Ellipse Canvas.Left="10" Canvas.Top="25" 
-                 Width="100" Height="50"
-                 Fill="Blue" />
+            <Rectangle Canvas.Left="100" Canvas.Top="140"
+                       Width="100" Height="100"
+                       Fill="Yellow"
+                       Stroke="Green" 
+                       RadiusX="40" RadiusY="10"
+                       StrokeThickness="3" />
 
-        <Ellipse Canvas.Left="40" Canvas.Top="80"
-                 Width="100" Height="100"
-                 Fill="Pink"
-                 Stroke="Red"
-                 StrokeThickness="4" />
-
-        <Rectangle Canvas.Left="100" Canvas.Top="140"
-                   Width="100" Height="100"
-                   Fill="Yellow"
-                   Stroke="Green" 
-                   RadiusX="40" RadiusY="10"
-                   StrokeThickness="3" />
-
-        <Rectangle Canvas.Left="120" Canvas.Top="200" 
-                   Width="150" Height="100" 
-                   Fill="LightCyan" 
-                   Stroke="Black" 
-                   Opacity="0.8" />
-
-    </Canvas>
+            <Rectangle Canvas.Left="120" Canvas.Top="200" 
+                       Width="150" Height="100" 
+                       Fill="LightCyan" 
+                       Stroke="Black" 
+                       Opacity="0.8" />
+        </Canvas>
+    </StackPanel>
 </ContentControl>

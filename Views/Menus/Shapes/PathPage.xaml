@@ -4,35 +4,66 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:mkup="clr-namespace:WpfControlSamples.Views.MarkupExtensions"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
-    <!-- 【WPF】Pathで線形を書く（直線のみ）
-         https://qiita.com/LemonLeaf/items/c089bbb497f53b59e0b4
+    <!-- WPFサンプル:Pathで一連の曲線(円弧やベジェ曲線)を描く
+            http://gushwell.ldblog.jp/archives/52310471.html
+
+         【WPF】Pathで線形を書く（直線のみ）
+            https://qiita.com/LemonLeaf/items/c089bbb497f53b59e0b4
     -->
-    <Canvas Margin="10" >
-        <TextBlock Text="Path"
-                   FontSize="{StaticResource FontSizeSmall}" />
+    <StackPanel Margin="10" >
+        <TextBlock FontSize="{StaticResource FontSizeMedium}"
+                   Text="Path" />
 
-        <!-- 直線を続けて書く -->
-        <Path Stroke="Red" StrokeThickness="10" Data="M10,0 l30,0 0,40 20,0 0,-40 20,0 "
-              Canvas.Left="30" Canvas.Top="30" />
+        <Canvas>
+            <!-- 直線を続けて書く -->
+            <Path Stroke="Red" StrokeThickness="10" Data="M10,0 l30,0 0,40 20,0 0,-40 20,0 "
+                  Canvas.Left="30" Canvas.Top="30" />
 
-        <!-- 絶対座標で指定する場合 -->
-        <Path Stroke="Green" StrokeThickness="10" Data="M50,10 L50,200"
-              Canvas.Left="50" Canvas.Top="100" />
+            <!-- 絶対座標で指定する場合 -->
+            <Path Stroke="Green" StrokeThickness="10" Data="M50,10 L50,200"
+                  Canvas.Left="50" Canvas.Top="100" />
 
-        <!-- 相対座標で指定する場合 -->
-        <Path Stroke="Yellow" StrokeThickness="10" Data="M0,130 l0,130"
-              Canvas.Left="80" Canvas.Top="120" />
+            <!-- 相対座標で指定する場合 -->
+            <Path Stroke="Yellow" StrokeThickness="10" Data="M0,130 l0,130"
+                  Canvas.Left="80" Canvas.Top="120" />
 
-        <!-- 三角形を書く場合 -->
-        <Path Stroke="Pink" StrokeThickness="10" Data="M0,0 L100,0 50,80 z"
-              Canvas.Left="130" Canvas.Top="200" />
+            <!-- 三角形を書く場合 -->
+            <Path Stroke="Pink" StrokeThickness="10" Data="M0,0 L100,0 50,80 z"
+                  Canvas.Left="130" Canvas.Top="200" />
 
-        <!-- 複数の線形を含むPath -->
-        <Path Stroke="Blue" StrokeThickness="10" Data="M10,10 l100,0 m0,10 l0,50"
-              Canvas.Left="200" Canvas.Top="250" />
+            <!-- 複数の線形を含むPath -->
+            <Path Stroke="Blue" StrokeThickness="10" Data="M10,10 l100,0 m0,10 l0,50"
+                  Canvas.Left="200" Canvas.Top="250" />
 
-    </Canvas>
+            <Path Data="M 50,110 A 55,40 140 1 1 180,110"
+                  Stroke="Black" StrokeThickness="1" Fill="Blue"
+                  Canvas.Left="100" Canvas.Top="0" />
+
+            <Path Data="M 320,15 A 55,80 90 1 0 460,120"
+                  Stroke="Black" StrokeThickness="1" Fill="Lavender"
+                  Canvas.Left="60" Canvas.Top="60" />
+
+            <Path Data="M 30,25 C 170,230 290,-80 480,120"
+                  StrokeThickness="2" Stroke="Green" Fill="LightGreen"
+                  Canvas.Left="200" Canvas.Top="150" />
+
+            <Path Margin="20,0" StrokeThickness="2" >
+                <Path.Stroke>
+                    <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.8,1" >
+                        <GradientStop Color="YellowGreen" Offset="0.0" />
+                        <GradientStop Color="SkyBlue" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Path.Stroke>
+                <Path.Data>
+                    <mkup:OutlinedTextPathExtension Text="PATHで縁取り" />
+                </Path.Data>
+            </Path>
+
+        </Canvas>
+
+    </StackPanel>
 </ContentControl>

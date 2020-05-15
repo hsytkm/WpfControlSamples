@@ -1,0 +1,45 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.LinePage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- WPFサンプル:Line, Polyline, Polygonで直線、図形を描く
+            http://gushwell.ldblog.jp/archives/52307936.html
+    -->
+
+    <StackPanel Margin="10" >
+        <TextBlock FontSize="{StaticResource FontSizeMedium}"
+                   Text="Line / Polyline" />
+
+        <Canvas>
+            <Line X1="10" Y1="30" X2="300" Y2="60"
+                  Stroke="Cyan"
+                  StrokeThickness="10" />
+
+            <Line X1="10" Y1="10" X2="150" Y2="150"
+                  StrokeThickness="50"
+                  Canvas.Left="140" Canvas.Top="40" >
+                <Line.Stroke>
+                    <RadialGradientBrush GradientOrigin="0.5,0.5"
+                                         Center="0.5,0.5"
+                                         RadiusX="0.5" RadiusY="0.5" >
+                        <RadialGradientBrush.GradientStops>
+                            <GradientStop Color="Red" Offset="0" />
+                            <GradientStop Color="GreenYellow" Offset="0.25" />
+                        </RadialGradientBrush.GradientStops>
+                    </RadialGradientBrush>
+                </Line.Stroke>
+            </Line>
+
+            <Polyline Canvas.Left="10" Canvas.Top="100"
+                      Points="20,120 120,30 120,120 230,30"
+                      Stroke="Salmon" StrokeThickness="3"
+                      StrokeDashArray="1 2" />
+
+        </Canvas>
+    </StackPanel>
+</ContentControl>

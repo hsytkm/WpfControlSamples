@@ -67,7 +67,7 @@
 
         <Style TargetType="{x:Type Button}" >
             <Setter Property="Padding" Value="15,10" />
-            <Setter Property="Margin" Value="0,0,10,0" />
+            <Setter Property="Margin" Value="0,5,10,0" />
         </Style>
     </ContentControl.Resources>
     

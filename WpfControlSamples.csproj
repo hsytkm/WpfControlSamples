@@ -16,6 +16,7 @@
     <None Remove=".gitignore" />
     <None Remove="Resources\Fonts\ionicons.ttf" />
     <None Remove="Resources\Images\EmbeddedResource1.png" />
+    <None Remove="Resources\Images\picture1.jpg" />
     <None Remove="Resources\Images\Resource1.png" />
     <None Remove="Resources\Images\Resource2.png" />
   </ItemGroup>
@@ -31,6 +32,7 @@
     <Resource Include="Resources\Fonts\ionicons.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Images\Picture1.jpg" />
     <Resource Include="Resources\Images\Resource1.png" />
     <Resource Include="Resources\Images\Resource2.png" />
   </ItemGroup>
@@ -61,6 +63,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Animations\AnimationsMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Animations\DoubleAnimationUsingKeyFramesPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Animations\ThicknessAnimationPage.xaml">
@@ -202,6 +207,27 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\SettingValues\SettingValuesMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Shapes\ClipPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Shapes\OpacityPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Shapes\EffectsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Shapes\Brushes2Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Shapes\Brushes1Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Shapes\TransformsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Shapes\LinePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Shapes\PathPage.xaml">

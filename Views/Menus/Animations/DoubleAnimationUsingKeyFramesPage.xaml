@@ -1,0 +1,182 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.DoubleAnimationUsingKeyFramesPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:ctrl="clr-namespace:WpfControlSamples.Views.Controls"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- かずきさん49 アニメーション2
+            https://blog.okazuki.jp/entry/2014/08/31/200320
+    
+         キー フレーム アニメーションの概要
+            https://docs.microsoft.com/ja-jp/dotnet/framework/wpf/graphics-multimedia/key-frame-animations-overview
+    -->
+
+    <ContentControl.Resources>
+        <!-- 1. シンプルKeyFrame -->
+        <Storyboard x:Key="rectAnimation1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rect1"
+                                           Storyboard.TargetProperty="(Canvas.Left)"
+                                           Duration="0:0:5" >
+                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="10" />
+                <LinearDoubleKeyFrame KeyTime="0:0:1" Value="300" />
+                <DiscreteDoubleKeyFrame KeyTime="0:0:2" Value="10" />
+                <SplineDoubleKeyFrame KeyTime="0:0:4" Value="400" KeySpline="0.0,0.0 1.0,0.0" />
+                <LinearDoubleKeyFrame KeyTime="0:0:5" Value="10" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!-- 2. TimeSpan指定 -->
+        <Storyboard x:Key="rectAnimation2_TimeSpan">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rect1"
+                                           Storyboard.TargetProperty="(Canvas.Left)"
+                                           Duration="0:0:5" >
+                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="10" />
+                <LinearDoubleKeyFrame KeyTime="0:0:1" Value="300" />
+                <LinearDoubleKeyFrame KeyTime="0:0:3" Value="10" />
+                <LinearDoubleKeyFrame KeyTime="0:0:3.5" Value="15" />
+                <LinearDoubleKeyFrame KeyTime="0:0:5" Value="200" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!-- 2. パーセント指定 -->
+        <Storyboard x:Key="rectAnimation2_Percent">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rect1"
+                                           Storyboard.TargetProperty="(Canvas.Left)"
+                                           Duration="0:0:5" >
+                <LinearDoubleKeyFrame KeyTime="0%" Value="10" />
+                <LinearDoubleKeyFrame KeyTime="20%" Value="300" />
+                <LinearDoubleKeyFrame KeyTime="60%" Value="10" />
+                <LinearDoubleKeyFrame KeyTime="70%" Value="15" />
+                <LinearDoubleKeyFrame KeyTime="100%" Value="200" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!-- 2. Uniform指定 : キー フレームに同じ時間を割り当てる -->
+        <Storyboard x:Key="rectAnimation2_Uniform">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rect1"
+                                           Storyboard.TargetProperty="(Canvas.Left)"
+                                           Duration="0:0:5" >
+                <LinearDoubleKeyFrame KeyTime="Uniform" Value="10" />
+                <LinearDoubleKeyFrame KeyTime="Uniform" Value="300" />
+                <LinearDoubleKeyFrame KeyTime="Uniform" Value="10" />
+                <LinearDoubleKeyFrame KeyTime="Uniform" Value="15" />
+                <LinearDoubleKeyFrame KeyTime="Uniform" Value="200" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!-- 2. Paced指定 : 一定の速度でアニメーション -->
+        <Storyboard x:Key="rectAnimation2_Paced">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rect1"
+                                           Storyboard.TargetProperty="(Canvas.Left)"
+                                           Duration="0:0:5" >
+                <LinearDoubleKeyFrame KeyTime="Paced" Value="10" />
+                <LinearDoubleKeyFrame KeyTime="Paced" Value="300" />
+                <LinearDoubleKeyFrame KeyTime="Paced" Value="10" />
+                <LinearDoubleKeyFrame KeyTime="Paced" Value="15" />
+                <LinearDoubleKeyFrame KeyTime="Paced" Value="200" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!-- 3. 複数指定 -->
+        <Storyboard x:Key="rectAnimation3">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rect1"
+                                           Storyboard.TargetProperty="(Canvas.Left)"
+                                           Duration="0:0:5" >
+                <LinearDoubleKeyFrame KeyTime="Uniform" Value="100" />
+                <LinearDoubleKeyFrame KeyTime="Uniform" Value="300" />
+                <LinearDoubleKeyFrame KeyTime="Uniform" Value="30" />
+                <LinearDoubleKeyFrame KeyTime="Uniform" Value="10" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rect1"
+                                           Storyboard.TargetProperty="(Canvas.Top)"
+                                           Duration="0:0:5" >
+                <LinearDoubleKeyFrame KeyTime="20%" Value="10" />
+                <LinearDoubleKeyFrame KeyTime="40%" Value="50" />
+                <LinearDoubleKeyFrame KeyTime="80%" Value="130" />
+                <LinearDoubleKeyFrame KeyTime="100%" Value="10" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Style TargetType="{x:Type Button}" >
+            <Setter Property="Padding" Value="30,10" />
+            <Setter Property="Margin" Value="10,5" />
+        </Style>
+    </ContentControl.Resources>
+    
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="DoubleAnimationUsingKeyFrames" />
+
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="5,5" 
+                   Text="フレームごとにアニメーションと時間を指定できるため、複雑な動きを設定できる。" />
+
+        <Button DockPanel.Dock="Top"
+                Content="1.Simple (only hori)" >
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click" >
+                    <BeginStoryboard Storyboard="{StaticResource rectAnimation1}" />
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
+
+        <WrapPanel DockPanel.Dock="Top" >
+            <Button Content="2.TimeSpan" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click" >
+                        <BeginStoryboard Storyboard="{StaticResource rectAnimation2_TimeSpan}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Content="2.Percent" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click" >
+                        <BeginStoryboard Storyboard="{StaticResource rectAnimation2_Percent}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Content="2.Uniform" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click" >
+                        <BeginStoryboard Storyboard="{StaticResource rectAnimation2_Uniform}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Content="2.Paced" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click" >
+                        <BeginStoryboard Storyboard="{StaticResource rectAnimation2_Paced}" />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+        </WrapPanel>
+
+        <Button DockPanel.Dock="Top"
+                Content="3.Multiple (hori + vert)" >
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click" >
+                    <BeginStoryboard Storyboard="{StaticResource rectAnimation3}" />
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
+
+        <Canvas Background="LightBlue" >
+            <Border x:Name="rect1"
+                    Background="LightPink"
+                    Width="140" Height="60"
+                    Canvas.Top="10" Canvas.Left="10" >
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Text="移動対象" />
+            </Border>
+        </Canvas>
+
+    </DockPanel>
+
+</ContentControl>

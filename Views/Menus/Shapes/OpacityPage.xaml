@@ -1,0 +1,77 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.OpacityPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- WPFサンプル:OpacityMaskで不透明マスク処理をする
+            http://gushwell.ldblog.jp/archives/52315538.html
+
+         WPFサンプル:OpacityMaskを使用しイメージをトリミングする
+            http://gushwell.ldblog.jp/archives/52315539.html
+    -->
+
+    <StackPanel Margin="10" >
+        <TextBlock FontSize="{StaticResource FontSizeMedium}"
+                   Text="Opacity" />
+
+        <!-- UIElement.OpacityMask1 -->
+        <TextBlock Margin="5,10,0,0" FontSize="{StaticResource FontSizeMicro}"
+                   Text="UIElement.OpacityMask" />
+        <Slider x:Name="slider1" Width="160" Margin="20,5"
+                HorizontalAlignment="Left"
+                Value="0.5" Minimum="0" Maximum="1" />
+        <StackPanel Margin="20,5" Orientation="Horizontal" >
+            <Panel.Resources>
+                <LinearGradientBrush x:Key="myLinearGradientBrush1"
+                                     StartPoint="0,0" EndPoint="1,1" >
+                    <GradientStop Offset="{Binding Value, Source={x:Reference Name=slider1}}"
+                                  Color="Black" />
+                    <GradientStop Offset="1.0" Color="Transparent" />
+                </LinearGradientBrush>
+            </Panel.Resources>
+
+            <Border x:Name="image1" Width="160" Height="120"
+                    OpacityMask="{StaticResource myLinearGradientBrush1}" >
+                <Border.Background>
+                    <ImageBrush ImageSource="/Resources/Images/Picture1.jpg" Stretch="UniformToFill" />
+                </Border.Background>
+            </Border>
+
+            <!-- プレビュー用の表示 -->
+            <Border Width="{Binding ActualWidth, Source={x:Reference Name=image1}}"
+                    Height="{Binding ActualHeight, Source={x:Reference Name=image1}}"
+                    Background="{StaticResource myLinearGradientBrush1}" />
+        </StackPanel>
+
+        <!-- UIElement.OpacityMask2 -->
+        <StackPanel Margin="20,5" Orientation="Horizontal" >
+            <Panel.Resources>
+                <RadialGradientBrush x:Key="myRadialGradientBrush2"
+                                     GradientOrigin="0.5,0.5"
+                                     Center="0.5,0.5"
+                                     RadiusX="0.4"
+                                     RadiusY="0.5" >
+                    <GradientStop Color="#ffffffff" Offset="0.4" />
+                    <GradientStop Color="#00ffffff" Offset="0.8" />
+                </RadialGradientBrush>
+            </Panel.Resources>
+
+            <Image x:Name="image2"
+                   Width="160" Height="120"
+                   Source="/Resources/Images/Picture1.jpg"
+                   OpacityMask="{StaticResource myRadialGradientBrush2}" />
+
+            <!-- プレビュー用の表示 -->
+            <Border Background="Black" >
+                <Rectangle Width="{Binding ActualWidth, Source={x:Reference Name=image2}}"
+                           Height="{Binding ActualHeight, Source={x:Reference Name=image2}}"
+                           Fill="{StaticResource myRadialGradientBrush2}" />
+            </Border>
+        </StackPanel>
+        
+    </StackPanel>
+</ContentControl>

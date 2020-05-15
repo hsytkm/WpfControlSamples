@@ -28,4 +28,8 @@
         <local:EasingAnimationPage />
     </TabItem>
 
+    <TabItem Header="AnimationKeyFrames" >
+        <local:DoubleAnimationUsingKeyFramesPage />
+    </TabItem>
+
 </TabControl>
