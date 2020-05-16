@@ -17,13 +17,11 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class PathPage : ContentControl
+    public partial class BehaviorPage : ContentControl
     {
-        public PathPage()
+        public BehaviorPage()
         {
             InitializeComponent();
-
-            DataContext = "string to Path.Data";
         }
     }
 }

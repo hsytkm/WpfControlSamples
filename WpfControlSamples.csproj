@@ -92,6 +92,9 @@
     <Page Update="Views\Menus\DisplayCollections\ListBox2Page.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\DisplayCollections\ItemsControl1Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\DisplayCollections\TreeViewPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -209,6 +212,15 @@
     <Page Update="Views\Menus\SettingValues\SettingValuesMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Shapes\CombinedGeometryPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Shapes\FluidMoveBehaviorPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Shapes\VisualBrushPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Shapes\ClipPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -284,6 +296,9 @@
     <Page Update="Views\Menus\Triggers\TriggersMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\UIFunctions\MouseCursorPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\UIFunctions\NavigationServiceContent3Page.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -345,6 +360,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\AttachedEventPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\BehaviorPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\RoutedEventPage.xaml">

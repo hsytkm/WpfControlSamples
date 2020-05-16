@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,13 +18,11 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class PathPage : ContentControl
+    public partial class VisualBrushPage : ContentControl
     {
-        public PathPage()
+        public VisualBrushPage()
         {
             InitializeComponent();
-
-            DataContext = "string to Path.Data";
         }
     }
 }

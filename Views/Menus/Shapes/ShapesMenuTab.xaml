@@ -48,4 +48,16 @@
         <local:OpacityPage />
     </TabItem>
 
+    <TabItem Header="VisualBrush" >
+        <local:VisualBrushPage />
+    </TabItem>
+
+    <TabItem Header="CombinedGeometry" >
+        <local:CombinedGeometryPage />
+    </TabItem>
+
+    <TabItem Header="FluidMove" >
+        <local:FluidMoveBehaviorPage />
+    </TabItem>
+
 </TabControl>

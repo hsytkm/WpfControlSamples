@@ -16,6 +16,7 @@
             </Style>
 
             <Style x:Key="TextBoxMultiTriggerStyle" TargetType="{x:Type TextBox}" >
+                <Setter Property="Margin" Value="10" />
                 <Style.Triggers>
                     <MultiTrigger>
                         <MultiTrigger.Conditions>
@@ -35,18 +36,46 @@
         <TextBlock Style="{StaticResource TitleTextBlockStyle}"
                    Text="MultiTrigger" />
 
-        <TextBlock Margin="10"
-                   FontSize="{StaticResource FontSizeSmall}"
-                   Text="Change Background color when IsFocused and IsMouseOver." />
+        <StackPanel Background="LightBlue" Margin="10" >
+            <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
+                       Text="Change Background color when IsFocused and IsMouseOver." />
 
-        <TextBox Margin="10"
-                 Style="{StaticResource TextBoxMultiTriggerStyle}"
-                 Text="TextBox1" />
+            <TextBox Style="{StaticResource TextBoxMultiTriggerStyle}"
+                     Text="TextBox1" />
 
-        <TextBox Margin="10"
-                 Style="{StaticResource TextBoxMultiTriggerStyle}"
-                 Text="TextBox2" />
+            <TextBox Style="{StaticResource TextBoxMultiTriggerStyle}"
+                     Text="TextBox2" />
+        </StackPanel>
 
+        <StackPanel Background="LightPink" Margin="10" >
+            <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
+                       Text="両方のテキストボックスにエラーがなければ（数値なら）ボタン押せる。" />
+            
+            <StackPanel Orientation="Horizontal" Margin="10" >
+                <TextBox x:Name="textBoxInput1" Width="120"
+                         Text="{Binding InputParam1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="10,0"
+                           Text="{Binding (Validation.HasError), Source={x:Reference Name=textBoxInput1},
+                                          StringFormat='-> HasError : {0}'}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10" >
+                <TextBox x:Name="textBoxInput2" Width="120"
+                         Text="{Binding InputParam2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="10,0"
+                           Text="{Binding (Validation.HasError), Source={x:Reference Name=textBoxInput2},
+                                          StringFormat='-> HasError : {0}'}" />
+            </StackPanel>
+
+            <Button Content="If there are no errors in either TextBox, you can click." Height="40" Margin="20,10" >
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource AreAllFalseConverter}">
+                        <Binding ElementName="textBoxInput1" Path="(Validation.HasError)" />
+                        <Binding ElementName="textBoxInput2" Path="(Validation.HasError)" />
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
+        </StackPanel>
     </StackPanel>
 
 </ContentControl>

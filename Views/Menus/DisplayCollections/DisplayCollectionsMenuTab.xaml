@@ -36,4 +36,8 @@
         <local:CollectionViewSourcePage />
     </TabItem>
 
+    <TabItem Header="ItemsControl(Radio)" >
+        <local:ItemsControl1Page />
+    </TabItem>
+
 </TabControl>

@@ -9,18 +9,35 @@
                 d:DesignHeight="450" d:DesignWidth="800">
 
     <StackPanel Margin="10" >
+        <TextBlock Margin="0" FontSize="{StaticResource FontSizeMicro}"
+                   Text="TextBlock" />
 
         <!-- 1行、単一行 -->
-        <Border Padding="20,10" Background="LightBlue" >
-            <StackPanel>
-                <TextBlock Text="1line" />
-
-                <TextBox Text="{Binding InputText1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Margin="0,20" Background="LightGray" 
+        <DockPanel Background="LightBlue" >
+            <TextBlock DockPanel.Dock="Top" Margin="10,5" Text="Simple" />
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" >
+                <TextBlock Margin="20,5,0,5" Width="80" Text="Binding string : " />
+                <TextBox Width="100" Margin="20,5"
+                         Text="{Binding InputText1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="10,5" Background="LightGray" Width="100"
                            Text="{Binding InputText1, Mode=OneWay}" />
             </StackPanel>
-        </Border>
+            
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" >
+                <TextBlock Margin="20,5,0,5" Width="80" Text="Binding int : " />
+                <TextBox x:Name="textBoxInput1"
+                         Width="100" Margin="20,5"
+                         Text="{Binding InputInt1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="10,5" Background="LightGray" Width="100"
+                           Text="{Binding InputInt1, Mode=OneWay}" />
+                <TextBlock Margin="10,0" VerticalAlignment="Center"
+                           Foreground="Red" FontWeight="Bold" Text="Validation.HasError = true"
+                           Visibility="{Binding (Validation.HasError), Source={x:Reference Name=textBoxInput1},
+                                                Converter={StaticResource BoolToVisiConverter}}" />
+            </StackPanel>
+            <TextBlock Margin="30,0,0,10"
+                       Text="TextBlock.Text に int をバインドしている場合に 数値 でなければ、Validation.HasError が true になる。" />
+        </DockPanel>
 
         <!-- 入力用(EnterKeyで確定) -->
         <Border Padding="20,10" Background="LightPink" >

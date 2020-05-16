@@ -40,6 +40,10 @@
         <local:ContextMenuPage />
     </TabItem>
 
+    <TabItem Header="MouseCursor" >
+        <local:MouseCursorPage />
+    </TabItem>
+    
     <TabItem Header="NavigationService" >
         <local:NavigationServicePage />
     </TabItem>

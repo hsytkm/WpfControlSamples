@@ -14,6 +14,8 @@
             <vc:InverseBooleanToVisibilityConverter x:Key="InvBoolToVisiConverter" />
             <vc:ColorToBrushConverter x:Key="ColorToBrushConverter" />
             <vc:EmptyStringToTrueConverter x:Key="EmptyStringToTrueConverter" />
+            <vc:AreAllFalseConverter x:Key="AreAllFalseConverter" />
+            <vc:AreAllTrueConverter x:Key="AreAllTrueConverter" />
 
             <!-- Xamarin(UWP)のフォントサイズを定義 -->
             <sys:Double x:Key="FontSizeDefault">14</sys:Double>

@@ -33,7 +33,14 @@ namespace WpfControlSamples.Views.Menus
             get => _inputText1;
             set => SetProperty(ref _inputText1, value);
         }
-        private string _inputText1;
+        private string _inputText1 = "abc";
+
+        public int InputInt1
+        {
+            get => _inputInt1;
+            set => SetProperty(ref _inputInt1, value);
+        }
+        private int _inputInt1 = 123;
 
         public string InputText2
         {

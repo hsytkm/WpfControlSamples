@@ -55,5 +55,9 @@
     <TabItem Header="ObjectDataProvider" >
         <local:ObjectDataProviderPage />
     </TabItem>
+
+    <TabItem Header="Behavior" >
+        <local:BehaviorPage />
+    </TabItem>
     
 </TabControl>

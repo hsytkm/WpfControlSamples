@@ -28,6 +28,13 @@
             <Polygon Points="10,110 110,110 110,10"
                      Stroke="Pink" StrokeThickness="4"
                      Canvas.Left="150" Canvas.Top="250" />
+
+            <Polygon Points="250 30 337 300 106 133 392 133 161 300"
+                     Stroke="Blue" StrokeThickness="5"
+                     Fill="LightBlue" FillRule="EvenOdd"
+                     StrokeMiterLimit="3"
+                     Canvas.Left="100" Canvas.Top="0" />
+
         </Canvas>
     </StackPanel>
 </ContentControl>
