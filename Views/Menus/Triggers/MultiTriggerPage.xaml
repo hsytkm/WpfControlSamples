@@ -68,8 +68,9 @@
             </StackPanel>
 
             <Button Content="If there are no errors in either TextBox, you can click." Height="40" Margin="20,10" >
+                <!-- ここは MultiTrigger でなく MultiBinding (MultiValueConverterPageの内容) -->
                 <Button.IsEnabled>
-                    <MultiBinding Converter="{StaticResource AreAllFalseConverter}">
+                    <MultiBinding Converter="{StaticResource BooleansAreAllFalseConverter}">
                         <Binding ElementName="textBoxInput1" Path="(Validation.HasError)" />
                         <Binding ElementName="textBoxInput2" Path="(Validation.HasError)" />
                     </MultiBinding>

@@ -19,17 +19,17 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class FluidMoveBehaviorPage : ContentControl
+    public partial class FluidMoveBehavior2Page : ContentControl
     {
-        public FluidMoveBehaviorPage()
+        public FluidMoveBehavior2Page()
         {
             InitializeComponent();
 
-            DataContext = new FluidMoveBehaviorViewModel();
+            DataContext = new FluidMoveBehavior2ViewModel();
         }
     }
 
-    class FluidMoveBehaviorViewModel : MyBindableBase
+    class FluidMoveBehavior2ViewModel : MyBindableBase
     {
         public ObservableCollection<FluidData> LeftItems { get; } =
             new ObservableCollection<FluidData>()
@@ -46,14 +46,26 @@ namespace WpfControlSamples.Views.Menus
         public FluidData LeftSelectedItem
         {
             get => _leftSelectedItem;
-            set => SetProperty(ref _leftSelectedItem, value);
+            set
+            {
+                if (SetProperty(ref _leftSelectedItem, value))
+                {
+                    if (value != null) RightSelectedItem = null;
+                }
+            }
         }
         private FluidData _leftSelectedItem;
 
         public FluidData RightSelectedItem
         {
             get => _rightSelectedItem;
-            set => SetProperty(ref _rightSelectedItem, value);
+            set
+            {
+                if (SetProperty(ref _rightSelectedItem, value))
+                {
+                    if (value != null) LeftSelectedItem = null;
+                }
+            }
         }
         private FluidData _rightSelectedItem;
 

@@ -13,8 +13,10 @@ namespace WpfControlSamples.Views.Converters
         {
             if (value is string text)
             {
+                var fontFamily = GetFontName(parameter);
+
                 var typeface = new Typeface(
-                    new FontFamily("Segoe UI"),
+                    fontFamily,
                     FontStyles.Normal, FontWeights.Normal, FontStretches.Normal);
 
                 var formattedText = new FormattedText(
@@ -25,6 +27,13 @@ namespace WpfControlSamples.Views.Converters
                 return formattedText.BuildGeometry(new Point());
             }
             throw new NotSupportedException();
+        }
+
+        private static FontFamily GetFontName(object parameter)
+        {
+            if (parameter is FontFamily ff) return ff;
+            var fontname = (parameter is string s) ? s : "Segoe UI";
+            return new FontFamily(fontname);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>

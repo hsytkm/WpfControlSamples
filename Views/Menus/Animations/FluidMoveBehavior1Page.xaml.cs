@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,29 +20,22 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class EmbeddedFontPage : ContentControl
+    public partial class FluidMoveBehavior1Page : ContentControl
     {
-        public EmbeddedFontPage()
+        public FluidMoveBehavior1Page()
         {
             InitializeComponent();
 
-            //var glyphs = new[] { "\uf2b0", "\uf2b1", "\uf2b2", "\uf2b3", };
-
-            var codeStart = 0xf100;
-            var codeEnd = 0xf500;
-            DataContext = Enumerable.Range((char)codeStart, (char)(codeEnd - codeStart))
-                .Select(x => new GlyphData(x)).ToList();
+            DataContext = Models.SampleData.WpfColors.Select(x => new ColorListViewItem(x)).ToList();
         }
-    }
 
-    class GlyphData
-    {
-        public char Code { get; }
-        public string String { get; }
-        public GlyphData(int x)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Code = (char)x;
-            String = $"\\u{x:x4}";
+            if (!(FindName("myPanel") is Panel panel)) return;
+
+            var element = panel.Children.Cast<UIElement>().Last();
+            panel.Children.Remove(element);
+            panel.Children.Insert(0, element);
         }
     }
 }

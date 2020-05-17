@@ -3,9 +3,10 @@
                     xmlns:system="clr-namespace:System;assembly=System.Runtime" >
 
     <!-- https://github.com/ionic-team/ionicons/blob/master/docs/fonts/ionicons.ttf -->
-    <FontFamily x:Key="IoniconsFont">pack://application:,,,/Resources/Fonts/#Ionicons</FontFamily>
+    <system:Uri x:Key="IoniconsFontUri">/Resources/Fonts/ionicons.ttf</system:Uri>
+    <FontFamily x:Key="IoniconsFontFamily">pack://application:,,,/Resources/Fonts/#Ionicons</FontFamily>
 
-    <!-- Glyph -->
+    <!-- エスケープ文字 Glyph -->
     <system:String x:Key="PlusMarkIcon">&#xf101;</system:String>
     <system:String x:Key="AndroidIcon">&#xf225;</system:String>
     <system:String x:Key="AppleIcon">&#xf229;</system:String>

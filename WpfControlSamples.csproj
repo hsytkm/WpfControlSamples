@@ -65,7 +65,13 @@
     <Page Update="Views\Menus\Animations\AnimationsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Animations\HideControlAnimationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Animations\DoubleAnimationUsingKeyFramesPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Animations\FluidMoveBehavior1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Animations\ThicknessAnimationPage.xaml">
@@ -215,7 +221,7 @@
     <Page Update="Views\Menus\Shapes\CombinedGeometryPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\FluidMoveBehaviorPage.xaml">
+    <Page Update="Views\Menus\Animations\FluidMoveBehavior2Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Shapes\VisualBrushPage.xaml">

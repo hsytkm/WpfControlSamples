@@ -15,7 +15,7 @@
 
             <!-- 埋め込みフォント -->
             <Style x:Key="CustomFont" TargetType="{x:Type TextBlock}" >
-                <Setter Property="FontFamily" Value="{StaticResource IoniconsFont}" />
+                <Setter Property="FontFamily" Value="{StaticResource IoniconsFontFamily}" />
                 <Setter Property="FontSize" Value="40" />
                 <Setter Property="Margin" Value="10" />
             </Style>

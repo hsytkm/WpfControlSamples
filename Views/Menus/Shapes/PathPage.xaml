@@ -16,9 +16,15 @@
             https://qiita.com/LemonLeaf/items/c089bbb497f53b59e0b4
     -->
     <ContentControl.Resources>
-        <conv:StringToGeometryConverter x:Key="StringToGeometryConverter" />
+        <ResourceDictionary>
+            <conv:StringToGeometryConverter x:Key="StringToGeometryConverter" />
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resources/IonIconFontFamilyResource.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </ContentControl.Resources>
-    
+
     <StackPanel Margin="10" >
         <TextBlock FontSize="{StaticResource FontSizeMedium}"
                    Text="Path" />
@@ -56,8 +62,10 @@
                   StrokeThickness="2" Stroke="Green" Fill="LightGreen"
                   Canvas.Left="200" Canvas.Top="150" />
 
+            <!-- 以降は、文字列を PATH で表示 -->
             <Path StrokeThickness="2" Stroke="Red" Fill="Black"
-                  Data="{Binding ., Mode=OneTime, Converter={StaticResource StringToGeometryConverter}}"
+                  Data="{Binding ., Mode=OneTime,
+                                 Converter={StaticResource StringToGeometryConverter}}"
                   Canvas.Left="20" Canvas.Top="10" />
 
             <Path StrokeThickness="2"
@@ -72,6 +80,12 @@
                     <mkup:OutlinedTextPathExtension Text="PATHで縁取り" />
                 </Path.Data>
             </Path>
+
+            <Path Fill="DeepSkyBlue"
+                  Data="{Binding Source={StaticResource TwitterIcon}, Mode=OneTime,
+                                 Converter={StaticResource StringToGeometryConverter},
+                                 ConverterParameter={StaticResource IoniconsFontFamily}}"
+                  Canvas.Left="400" Canvas.Top="280" />
 
         </Canvas>
 

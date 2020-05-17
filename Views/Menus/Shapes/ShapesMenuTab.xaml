@@ -56,8 +56,4 @@
         <local:CombinedGeometryPage />
     </TabItem>
 
-    <TabItem Header="FluidMove" >
-        <local:FluidMoveBehaviorPage />
-    </TabItem>
-
 </TabControl>

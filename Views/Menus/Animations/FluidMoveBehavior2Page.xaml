@@ -1,15 +1,19 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.FluidMoveBehaviorPage"
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.FluidMoveBehavior2Page"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
     <!-- ListBox間のアイテムの移動をアニメーションさせる
             https://blog.okazuki.jp/entry/20100911/1284214410
+    
+        【WPF】FluidMoveBehaviorを使って見た。
+            http://pro.art55.jp/?eid=1303831
     -->
 
     <ContentControl.Resources>
@@ -27,25 +31,50 @@
                 </i:Interaction.Behaviors>
             </StackPanel>
         </ItemsPanelTemplate>
-        
+
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate2" >
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" >
+                <i:Interaction.Behaviors>
+                    <i:FluidMoveBehavior Tag="DataContext" AppliesTo="Children" >
+                        <i:FluidMoveBehavior.EaseY>
+                            <ElasticEase EasingMode="EaseOut" />
+                        </i:FluidMoveBehavior.EaseY>
+                        <i:FluidMoveBehavior.EaseX>
+                            <BounceEase EasingMode="EaseOut" />
+                        </i:FluidMoveBehavior.EaseX>
+                    </i:FluidMoveBehavior>
+                </i:Interaction.Behaviors>
+            </StackPanel>
+        </ItemsPanelTemplate>
+
         <DataTemplate x:Key="DataTemplate1" >
             <Border BorderBrush="Black" BorderThickness="1"
                     Height="40" Width="80" CornerRadius="10"
                     Background="{Binding Brush, Mode=OneTime}" >
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                           FontWeight="Bold" Text="{Binding Name, Mode=OneTime}" />
+                           Text="{Binding Name, Mode=OneTime}" />
             </Border>
         </DataTemplate>
+
+        <conv:NotNullToTrueConverter x:Key="NotNullToTrueConverter" />
     </ContentControl.Resources>
 
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
                    FontSize="{StaticResource FontSizeMedium}"
-                   Text="FluidMoveBehavior" />
+                   Text="FluidMoveBehavior2" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="10,5" >
+            FluidMoveBehavior はパネル内の要素（要素の集合）のレイアウトの変更を監視し、
+            <LineBreak/>
+            変更が発生した場合に、その親コンテナー内部の要素のオフセットをアニメーション化します。
+            <LineBreak/>
+            ※FluidMoveBehavior を単独で使用した場合は、指定のアイテムの位置から新しい位置への移行のみをアニメーション化します。
+        </TextBlock>
 
         <TextBlock DockPanel.Dock="Top"
-                   Margin="5"
-                   Text="何か期待通りにアニメーションしないことがある…（いきなりジャンプしたりする）" />
+                   Margin="15,5" Foreground="Red" FontWeight="Bold"
+                   Text="なぜか期待通りにアニメーションしない（移動させた時点で一回ジャンプする…）" />
 
         <Grid x:Name="LayoutRoot" Margin="10,5" >
             <Grid.ColumnDefinitions>
@@ -62,19 +91,22 @@
             <ListBox Grid.Column="2"
                      ItemsSource="{Binding RightItems, Mode=OneTime}"
                      SelectedItem="{Binding RightSelectedItem, Mode=TwoWay}"
-                     ItemsPanel="{StaticResource ItemsPanelTemplate1}"
+                     ItemsPanel="{StaticResource ItemsPanelTemplate2}"
                      ItemTemplate="{StaticResource DataTemplate1}" />
             
             <StackPanel Grid.Column="1"
                         Margin="5" VerticalAlignment="Center" >
-                <Button Content="&gt;&gt;" Height="40" Margin="0,0,0,20" >
+                <Button Content="&gt;&gt;" Height="40" Margin="0,0,0,20"
+                        IsEnabled="{Binding LeftSelectedItem, Mode=OneWay, Converter={StaticResource NotNullToTrueConverter}}" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click" >
                             <i:CallMethodAction TargetObject="{Binding Mode=OneWay}" MethodName="MoveToRight" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
-                <Button Content="&lt;&lt;" Height="40" >
+
+                <Button Content="&lt;&lt;" Height="40"
+                        IsEnabled="{Binding RightSelectedItem, Mode=OneWay, Converter={StaticResource NotNullToTrueConverter}}" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click" >
                             <i:CallMethodAction TargetObject="{Binding Mode=OneWay}" MethodName="MoveToLeft" />

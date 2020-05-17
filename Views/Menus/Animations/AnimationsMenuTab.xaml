@@ -32,4 +32,16 @@
         <local:DoubleAnimationUsingKeyFramesPage />
     </TabItem>
 
+    <TabItem Header="HideControl" >
+        <local:HideControlAnimationPage />
+    </TabItem>
+
+    <TabItem Header="FluidMove1" >
+        <local:FluidMoveBehavior1Page />
+    </TabItem>
+
+    <TabItem Header="FluidMove2" >
+        <local:FluidMoveBehavior2Page />
+    </TabItem>
+
 </TabControl>

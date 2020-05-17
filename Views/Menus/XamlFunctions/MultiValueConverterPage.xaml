@@ -26,7 +26,7 @@
 
     <StackPanel Margin="10" >
         <TextBlock Style="{StaticResource TitleTextBlockStyle}"
-                   Text="MultiValueConverter" />
+                   Text="MultiValueConverter (MultiBinding)" />
 
         <CheckBox x:Name="check1" Content="Check1" />
         <CheckBox x:Name="check2" Content="Check2" IsChecked="True" />
@@ -55,7 +55,42 @@
                 </MultiBinding>
             </TextBlock.Visibility>
         </TextBlock>
-        
+
+        <!-- DataTrigger を使った版（参考）
+               1.全て True なら Visible  /  2.何れかが False なら Collapsed
+               True/False両方の条件を xaml で書かないとダメなので、これはこれでメンドイ。
+        -->
+        <TextBlock Text="Observing flags are all true (Use DataTrigger)"
+                   FontSize="{StaticResource FontSizeSmall}"
+                   Foreground="BlueViolet" >
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}" >
+                    <Style.Triggers>
+                        <!-- And de　Visible -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Source={x:Reference Name=check1}, Path=IsChecked, Mode=OneWay}" Value="True" />
+                                <Condition Binding="{Binding Source={x:Reference Name=check2}, Path=IsChecked, Mode=OneWay}" Value="True" />
+                                <Condition Binding="{Binding Source={x:Reference Name=check3}, Path=IsChecked, Mode=OneWay}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" />
+                        </MultiDataTrigger>
+
+                        <!-- Or de Collapsed -->
+                        <DataTrigger Binding="{Binding Source={x:Reference Name=check1}, Path=IsChecked, Mode=OneWay}" Value="False" >
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Reference Name=check2}, Path=IsChecked, Mode=OneWay}" Value="False" >
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Reference Name=check3}, Path=IsChecked, Mode=OneWay}" Value="False" >
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
     </StackPanel>
 
 </ContentControl>
