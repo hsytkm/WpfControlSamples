@@ -18,17 +18,16 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class EventTriggerPage : ContentControl
+    public partial class EventTriggerAction1Page : ContentControl
     {
-        public EventTriggerPage()
+        public EventTriggerAction1Page()
         {
             InitializeComponent();
-
-            Mouse.GetPosition((IInputElement)this);
+            //Mouse.GetPosition((IInputElement)this);
         }
     }
 
-    class EventTriggerViewModel : MyBindableBase
+    class EventTriggerAction1ViewModel : MyBindableBase
     {
         public ICommand MessageCommand => _messageCommand ??
             (_messageCommand = new MyCommand<string>(msg => Message = msg));

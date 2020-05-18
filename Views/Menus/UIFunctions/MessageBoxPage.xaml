@@ -16,14 +16,17 @@
     </ContentControl.Resources>
 
     <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="MessageBox" />
+
         <!-- MessageBoxButton -->
-        <StackPanel Background="LightBlue" >
-            <TextBlock FontSize="{StaticResource FontSizeMedium}"
+        <StackPanel Margin="10,5" Background="LightBlue" >
+            <TextBlock FontSize="{StaticResource FontSizeSmall}"
                        Text="MessageBoxButton" />
             <TextBlock Margin="20,5" Foreground="Red"
                        Text="MessageBox は モーダル 固定" />
 
-            <TextBlock FontSize="{StaticResource FontSizeSmall}"
+            <TextBlock FontSize="{StaticResource FontSizeMicro}"
                        Margin="20,0"
                        Text="{Binding Message, Mode=OneWay, StringFormat='{}{0} is Pushed!!'}" />
 
@@ -49,8 +52,8 @@
         </StackPanel>
 
         <!-- MessageBoxImage -->
-        <StackPanel Background="LightPink" >
-            <TextBlock FontSize="{StaticResource FontSizeMedium}"
+        <StackPanel Margin="10,5" Background="LightPink" >
+            <TextBlock FontSize="{StaticResource FontSizeSmall}"
                        Text="MessageBoxImage" />
 
             <TextBlock Margin="20,10">

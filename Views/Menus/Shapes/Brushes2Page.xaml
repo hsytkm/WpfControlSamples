@@ -49,7 +49,7 @@
                 </LinearGradientBrush>
             </Path.Stroke>
             <Path.Data>
-                <mkup:OutlinedTextPathExtension Text="Brushと関係ない(おまけ)" />
+                <mkup:OutlinedTextPathExtension Text="こちらはDrawingBrushと関係ない。縁取りのおまけ" />
             </Path.Data>
         </Path>
 

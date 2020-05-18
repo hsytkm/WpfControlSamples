@@ -12,25 +12,30 @@
     </ContentControl.Resources>
 
     <StackPanel Margin="10" >
-        <Button Height="100"
-                FontSize="{StaticResource FontSizeMedium}"
+        <TextBlock Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
+                   Text="ProgressBar" />
+
+        <Button Margin="10,0" Height="50"
+                FontSize="{StaticResource FontSizeMicro}"
                 Command="{Binding StartProcess, Mode=OneTime}" >
             <Button.Content>
                 <TextBlock>
                     <Run Text="HeavyProcess (Wait " />
-                    <Run Text="{Binding WaitSeconds, Mode=OneWay}" FontWeight="Bold" Foreground="Blue" />
+                    <Run Text="{Binding WaitSeconds, Mode=OneWay}"
+                         FontWeight="Bold" Foreground="Blue" />
                     <Run Text=" sec)" />
                 </TextBlock>
             </Button.Content>
         </Button>
 
-        <TextBlock Margin="0,20" >
+        <TextBlock Margin="10,20" >
             <Run Text="{Binding ProgressRatio, Mode=OneWay, StringFormat='ProgressRatio: {0:P2}'}" />
             <LineBreak />
             <Run Text="{Binding IsProcessing, Mode=OneWay, StringFormat='IsProcessing: {0}'}" />
         </TextBlock>
 
-        <ProgressBar Minimum="0" Maximum="1"
+        <ProgressBar Margin="10,0" Height="15"
+                     Minimum="0" Maximum="1"
                      Value="{Binding ProgressRatio, Mode=OneWay}" />
 
         <Grid Margin="20" Background="Gray" Width="200" Height="100" >
@@ -40,7 +45,8 @@
             </Viewbox>
         </Grid>
 
-        <TextBlock Margin="20,10" Text="以下は進捗表示なし (IsIndeterminate=True)" />
+        <TextBlock Margin="20,10" FontSize="{StaticResource FontSizeMicro}"
+                   Text="進捗表示なし (IsIndeterminate=True)" />
         <ProgressBar Margin="20,0"
                      Height="10"
                      IsIndeterminate="{Binding IsProcessing, Mode=OneWay}" />

@@ -25,27 +25,26 @@
 
         <!-- 読み取り専用の依存関係プロパティ を バインド -->
         <TextBlock DockPanel.Dock="Top"
-                   Margin="0,5"
+                   Margin="10,5"
                    Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}},
                                   Path=AgeMax, Mode=OneWay,
                                   StringFormat='Please enter your age. (range is 0-{0})'}" />
 
-        <TextBox DockPanel.Dock="Top"
+        <TextBox DockPanel.Dock="Top" Margin="10,5"
                  Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}},
                                 Path=Age,
                                 UpdateSourceTrigger=PropertyChanged}" />
 
         <!-- 入力値のプレビュー -->
-        <TextBlock DockPanel.Dock="Top"
+        <TextBlock DockPanel.Dock="Top" Margin="10,5"
                    Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}},
                                   Path=Age,
                                   StringFormat='Input age is {0}'}" />
 
         <!-- ログの表示 -->
-        <ctrl:ScrollEndTextBlock Margin="0,20,0,0" Padding="10,5"
+        <ctrl:ScrollEndTextBlock Margin="10,10,0,0" Padding="10,5"
                                  Background="LightGray" Foreground="Gray"
                                  Text="{Binding ., Mode=OneWay}" />
-
     </DockPanel>
 
 </ContentControl>

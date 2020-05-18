@@ -9,6 +9,8 @@
 
     <!-- AllowsTransparency: 透明Popupを作成するにはtrueに設定します。 -->
     <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="Popup" />
 
         <!-- ポップアップ1 -->
         <CheckBox x:Name="checkBoxWithPopup"

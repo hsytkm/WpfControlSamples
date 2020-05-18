@@ -1,0 +1,174 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.EventTriggerAction2Page"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:trig="clr-namespace:WpfControlSamples.Views.Triggers"
+                xmlns:system="clr-namespace:System;assembly=System.Runtime" 
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- 【WPF】【Blend 4 SDK】RemoveElementActionをを使ってみた。
+            http://pro.art55.jp/?eid=1303850
+    
+         【WPF】【Blend 4 SDK】PlaySoundActionを使ってみた。
+            http://pro.art55.jp/?eid=1303848
+    
+         【WPF】Blend 4 SDKを利用したサンプルコード
+            http://pro.art55.jp/?eid=1303844
+    -->
+
+    <ScrollViewer Margin="10" >
+        <StackPanel>
+            <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                       Text="EventTriggerAction2" />
+
+            <!-- i:RemoveElementAction -->
+            <TextBlock Margin="10,0" >
+                <Run Text="i:RemoveElementAction" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="    対象コントロールを削除" />
+            </TextBlock>
+            <DockPanel Margin="20,10" >
+                <Border DockPanel.Dock="Left" HorizontalAlignment="Left"
+                        Background="LightSalmon" Padding="10,5" Width="200" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:RemoveElementAction />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <TextBlock TextWrapping="Wrap"
+                               Text="Remove this when mouse left button is clicked." />
+                </Border>
+
+                <Ellipse DockPanel.Dock="Left" HorizontalAlignment="Left"
+                         Fill="LightPink" Width="30" Height="30" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:RemoveElementAction />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Ellipse>
+                <Ellipse DockPanel.Dock="Left" HorizontalAlignment="Left"
+                         Fill="LightBlue" Width="30" Height="30" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:RemoveElementAction />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Ellipse>
+                <Ellipse DockPanel.Dock="Left" HorizontalAlignment="Left"
+                         Fill="LightGreen" Width="30" Height="30" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:RemoveElementAction />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Ellipse>
+            </DockPanel>
+
+            <!-- i:MouseDragElementBehavior -->
+            <TextBlock Margin="10,0" >
+                <Run Text="i:MouseDragElementBehavior" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="    対象コントロールをドラッグ移動" />
+            </TextBlock>
+            <TextBlock Margin="20,10" Padding="10,5" Width="100"
+                       HorizontalAlignment="Left" TextAlignment="Center"
+                       Background="LightCoral" Foreground="White" Text="Can drag" >
+                <i:Interaction.Behaviors>
+                    <i:MouseDragElementBehavior />
+                </i:Interaction.Behaviors>
+            </TextBlock>
+
+            <!-- i:ControlStoryboardAction -->
+            <TextBlock Margin="10,0" >
+                <Run Text="i:ControlStoryboardAction" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="    Storyboardの再生/停止" />
+            </TextBlock>
+            <TextBlock Margin="20,10" Text="Not Impremented" Foreground="Gray" />
+
+            <!-- i:GoToStateAction -->
+            <TextBlock Margin="10,0" >
+                <Run Text="i:GoToStateAction" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="     VisualStateの変更" />
+            </TextBlock>
+            <Border x:Name="border" Margin="20,10" HorizontalAlignment="Left"
+                    Width="200" Height="30" Background="LightGray" >
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="VisualStateGroup">
+                        <VisualState x:Name="visualState1">
+                            <Storyboard>
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                                              Storyboard.TargetName="border">
+                                    <EasingColorKeyFrame KeyTime="0" Value="Teal" />
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="visualState2">
+                            <Storyboard>
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                                              Storyboard.TargetName="border">
+                                    <EasingColorKeyFrame KeyTime="0" Value="Turquoise" />
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown" >
+                        <i:GoToStateAction StateName="visualState1" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseUp" >
+                        <i:GoToStateAction StateName="visualState2" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBlock VerticalAlignment="Center" TextAlignment="Center"
+                           Text="Change VisualState when clicked." />
+            </Border>
+
+            <!-- i:PlaySoundAction -->
+            <TextBlock Margin="10,0" >
+                <Run Text="i:PlaySoundAction" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="     指定された音声ファイルを再生" />
+            </TextBlock>
+            <TextBlock Margin="20,10" Text="Not Impremented" Foreground="Gray" />
+            <!-- 音声ファイルを リソース で埋め込めないので有効にできていない…
+                    <ContentControl.Resources>
+                        <system:Uri x:Key="soundResourceUri">pack://application:,,,/Resources/Sounds/water_drop.mp3</system:Uri>
+                    </ContentControl.Resources>
+                    Source="{StaticResource soundResourceUri}"
+                    Source="/Resources/Sounds/water_drop.mp3"
+                    Source="/WpfControlSamples;component/Resources/Sounds/water_drop.mp3"
+
+            <Button Margin="20,10" Padding="30,5" HorizontalAlignment="Left"
+                    Content="Play (mp3) sound Button" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click" >
+                        <i:PlaySoundAction Source="/Resources/Sounds/water_drop.mp3"
+                                           Volume="1" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            -->
+
+            <!-- Custom TriggerAction<T> -->
+            <TextBlock Margin="10,0" >
+                <Run Text="local:TriggerAction&lt;T&gt;" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="     自作TriggerAction : MessageBox() の表示" />
+            </TextBlock>
+            <Border Margin="20,10" Padding="10" Background="LightPink" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseRightButtonDown">
+                        <trig:MyMessageTestAction Message="EventTrigger Test!" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <TextBlock Text="Show MessageBox when mouse right button is clicked." />
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</ContentControl>

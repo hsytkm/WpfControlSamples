@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -49,13 +50,21 @@ namespace WpfControlSamples.Views.Menus
         private IList<string> _droppedPaths;
 
         public ICommand ClearFilePathCommand => _clearFilePathCommand ??
-            (_clearFilePathCommand = new MyCommand(() => DroppedPaths = null));
+            (_clearFilePathCommand = new MyCommand(
+                () => DroppedPaths = null,
+                () => DroppedPaths != null && DroppedPaths.Any()));
         private ICommand _clearFilePathCommand;
 
         public string DroppedPathsText
         {
             get => _droppedPathsText;
-            set => SetProperty(ref _droppedPathsText, value);
+            set
+            {
+                if (SetProperty(ref _droppedPathsText, value))
+                {
+                    (ClearFilePathCommand as MyCommand).ChangeCanExecute();
+                }
+            }
         }
         private string _droppedPathsText;
     }

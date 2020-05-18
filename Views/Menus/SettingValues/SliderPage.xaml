@@ -10,8 +10,10 @@
                 d:DesignHeight="450" d:DesignWidth="800">
 
     <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="Slider" />
 
-        <StackPanel Background="LightBlue" >
+        <StackPanel Margin="10" Background="LightBlue" >
             <TextBlock Text="Slider Style default" />
             <Slider Minimum="{Binding SliderMin, Mode=OneTime}"
                     Maximum="{Binding SliderMax, Mode=OneTime}"
@@ -38,7 +40,7 @@
         </StackPanel>
 
         <!-- IntSlider -->
-        <DockPanel Margin="0,10" Background="LightPink" >
+        <DockPanel Margin="10" Background="LightPink" >
             <Panel.Resources>
                 <ResourceDictionary>
                     <Style TargetType="{x:Type Slider}">

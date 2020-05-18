@@ -26,11 +26,13 @@
     </ContentControl.Resources>
 
     <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="Markup" />
 
         <!-- x:Static -->
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+        <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
                    Text="x:Static" />
-        <TextBlock>
+        <TextBlock Margin="20,0" >
             <Run Text="{Binding Source={x:Static sysext:Math.PI}, Mode=OneWay, StringFormat='Math.PI(f10) = {0:f10}'}" />
             <LineBreak />
             <Run Text="DateTime.Now = " />
@@ -45,14 +47,14 @@
         <!-- x:FactoryMethod
              https://docs.microsoft.com/ja-jp/dotnet/desktop-wpf/xaml-services/xaml-2009-language-features
         -->
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+        <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
                    Text="x:FactoryMethod" />
-        <TextBlock Text="{StaticResource FactoryMessage}"/>
+        <TextBlock Margin="20,0" Text="{StaticResource FactoryMessage}"/>
 
         <!-- x:Array -->
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+        <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
                    Text="x:Array" />
-        <ListView Background="LightGray" >
+        <ListView Margin="20,0" Background="LightGray" >
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type system:Int32}" >
                     <system:Int32>1</system:Int32>

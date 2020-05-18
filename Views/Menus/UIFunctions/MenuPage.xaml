@@ -15,6 +15,10 @@
     </ContentControl.Resources>
 
     <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="10" FontSize="{StaticResource FontSizeMedium}"
+                   Text="Menu" />
+
         <Menu DockPanel.Dock="Top" >
             <MenuItem Header="Menu1(_A)">
                 <MenuItem Header="Menu 1-1"/>

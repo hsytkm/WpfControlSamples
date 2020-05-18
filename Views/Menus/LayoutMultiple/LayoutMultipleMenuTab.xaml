@@ -41,4 +41,8 @@
         <local:CanvasPage />
     </TabItem>
 
+    <TabItem Header="TabControl" >
+        <local:TabControlPage />
+    </TabItem>
+
 </TabControl>

@@ -17,14 +17,17 @@
     </ContentControl.Resources>
     
     <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="BindingSource" />
+
         <!-- x:Reference / RelativeSource Self -->
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+        <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
                    Text="x:Reference / ElementName / Self" />
         <StackPanel Orientation="Horizontal" >
             <Slider x:Name="slider"
                     Width="100"
                     Margin="30,0" Minimum="0" Maximum="100" />
-            <!-- WPFのBindingのElementNameとx:Referenceの違いについて教わりました https://www.nuits.jp/entry/2016/06/29/213540 -->
+            <!-- WPFのBindingのElementNameとx:Referenceの違いについて教わりました https://www.nuits.jp/entry/2016/06/29/213540    Source={x:Reference Name=slider} -->
             <!-- x:Reference の方が性能良くてスコープ広いっぽい -->
             <Border Background="LightBlue"
                     Width="{Binding Value, Source={x:Reference Name=slider}}"
@@ -35,9 +38,9 @@
         </StackPanel>
         
         <!-- RelativeSource AncestorType -->
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+        <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
                    Text="AncestorType" />
-        <Grid Background="LightCoral" >
+        <Grid Margin="20,0" Background="LightCoral" >
             <TextBlock Background="LightGray"
                        Margin="3"
                        Padding="10"

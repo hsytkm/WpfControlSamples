@@ -17,6 +17,10 @@
     </ContentControl.CommandBindings>
 
     <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="ListBox (SelectionMode=Multiple)" />
+
         <DockPanel DockPanel.Dock="Top" >
             <Button DockPanel.Dock="Right"
                     Content="Clear" Width="100"

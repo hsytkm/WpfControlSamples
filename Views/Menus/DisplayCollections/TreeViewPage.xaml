@@ -22,12 +22,16 @@
 
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
-                   FontSize="{StaticResource FontSizeSmall}"
+                   Margin="0,10,0,5" FontSize="{StaticResource FontSizeMedium}"
+                   Text="TreeView" />
+
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="10,0" FontSize="{StaticResource FontSizeMicro}"
                    Text="Left: only xaml ,  Right: CodeBehind filter color" />
 
         <!-- Left side: Item を xamlのみで記述 -->
         <TreeView DockPanel.Dock="Left"
-                  Margin="0,0,10,0"
+                  Margin="10,10,10,0"
                   Style="{StaticResource ExpandedTreeViewStyle}" >
             <TreeViewItem Header="HeaderA" >
                 <TreeViewItem Header="Department1" Style="{StaticResource ExpandedTreeViewItemStyle}" >
@@ -100,7 +104,7 @@
 
         <!-- WPF にしかない便利機能、階層を持ったデータを表示する HierarchicalDataTemplate
                https://qiita.com/okazuki/items/38da615f4a9880fb9d59 -->
-        <Border Margin="20" Height="80" Background="LightBlue" >
+        <Border Margin="20,10" Height="80" Background="LightBlue" >
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontSize="{StaticResource FontSizeMicro}" >
                 <Run Text="上のデータを ContextMenu を使って表示" />

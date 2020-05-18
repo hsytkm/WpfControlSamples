@@ -26,10 +26,13 @@
 
     <ScrollViewer Margin="10" >
         <StackPanel>
+            <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                       Text="DataGrid" />
+
             <!-- Pattern1 -->
-            <TextBlock FontSize="{StaticResource FontSizeSmall}"
+            <TextBlock Margin="10,0" FontSize="{StaticResource FontSizeMicro}"
                        Text="ItemsSource=DataTable  (Left:Default, Right Custom Style)" />
-            <DockPanel Margin="10,5,0,0">
+            <DockPanel Margin="20,5,0,0">
                 <!-- DataTable を ItemsSource にバインド -->
                 <DataGrid DockPanel.Dock="Left" Margin="0,0,20,0"
                           ItemsSource="{Binding DataTableSource1, Mode=OneWay}" />
@@ -52,10 +55,9 @@
             </DockPanel>
 
             <!-- Pattern2 -->
-            <TextBlock Margin="0,10"
-                       FontSize="{StaticResource FontSizeSmall}"
+            <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
                        Text="ItemsSource=IList&lt;Item&gt;  (Left:Default, Right Custom Style)" />
-            <DockPanel Margin="10,5,0,0">
+            <DockPanel Margin="20,0,0,0">
                 <DataGrid DockPanel.Dock="Left" Margin="0,0,20,0"
                           ItemsSource="{Binding Products, Mode=OneWay}" />
 

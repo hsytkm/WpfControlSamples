@@ -26,8 +26,10 @@
     </ContentControl.Resources>
 
     <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="CheckBox" />
 
-        <StackPanel Background="LightBlue" >
+        <StackPanel Margin="10,5" Background="LightBlue" >
             <CheckBox Content="Default"
                       IsChecked="{Binding CheckFlag, Mode=TwoWay}"
                       Checked="CheckBox_Checked"
@@ -46,22 +48,22 @@
             </CheckBox>
 
             <!-- ToggleButton -->
-            <TextBlock Margin="0,20"
+            <TextBlock Margin="0,10"
                        Foreground="Blue" FontSize="{StaticResource FontSizeMicro}"
                        Text="CheckBox is derived from ToggleButton." />
-            <StackPanel Orientation="Horizontal" Margin="0,20" >
+            <StackPanel Orientation="Horizontal" Margin="0,10" >
                 <ToggleButton x:Name="_toggleButton"
                               Content="ToggleButton"
                               Height="40" Width="200"
                               IsChecked="{Binding CheckFlag, Mode=TwoWay}" />
-                <TextBlock Margin="10"
+                <TextBlock Margin="10,5"
                            VerticalAlignment="Center"
                            FontSize="{StaticResource FontSizeSmall}"
                            Text="{Binding IsChecked, ElementName=_toggleButton, StringFormat='IsChecked: {0}'}" />
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Background="LightPink" >
+        <StackPanel Margin="10,5" Background="LightPink" >
             <!-- メモ：IsChecked="{x:Null}" -->
             <CheckBox Content="IsThreeState"
                       IsThreeState="True"
@@ -73,7 +75,7 @@
                                       StringFormat='State is {0}.'}" />
         </StackPanel>
 
-        <TextBlock Margin="10,20,10,0" Text="ToggleButton (CustomFont Text)" FontSize="{StaticResource FontSizeMicro}"/>
+        <TextBlock Margin="10" Text="ToggleButton (CustomFont Text)" FontSize="{StaticResource FontSizeMicro}"/>
         <CheckBox IsChecked="False" HorizontalAlignment="Center" >
             <CheckBox.Style>
                 <Style TargetType="{x:Type CheckBox}" >

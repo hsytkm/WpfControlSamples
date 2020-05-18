@@ -21,30 +21,33 @@
     </ContentControl.Resources>
 
     <StackPanel Margin="10" >
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
-                   Text="IValueConverter" FontSize="{StaticResource FontSizeMedium}" />
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="IValueConverter" />
 
         <!-- DoubleToIntConverter -->
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
-                   Text="入力値doubleに指定値を乗算する&#xD;&#xA;(use ConverterParameter)&#xD;&#xA;DoubleToIntConverter" />
+        <TextBlock Margin="10,5" FontSize="{StaticResource FontSizeSmall}"
+                   Text="ConverterParameterを使って、入力double に指定値を乗算する" />
         <StackPanel Background="LightGray" Margin="10" >
             <Slider x:Name="slider1" Margin="30,0" Minimum="0" Maximum="1" />
 
-            <TextBlock Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Raw value is {0:f2}'}" />
+            <TextBlock Margin="10,3"
+                       Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Input value is {0:f2}'}" />
 
-            <TextBlock Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Raw value * 100 is {0}',
+            <TextBlock Margin="10,3"
+                       Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Input value * 100 is {0}',
                                       Converter={StaticResource DoubleToIntConverter},
                                       ConverterParameter=100}" />
 
-            <TextBlock Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Raw value * 255 is {0}',
+            <TextBlock Margin="10,3"
+                       Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Input value * 255 is {0}',
                                       Converter={StaticResource DoubleToIntConverter},
                                       ConverterParameter=255}" />
         </StackPanel>
 
         <!-- BooleanToObjectConverter -->
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
-                   Text="bool値に応じてobjectを切り替える&#xD;&#xA;BooleanToObjectConverter" />
-        <StackPanel Orientation="Horizontal" Margin="10">
+        <TextBlock Margin="10,15" FontSize="{StaticResource FontSizeSmall}"
+                   Text="bool値に応じてobjectを切り替える" />
+        <StackPanel Orientation="Horizontal" Margin="20,5">
             <TextBlock Text="Switch State" />
             <CheckBox x:Name="checkBox1" Margin="20,0" />
             <TextBlock>

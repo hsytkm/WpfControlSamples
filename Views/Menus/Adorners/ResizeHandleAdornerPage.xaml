@@ -46,7 +46,7 @@
                    Margin="10,5" Foreground="Red"
                    Text="Canvasエリア内の制限は未実装" />
 
-        <Canvas Background="LightBlue" >
+        <Canvas Margin="10,5" Background="LightBlue" >
             <!-- 添付プロパティでAdornerを設定 -->
             <Button Canvas.Left="100" Canvas.Top="20"
                     Width="160" Height="40"
@@ -68,7 +68,6 @@
                     </Style>
                 </Button.Style>
             </Button>
-            
         </Canvas>
 
     </DockPanel>

@@ -8,25 +8,30 @@
                 d:DesignHeight="450" d:DesignWidth="800">
 
     <StackPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
+                   Text="Image" />
 
         <!-- ビルドアクション：リソース -->
-        <TextBlock Text="BuildAction: Resource" />
+        <TextBlock Margin="0,10" FontSize="{StaticResource FontSizeMicro}"
+                   Text="BuildAction: Resource" />
 
-        <StackPanel Orientation="Horizontal" >
+        <StackPanel Orientation="Horizontal" Background="LightGray" Margin="10" >
             <!-- どちらの指定でも表示される -->
             <Image Source="/Resources/Images/Resource1.png"
                    Width="100" Height="100" />
-            <Image Source="/WpfControlSamples;component/Resources/Images/Resource1.png"
+            <Image Source="/WpfControlSamples;component/Resources/Images/Resource2.png"
                    Width="100" Height="100" />
         </StackPanel>
 
-        
         <!-- ビルドアクション：埋め込みリソース -->
-        <TextBlock Margin="0,10,0,0"
+        <TextBlock Margin="0,10" FontSize="{StaticResource FontSizeMicro}"
                    Text="BuildAction: EmbeddedResource" />
 
-        <Image Source="{Binding MyEmbeddedImage, Mode=OneTime}"
-               Width="100" Height="100" />
+        <StackPanel Orientation="Horizontal" Background="LightGray" Margin="10" >
+            <Image Source="{Binding MyEmbeddedImage, Mode=OneTime}"
+                   Width="100" Height="100" />
+        </StackPanel>
 
     </StackPanel>
 

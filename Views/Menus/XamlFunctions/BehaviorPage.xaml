@@ -18,7 +18,20 @@
             <Setter Property="behavior:StyleBehaviorCollection.StyleBehaviors">
                 <Setter.Value>
                     <behavior:StyleBehaviorCollection>
-                        <behavior:AlertBehavior Message="BehaviorをStyleから設定してます" />
+                        <!--
+                            表示文字に Content の内容を含めるため、以下の xaml を書いたところ期待通りに動作するが、
+                            実行時にエラーが出る… なぜ？
+                                Message="{Binding Content,
+                                                  RelativeSource={RelativeSource AncestorType={x:Type Button}},
+                                                  StringFormat='{}{0} : AlertBehaviorをStyleから設定してます'}" />
+                        
+                                System.Windows.Data Error: 4 : Cannot find source for binding with reference
+                                'RelativeSource FindAncestor, AncestorType='System.Windows.Controls.Button',
+                                AncestorLevel='1''. BindingExpression:Path=Content; DataItem=null;
+                                target element is 'AlertBehavior' (HashCode=59467483);
+                                target property is 'Message' (type 'String')
+                        -->
+                        <behavior:AlertBehavior Message="AlertBehaviorをStyleから設定してます" />
                     </behavior:StyleBehaviorCollection>
                 </Setter.Value>
             </Setter>

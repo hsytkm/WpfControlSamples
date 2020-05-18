@@ -11,23 +11,18 @@
 
     <ContentControl.Resources>
         <ResourceDictionary>
-            <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
-                <Setter Property="Margin" Value="0,10,0,0" />
-                <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
-            </Style>
             <system:Int32 x:Key="int32value">123</system:Int32>
         </ResourceDictionary>
     </ContentControl.Resources>
 
     <StackPanel Margin="10" >
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
-                   Text="MarkupExtension"
-                   FontSize="{StaticResource FontSizeLarge}" />
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="MarkupExtension" />
 
         <!-- Color.FromArgb() -->
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+        <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
                    Text="ARGB to Brush(Color)" />
-        <StackPanel Orientation="Horizontal" >
+        <StackPanel Margin="20,0" Orientation="Horizontal" >
             <Panel.Resources>
                 <ResourceDictionary>
                     <Style TargetType="{x:Type Border}" >
@@ -61,12 +56,12 @@
         <Image Source="{mkup:EmbeddedImageResource Source=Resources.Images.EmbeddedResource1.png}" />
          -->
         
-        <!-- StaticResource を string に組み込んで、Textプロパティに表示 -->
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
-                   Text="StaticResource&#xD;&#xA;StringFormatExtension" />
-        <TextBlock FontSize="{StaticResource FontSizeSmall}"
+        <!-- StaticResource を 自作Markup に組み込んで string に変換して、Textプロパティに表示 -->
+        <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
+                   Text="StaticResource を 自作Markup を使って string に変換" />
+        <TextBlock Margin="20,0" FontSize="{StaticResource FontSizeSmall}"
                    Text="{mkup:StringFormat StaticResourceKey=int32value,
-                                            StringFormat='int32value of StaticResource is {0}.'}"
+                                            StringFormat='int32value of StaticResource is &quot;{0}&quot;.'}"
                    Foreground="Blue" />
 
     </StackPanel>

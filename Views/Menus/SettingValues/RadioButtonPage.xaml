@@ -17,7 +17,7 @@
     <StackPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
                    Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
-                   Text="RadioButtonPage" />
+                   Text="RadioButton" />
 
         <!-- Group1 -->
         <TextBlock Text="Group1: GroupBox" Margin="10,0,0,0"

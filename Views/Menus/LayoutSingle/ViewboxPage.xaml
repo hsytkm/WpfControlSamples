@@ -14,6 +14,10 @@
 
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
+                   Text="Viewbox" />
+
+        <TextBlock DockPanel.Dock="Top"
                    Text="Viewboxは内部のコントロールのサイズを調整してくれる" />
 
         <Slider DockPanel.Dock="Top"

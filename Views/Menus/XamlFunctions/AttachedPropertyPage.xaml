@@ -21,10 +21,10 @@
         <TextBlock Style="{StaticResource TitleTextBlockStyle}"
                    Text="AttachedProperty" />
 
-        <TextBlock Margin="0,20" FontSize="{StaticResource FontSizeSmall}"
+        <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
                    Text="Change Background color if it exists." />
-        
-        <TextBox Text="LightGreen"
+
+        <TextBox Margin="10" Text="LightGreen" FontSize="{StaticResource FontSizeMicro}"
                  local:AttachedBgColor.BgColor="{Binding Text, RelativeSource={RelativeSource Self}}" />
 
     </StackPanel>

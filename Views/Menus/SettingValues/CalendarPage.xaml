@@ -11,6 +11,9 @@
     </ContentControl.DataContext>
     
     <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="Calendar / DatePicker" />
+
         <TextBlock Margin="10" Text="以下はデフォルト。使ったことない" />
 
         <StackPanel Margin="20" Background="LightBlue" >

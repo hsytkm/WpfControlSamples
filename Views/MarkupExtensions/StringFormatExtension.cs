@@ -4,6 +4,9 @@ using System.Windows.Markup;
 
 namespace WpfControlSamples.Views.MarkupExtensions
 {
+    // WPF なら 本MarkupExtension を使わなくても、Binding.StringFormat で済みそう
+    // もしかしたら Xamarin もこれが必須ではないのかも…(未確認)
+
     // How to Append text to static resource in Xamarin.Forms?
     // https://stackoverflow.com/questions/47350470/how-to-append-text-to-static-resource-in-xamarin-forms
     //[ContentProperty(nameof(StaticResourceKey))]
@@ -30,6 +33,5 @@ namespace WpfControlSamples.Views.MarkupExtensions
             }
             return toReturn ?? "";
         }
-
     }
 }

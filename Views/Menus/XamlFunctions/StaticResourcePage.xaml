@@ -1,0 +1,76 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.StaticResourcePage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                xmlns:mkup="clr-namespace:WpfControlSamples.Views.MarkupExtensions"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <ContentControl.Resources>
+        <system:String x:Key="myResourceString1">すたてぃっくりそーす</system:String>
+        <system:Int32 x:Key="myResourceInt1">123</system:Int32>
+
+        <ObjectDataProvider x:Key="myResourceDateTime1"
+                            ObjectType="{x:Type system:DateTime}" >
+            <ObjectDataProvider.ConstructorParameters>
+                <system:Int32>2019</system:Int32>
+                <system:Int32>5</system:Int32>
+                <system:Int32>1</system:Int32>
+            </ObjectDataProvider.ConstructorParameters>
+        </ObjectDataProvider>
+    </ContentControl.Resources>
+
+    <ScrollViewer Margin="10" >
+        <StackPanel>
+            <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                       Text="StaticResource" />
+
+            <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
+                       Text="StaticResource(string) を文字列としてそのまま表示" />
+            <TextBlock Margin="30,5" FontSize="{StaticResource FontSizeMicro}" Foreground="Blue" 
+                       Text="{StaticResource myResourceString1}" />
+
+            <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
+                       Text="StaticResource(int) を Binding.Source で文字列に変換" />
+            <TextBlock Margin="30,5" FontSize="{StaticResource FontSizeMicro}" Foreground="Blue" 
+                       Text="{Binding Source={StaticResource myResourceInt1}, Mode=OneTime}" />
+
+            <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
+                       Text="StaticResource(DateTime) を Binding.Source で文字列に変換" />
+            <TextBlock Margin="30,5" FontSize="{StaticResource FontSizeMicro}" Foreground="Blue" 
+                       Text="{Binding Source={StaticResource myResourceDateTime1}, Mode=OneTime,
+                                      StringFormat='The first day of Reiwa is &quot;{0:yyyy/MM/dd}&quot;'}" />
+
+            <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
+                       Text="StaticResource(string) と StaticResource(int) を TextBlock.Run で連結" />
+            <TextBlock Margin="30,5" FontSize="{StaticResource FontSizeMicro}" >
+                <Run Text="{StaticResource myResourceString1}" Foreground="Red" />
+                <Run Text=" + " />
+                <Run Text="{Binding Source={StaticResource myResourceInt1}, Mode=OneTime}" Foreground="Green" />
+            </TextBlock>
+
+            <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
+                       Text="StaticResource(string) と xaml文字列 を Binding.StringFormat で連結" />
+            <TextBlock Margin="30,5" FontSize="{StaticResource FontSizeMicro}" Foreground="Blue" 
+                       Text="{Binding Source={StaticResource myResourceString1}, Mode=OneTime,
+                                      StringFormat='myResourceString1 Value is &quot;{0}&quot;.'}" />
+
+            <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
+                       Text="StaticResource(int) と xaml文字列 を 自作MarkupExtenson で連結 (不要)" />
+            <TextBlock Margin="30,5" FontSize="{StaticResource FontSizeMicro}" Foreground="Blue" 
+                       Text="{mkup:StringFormat StaticResourceKey=myResourceInt1,
+                                                StringFormat='myResourceInt1 Value is &quot;{0}&quot;.'}" />
+
+            <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
+                       Text="xaml で定義した StaticResource(int) をコードビハインドで加工" />
+            <TextBlock Margin="30,5" FontSize="{StaticResource FontSizeMicro}" Foreground="Blue" 
+                       Text="{Binding ., Mode=OneTime}" />
+
+        </StackPanel>
+    </ScrollViewer>
+
+</ContentControl>

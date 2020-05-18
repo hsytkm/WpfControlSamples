@@ -134,6 +134,9 @@
     <Page Update="Views\Menus\ItemTemplate\ItemTemplateMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\LayoutMultiple\TabControlPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\LayoutMultiple\CanvasPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -281,6 +284,15 @@
     <Page Update="Views\Menus\Systems\SystemsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Triggers\ConditionBehaviorPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Triggers\EventTriggerAction2Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Triggers\KeyTriggerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Triggers\TimerTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -293,7 +305,7 @@
     <Page Update="Views\Menus\Triggers\PropertyTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Triggers\EventTriggerPage.xaml">
+    <Page Update="Views\Menus\Triggers\EventTriggerAction1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Triggers\DataTriggerPage.xaml">
@@ -360,6 +372,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\ApplicationCommandsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\StaticResourcePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\ObjectDataProviderPage.xaml">

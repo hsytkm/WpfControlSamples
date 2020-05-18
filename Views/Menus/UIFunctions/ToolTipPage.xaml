@@ -8,8 +8,10 @@
                 d:DesignHeight="450" d:DesignWidth="800">
 
     <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="ToolTip" />
 
-        <TextBlock >
+        <TextBlock Margin="10" >
             <Run Text="InitialShowDelay: ツールヒントが開くまでの時間 (msec)" />
             <LineBreak />
             <Run Text="ShowDuration: ツールヒントが表示される時間 (msec)" />
@@ -18,24 +20,18 @@
             <LineBreak />
         </TextBlock>
 
-        <TextBlock Margin="10"
-                   Padding="5"
-                   Background="LightGray"
+        <TextBlock Margin="10" Padding="5" Background="LightGray"
                    ToolTip="This is default ToolTip."
                    Text="マウスオーバーで ToolTip が表示されます1" />
 
-        <TextBlock Margin="10"  
-                   Padding="20"
-                   Background="LightBlue"
+        <TextBlock Margin="10" Padding="20" Background="LightBlue"
                    Text="マウスオーバーで ToolTip(Image) が表示されます2" >
             <TextBlock.ToolTip>
                 <Image Source="/Resources/Images/Resource1.png" Height="100" />
             </TextBlock.ToolTip>
         </TextBlock>
 
-        <TextBlock Margin="10"
-                   Padding="20"
-                   Background="LightPink"
+        <TextBlock Margin="10" Padding="20" Background="LightPink"
                    ToolTipService.InitialShowDelay="1000"
                    ToolTipService.ShowDuration="3000"
                    ToolTipService.BetweenShowDelay="2000"

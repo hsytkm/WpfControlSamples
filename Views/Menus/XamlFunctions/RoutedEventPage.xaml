@@ -29,7 +29,7 @@
 
         <local:CatButton DockPanel.Dock="Top"
                          x:Name="parentCat"
-                         Margin="20,0" Padding="20,5" Background="LightBlue"
+                         Margin="20,10" Padding="20,5" Background="LightBlue"
                          Click="CatButton_Click" >
             <local:CatButton.Content>
                 <StackPanel>

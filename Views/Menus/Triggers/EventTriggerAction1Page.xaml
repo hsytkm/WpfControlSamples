@@ -1,4 +1,4 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.EventTriggerPage"
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.EventTriggerAction1Page"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -13,25 +13,19 @@
          https://blog.okazuki.jp/category/XAML?page=1419259848
     -->
     <ContentControl.DataContext>
-        <local:EventTriggerViewModel />
+        <local:EventTriggerAction1ViewModel />
     </ContentControl.DataContext>
     
-    <ContentControl.Resources>
-        <ResourceDictionary>
-            <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
-                <Setter Property="Margin" Value="0,10,0,0" />
-                <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
-            </Style>
-        </ResourceDictionary>
-    </ContentControl.Resources>
-
     <ScrollViewer Margin="10" >
         <StackPanel>
-            <TextBlock Style="{StaticResource TitleTextBlockStyle}"
-                       Text="EventTrigger" />
+            <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                       Text="EventTriggerAction1" />
 
-            <!-- i:CallMethodAction  指定したメソッドを呼び出します -->
-            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="i:CallMethodAction" />
+            <!-- i:CallMethodAction -->
+            <TextBlock Margin="10,0" >
+                <Run Text="i:CallMethodAction" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="    指定メソッドを直で呼び出す" />
+            </TextBlock>
             <Border Margin="20,10" Padding="10" Background="LightSalmon" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -42,39 +36,45 @@
                 <TextBlock Text="Call Method when mouse left button is clicked."  />
             </Border>
 
-            <!-- i:ChangePropertyAction プロパティの値を指定した値にできます -->
-            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="i:ChangePropertyAction" />
-            <DockPanel>
-                <TextBlock DockPanel.Dock="Left" Text="Enter/Leave Mouse" />
+            <!-- i:ChangePropertyAction -->
+            <TextBlock Margin="10,0" >
+                <Run Text="i:ChangePropertyAction" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="    プロパティを指定した値に変更" />
+            </TextBlock>
+            <DockPanel Margin="20,5" >
+                <TextBlock DockPanel.Dock="Left" Text="Enter/Leave Mouse&#xD;&#xA; (Width increase when mouse enter)" />
                 <Ellipse x:Name="ellipse1"
-                         StrokeThickness="5" Stroke="Red"
-                         Width="60" Height="60" >
+                         StrokeThickness="3" Stroke="Red" HorizontalAlignment="Left"
+                         Margin="50,10" Width="40" Height="40" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseEnter" >
                             <i:ChangePropertyAction TargetName="ellipse1"
                                                     PropertyName="Fill"
                                                     Value="Pink" />
+                            <i:ChangePropertyAction TargetName="ellipse1"
+                                                    PropertyName="Width"
+                                                    Value="10" Increment="True" />
                         </i:EventTrigger>
                         <i:EventTrigger EventName="MouseLeave" >
                             <i:ChangePropertyAction TargetName="ellipse1"
                                                     PropertyName="Fill"
                                                     Value="LightGray" />
+                            <i:ChangePropertyAction TargetName="ellipse1"
+                                                    PropertyName="Width"
+                                                    Value="-5" Increment="True" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Ellipse>
             </DockPanel>
 
-            <!-- i:ControlStoryboardAction ストーリーボードを再生/停止などの操作をすることができます -->
-            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="i:ControlStoryboardAction" />
-
-            <!-- i:GoToStateAction VisualStateを変更することができます -->
-            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="i:GoToStateAction" />
-
-            <!-- i:InvokeCommandAction 指定したCommandを呼び出します -->
-            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="i:InvokeCommandAction" />
+            <!-- i:InvokeCommandAction -->
+            <TextBlock Margin="10,0" >
+                <Run Text="i:InvokeCommandAction" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="    指定Commandを呼び出す" />
+            </TextBlock>
             <DockPanel>
                 <Border DockPanel.Dock="Left"
-                        Margin="20,10" Padding="10" Background="LightGreen" >
+                        Margin="20,5" Padding="10" Background="LightGreen" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseEnter">
                             <i:InvokeCommandAction Command="{Binding MessageCommand}"
@@ -93,9 +93,9 @@
                            VerticalAlignment="Center"
                            Text="{Binding Message, Mode=OneWay}" />
             </DockPanel>
-            <DockPanel>
+            <DockPanel Margin="0,0,0,5" >
                 <Border DockPanel.Dock="Left"
-                        Margin="20,10" Padding="10" Background="LightSteelBlue" >
+                        Margin="20,5" Padding="10" Background="LightSteelBlue" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseMove">
                             <i:InvokeCommandAction Command="{Binding MouseMoveToPointCommand}"
@@ -111,8 +111,11 @@
                            Text="{Binding MousePoint, Mode=OneWay}" />
             </DockPanel>
 
-            <!-- i:LaunchUriOrFileAction 指定したUriかファイルを開きます-->
-            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="i:LaunchUriOrFileAction" />
+            <!-- i:LaunchUriOrFileAction -->
+            <TextBlock Margin="10,0" >
+                <Run Text="i:LaunchUriOrFileAction" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="    指定したUri/ファイルを開く" />
+            </TextBlock>
             <Border Margin="20,10" Padding="10" Background="LightBlue" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -120,19 +123,8 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
 
-                <TextBlock Text="Open Google.com when mouse left button is clicked." />
-            </Border>
-
-            <!-- Custom TriggerAction<T> -->
-            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="Custom TriggerAction&lt;T&gt;" />
-            <Border Margin="20,10" Padding="10" Background="LightPink" >
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseRightButtonDown">
-                        <trig:MyMessageTestAction Message="EventTrigger Test!" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-
-                <TextBlock Text="Show MessageBox when mouse right button is clicked." />
+                <TextBlock Foreground="Blue"
+                           Text="Open Google.com when mouse left button is clicked." />
             </Border>
 
         </StackPanel>

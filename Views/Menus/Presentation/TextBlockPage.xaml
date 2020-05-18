@@ -16,6 +16,9 @@
 
     <ScrollViewer Margin="10" >
         <StackPanel>
+            <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                       Text="TextBlock" />
+
             <TextBlock Text="Default TextBlock, デフォルト テキストブロック" />
 
             <TextBlock Foreground="Blue" FontWeight="Bold"
