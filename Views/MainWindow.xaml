@@ -10,7 +10,7 @@
         xmlns:menus="clr-namespace:WpfControlSamples.Views.Menus"
         xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
         xmlns:ctrl="clr-namespace:WpfControlSamples.Views.Controls"
-        xmlns:trig="clr-namespace:WpfControlSamples.Views.Triggers"
+        xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
         xmlns:behavior="clr-namespace:WpfControlSamples.Views.Behaviors"
         xmlns:helper="clr-namespace:WpfControlSamples.Views.Helpers"
         mc:Ignorable="d"
@@ -66,11 +66,11 @@
     -->
     
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
-        
+        <!-- 
         <TabItem Header="Test" >
             <menus:EventTriggerAction2Page />
         </TabItem>
-        <!-- ↑仮置き↑ -->
+        ↑仮置き↑ -->
 
         
         <TabItem Header="Systems" >

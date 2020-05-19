@@ -41,12 +41,16 @@
         <TextBlock DockPanel.Dock="Top"
                    Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
                    Text="ResizeHandleAdorner" />
-        
+
+        <CheckBox DockPanel.Dock="Top" Margin="10,5" 
+                  x:Name="checkBox1" IsChecked="True" Content="ClipToBounds" />
+
         <TextBlock DockPanel.Dock="Top"
                    Margin="10,5" Foreground="Red"
                    Text="Canvasエリア内の制限は未実装" />
 
-        <Canvas Margin="10,5" Background="LightBlue" >
+        <Canvas Margin="10,5" Background="LightBlue"
+                ClipToBounds="{Binding IsChecked, Mode=OneWay, Source={x:Reference checkBox1}}" >
             <!-- 添付プロパティでAdornerを設定 -->
             <Button Canvas.Left="100" Canvas.Top="20"
                     Width="160" Height="40"

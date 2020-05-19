@@ -2,14 +2,14 @@
 using Microsoft.Xaml.Behaviors;
 using System.Windows;
 
-namespace WpfControlSamples.Views.Triggers
+namespace WpfControlSamples.Views.Actions
 {
-    class SaveFileDialogAction : TriggerAction<DependencyObject>
+    class OpenFileDialogAction : TriggerAction<DependencyObject>
     {
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(
-                nameof(Title), typeof(string), typeof(SaveFileDialogAction),
-                new FrameworkPropertyMetadata("Save File"));
+                nameof(Title), typeof(string), typeof(OpenFileDialogAction),
+                new FrameworkPropertyMetadata("Open File"));
 
         public string Title
         {
@@ -19,7 +19,7 @@ namespace WpfControlSamples.Views.Triggers
 
         public static readonly DependencyProperty FilterProperty =
             DependencyProperty.Register(
-                nameof(Filter), typeof(string), typeof(SaveFileDialogAction),
+                nameof(Filter), typeof(string), typeof(OpenFileDialogAction),
                 new FrameworkPropertyMetadata("All Files(*.*)|*.*"));
 
         public string Filter
@@ -30,7 +30,7 @@ namespace WpfControlSamples.Views.Triggers
 
         public static readonly DependencyProperty SelectedFilePathProperty =
             DependencyProperty.Register(
-                nameof(SelectedFilePath), typeof(string), typeof(SaveFileDialogAction),
+                nameof(SelectedFilePath), typeof(string), typeof(OpenFileDialogAction),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public string SelectedFilePath
@@ -41,7 +41,7 @@ namespace WpfControlSamples.Views.Triggers
 
         protected override void Invoke(object parameter)
         {
-            var dialog = new SaveFileDialog
+            var dialog = new OpenFileDialog
             {
                 Title = this.Title,
                 Filter = this.Filter

@@ -40,7 +40,7 @@ namespace WpfControlSamples.Views.Menus
             (_pushKeyCommand = new MyCommand<object>(x => Message = x.ToString()));
         private ICommand _pushKeyCommand;
 
-        public void PushKeyUp() => Message = nameof(PushKeyUp);
+        public void PushKeyF1() => Message = nameof(PushKeyF1);
 
     }
 }

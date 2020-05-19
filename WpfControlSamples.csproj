@@ -287,6 +287,9 @@
     <Page Update="Views\Menus\Triggers\ConditionBehaviorPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Triggers\EventTriggerAction3Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Triggers\EventTriggerAction2Page.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -10,21 +10,17 @@
                 d:DesignHeight="450" d:DesignWidth="800">
 
     <i:Interaction.Triggers>
-        <!-- Up のみメソッドにしてみた-->
-        <i:KeyTrigger Key="Up" >
-            <i:CallMethodAction TargetObject="{Binding}" MethodName="PushKeyUp"  />
+        <!-- F1 のみメソッドにしてみた-->
+        <i:KeyTrigger Key="F1" >
+            <i:CallMethodAction TargetObject="{Binding}" MethodName="PushKeyF1"  />
         </i:KeyTrigger>
 
-        <!-- Up 以外は CommandParameter で Key を表示 -->
-        <i:KeyTrigger Key="Down" >
+        <!-- F1 以外は CommandParameter で Key を表示 -->
+        <i:KeyTrigger Key="F2" >
             <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
                                    CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
         </i:KeyTrigger>
-        <i:KeyTrigger Key="Left" >
-            <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
-                                   CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
-        </i:KeyTrigger>
-        <i:KeyTrigger Key="Right" >
+        <i:KeyTrigger Key="F3" >
             <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
                                    CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
         </i:KeyTrigger>
@@ -37,7 +33,7 @@
                    Text="KeyTrigger" />
 
         <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
-                   Text="Detect key push:  left / up / right / down" />
+                   Text="Detect key push:  F1 / F2 / F3" />
 
         <TextBlock Margin="20,10" FontSize="{StaticResource FontSizeSmall}" Foreground="Blue"
                    Text="{Binding Message, Mode=OneWay}" />

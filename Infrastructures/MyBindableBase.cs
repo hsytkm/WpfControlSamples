@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace WpfControlSamples.Infrastructures
 {
-    class MyBindableBase : INotifyPropertyChanged
+    abstract class MyBindableBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

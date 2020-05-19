@@ -19,7 +19,11 @@
     <TabItem Header="EventTriggerAction2" >
         <local:EventTriggerAction2Page />
     </TabItem>
-    
+
+    <TabItem Header="EventTriggerAction3" >
+        <local:EventTriggerAction3Page />
+    </TabItem>
+
     <TabItem Header="DataTrigger" >
         <local:DataTriggerPage />
     </TabItem>

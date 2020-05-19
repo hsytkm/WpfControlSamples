@@ -5,7 +5,6 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
-                xmlns:trig="clr-namespace:WpfControlSamples.Views.Triggers"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
@@ -21,23 +20,8 @@
             <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
                        Text="EventTriggerAction1" />
 
-            <!-- i:CallMethodAction -->
-            <TextBlock Margin="10,0" >
-                <Run Text="i:CallMethodAction" FontSize="{StaticResource FontSizeMicro}" />
-                <Run Text="    指定メソッドを直で呼び出す" />
-            </TextBlock>
-            <Border Margin="20,10" Padding="10" Background="LightSalmon" >
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <i:CallMethodAction TargetObject="{Binding}" MethodName="ViewModelMethod" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-
-                <TextBlock Text="Call Method when mouse left button is clicked."  />
-            </Border>
-
             <!-- i:ChangePropertyAction -->
-            <TextBlock Margin="10,0" >
+            <TextBlock Margin="10,5,0,0" >
                 <Run Text="i:ChangePropertyAction" FontSize="{StaticResource FontSizeMicro}" />
                 <Run Text="    プロパティを指定した値に変更" />
             </TextBlock>
@@ -67,8 +51,23 @@
                 </Ellipse>
             </DockPanel>
 
+            <!-- i:CallMethodAction -->
+            <TextBlock Margin="10,5,0,0" >
+                <Run Text="i:CallMethodAction" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="    指定メソッドを直で呼び出す" />
+            </TextBlock>
+            <Border Margin="20,10" Padding="10" Background="LightSalmon" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:CallMethodAction TargetObject="{Binding}" MethodName="ViewModelMethod" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <TextBlock Text="Call Method when mouse left button is clicked."  />
+            </Border>
+
             <!-- i:InvokeCommandAction -->
-            <TextBlock Margin="10,0" >
+            <TextBlock Margin="10,5,0,0" >
                 <Run Text="i:InvokeCommandAction" FontSize="{StaticResource FontSizeMicro}" />
                 <Run Text="    指定Commandを呼び出す" />
             </TextBlock>
@@ -112,7 +111,7 @@
             </DockPanel>
 
             <!-- i:LaunchUriOrFileAction -->
-            <TextBlock Margin="10,0" >
+            <TextBlock Margin="10,5,0,0" >
                 <Run Text="i:LaunchUriOrFileAction" FontSize="{StaticResource FontSizeMicro}" />
                 <Run Text="    指定したUri/ファイルを開く" />
             </TextBlock>

@@ -5,7 +5,7 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
-                xmlns:trig="clr-namespace:WpfControlSamples.Views.Triggers"
+                xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
                 xmlns:system="clr-namespace:System;assembly=System.Runtime" 
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
@@ -26,7 +26,7 @@
                        Text="EventTriggerAction2" />
 
             <!-- i:RemoveElementAction -->
-            <TextBlock Margin="10,0" >
+            <TextBlock Margin="10,5,0,0" >
                 <Run Text="i:RemoveElementAction" FontSize="{StaticResource FontSizeMicro}" />
                 <Run Text="    対象コントロールを削除" />
             </TextBlock>
@@ -70,7 +70,7 @@
             </DockPanel>
 
             <!-- i:MouseDragElementBehavior -->
-            <TextBlock Margin="10,0" >
+            <TextBlock Margin="10,5,0,0" >
                 <Run Text="i:MouseDragElementBehavior" FontSize="{StaticResource FontSizeMicro}" />
                 <Run Text="    対象コントロールをドラッグ移動" />
             </TextBlock>
@@ -83,33 +83,33 @@
             </TextBlock>
 
             <!-- i:ControlStoryboardAction -->
-            <TextBlock Margin="10,0" >
+            <TextBlock Margin="10,5,0,0" >
                 <Run Text="i:ControlStoryboardAction" FontSize="{StaticResource FontSizeMicro}" />
                 <Run Text="    Storyboardの再生/停止" />
             </TextBlock>
             <TextBlock Margin="20,10" Text="Not Impremented" Foreground="Gray" />
 
             <!-- i:GoToStateAction -->
-            <TextBlock Margin="10,0" >
+            <TextBlock Margin="10,5,0,0" >
                 <Run Text="i:GoToStateAction" FontSize="{StaticResource FontSizeMicro}" />
-                <Run Text="     VisualStateの変更" />
+                <Run Text="     指定 Event に応じて VisualState を変更" />
             </TextBlock>
-            <Border x:Name="border" Margin="20,10" HorizontalAlignment="Left"
+            <Border x:Name="border1" Margin="20,10" HorizontalAlignment="Left"
                     Width="200" Height="30" Background="LightGray" >
                 <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="VisualStateGroup">
-                        <VisualState x:Name="visualState1">
+                    <VisualStateGroup>
+                        <VisualState x:Name="visualState11">
                             <Storyboard>
                                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                                                              Storyboard.TargetName="border">
+                                                              Storyboard.TargetName="border1">
                                     <EasingColorKeyFrame KeyTime="0" Value="Teal" />
                                 </ColorAnimationUsingKeyFrames>
                             </Storyboard>
                         </VisualState>
-                        <VisualState x:Name="visualState2">
+                        <VisualState x:Name="visualState12">
                             <Storyboard>
                                 <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                                                              Storyboard.TargetName="border">
+                                                              Storyboard.TargetName="border1">
                                     <EasingColorKeyFrame KeyTime="0" Value="Turquoise" />
                                 </ColorAnimationUsingKeyFrames>
                             </Storyboard>
@@ -118,23 +118,61 @@
                 </VisualStateManager.VisualStateGroups>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown" >
-                        <i:GoToStateAction StateName="visualState1" />
+                        <i:GoToStateAction StateName="visualState11" />
                     </i:EventTrigger>
                     <i:EventTrigger EventName="MouseUp" >
-                        <i:GoToStateAction StateName="visualState2" />
+                        <i:GoToStateAction StateName="visualState12" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <TextBlock VerticalAlignment="Center" TextAlignment="Center"
                            Text="Change VisualState when clicked." />
             </Border>
 
+            <!-- i:DataStateBehavior -->
+            <TextBlock Margin="10,5,0,0" >
+                <Run Text="i:DataStateBehavior" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="     監視対象の変更時に True/False を判定して、VisualState を切替え" />
+            </TextBlock>
+            <Border x:Name="border2" Margin="20,10" HorizontalAlignment="Left"
+                    Width="200" Height="30" Background="LightGray" >
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState x:Name="visualState21">
+                            <Storyboard>
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                              Storyboard.TargetName="border2" >
+                                    <EasingColorKeyFrame KeyTime="0" Value="DarkOrchid" />
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="visualState22">
+                            <Storyboard>
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                              Storyboard.TargetName="border2" >
+                                    <EasingColorKeyFrame KeyTime="0" Value="DarkOrange" />
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+                <i:Interaction.Behaviors>
+                    <i:DataStateBehavior Binding="{Binding IsChecked, Source={x:Reference checkBox2}}"
+                                            Value="True"
+                                            TrueState="visualState21" FalseState="visualState22" />
+                </i:Interaction.Behaviors>
+
+                <CheckBox x:Name="checkBox2" VerticalAlignment="Center" Margin="10,5"
+                          Content="Switch VisualState" />
+            </Border>
+
             <!-- i:PlaySoundAction -->
-            <TextBlock Margin="10,0" >
+            <TextBlock Margin="10,5,0,0" >
                 <Run Text="i:PlaySoundAction" FontSize="{StaticResource FontSizeMicro}" />
                 <Run Text="     指定された音声ファイルを再生" />
             </TextBlock>
             <TextBlock Margin="20,10" Text="Not Impremented" Foreground="Gray" />
-            <!-- 音声ファイルを リソース で埋め込めないので有効にできていない…
+            <!-- リソースの音声ファイルを読み込めなかったので有効にできていない… (画像は表示されるのになぜ）
                     <ContentControl.Resources>
                         <system:Uri x:Key="soundResourceUri">pack://application:,,,/Resources/Sounds/water_drop.mp3</system:Uri>
                     </ContentControl.Resources>
@@ -142,12 +180,10 @@
                     Source="/Resources/Sounds/water_drop.mp3"
                     Source="/WpfControlSamples;component/Resources/Sounds/water_drop.mp3"
 
-            <Button Margin="20,10" Padding="30,5" HorizontalAlignment="Left"
-                    Content="Play (mp3) sound Button" >
+            <Button Margin="20,10" Padding="30,5" HorizontalAlignment="Left" Content="Play (mp3) sound Button" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click" >
-                        <i:PlaySoundAction Source="/Resources/Sounds/water_drop.mp3"
-                                           Volume="1" />
+                        <i:PlaySoundAction Source="/Resources/Sounds/water_drop.mp3" Volume="1" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
@@ -158,15 +194,48 @@
                 <Run Text="local:TriggerAction&lt;T&gt;" FontSize="{StaticResource FontSizeMicro}" />
                 <Run Text="     自作TriggerAction : MessageBox() の表示" />
             </TextBlock>
-            <Border Margin="20,10" Padding="10" Background="LightPink" >
+            <Border x:Name="pinkBorder" Margin="20,10" Padding="10" Background="LightPink" >
                 <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseRightButtonDown">
-                        <trig:MyMessageTestAction Message="EventTrigger Test!" />
+                    <i:EventTrigger EventName="MouseRightButtonDown" >
+                        <action:MessageBoxShowAction Message="TriggerAction!" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
 
                 <TextBlock Text="Show MessageBox when mouse right button is clicked." />
             </Border>
+
+            <!-- Custom TargetedTriggerAction<T> -->
+            <TextBlock Margin="10,0" >
+                <Run Text="local:TargetedTriggerAction&lt;T&gt;" FontSize="{StaticResource FontSizeMicro}" />
+                <Run Text="     自作TargetedTriggerAction : MessageBox() の表示" />
+            </TextBlock>
+            <DockPanel Margin="20,10" Background="LightGray" >
+                <Panel.Resources>
+                    <Style TargetType="{x:Type Rectangle}" >
+                        <Setter Property="Width" Value="30" />
+                        <Setter Property="Height" Value="30" />
+                        <Setter Property="Margin" Value="5,0" />
+                        <Setter Property="IsHitTestVisible" Value="False" />
+                    </Style>
+                </Panel.Resources>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseRightButtonDown" >
+                        <action:TargetedMessageBoxShowAction TargetName="greenRectangle"
+                                                             Message="TargetedTriggerAction!" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <TextBlock DockPanel.Dock="Top" Foreground="Blue"
+                           Text="TargetedTriggerAction は Action の ターゲット要素を親以外にできる" />
+                <Rectangle x:Name="redRectangle" Fill="Red" />
+                <Rectangle x:Name="greenRectangle" Fill="Green" />
+                <Rectangle x:Name="blueRectangle" Fill="Blue" />
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Run Text="Show MessageBox when mouse right button is clicked." />
+                    <LineBreak />
+                    <Run Text="The target control of TargetedTriggerAction is green rectangle." />
+                </TextBlock>
+            </DockPanel>
 
         </StackPanel>
     </ScrollViewer>
