@@ -19,6 +19,8 @@ namespace WpfControlSamples.Views.Controls
         {
             base.OnInitialized(e);
             this.Loaded += new RoutedEventHandler(InitializeAdorner);
+
+            this.AcceptsReturn = true;
         }
 
         private void InitializeAdorner(object sender, RoutedEventArgs e)

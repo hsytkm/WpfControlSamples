@@ -34,10 +34,13 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
 
-                <TextBlock Text="ここにファイルをDropして下さい"
-                           FontSize="{StaticResource FontSizeSmall}"
+                <TextBlock FontSize="{StaticResource FontSizeSmall}"
                            HorizontalAlignment="Center" VerticalAlignment="Center"
-                           IsHitTestVisible="False" />
+                           IsHitTestVisible="False" >
+                    ここにファイルを Drop すると、
+                    <LineBreak/>
+                    下部に Path を表示します。
+                </TextBlock>
             </Border>
 
             <Button Content="Clear Files"

@@ -1,0 +1,40 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.InteractionDataTriggerPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="i:DataTrigger" />
+
+        <TextBlock Margin="10,10" >
+            System.Windows.DataTrigger と Microsoft.Xaml.Behaviors.Core.DataTrigger があり、これは後者。
+            <LineBreak/>
+            TriggerAction を使う場合は 後者 を使う認識やと思う。
+        </TextBlock>
+
+        <DockPanel Margin="20,10" >
+            <TextBlock Text="8文字以上になるとTextがClearされる" />
+            <TextBlock Margin="20,0"
+                       Text="{Binding Text.Length, Source={x:Reference Name=myTextBox},
+                                      StringFormat='{}{0} 文字'}" />
+            <TextBox x:Name="myTextBox" >
+                <i:Interaction.Triggers>
+                    <i:DataTrigger Binding="{Binding Text.Length, ElementName=myTextBox}"
+                                   Value="8" >
+                        <i:ChangePropertyAction TargetName="myTextBox"
+                                                PropertyName="Text" Value="" />
+                    </i:DataTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </DockPanel>
+
+    </StackPanel>
+
+</ContentControl>

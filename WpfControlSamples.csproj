@@ -71,7 +71,10 @@
     <Page Update="Views\Menus\Animations\DoubleAnimationUsingKeyFramesPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Animations\FluidMoveBehavior1Page.xaml">
+    <Page Update="Views\Menus\Dispatchers\DispatchersMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Animations\ThicknessAnimationPage.xaml">
@@ -120,6 +123,51 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\EditingText\EditingTextMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionBehaviors\MouseDragElementBehaviorPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionActions\PlaySoundActionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionActions\ChangePropertyActionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionActions\CallMethodActionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionActions\InvokeCommandActionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionActions\LaunchUriOrFileActionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionActions\ControlStoryboardActionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionActions\GoToStateActionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionBehaviors\DataStateBehaviorPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionActions\RemoveElementActionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionTriggers\InteractionDataTriggerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionActions\InteractionActionsMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionTriggers\PropertyChangedTriggerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionBehaviors\InteractionBehaviorsMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionTriggers\InteractionTriggersMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\ItemTemplate\VisualStateManagerPage.xaml">
@@ -188,6 +236,9 @@
     <Page Update="Views\Menus\LayoutSingle\BorderPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Menus\ThumbPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Presentation\MediaElementPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -224,7 +275,7 @@
     <Page Update="Views\Menus\Shapes\CombinedGeometryPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Animations\FluidMoveBehavior2Page.xaml">
+    <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior2Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Shapes\VisualBrushPage.xaml">
@@ -284,19 +335,19 @@
     <Page Update="Views\Menus\Systems\SystemsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Triggers\ConditionBehaviorPage.xaml">
+    <Page Update="Views\Menus\InteractionBehaviors\ConditionBehaviorPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Triggers\EventTriggerAction3Page.xaml">
+    <Page Update="Views\Menus\InteractionBehaviors\TranslateZoomRotateBehaviorPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Triggers\EventTriggerAction2Page.xaml">
+    <Page Update="Views\Menus\InteractionActions\TriggerActionPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Triggers\KeyTriggerPage.xaml">
+    <Page Update="Views\Menus\InteractionTriggers\KeyTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Triggers\TimerTriggerPage.xaml">
+    <Page Update="Views\Menus\InteractionTriggers\TimerTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Triggers\MultiTriggerPage.xaml">
@@ -308,73 +359,76 @@
     <Page Update="Views\Menus\Triggers\PropertyTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Triggers\EventTriggerAction1Page.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Menus\Triggers\DataTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Triggers\TriggersMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\MouseCursorPage.xaml">
+    <Page Update="Views\Menus\WindowsDeskop\MouseCursorPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\NavigationServiceContent3Page.xaml">
+    <Page Update="Views\Menus\LayoutSingle\NavigationServiceContent3Page.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\NavigationServiceContent2Page.xaml">
+    <Page Update="Views\Menus\LayoutSingle\NavigationServiceContent2Page.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\NavigationServiceContent1Page.xaml">
+    <Page Update="Views\Menus\LayoutSingle\NavigationServiceContent1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\NavigationServicePage.xaml">
+    <Page Update="Views\Menus\LayoutSingle\NavigationServicePage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\ShowWindowSubDialog.xaml">
+    <Page Update="Views\Menus\WindowsDeskop\ShowWindowSubDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\ShowWindowSub.xaml">
+    <Page Update="Views\Menus\WindowsDeskop\ShowWindowSub.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\ShowWindowPage.xaml">
+    <Page Update="Views\Menus\WindowsDeskop\ShowWindowPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\DispatcherUnhandledExceptionPage.xaml">
+    <Page Update="Views\Menus\Dispatchers\DispatcherUnhandledExceptionPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\SystemColorsPage.xaml">
+    <Page Update="Views\Menus\WindowsDeskop\SystemColorsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\DispatcherObjectPage.xaml">
+    <Page Update="Views\Menus\Dispatchers\DispatcherObjectPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\ContextMenuPage.xaml">
+    <Page Update="Views\Menus\Menus\ContextMenuPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\DispatcherTimerPage.xaml">
+    <Page Update="Views\Menus\Dispatchers\DispatcherTimerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\ToolBarPage.xaml">
+    <Page Update="Views\Menus\Menus\ToolBarPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\MessageBoxPage.xaml">
+    <Page Update="Views\Menus\WindowsDeskop\MessageBoxPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\MenuPage.xaml">
+    <Page Update="Views\Menus\Menus\MenuPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\PopupPage.xaml">
+    <Page Update="Views\Menus\Menus\PopupPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\ToolTipPage.xaml">
+    <Page Update="Views\Menus\Menus\ToolTipPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIFunctions\UIFunctionsMenuTab.xaml">
+    <Page Update="Views\Menus\Menus\MenusMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\XamlFunctions\ApplicationCommandsPage.xaml">
+    <Page Update="Views\Menus\WindowsDeskop\WindowsDeskopMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\WindowsDeskop\ApplicationCommandsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\MultiBinding2Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\StaticResourcePage.xaml">
@@ -386,7 +440,7 @@
     <Page Update="Views\Menus\XamlFunctions\AttachedEventPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\XamlFunctions\BehaviorPage.xaml">
+    <Page Update="Views\Menus\InteractionBehaviors\BehaviorStylePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\RoutedEventPage.xaml">
@@ -413,7 +467,7 @@
     <Page Update="Views\Menus\XamlFunctions\ValueConverterPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\XamlFunctions\MultiValueConverterPage.xaml">
+    <Page Update="Views\Menus\XamlFunctions\MultiBinding1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\XamlFunctionsMenuTab.xaml">

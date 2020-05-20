@@ -22,6 +22,7 @@ namespace WpfControlSamples.Views.Menus
         public DataTriggerPage()
         {
             InitializeComponent();
+            DataContext = new DataTriggerViewModel();
         }
     }
 

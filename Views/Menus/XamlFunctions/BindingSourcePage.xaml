@@ -7,15 +7,7 @@
                 xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
-    <ContentControl.Resources>
-        <ResourceDictionary>
-            <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
-                <Setter Property="Margin" Value="0,10,0,0" />
-                <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
-            </Style>
-        </ResourceDictionary>
-    </ContentControl.Resources>
-    
+
     <StackPanel Margin="10" >
         <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
                    Text="BindingSource" />
@@ -24,30 +16,47 @@
         <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
                    Text="x:Reference / ElementName / Self" />
         <StackPanel Orientation="Horizontal" >
-            <Slider x:Name="slider"
-                    Width="100"
-                    Margin="30,0" Minimum="0" Maximum="100" />
-            <!-- WPFのBindingのElementNameとx:Referenceの違いについて教わりました https://www.nuits.jp/entry/2016/06/29/213540    Source={x:Reference Name=slider} -->
+            <Slider x:Name="slider1"
+                    Width="100" Margin="30,0,10,0" Minimum="0" Maximum="60" />
+            <TextBlock Width="60" Margin="10,0" 
+                       Text="{Binding Value, Source={x:Reference Name=slider1}, StringFormat='Value={0:f1}'}" />
+            
+            <!-- WPFのBindingのElementNameとx:Referenceの違いについて教わりました https://www.nuits.jp/entry/2016/06/29/213540  Source={x:Reference Name=slider1} -->
             <!-- x:Reference の方が性能良くてスコープ広いっぽい -->
             <Border Background="LightBlue"
-                    Width="{Binding Value, Source={x:Reference Name=slider}}"
-                    Height="{Binding Value, ElementName=slider}" />
+                    Width="{Binding Value, Source={x:Reference Name=slider1}}"
+                    Height="{Binding Value, ElementName=slider1}" />
+            
             <Border Background="LightPink"
-                    Width="{Binding Source={x:Reference Name=slider}, Path=Value}"
+                    Width="{Binding Source={x:Reference Name=slider1}, Path=Value}"
                     Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" />
         </StackPanel>
-        
+
         <!-- RelativeSource AncestorType -->
-        <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
-                   Text="AncestorType" />
+        <TextBlock Margin="10,20,10,0" FontSize="{StaticResource FontSizeSmall}"
+                   Text="RelativeSource AncestorType" />
+        <TextBlock Margin="20,5" Text="Panel の中の TextBlock の文字色を Panel の色に合わせる" />
         <Grid Margin="20,0" Background="LightCoral" >
-            <TextBlock Background="LightGray"
-                       Margin="3"
-                       Padding="10"
+            <TextBlock Background="LightGray" Margin="3" Padding="10,5"
+                       FontSize="{StaticResource FontSizeMicro}"
                        Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=Background}"
                        Text="Binding Ancestor Panel Color" />
         </Grid>
-        
+
+        <!-- RelativeSource AncestorLevel -->
+        <TextBlock Margin="10,20,10,0" FontSize="{StaticResource FontSizeSmall}"
+                   Text="RelativeSource AncestorLevel" />
+        <TextBlock Margin="20,5" Text="親Panel の中の 子Panel の中の TextBlock の文字色を 親Panel の色に合わせる" />
+        <Grid Margin="20,0" Background="Green" >
+            <Grid Margin="20,5" Background="Red" >
+                <TextBlock Background="LightGray" Margin="3" Padding="10,5"
+                           FontSize="{StaticResource FontSizeMicro}"
+                           Foreground="{Binding RelativeSource={RelativeSource AncestorLevel=2, AncestorType={x:Type Grid}},
+                                                Path=Background}"
+                           Text="Binding Ancestor Panel Color" />
+            </Grid>
+        </Grid>
+
     </StackPanel>
 </ContentControl>
 

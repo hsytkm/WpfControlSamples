@@ -32,4 +32,8 @@
         <local:BulletDecoratorPage />
     </TabItem>
 
+    <TabItem Header="NavigationService" >
+        <local:NavigationServicePage />
+    </TabItem>
+
 </TabControl>

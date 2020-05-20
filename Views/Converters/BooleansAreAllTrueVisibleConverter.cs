@@ -5,6 +5,9 @@ using System.Windows.Data;
 
 namespace WpfControlSamples.Views.Converters
 {
+    // 参考のために残しているが、BooleansAreAllFalseConverter で代替できる。
+    // 詳細は MultiBindingPage.xaml を参照
+
     [ValueConversion(typeof(bool[]), typeof(Visibility))]
     class BooleansAreAllTrueVisibleConverter : IMultiValueConverter
     {

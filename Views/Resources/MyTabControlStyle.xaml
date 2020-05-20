@@ -1,4 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                    xmlns:local="clr-namespace:WpfControlSamples.Views.Resources"
+                    xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
 
     <Style x:Key="MyTabControlStyle1" TargetType="{x:Type TabControl}"
@@ -29,6 +32,22 @@
     <Style x:Key="MyTabControlStyle2" TargetType="{x:Type TabControl}"
            BasedOn="{StaticResource MyTabControlStyle1}" >
         <Setter Property="Background" Value="LightGray" />
+
+        <!-- Style 内で InteractionTriggers を設定して、表示時に先頭Tabを選択する Action を実行している。
+             これをしないと、先頭Tabが表示されなかった。 (実装方法は色々ありそう)　-->
+        <Setter Property="local:InteractivityItems.Template">
+            <Setter.Value>
+                <local:InteractivityTemplate>
+                    <local:InteractivityItems>
+                        <local:InteractivityItems.Triggers>
+                            <i:EventTrigger EventName="Loaded" >
+                                <action:SelectorSelectedIndexZeroAction />
+                            </i:EventTrigger>
+                        </local:InteractivityItems.Triggers>
+                    </local:InteractivityItems>
+                </local:InteractivityTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

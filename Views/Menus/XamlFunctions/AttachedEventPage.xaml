@@ -24,16 +24,18 @@
         <TextBlock DockPanel.Dock="Top"
                    Margin="0,10,0,0"
                    FontSize="{StaticResource FontSizeMedium}"
-                   Text="添付イベント" />
+                   Text="AttachedEvent" />
 
-        <TextBlock DockPanel.Dock="Top"
-                   Margin="10,10,0,0"
-                   Text="ボタンのクリック時に、ボーダーのクリックイベントを実行する" />
+        <TextBlock DockPanel.Dock="Top" Margin="10,10,0,0" >
+            ボタンのクリック時に、ボーダーのクリックイベントを実行する。
+            <LineBreak/>
+            （Border に Button.Click を設定している）
+        </TextBlock>
 
         <Border DockPanel.Dock="Top"
                 Margin="20" Padding="30" Background="LightBlue"
                 Button.Click="Border_Click" >
-            <StackPanel >
+            <StackPanel>
                 <TextBlock Text="Border" Margin="0,0,0,20"/>
                 <Button Padding="20" Content="Button in Border" />
             </StackPanel>

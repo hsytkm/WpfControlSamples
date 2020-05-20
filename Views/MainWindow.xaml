@@ -15,7 +15,7 @@
         xmlns:helper="clr-namespace:WpfControlSamples.Views.Helpers"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="450" Width="800" >
+        Height="500" Width="800" >
 
     <!-- チェックしたいウェブサイト
 
@@ -28,47 +28,29 @@
         WPFサンプル:PowerPointで作成した図形をWPFで表示する
             http://gushwell.ldblog.jp/archives/52317471.html
 
-        ■WPFまとめ 5/16
-            // http://var.blog.jp/tag/WPF
-
-            // https://tocsworld.wordpress.com/
-
-            // http://grabacr.net/
-
-            // http://www.kanazawa-net.ne.jp/~pmansato/wpf/wpf_main.htm
-
-            // https://blog.okazuki.jp/archive/category/WPF
-
-            http://pro.art55.jp/
-
-            // http://www.wisdomsoft.jp/
-
-            // http://yujiro15.net/YKSoftware/Link_index.html
-
+        IDataErrorInfoの汎用的な実装
+            https://blog.okazuki.jp/entry/20100419/1271686512
+        [WPF] IDataErrorInfoとValidation.ErrorTemplateを利用してエラーを表示する
+            https://www.pine4.net/Memo/Article/Archives/427
     
-            IDataErrorInfoの汎用的な実装
-                https://blog.okazuki.jp/entry/20100419/1271686512
-            [WPF] IDataErrorInfoとValidation.ErrorTemplateを利用してエラーを表示する
-                https://www.pine4.net/Memo/Article/Archives/427
-    
-            WPFのXAMLのTypeConverterお試し
-                https://blog.okazuki.jp/entry/2014/06/23/124835
-            IValueConverterとTypeConverterの違い
-                https://tocsworld.wordpress.com/2014/04/20/wpf%E3%81%A7%E3%81%AEivalueconverter%E3%81%A8typeconverter/
-            TypeConverterの汎用化
-                https://qiita.com/Temarin/items/0530a7dd77a98204c1b6
+        WPFのXAMLのTypeConverterお試し
+            https://blog.okazuki.jp/entry/2014/06/23/124835
+        IValueConverterとTypeConverterの違い
+            https://tocsworld.wordpress.com/2014/04/20/wpf%E3%81%A7%E3%81%AEivalueconverter%E3%81%A8typeconverter/
+        TypeConverterの汎用化
+            https://qiita.com/Temarin/items/0530a7dd77a98204c1b6
 
-            WPF 4.5での新機能 リアルタイムソート、グルーピング、フィルタリング(LiveShaping)
-                https://blog.okazuki.jp/entry/2013/12/07/000341
+        WPF 4.5での新機能 リアルタイムソート、グルーピング、フィルタリング(LiveShaping)
+            https://blog.okazuki.jp/entry/2013/12/07/000341
     
-            WPFでクリック時に波紋を出すエフェクト(Ripple Effect)を実装する
-                https://takachan.hatenablog.com/entry/2017/12/21/234425
+        WPFでクリック時に波紋を出すエフェクト(Ripple Effect)を実装する
+            https://takachan.hatenablog.com/entry/2017/12/21/234425
     -->
-    
+
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
         <!-- 
         <TabItem Header="Test" >
-            <menus:EventTriggerAction2Page />
+            <menus:ThumbPage />
         </TabItem>
         ↑仮置き↑ -->
 
@@ -81,12 +63,40 @@
             <menus:XamlFunctionsMenuTab />
         </TabItem>
 
-        <TabItem Header="UIFunctions" >
-            <menus:UIFunctionsMenuTab />
+        <TabItem Header="WindowsDeskop" >
+            <menus:WindowsDeskopMenuTab />
+        </TabItem>
+
+        <TabItem Header="Dispatchers" >
+            <menus:DispatchersMenuTab />
+        </TabItem>
+
+        <TabItem Header="Triggers" >
+            <menus:TriggersMenuTab />
+        </TabItem>
+
+        <TabItem Header="i:Behaviors" >
+            <menus:InteractionBehaviorsMenuTab />
+        </TabItem>
+
+        <TabItem Header="i:Triggers" >
+            <menus:InteractionTriggersMenuTab />
+        </TabItem>
+
+        <TabItem Header="i:Actions" >
+            <menus:InteractionActionsMenuTab />
+        </TabItem>
+
+        <TabItem Header="Animations" >
+            <menus:AnimationsMenuTab />
         </TabItem>
 
         <TabItem Header="Shapes" >
             <menus:ShapesMenuTab />
+        </TabItem>
+
+        <TabItem Header="Menus" >
+            <menus:MenusMenuTab />
         </TabItem>
 
         <TabItem Header="LayoutSingle" >
@@ -123,14 +133,6 @@
 
         <TabItem Header="ItemTemplate" >
             <menus:ItemTemplateMenuTab />
-        </TabItem>
-
-        <TabItem Header="Triggers" >
-            <menus:TriggersMenuTab />
-        </TabItem>
-
-        <TabItem Header="Animations" >
-            <menus:AnimationsMenuTab />
         </TabItem>
 
         <TabItem Header="Adorners" >

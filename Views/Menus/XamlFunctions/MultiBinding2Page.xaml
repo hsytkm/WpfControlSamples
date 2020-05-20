@@ -1,0 +1,47 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.MultiBinding2Page"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="MultiBinding2" />
+
+        <StackPanel Background="LightPink" Margin="10" >
+            <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
+                       Text="両方のテキストボックスにエラーがなければ（数値なら）ボタン押せる。" />
+            
+            <StackPanel Orientation="Horizontal" Margin="10" >
+                <TextBox x:Name="textBoxInput1" Width="120"
+                         Text="{Binding InputParam1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="10,0"
+                           Text="{Binding (Validation.HasError), Source={x:Reference Name=textBoxInput1},
+                                          StringFormat='-> HasError : {0}'}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10" >
+                <TextBox x:Name="textBoxInput2" Width="120"
+                         Text="{Binding InputParam2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="10,0"
+                           Text="{Binding (Validation.HasError), Source={x:Reference Name=textBoxInput2},
+                                          StringFormat='-> HasError : {0}'}" />
+            </StackPanel>
+
+            <Button Content="If there are no errors in either TextBox, you can click."
+                    Height="40" Margin="20,10" >
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource BooleansAreAllFalseConverter}">
+                        <Binding ElementName="textBoxInput1" Path="(Validation.HasError)" />
+                        <Binding ElementName="textBoxInput2" Path="(Validation.HasError)" />
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+
+</ContentControl>

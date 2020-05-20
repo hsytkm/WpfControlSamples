@@ -20,12 +20,32 @@
         <local:MarkupPage />
     </TabItem>
 
+    <TabItem Header="ValueConverter" >
+        <local:ValueConverterPage />
+    </TabItem>
+
     <TabItem Header="BindingSource" >
         <local:BindingSourcePage />
     </TabItem>
 
-    <TabItem Header="ValueConverter" >
-        <local:ValueConverterPage />
+    <TabItem Header="MultiBinding1" >
+        <local:MultiBinding1Page />
+    </TabItem>
+
+    <TabItem Header="MultiBinding2" >
+        <local:MultiBinding2Page />
+    </TabItem>
+
+    <TabItem Header="MarkupExtension" >
+        <local:MarkupExtensionPage />
+    </TabItem>
+
+    <TabItem Header="ObjectDataProvider" >
+        <local:ObjectDataProviderPage />
+    </TabItem>
+
+    <TabItem Header="RoutedEvent" >
+        <local:RoutedEventPage />
     </TabItem>
 
     <TabItem Header="DependencyProp" >
@@ -36,32 +56,9 @@
         <local:AttachedPropertyPage />
     </TabItem>
 
-    <TabItem Header="MarkupExtension" >
-        <local:MarkupExtensionPage />
-    </TabItem>
-
-    <TabItem Header="MultiValueConv" >
-        <local:MultiValueConverterPage />
-    </TabItem>
-
-    <TabItem Header="RoutedEvent" >
-        <local:RoutedEventPage />
-    </TabItem>
-
     <TabItem Header="AttachedEvent" >
         <local:AttachedEventPage />
     </TabItem>
 
-    <TabItem Header="ApplicationCommands" >
-        <local:ApplicationCommandsPage />
-    </TabItem>
 
-    <TabItem Header="ObjectDataProvider" >
-        <local:ObjectDataProviderPage />
-    </TabItem>
-
-    <TabItem Header="Behavior" >
-        <local:BehaviorPage />
-    </TabItem>
-    
 </TabControl>

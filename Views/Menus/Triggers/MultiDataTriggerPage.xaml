@@ -13,14 +13,7 @@
     -->
 
     <ContentControl.Resources>
-        <ResourceDictionary>
-            <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
-                <Setter Property="Margin" Value="0,10,0,0" />
-                <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
-            </Style>
-
-            <conv:BooleansAnyMultiValueConverter x:Key="BoolsAnyConverter" />
-        </ResourceDictionary>
+        <conv:BooleansAreAllFalseConverter x:Key="BoolsAllFalseConverter"/>
     </ContentControl.Resources>
 
     <ContentControl.DataContext>
@@ -28,20 +21,16 @@
     </ContentControl.DataContext>
 
     <StackPanel Margin="10" >
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
                    Text="MultiDataTrigger" />
 
         <TextBlock Margin="10"
                    Text="Change Background color when flag in viewmodel switched." />
 
-        <CheckBox x:Name="checkBox1"
-                  Margin="10"
-                  Content="Switch1"
+        <CheckBox x:Name="checkBox1" Margin="10" Content="Switch1"
                   IsChecked="{Binding IsEnable, Mode=TwoWay}" />
 
-        <CheckBox x:Name="checkBox2"
-                  Margin="10"
-                  Content="Switch2" />
+        <CheckBox x:Name="checkBox2" Margin="10" Content="Switch2" />
 
         <Ellipse StrokeThickness="5" Stroke="Red"
                  Width="60" Height="60" >
@@ -61,7 +50,7 @@
             </Ellipse.Style>
         </Ellipse>
 
-        <!-- AND -->
+        <!-- AND文字 -->
         <TextBlock FontSize="{StaticResource FontSizeMedium}" >
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}" >
@@ -82,14 +71,14 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <!-- OR -->
+        <!-- OR文字 -->
         <TextBlock FontSize="{StaticResource FontSizeMedium}" >
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}" >
                     <Style.Triggers>
-                        <DataTrigger Value="True">
+                        <DataTrigger Value="False" >
                             <DataTrigger.Binding>
-                                <MultiBinding Converter="{StaticResource BoolsAnyConverter}">
+                                <MultiBinding Converter="{StaticResource BooleansAreAllFalseConverter}">
                                     <Binding Source="{x:Reference Name=checkBox1}" Path="IsChecked" />
                                     <Binding Source="{x:Reference Name=checkBox2}" Path="IsChecked" />
                                 </MultiBinding>

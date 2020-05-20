@@ -14,8 +14,9 @@
                    Text="Slider" />
 
         <StackPanel Margin="10" Background="LightBlue" >
-            <TextBlock Text="Slider Style default" />
-            <Slider Minimum="{Binding SliderMin, Mode=OneTime}"
+            <TextBlock Margin="5" Text="Slider Style default" />
+            <Slider Margin="5" 
+                    Minimum="{Binding SliderMin, Mode=OneTime}"
                     Maximum="{Binding SliderMax, Mode=OneTime}"
                     Value="{Binding SliderValue, Mode=TwoWay}" />
 
@@ -24,8 +25,8 @@
                  SmallChange: 矢印キーで操作したときの変化量
                  LargeChange: マウスで軸をクリックしたときの変化量
             -->
-            <TextBlock Text="Slider Style test" />
-            <Slider Margin="30,5"
+            <TextBlock Margin="5" Text="Slider Style test" />
+            <Slider Margin="50,5"
                     SmallChange="0.333333333"
                     LargeChange="2"
                     TickPlacement="Both" 
@@ -34,8 +35,8 @@
                     Value="{Binding SliderValue, Mode=TwoWay}" />
 
 
-            <TextBlock Margin="0,20"
-                       FontSize="{StaticResource FontSizeMedium}"
+            <TextBlock Margin="20"
+                       FontSize="{StaticResource FontSizeSmall}"
                        Text="{Binding SliderValue, Mode=OneWay, StringFormat='SliderValue:  {0}'}" />
         </StackPanel>
 
@@ -68,8 +69,8 @@
                 </i:Interaction.Behaviors>
             </Slider>
 
-            <TextBlock Margin="0,20"
-                       FontSize="{StaticResource FontSizeMedium}"
+            <TextBlock Margin="20"
+                       FontSize="{StaticResource FontSizeSmall}"
                        Text="{Binding SliderIntValue, Mode=OneWay, StringFormat='SliderIntValue:  {0}'}" />
         </DockPanel>
 

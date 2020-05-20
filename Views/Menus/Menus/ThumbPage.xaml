@@ -1,0 +1,44 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ThumbPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- C#のWPFでドラッグできるコントロールを作る
+            https://araramistudio.jimdo.com/2016/12/06/wpf%E3%81%A7%E3%83%89%E3%83%A9%E3%83%83%E3%82%B0%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%82%8B/
+    -->
+
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="10,10,10,10" FontSize="{StaticResource FontSizeMedium}"
+                   Text="Thumb" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="20,0" >
+            <Run Text="画像が Canvas 内を マウス Drag で移動する。" FontSize="{StaticResource FontSizeMicro}" />
+            <LineBreak/>
+            <Run Text="けど、Window サイズ変更で Canvas が小さくなった場合は食み出る（未対応）" />
+            
+        </TextBlock>
+        <Canvas DockPanel.Dock="Top" Margin="20,10" VerticalAlignment="Top"
+                Height="100" Background="LightGray" >
+            <Thumb Width="50" Height="50"
+                   Canvas.Left="0" Canvas.Top="0"
+                   DragStarted="Thumb_DragStarted"
+                   DragCompleted="Thumb_DragCompleted"
+                   DragDelta="Thumb_DragDelta">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Border x:Name="Thumb_Border" >
+                            <Image Source="/Resources/Images/Resource1.png"/>
+                        </Border>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </Thumb>
+        </Canvas>
+        
+    </DockPanel>
+
+</ContentControl>

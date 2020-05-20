@@ -22,24 +22,6 @@ namespace WpfControlSamples.Views.Menus
         public MultiTriggerPage()
         {
             InitializeComponent();
-            DataContext = new MultiTriggerViewModel();
         }
-    }
-
-    class MultiTriggerViewModel : MyBindableBase
-    {
-        public int InputParam1
-        {
-            get => _inputParam1;
-            set => SetProperty(ref _inputParam1, value);
-        }
-        private int _inputParam1;
-
-        public int InputParam2
-        {
-            get => _inputParam2;
-            set => SetProperty(ref _inputParam2, value);
-        }
-        private int _inputParam2 = 123;
     }
 }

@@ -20,9 +20,10 @@
                    Text="MarkupExtension" />
 
         <!-- Color.FromArgb() -->
-        <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
+        <TextBlock Margin="10,10,10,5" FontSize="{StaticResource FontSizeSmall}"
                    Text="ARGB to Brush(Color)" />
-        <StackPanel Margin="20,0" Orientation="Horizontal" >
+        <TextBlock Margin="20,0" Text="xaml から MarkupExtension を利用して、インスタンス を作成する" />
+        <StackPanel Margin="30,5" Orientation="Horizontal" >
             <Panel.Resources>
                 <ResourceDictionary>
                     <Style TargetType="{x:Type Border}" >
@@ -57,12 +58,12 @@
          -->
         
         <!-- StaticResource を 自作Markup に組み込んで string に変換して、Textプロパティに表示 -->
-        <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
+        <TextBlock Margin="10,10,10,5" FontSize="{StaticResource FontSizeSmall}"
                    Text="StaticResource を 自作Markup を使って string に変換" />
-        <TextBlock Margin="20,0" FontSize="{StaticResource FontSizeSmall}"
+        <TextBlock Margin="20,0" Text="StringFormat で代替できるので不要 (StaticResourcePage参照)" />
+        <TextBlock Margin="30,5" Foreground="Blue" FontSize="{StaticResource FontSizeMicro}"
                    Text="{mkup:StringFormat StaticResourceKey=int32value,
-                                            StringFormat='int32value of StaticResource is &quot;{0}&quot;.'}"
-                   Foreground="Blue" />
+                                            StringFormat='int32value of StaticResource is &quot;{0}&quot;.'}" />
 
     </StackPanel>
 

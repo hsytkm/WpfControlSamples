@@ -27,6 +27,9 @@
                    FontSize="{StaticResource FontSizeMedium}"
                    Text="RoutedEvent" />
 
+        <TextBlock DockPanel.Dock="Top" Margin="20,10,0,0"
+                   Text="子猫/孫猫には鳴きイベントを add していないが、ルーティングにより にゃーん と鳴く。" />
+
         <local:CatButton DockPanel.Dock="Top"
                          x:Name="parentCat"
                          Margin="20,10" Padding="20,5" Background="LightBlue"
@@ -54,11 +57,6 @@
                 </StackPanel>
             </local:CatButton.Content>
         </local:CatButton>
-
-        <TextBlock DockPanel.Dock="Top"
-                   Margin="20,10,0,0"
-                   FontWeight="Bold"
-                   Text="子猫/孫猫には鳴きイベントを add していないが、ルーティングにより にゃーん と鳴く。" />
 
         <ctrl:ScrollEndTextBlock Margin="20,10" Padding="10,5"
                                  Background="LightGray" Foreground="Gray"

@@ -1,10 +1,10 @@
-﻿// [WPF] BehaviorのOnDetaching http://gacken.com/blog/program/wpf-115_20161211/
-using Microsoft.Xaml.Behaviors;
+﻿using Microsoft.Xaml.Behaviors;
 using System;
 using System.Windows;
 
 namespace WpfControlSamples.Views.Behaviors
 {
+    // [WPF] BehaviorのOnDetaching http://gacken.com/blog/program/wpf-115_20161211/
     class BehaviorBase<T> : Behavior<T> where T : FrameworkElement
     {
         #region field

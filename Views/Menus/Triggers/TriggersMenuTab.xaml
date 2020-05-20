@@ -12,40 +12,16 @@
         <local:PropertyTriggerPage />
     </TabItem>
 
-    <TabItem Header="EventTriggerAction1" >
-        <local:EventTriggerAction1Page />
-    </TabItem>
-
-    <TabItem Header="EventTriggerAction2" >
-        <local:EventTriggerAction2Page />
-    </TabItem>
-
-    <TabItem Header="EventTriggerAction3" >
-        <local:EventTriggerAction3Page />
+    <TabItem Header="MultiTrigger" >
+        <local:MultiTriggerPage />
     </TabItem>
 
     <TabItem Header="DataTrigger" >
         <local:DataTriggerPage />
     </TabItem>
 
-    <TabItem Header="KeyTrigger" >
-        <local:KeyTriggerPage />
-    </TabItem>
-
-    <TabItem Header="TimerTrigger" >
-        <local:TimerTriggerPage />
-    </TabItem>
-
-    <TabItem Header="MultiTrigger" >
-        <local:MultiTriggerPage />
-    </TabItem>
-
     <TabItem Header="MultiDataTrigger" >
         <local:MultiDataTriggerPage />
     </TabItem>
 
-    <TabItem Header="ConditionBehavior" >
-        <local:ConditionBehaviorPage />
-    </TabItem>
-    
 </TabControl>

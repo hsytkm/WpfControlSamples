@@ -25,27 +25,30 @@
                    Text="IValueConverter" />
 
         <!-- DoubleToIntConverter -->
-        <TextBlock Margin="10,5" FontSize="{StaticResource FontSizeSmall}"
+        <TextBlock Margin="10,5" FontSize="{StaticResource FontSizeMicro}"
                    Text="ConverterParameterを使って、入力double に指定値を乗算する" />
-        <StackPanel Background="LightGray" Margin="10" >
-            <Slider x:Name="slider1" Margin="30,0" Minimum="0" Maximum="1" />
+        <DockPanel Background="LightGray" Margin="10" >
+            <Slider x:Name="slider1" Margin="30,10" Width="100" HorizontalAlignment="Left"
+                    Minimum="0" Maximum="1" />
 
-            <TextBlock Margin="10,3"
-                       Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Input value is {0:f2}'}" />
+            <StackPanel>
+                <TextBlock Margin="10,3"
+                           Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Value is {0:f2}'}" />
 
-            <TextBlock Margin="10,3"
-                       Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Input value * 100 is {0}',
-                                      Converter={StaticResource DoubleToIntConverter},
-                                      ConverterParameter=100}" />
+                <TextBlock Margin="10,3"
+                           Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Value * 100 is {0}',
+                                          Converter={StaticResource DoubleToIntConverter},
+                                          ConverterParameter=100}" />
 
-            <TextBlock Margin="10,3"
-                       Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Input value * 255 is {0}',
-                                      Converter={StaticResource DoubleToIntConverter},
-                                      ConverterParameter=255}" />
-        </StackPanel>
+                <TextBlock Margin="10,3"
+                           Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Value * 255 is {0}',
+                                          Converter={StaticResource DoubleToIntConverter},
+                                          ConverterParameter=255}" />
+            </StackPanel>
+        </DockPanel>
 
         <!-- BooleanToObjectConverter -->
-        <TextBlock Margin="10,15" FontSize="{StaticResource FontSizeSmall}"
+        <TextBlock Margin="10,15" FontSize="{StaticResource FontSizeMicro}"
                    Text="bool値に応じてobjectを切り替える" />
         <StackPanel Orientation="Horizontal" Margin="20,5">
             <TextBlock Text="Switch State" />

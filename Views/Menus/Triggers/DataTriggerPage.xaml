@@ -2,39 +2,27 @@
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
                 xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
-    <ContentControl.Resources>
-        <ResourceDictionary>
-            <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
-                <Setter Property="Margin" Value="0,10,0,0" />
-                <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
-            </Style>
-        </ResourceDictionary>
-    </ContentControl.Resources>
-
-    <ContentControl.DataContext>
-        <local:DataTriggerViewModel />
-    </ContentControl.DataContext>
-    
     <StackPanel Margin="10" >
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
                    Text="DataTrigger" />
 
         <TextBlock Margin="10"
                    Text="Change Background color when flag in viewmodel switched." />
 
-        <StackPanel Margin="10" >
-            <CheckBox Content="Switch ViewModel flag"
+        <DockPanel Margin="20,10" >
+            <CheckBox DockPanel.Dock="Left"
+                      Content="Switch ViewModel flag"
                       IsChecked="{Binding IsEnable, Mode=TwoWay}" />
 
-            <Ellipse StrokeThickness="5" Stroke="Red"
-                     Width="60" Height="60" >
+            <Ellipse DockPanel.Dock="Left"
+                     StrokeThickness="5" Stroke="Red"
+                     Width="60" Height="60" Margin="30,0">
                 <Ellipse.Style>
                     <Style TargetType="{x:Type Ellipse}" >
                         <Style.Triggers>
@@ -48,21 +36,22 @@
                     </Style>
                 </Ellipse.Style>
             </Ellipse>
-        </StackPanel>
 
-        <DockPanel Margin="20,10" >
-            <TextBlock Text="8文字以上になるとTextがClearされる" />
-            <TextBlock Margin="20,0"
-                       Text="{Binding Text.Length, Source={x:Reference Name=myTextBox},
-                                      StringFormat='{}{0} 文字'}" />
-            <TextBox x:Name="myTextBox" >
-                <i:Interaction.Triggers>
-                    <i:DataTrigger Binding="{Binding Text.Length, ElementName=myTextBox}" Value="8" >
-                        <i:ChangePropertyAction TargetName="myTextBox"
-                                                PropertyName="Text" Value="" />
-                    </i:DataTrigger>
-                </i:Interaction.Triggers>
-            </TextBox>
+            <TextBlock DockPanel.Dock="Top" Text="DataTrigger のソース値が、 True / False で切り替え可能" />
+            <TextBlock DockPanel.Dock="Top" Margin="10" Foreground="Blue" >
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}" >
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsEnable, Mode=OneWay}" Value="True" >
+                                <Setter Property="Text" Value="ViewModel の フラグ は True です。" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsEnable, Mode=OneWay}" Value="False" >
+                                <Setter Property="Text" Value="The flag in ViewModel is false." />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
         </DockPanel>
 
     </StackPanel>

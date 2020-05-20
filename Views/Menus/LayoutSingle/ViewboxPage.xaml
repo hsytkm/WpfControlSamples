@@ -3,7 +3,6 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
@@ -17,17 +16,19 @@
                    Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
                    Text="Viewbox" />
 
-        <TextBlock DockPanel.Dock="Top"
+        <TextBlock DockPanel.Dock="Top" Margin="10,0" 
                    Text="Viewboxは内部のコントロールのサイズを調整してくれる" />
 
-        <Slider DockPanel.Dock="Top"
-                x:Name="slider1" Minimum="10" Maximum="1000" />
+        <DockPanel DockPanel.Dock="Top" >
+            <Slider x:Name="slider1" Width="200" Margin="10" HorizontalAlignment="Left"
+                    Minimum="10" Maximum="1000" />
 
-        <TextBlock DockPanel.Dock="Top"
-                   Text="{Binding Value, ElementName=slider1, StringFormat='Size: {0}'}" />
+            <TextBlock VerticalAlignment="Center"
+                       Text="{Binding Value, Source={x:Reference Name=slider1}, StringFormat='Size: {0}'}" />
+        </DockPanel>
 
-        <Viewbox Width="{Binding Value, ElementName=slider1}"
-                 Height="{Binding Value, ElementName=slider1}" >
+        <Viewbox Width="{Binding Value, Source={x:Reference Name=slider1}}"
+                 Height="{Binding Value, Source={x:Reference Name=slider1}}" >
             <Control Style="{StaticResource CharImageStyle}" />
         </Viewbox>
     </DockPanel>

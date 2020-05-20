@@ -24,6 +24,10 @@
         <local:PathPage />
     </TabItem>
 
+    <TabItem Header="CombinedGeometry" >
+        <local:CombinedGeometryPage />
+    </TabItem>
+
     <TabItem Header="Transforms" >
         <local:TransformsPage />
     </TabItem>
@@ -50,10 +54,6 @@
 
     <TabItem Header="VisualBrush" >
         <local:VisualBrushPage />
-    </TabItem>
-
-    <TabItem Header="CombinedGeometry" >
-        <local:CombinedGeometryPage />
     </TabItem>
 
 </TabControl>

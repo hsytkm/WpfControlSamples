@@ -29,8 +29,8 @@ namespace WpfControlSamples.Views.Behaviors
         /// <param name="e"></param>
         private static void AssociatedObject_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (sender is FrameworkElement fe)
-                fe.CaptureMouse();
+            if (!(sender is FrameworkElement fe)) return;
+            fe.CaptureMouse();
         }
 
         /// <summary>
@@ -40,8 +40,8 @@ namespace WpfControlSamples.Views.Behaviors
         /// <param name="e"></param>
         private static void AssociatedObject_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (sender is FrameworkElement fe)
-                fe.ReleaseMouseCapture();
+            if (!(sender is FrameworkElement fe)) return;
+            fe.ReleaseMouseCapture();
         }
     }
 }

@@ -4,8 +4,6 @@ using System.Windows.Controls;
 
 namespace WpfControlSamples.Views.Behaviors
 {
-    // WPFのBehaviorをStyleで使う方法
-    // https://blog.okazuki.jp/entry/2016/07/19/192918
     [TypeConstraint(typeof(Button))]
     public class AlertBehavior : Behavior<Button>
     {
