@@ -14,14 +14,17 @@
         xmlns:behavior="clr-namespace:WpfControlSamples.Views.Behaviors"
         xmlns:helper="clr-namespace:WpfControlSamples.Views.Helpers"
         mc:Ignorable="d"
-        Title="MainWindow"
-        Height="500" Width="800" >
+        Title="WpfControlSamples"
+        Height="550" Width="800" >
 
     <!-- チェックしたいウェブサイト
 
         かずきさん44 FrameworkPropertyMetadata が理解できてない
             https://blog.okazuki.jp/entry/2014/08/18/213553
-    
+
+        【WPF】PropertyMetadataとUIPropertyMetadataとFrameworkPropertyMetadata
+            http://pro.art55.jp/?eid=1198810
+
         かずきさん54 カスタムコントロール
             https://blog.okazuki.jp/entry/2014/09/08/221209
     
@@ -45,12 +48,15 @@
     
         WPFでクリック時に波紋を出すエフェクト(Ripple Effect)を実装する
             https://takachan.hatenablog.com/entry/2017/12/21/234425
+    
+        Per-Monitor DPI 環境下で WPF の Window 位置を調整する
+            https://blog.shibayan.jp/entry/20190612/1560267647
     -->
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
         <!-- 
         <TabItem Header="Test" >
-            <menus:ThumbPage />
+            <menus:AttachedPropertyPage />
         </TabItem>
         ↑仮置き↑ -->
 

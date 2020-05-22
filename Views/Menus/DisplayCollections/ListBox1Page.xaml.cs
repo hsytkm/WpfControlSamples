@@ -17,17 +17,17 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class ListBoxPage : ContentControl
+    public partial class ListBox1Page : ContentControl
     {
-        public ListBoxPage()
+        public ListBox1Page()
         {
             InitializeComponent();
 
-            DataContext = new ListBoxViewModel();
+            DataContext = new ListBox1ViewModel();
         }
     }
 
-    class ListBoxViewModel : MyBindableBase
+    class ListBox1ViewModel : MyBindableBase
     {
         public IList<ColorListViewItem> SourceColors { get; } =
             Models.SampleData.WpfColors.Select(x => new ColorListViewItem(x)).ToList();
@@ -39,7 +39,7 @@ namespace WpfControlSamples.Views.Menus
         }
         private ColorListViewItem _selectedColor;
 
-        public ListBoxViewModel()
+        public ListBox1ViewModel()
         {
             SelectedColor = SourceColors[3];    // Initialize
         }

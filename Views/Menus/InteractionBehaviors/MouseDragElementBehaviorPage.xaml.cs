@@ -23,6 +23,33 @@ namespace WpfControlSamples.Views.Menus
         public MouseDragElementBehaviorPage()
         {
             InitializeComponent();
+            DataContext = new MouseDragElementBehaviorViewModel();
         }
+    }
+
+    class MouseDragElementBehaviorViewModel : MyBindableBase
+    {
+        public double MoveOffsetX
+        {
+            get => _offsetX;
+            private set => SetProperty(ref _offsetX, value);
+        }
+        private double _offsetX;
+
+        public double MoveOffsetY
+        {
+            get => _offsetY;
+            private set => SetProperty(ref _offsetY, value);
+        }
+        private double _offsetY;
+
+        public ICommand MatrixCommand => _matrixCommand ??
+            (_matrixCommand = new MyCommand<Matrix>(matrix =>
+            {
+                MoveOffsetX = matrix.OffsetX;
+                MoveOffsetY = matrix.OffsetY;
+            }));
+        private ICommand _matrixCommand;
+
     }
 }

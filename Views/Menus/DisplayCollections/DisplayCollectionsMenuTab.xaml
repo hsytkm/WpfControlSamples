@@ -9,7 +9,7 @@
       Style="{StaticResource MyTabControlStyle2}" >
 
     <TabItem Header="ListBox(Single)" >
-        <local:ListBoxPage />
+        <local:ListBox1Page />
     </TabItem>
 
     <TabItem Header="ListBox(Multiple)" >

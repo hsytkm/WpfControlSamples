@@ -13,32 +13,42 @@
 
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
-                   Margin="10,10,10,10" FontSize="{StaticResource FontSizeMedium}"
+                   Margin="10" FontSize="{StaticResource FontSizeMedium}"
                    Text="Thumb" />
 
         <TextBlock DockPanel.Dock="Top" Margin="20,0" >
             <Run Text="画像が Canvas 内を マウス Drag で移動する。" FontSize="{StaticResource FontSizeMicro}" />
             <LineBreak/>
             <Run Text="けど、Window サイズ変更で Canvas が小さくなった場合は食み出る（未対応）" />
-            
         </TextBlock>
-        <Canvas DockPanel.Dock="Top" Margin="20,10" VerticalAlignment="Top"
-                Height="100" Background="LightGray" >
-            <Thumb Width="50" Height="50"
+
+        <Canvas DockPanel.Dock="Top"
+                Margin="20,10" Height="100" Background="LightGray" >
+            <Thumb x:Name="myThumb"
+                   Width="50" Height="50"
                    Canvas.Left="0" Canvas.Top="0"
                    DragStarted="Thumb_DragStarted"
                    DragCompleted="Thumb_DragCompleted"
-                   DragDelta="Thumb_DragDelta">
+                   DragDelta="Thumb_DragDelta" >
                 <Thumb.Template>
                     <ControlTemplate>
-                        <Border x:Name="Thumb_Border" >
-                            <Image Source="/Resources/Images/Resource1.png"/>
+                        <Border x:Name="thumbInBorder" >
+                            <Image Source="/Resources/Images/Resource1.png" />
                         </Border>
                     </ControlTemplate>
                 </Thumb.Template>
             </Thumb>
         </Canvas>
-        
+
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="30,10" FontSize="{StaticResource FontSizeMicro}"
+                   Text="Binding Attached Property (Canvas.Left/Top)" />
+        <TextBlock Margin="40,10" Foreground="Blue" FontSize="{StaticResource FontSizeMicro}" >
+            <Run Text="{Binding Path=(Canvas.Left), Source={x:Reference myThumb}, StringFormat='Canvas.Left = {0:f1}'}" />
+            <LineBreak/>
+            <Run Text="{Binding Path=(Canvas.Top), Source={x:Reference myThumb}, StringFormat='Canvas.Top = {0:f1}'}" />
+        </TextBlock>
+
     </DockPanel>
 
 </ContentControl>

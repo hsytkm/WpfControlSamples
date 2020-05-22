@@ -20,8 +20,13 @@
                    Text="コントロールの移動/ズーム (タッチ用らしい)" />
 
         <DockPanel Margin="20,5" >
-            <TextBlock DockPanel.Dock="Top" Margin="0,0,0,5" Foreground="Red"
-                       Text="移動物がエリア境界でぶつかるようにしたい。調べてない。" />
+            <TextBlock DockPanel.Dock="Top" Margin="0,0,0,10" >
+                <Run Text="MouseDragElementBehavior と同じ View と ViewModel" />
+                <LineBreak />
+                <Run Text="こちらは Zoom と Rotate もできるはず。試したことないけど" />
+                <LineBreak />
+                <Run Text="移動物がエリア境界でぶつかるようにしたい。調べてない。" Foreground="Red"/>
+            </TextBlock>
 
             <StackPanel DockPanel.Dock="Left" >
                 <CheckBox x:Name="checkBox2" Margin="0,10" Content="ClipToBounds" />

@@ -11,7 +11,7 @@
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
                    Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
-                   Text="ItemsControl1" />
+                   Text="ItemsControl" />
 
         <!-- ViewModel に SelecttedItem をバインドして表示してる(個人的にベタな実装) -->
         <StackPanel DockPanel.Dock="Top"

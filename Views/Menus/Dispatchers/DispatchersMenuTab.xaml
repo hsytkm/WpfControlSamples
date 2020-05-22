@@ -20,4 +20,8 @@
         <local:DispatcherUnhandledExceptionPage />
     </TabItem>
 
+    <TabItem Header="DispatcherCollection" >
+        <local:DispatcherCollectionPage />
+    </TabItem>
+
 </TabControl>

@@ -40,6 +40,10 @@
         <local:RemoveElementActionPage />
     </TabItem>
 
+    <TabItem Header="RemoveItemInListBoxAction" >
+        <local:RemoveItemInListBoxActionPage />
+    </TabItem>
+
     <TabItem Header="TriggerAction" >
         <local:TriggerActionPage />
     </TabItem>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xaml.Behaviors;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -19,16 +20,16 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class TranslateZoomRotateBehaviorPage : ContentControl
+    public partial class RemoveItemInListBoxActionPage : ContentControl
     {
-        public TranslateZoomRotateBehaviorPage()
+        public RemoveItemInListBoxActionPage()
         {
             InitializeComponent();
-            DataContext = new TranslateZoomRotateBehaviorViewModel();
-        }
-    }
 
-    class TranslateZoomRotateBehaviorViewModel : MouseDragElementBehaviorViewModel
-    {
+            var source = Models.SampleData.WpfColors.Select(x => new ColorListViewItem(x));
+            var items = new ObservableCollection<ColorListViewItem>(source);
+
+            DataContext = items;
+        }
     }
 }

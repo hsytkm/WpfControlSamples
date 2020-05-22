@@ -50,6 +50,7 @@ namespace WpfControlSamples.Views.Menus
             {
                 if (SetProperty(ref _leftSelectedItem, value))
                 {
+                    // 左右リストの片方しか選択できないようにする
                     if (value != null) RightSelectedItem = null;
                 }
             }
@@ -63,6 +64,7 @@ namespace WpfControlSamples.Views.Menus
             {
                 if (SetProperty(ref _rightSelectedItem, value))
                 {
+                    // 左右リストの片方しか選択できないようにする
                     if (value != null) LeftSelectedItem = null;
                 }
             }

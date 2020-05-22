@@ -24,8 +24,6 @@ namespace WpfControlSamples.Views.Menus
         public RemoveElementActionPage()
         {
             InitializeComponent();
-
-            DataContext = Models.SampleData.WpfColors.Select(x => new ColorListViewItem(x)).ToList();
         }
     }
 }

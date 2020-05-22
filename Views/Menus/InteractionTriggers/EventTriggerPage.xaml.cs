@@ -1,8 +1,6 @@
-﻿using Microsoft.Xaml.Behaviors;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,16 +17,11 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class TranslateZoomRotateBehaviorPage : ContentControl
+    public partial class EventTriggerPage : ContentControl
     {
-        public TranslateZoomRotateBehaviorPage()
+        public EventTriggerPage()
         {
             InitializeComponent();
-            DataContext = new TranslateZoomRotateBehaviorViewModel();
         }
-    }
-
-    class TranslateZoomRotateBehaviorViewModel : MouseDragElementBehaviorViewModel
-    {
     }
 }

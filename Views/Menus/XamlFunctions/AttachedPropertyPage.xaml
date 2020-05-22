@@ -24,8 +24,19 @@
         <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
                    Text="Change Background color if it exists." />
 
-        <TextBox Margin="10" Text="LightGreen" FontSize="{StaticResource FontSizeMicro}"
+        <TextBox x:Name="textBox1"
+                 Margin="10" Text="LightGreen" FontSize="{StaticResource FontSizeMicro}"
                  local:AttachedBgColor.BgColor="{Binding Text, RelativeSource={RelativeSource Self}}" />
+
+        <!-- WPF Attached Property Data Binding
+                https://stackoverflow.com/questions/5832208/wpf-attached-property-data-binding
+        -->
+        <TextBlock Margin="30,20" FontSize="{StaticResource FontSizeMicro}" >
+            <Run Text="Binding Attached Property" />
+            <LineBreak />
+            <Run Text="  local:AttachedBgColor.BgColor = " />
+            <Run Text="{Binding Path=(local:AttachedBgColor.BgColor), Source={x:Reference textBox1}}" />
+        </TextBlock>
 
     </StackPanel>
 

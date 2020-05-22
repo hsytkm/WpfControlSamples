@@ -27,50 +27,35 @@ namespace WpfControlSamples.Views.Menus
 
         private void Thumb_DragStarted(object sender, DragStartedEventArgs e)
         {
-            var thumb = sender as Thumb;
-            if (null != thumb)
-            {
-                var border = thumb.Template.FindName("Thumb_Border", thumb) as Border;
-                if (null != border)
-                {
-                    border.BorderThickness = new Thickness(1);
-                }
-            }
+            if (!(sender is Thumb thumb)) return;
+            if (!(thumb.Template.FindName("thumbInBorder", thumb) is Border border)) return;
+
+            border.BorderThickness = new Thickness(5);
         }
 
         private void Thumb_DragCompleted(object sender, DragCompletedEventArgs e)
         {
-            var thumb = sender as Thumb;
-            if (null != thumb)
-            {
-                var border = thumb.Template.FindName("Thumb_Border", thumb) as Border;
-                if (null != border)
-                {
-                    border.BorderThickness = new Thickness(0);
-                }
-            }
+            if (!(sender is Thumb thumb)) return;
+            if (!(thumb.Template.FindName("thumbInBorder", thumb) is Border border)) return;
+
+            border.BorderThickness = new Thickness(0);
         }
 
         private void Thumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            var thumb = sender as Thumb;
-            if (null != thumb)
-            {
-                var x = Canvas.GetLeft(thumb) + e.HorizontalChange;
-                var y = Canvas.GetTop(thumb) + e.VerticalChange;
+            if (!(sender is Thumb thumb)) return;
+            if (!(thumb.Parent is Canvas canvas)) return;
 
-                var canvas = thumb.Parent as Canvas;
-                if (null != canvas)
-                {
-                    x = Math.Max(x, 0);
-                    y = Math.Max(y, 0);
-                    x = Math.Min(x, canvas.ActualWidth - thumb.ActualWidth);
-                    y = Math.Min(y, canvas.ActualHeight - thumb.ActualHeight);
-                }
+            var x = Canvas.GetLeft(thumb) + e.HorizontalChange;
+            var y = Canvas.GetTop(thumb) + e.VerticalChange;
 
-                Canvas.SetLeft(thumb, x);
-                Canvas.SetTop(thumb, y);
-            }
+            x = Math.Max(x, 0);
+            y = Math.Max(y, 0);
+            x = Math.Min(x, canvas.ActualWidth - thumb.ActualWidth);
+            y = Math.Min(y, canvas.ActualHeight - thumb.ActualHeight);
+
+            Canvas.SetLeft(thumb, x);
+            Canvas.SetTop(thumb, y);
         }
     }
 }

@@ -36,4 +36,12 @@
         <local:FluidMoveBehavior2Page />
     </TabItem>
 
+    <TabItem Header="FluidMove3" >
+        <local:FluidMoveBehavior3Page />
+    </TabItem>
+
+    <TabItem Header="FluidMove4" >
+        <local:FluidMoveBehavior4Page />
+    </TabItem>
+
 </TabControl>

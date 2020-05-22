@@ -14,7 +14,7 @@
         <TextBlock Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
                    Text="DispatcherUnhandledException" />
 
-        <TextBlock DockPanel.Dock="Top" Margin="10" >
+        <TextBlock DockPanel.Dock="Top" Margin="10,0,10,10" >
             アプリケーションの未処理例外をまとめて捕捉する
         </TextBlock>
 

@@ -19,15 +19,52 @@
         <TextBlock Margin="10,5" FontSize="{StaticResource FontSizeMicro}"
                    Text="対象コントロールをドラッグ移動" />
 
-        <TextBlock Margin="20,10" Padding="10,5" Width="100"
-                   HorizontalAlignment="Left" TextAlignment="Center"
-                   Background="LightCoral" Foreground="White"
-                   Text="Can drag" >
+        <DockPanel Margin="20,5" >
+            <TextBlock DockPanel.Dock="Top" Margin="0,0,0,10" >
+                <Run Text="TranslateZoomRotateBehavior と同じ View と ViewModel" />
+                <LineBreak />
+                <Run Text="移動物がエリア境界でぶつかるようにしたい。調べてない。" Foreground="Red"/>
+            </TextBlock>
+                       
+            <StackPanel DockPanel.Dock="Left" >
+                <CheckBox x:Name="checkBox2" Margin="0,10" Content="ClipToBounds" />
 
-            <i:Interaction.Behaviors>
-                <i:MouseDragElementBehavior />
-            </i:Interaction.Behaviors>
-        </TextBlock>
+                <TextBlock Margin="10" >
+                    <Run Text="{Binding MoveOffsetX, Mode=OneWay, StringFormat='X={0:f1}'}" />
+                    <LineBreak />
+                    <Run Text="{Binding MoveOffsetY, Mode=OneWay, StringFormat='Y={0:f1}'}" />
+                </TextBlock>
+            </StackPanel>
+
+            <Grid Height="100" Background="LightGray" Margin="20,0" 
+                  ClipToBounds="{Binding IsChecked, Source={x:Reference checkBox2}}" >
+
+                <Border Height="40" Width="60" Background="LightCyan" >
+                    <i:Interaction.Behaviors>
+                        <i:MouseDragElementBehavior />
+                    </i:Interaction.Behaviors>
+
+                    <!-- 以下でバインドしたかったけど、Errorが出てできなかった。なぜ…
+                            <Border.RenderTransform>
+                                <MatrixTransform Matrix="{Binding MyMatrix, Mode=TwoWay}" />
+                            </Border.RenderTransform>
+                        
+                         代替として PropertyChangedTrigger で対応した。Command や Binding が冗長やけどしゃーなし。 
+                    -->
+                    <i:Interaction.Triggers>
+                        <i:PropertyChangedTrigger Binding="{Binding RenderTransform.Matrix, 
+                                                                    RelativeSource={RelativeSource AncestorType={x:Type Border}}}" >
+                            <i:InvokeCommandAction Command="{Binding MatrixCommand}"
+                                                   CommandParameter="{Binding RenderTransform.Matrix, 
+                                                                              RelativeSource={RelativeSource AncestorType={x:Type Border}}}" />
+                        </i:PropertyChangedTrigger>
+                    </i:Interaction.Triggers>
+
+                    <TextBlock Text="movable" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+            </Grid>
+
+        </DockPanel>
 
     </StackPanel>
 

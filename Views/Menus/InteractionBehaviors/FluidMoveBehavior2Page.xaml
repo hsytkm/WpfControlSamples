@@ -11,16 +11,14 @@
 
     <!-- ListBox間のアイテムの移動をアニメーションさせる
             https://blog.okazuki.jp/entry/20100911/1284214410
-    
-        【WPF】FluidMoveBehaviorを使って見た。
-            http://pro.art55.jp/?eid=1303831
     -->
 
     <ContentControl.Resources>
         <ItemsPanelTemplate x:Key="ItemsPanelTemplate1" >
             <StackPanel>
                 <i:Interaction.Behaviors>
-                    <i:FluidMoveBehavior Tag="DataContext" AppliesTo="Children" >
+                    <i:FluidMoveSetTagBehavior Tag="DataContext" AppliesTo="Children" />
+                    <i:FluidMoveBehavior Tag="DataContext" FloatAbove="True" AppliesTo="Children" >
                         <i:FluidMoveBehavior.EaseY>
                             <CircleEase EasingMode="EaseOut" />
                         </i:FluidMoveBehavior.EaseY>
@@ -35,7 +33,8 @@
         <ItemsPanelTemplate x:Key="ItemsPanelTemplate2" >
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" >
                 <i:Interaction.Behaviors>
-                    <i:FluidMoveBehavior Tag="DataContext" AppliesTo="Children" >
+                    <i:FluidMoveSetTagBehavior Tag="DataContext" AppliesTo="Children" />
+                    <i:FluidMoveBehavior Tag="DataContext" FloatAbove="True" AppliesTo="Children" >
                         <i:FluidMoveBehavior.EaseY>
                             <ElasticEase EasingMode="EaseOut" />
                         </i:FluidMoveBehavior.EaseY>
@@ -76,7 +75,7 @@
                    Margin="15,5" Foreground="Red" FontWeight="Bold"
                    Text="なぜか期待通りにアニメーションしない（移動させた時点で一回ジャンプする…）" />
 
-        <Grid x:Name="LayoutRoot" Margin="10,5" >
+        <Grid Margin="10,5" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto" MinWidth="85" />

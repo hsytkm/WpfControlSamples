@@ -1,7 +1,7 @@
-﻿using Microsoft.Xaml.Behaviors;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,16 +19,25 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class TranslateZoomRotateBehaviorPage : ContentControl
+    public partial class NamePage : ContentControl
     {
-        public TranslateZoomRotateBehaviorPage()
+        public NamePage()
         {
             InitializeComponent();
-            DataContext = new TranslateZoomRotateBehaviorViewModel();
         }
-    }
 
-    class TranslateZoomRotateBehaviorViewModel : MouseDragElementBehaviorViewModel
-    {
+        private void Button_Click1(object sender, RoutedEventArgs e)
+        {
+            // パターン1
+            textBlock1.Foreground = Brushes.Red;
+        }
+
+        private void Button_Click2(object sender, RoutedEventArgs e)
+        {
+            // パターン2
+            if (!(FindName("textBlock2") is TextBlock textBlock)) return;
+            textBlock.Background = Brushes.LightPink;
+        }
+
     }
 }

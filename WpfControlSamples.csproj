@@ -19,6 +19,10 @@
     <None Remove="Resources\Images\picture1.jpg" />
     <None Remove="Resources\Images\Resource1.png" />
     <None Remove="Resources\Images\Resource2.png" />
+    <None Remove="Resources\Images\Resource3.png" />
+    <None Remove="Resources\Sounds\EmbeddedResource1.wav" />
+    <None Remove="Resources\Sounds\Resource1.wav" />
+    <None Remove="Resources\Sounds\sound2.mp3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +32,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Images\EmbeddedResource1.png" />
+    <EmbeddedResource Include="Resources\Sounds\EmbeddedResource1.wav" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
     <Resource Include="Resources\Fonts\ionicons.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -35,6 +40,8 @@
     <Resource Include="Resources\Images\Picture1.jpg" />
     <Resource Include="Resources\Images\Resource1.png" />
     <Resource Include="Resources\Images\Resource2.png" />
+    <Resource Include="Resources\Images\Resource3.png" />
+    <Resource Include="Resources\Sounds\Resource1.wav" />
   </ItemGroup>
 
   <ItemGroup>
@@ -71,7 +78,13 @@
     <Page Update="Views\Menus\Animations\DoubleAnimationUsingKeyFramesPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Dispatchers\DispatcherCollectionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Dispatchers\DispatchersMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionActions\RemoveItemInListBoxActionPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior1Page.xaml">
@@ -107,7 +120,7 @@
     <Page Update="Views\Menus\DisplayCollections\TreeViewPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\DisplayCollections\ListBoxPage.xaml">
+    <Page Update="Views\Menus\DisplayCollections\ListBox1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\EditingText\PasswordBoxPage.xaml">
@@ -123,6 +136,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\EditingText\EditingTextMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior4Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior3Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\InteractionBehaviors\MouseDragElementBehaviorPage.xaml">
@@ -350,6 +369,9 @@
     <Page Update="Views\Menus\InteractionTriggers\TimerTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\InteractionTriggers\EventTriggerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Triggers\MultiTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -429,6 +451,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\MultiBinding2Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\NamePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\StaticResourcePage.xaml">

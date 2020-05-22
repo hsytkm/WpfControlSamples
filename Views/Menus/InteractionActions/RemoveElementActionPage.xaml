@@ -60,29 +60,6 @@
                 </Ellipse>
             </StackPanel>
 
-            <!-- ◆RemoveItemInListBoxAction : 使い方分からず有効にできていない…
-            <ListBox ItemsSource="{Binding ., Mode=OneWay}" IsHitTestVisible="True" >
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Ellipse Width="30" Height="30"
-                                 Fill="{Binding Color, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonDown">
-                                    <i:RemoveItemInListBoxAction />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Ellipse>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ListBox>
-            -->
-
         </DockPanel>
 
     </StackPanel>

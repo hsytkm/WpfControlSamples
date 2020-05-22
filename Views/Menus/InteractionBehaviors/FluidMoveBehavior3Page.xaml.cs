@@ -20,20 +20,31 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class FluidMoveBehavior1Page : ContentControl
+    public partial class FluidMoveBehavior3Page : ContentControl
     {
-        public FluidMoveBehavior1Page()
+        public FluidMoveBehavior3Page()
         {
             InitializeComponent();
-
-            DataContext = Models.SampleData.WpfColors.Select(x => new ColorListViewItem(x)).ToList();
+        }
+        private void OnMoveToRight(object sender, RoutedEventArgs e)
+        {
+            MoveChildren(leftPanel, rightPanel);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OnMoveToLeft(object sender, RoutedEventArgs e)
         {
-            var element = myPanel.Children.Cast<UIElement>().Last();
-            myPanel.Children.Remove(element);
-            myPanel.Children.Insert(0, element);
+            MoveChildren(rightPanel, leftPanel);
+        }
+
+        private void MoveChildren(Panel from, Panel to)
+        {
+            var elements = from.Children.Cast<UIElement>().ToList();
+            from.Children.Clear();
+
+            foreach (var element in elements)
+            {
+                to.Children.Add(element);
+            }
         }
     }
 }
