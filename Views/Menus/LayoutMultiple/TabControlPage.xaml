@@ -29,7 +29,7 @@
         <Style x:Key="myArrowTabControlStyle" TargetType="{x:Type TabControl}" >
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="TabControl">
+                    <ControlTemplate TargetType="{x:Type TabControl}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="24" />

@@ -110,7 +110,7 @@
             <!-- 自作ハイパーリンクコントロール -->
             <StackPanel Margin="0,5" Orientation="Horizontal" >
                 <TextBlock Text="自作ハイパーリンクコントロール :  " />
-                <ctrl:HyperlinkTextBlock NavigateUri="https://www.google.co.jp/" />
+                <ctrl:HyperlinkTextBlock Text="Google" NavigateUri="https://www.google.co.jp/" />
             </StackPanel>
             
         </StackPanel>

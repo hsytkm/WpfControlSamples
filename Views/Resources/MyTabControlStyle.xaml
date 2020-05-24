@@ -29,8 +29,8 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MyTabControlStyle2" TargetType="{x:Type TabControl}"
-           BasedOn="{StaticResource MyTabControlStyle1}" >
+    <Style x:Key="MyTabControlStyle2"
+           TargetType="{x:Type TabControl}" BasedOn="{StaticResource MyTabControlStyle1}" >
         <Setter Property="Background" Value="LightGray" />
 
         <!-- Style 内で InteractionTriggers を設定して、表示時に先頭Tabを選択する Action を実行している。

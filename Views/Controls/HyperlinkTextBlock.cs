@@ -17,10 +17,19 @@ namespace WpfControlSamples.Views.Controls
 {
     /// <summary>
     /// TextBlock内にHyperlinkを持つコントロール
-    ///   <ctrl:HyperlinkTextBlock NavigateUri="https://www.google.co.jp/" />
+    ///   <ctrl:HyperlinkTextBlock Text="Google" NavigateUri="https://www.google.co.jp/" />
     /// </summary>
     class HyperlinkTextBlock : TextBlock
     {
+        public new static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register(nameof(Text), typeof(string), typeof(HyperlinkTextBlock));
+
+        public new string Text
+        {
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
+        }
+
         public static readonly DependencyProperty NavigateUriProperty =
             DependencyProperty.Register(
                 nameof(NavigateUri), typeof(Uri), typeof(HyperlinkTextBlock),
@@ -55,12 +64,14 @@ namespace WpfControlSamples.Views.Controls
         /// 自作Hyperlinkの作成
         /// </summary>
         /// <param name="uri"></param>
-        private static Hyperlink CreateMyHyperlink(Uri uri)
+        private Hyperlink CreateMyHyperlink(Uri uri)
         {
             if (uri is null) throw new ArgumentNullException();
 
+            var text = !string.IsNullOrEmpty(Text) ? Text : uri.AbsoluteUri;
+
             var hyperlink = new Hyperlink() { NavigateUri = uri };
-            var textBlock = new TextBlock() { Text = uri.AbsoluteUri };
+            var textBlock = new TextBlock() { Text = text };
             hyperlink.Inlines.Add(textBlock);
 
             // 自作Hyperlinkのイベント追加

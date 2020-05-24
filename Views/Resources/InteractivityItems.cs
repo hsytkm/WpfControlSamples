@@ -23,13 +23,13 @@ namespace WpfControlSamples.Views.Resources
         /// Storage for triggers
         /// </summary>
         public new List<Microsoft.Xaml.Behaviors.TriggerBase> Triggers =>
-            _triggers ?? (_triggers = new List<Microsoft.Xaml.Behaviors.TriggerBase>());
+            _triggers ??= new List<Microsoft.Xaml.Behaviors.TriggerBase>();
         private List<Microsoft.Xaml.Behaviors.TriggerBase> _triggers;
 
         /// <summary>
         /// Storage for Behaviors
         /// </summary>
-        public List<Behavior> Behaviors => _behaviors ?? (_behaviors = new List<Behavior>());
+        public List<Behavior> Behaviors => _behaviors ??= new List<Behavior>();
         private List<Behavior> _behaviors;
 
         #region Template attached property

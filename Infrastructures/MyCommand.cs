@@ -23,7 +23,7 @@ namespace WpfControlSamples.Infrastructures
 
         public bool CanExecute(object parameter)
         {
-            return (_canExecute is null) ? true : _canExecute();
+            return (_canExecute is null) || _canExecute();
         }
 
         public void ChangeCanExecute()
@@ -53,7 +53,7 @@ namespace WpfControlSamples.Infrastructures
 
         public bool CanExecute(object parameter)
         {
-            return (_canExecute is null) ? true : _canExecute();
+            return (_canExecute is null) || _canExecute();
         }
 
         public void ChangeCanExecute()

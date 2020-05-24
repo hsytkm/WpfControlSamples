@@ -54,11 +54,11 @@
     -->
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
-        <!-- 
+        
         <TabItem Header="Test" >
-            <menus:AttachedPropertyPage />
+            <menus:ListView2Page />
         </TabItem>
-        ↑仮置き↑ -->
+        <!-- ↑仮置き↑ -->
 
         
         <TabItem Header="Systems" >

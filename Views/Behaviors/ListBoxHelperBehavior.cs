@@ -5,7 +5,14 @@ using System.Windows.Controls;
 
 namespace WpfControlSamples.Views.Behaviors
 {
+    // NotifySelectedItemsAction.cs に変更
+    // (Behavior より Action の方が何してるか分かりやすそうなので)
+#if false
     // ListBox.SelectedItems に setter がないので Behavior で対応
+    //
+    // <i:Interaction.Behaviors>
+    //     <vb:ListBoxHelperBehavior NotifySelectedItems="{Binding NotifySelectedColors, Mode=OneWay}" />
+    // </i:Interaction.Behaviors>
     class ListBoxHelperBehavior : Behavior<ListBox>
     {
         public static readonly DependencyProperty NotifySelectedItemsProperty =
@@ -58,4 +65,5 @@ namespace WpfControlSamples.Views.Behaviors
             }
         }
     }
+#endif
 }
