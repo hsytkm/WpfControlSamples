@@ -32,6 +32,7 @@ namespace WpfControlSamples.Views.Menus
                 Interval = new TimeSpan(hours: 0, minutes: 0, seconds: 1)
             };
             timer.Tick += Timer_Tick;
+            //timer.Start();
             _dispatcherTimer = timer;
 
             UpdateDataContext(0);
@@ -42,16 +43,16 @@ namespace WpfControlSamples.Views.Menus
 
         private void UpdateDataContext(int counter) => DataContext = counter;
 
-        public ICommand StartTimerCommand => _startTimerCommand ??
-            (_startTimerCommand = new MyCommand(
+        public ICommand StartTimerCommand =>
+            _startTimerCommand ??= new MyCommand(
                 () => SwitchTimer(start: true),
-                () => !_dispatcherTimer.IsEnabled));
+                () => !_dispatcherTimer.IsEnabled);
         private ICommand _startTimerCommand;
 
-        public ICommand StopTimerCommand => _stopTimerCommand ??
-            (_stopTimerCommand = new MyCommand(
+        public ICommand StopTimerCommand =>
+            _stopTimerCommand ??= new MyCommand(
                 () => SwitchTimer(start: false),
-                () => _dispatcherTimer.IsEnabled));
+                () => _dispatcherTimer.IsEnabled);
         private ICommand _stopTimerCommand;
 
         private void SwitchTimer(bool start)

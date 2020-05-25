@@ -4,6 +4,7 @@ using System.Windows.Controls;
 
 namespace WpfControlSamples.Views.Behaviors
 {
+    // ◆Behavior から TriggerAction に作り替えた方が良い気がするが、そもそも使わないので放っておく。
     class IntSliderBehavior : Behavior<Slider>
     {
         public static readonly DependencyProperty IntValueProperty =

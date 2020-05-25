@@ -1,0 +1,77 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.TypeConverterPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                xmlns:sysext="clr-namespace:System;assembly=System.Runtime.Extensions"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!--
+        IValueConverterとTypeConverterの違い
+            https://tocsworld.wordpress.com/2014/04/20/wpf%E3%81%A7%E3%81%AEivalueconverter%E3%81%A8typeconverter/
+    
+            TypeConverterは.NET1.0からあるクラスでWPF(.NET3.0以降ですよね)の生まれる前から存在するクラスです。
+            TypeConverterはXAMLパーサーが使うコンバーターです。
+            というのもXAMLではほとんどすべてのプロパティや値をstringで指定しますが、
+            それぞれが適切な型として適用されるにはその間にコンバーターが介在しているからで、それがTypeConverterなのです。
+            数値や列挙型等組み込みのコンバーターは事前に定義されているので気付かぬうちに使っている、ありがたい存在です。
+
+        WPFのXAMLのTypeConverterお試し
+            https://blog.okazuki.jp/entry/2014/06/23/124835
+
+        TypeConverterの汎用化
+            https://qiita.com/Temarin/items/0530a7dd77a98204c1b6
+    -->
+    <ContentControl.Resources>
+        <local:CharactorProfile x:Key="data0">JoJo0</local:CharactorProfile>
+        <local:CharactorProfile x:Key="data1">JoJo1</local:CharactorProfile>
+        <local:CharactorProfileCapsule x:Key="data2" Profile="JoJo2" />
+        <local:StandUserProfile x:Key="data3">JoJo3</local:StandUserProfile>
+    </ContentControl.Resources>
+    
+    <StackPanel Margin="10" >
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}" Style="{x:Null}"
+                   Text="TypeConverter" />
+
+        <TextBlock Margin="10,5" FontSize="{StaticResource FontSizeMicro}"
+                   Text="TypeConverter を使用して、XAML からの Key 指定でインスタンスを作成" />
+        <StackPanel Margin="20,5" >
+            <TextBlock Margin="0,10,0,0" Text="対応済 Key なので、予約したインスタンスを作成する" />
+            <TextBlock Margin="20,0,0,10" Foreground="Blue"
+                       Text="{Binding ., Source={StaticResource data1}, StringFormat='Key=JoJo1  ->  {0}'}" />
+
+            <TextBlock Margin="0,10,0,0" Text="setter に Key を渡して、予約したインスタンスを作成する" />
+            <TextBlock Margin="20,0,0,10" Foreground="Green"
+                       Text="{Binding Profile, Source={StaticResource data2}, StringFormat='Key=JoJo2  ->  {0}'}" />
+
+            <TextBlock Margin="0,10,0,0" >
+                <Run Text="継承したクラスに Key を渡して、インスタンスを作成する" />
+                <LineBreak/>
+                <Run Text="xaml 上では warning が出てるけど動作する (~~ではダイレクトコンテンツがサポートされていません)" />
+            </TextBlock>
+            <TextBlock Margin="20,0,0,10" Foreground="Purple"
+                       Text="{Binding ., Source={StaticResource data3}, StringFormat='Key=JoJo3  ->  {0}'}" />
+
+            <TextBlock Margin="0,10,0,0" Text="未対応の Key なのでデフォルトインスタンスになる" />
+            <TextBlock Margin="20,0,0,10" Foreground="Red"
+                       Text="{Binding ., Source={StaticResource data0}, StringFormat='Key=JoJo0  (Not supported key)  ->  {0}'}" />
+        </StackPanel>
+
+        <TextBlock Margin="10,5" FontSize="{StaticResource FontSizeMicro}" >
+            上記の代替：static getter を使用してインスタンスを取得
+            <LineBreak/>
+            この対応ならこちらの方が良い（こちらの対応で済む）
+        </TextBlock>
+        <StackPanel Margin="20,5" >
+            <TextBlock Margin="20,0,0,10" Foreground="Blue"
+                       Text="{Binding Source={x:Static local:CharactorProfile.Giogio},
+                                      StringFormat='CharactorProfile.Giogio  ->  {0}'}" />
+        </StackPanel>
+
+
+    </StackPanel>
+</ContentControl>

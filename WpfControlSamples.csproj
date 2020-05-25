@@ -138,6 +138,9 @@
     <Page Update="Views\Menus\EditingText\EditingTextMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior5Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior4Page.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -255,7 +258,7 @@
     <Page Update="Views\Menus\LayoutSingle\BorderPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Menus\ThumbPage.xaml">
+    <Page Update="Views\Menus\Informations\ThumbPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Presentation\MediaElementPage.xaml">
@@ -420,34 +423,37 @@
     <Page Update="Views\Menus\Dispatchers\DispatcherObjectPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Menus\ContextMenuPage.xaml">
+    <Page Update="Views\Menus\Informations\ContextMenuPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Dispatchers\DispatcherTimerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Menus\ToolBarPage.xaml">
+    <Page Update="Views\Menus\Informations\ToolBarPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\WindowsDeskop\MessageBoxPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Menus\MenuPage.xaml">
+    <Page Update="Views\Menus\Informations\MenuPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Menus\PopupPage.xaml">
+    <Page Update="Views\Menus\Informations\PopupPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Menus\ToolTipPage.xaml">
+    <Page Update="Views\Menus\Informations\ToolTipPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Menus\MenusMenuTab.xaml">
+    <Page Update="Views\Menus\Informations\InformationsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\WindowsDeskop\WindowsDeskopMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\WindowsDeskop\ApplicationCommandsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\TypeConverterPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\MultiBinding2Page.xaml">

@@ -35,19 +35,9 @@
             https://blog.okazuki.jp/entry/20100419/1271686512
         [WPF] IDataErrorInfoとValidation.ErrorTemplateを利用してエラーを表示する
             https://www.pine4.net/Memo/Article/Archives/427
-    
-        WPFのXAMLのTypeConverterお試し
-            https://blog.okazuki.jp/entry/2014/06/23/124835
-        IValueConverterとTypeConverterの違い
-            https://tocsworld.wordpress.com/2014/04/20/wpf%E3%81%A7%E3%81%AEivalueconverter%E3%81%A8typeconverter/
-        TypeConverterの汎用化
-            https://qiita.com/Temarin/items/0530a7dd77a98204c1b6
 
         WPF 4.5での新機能 リアルタイムソート、グルーピング、フィルタリング(LiveShaping)
             https://blog.okazuki.jp/entry/2013/12/07/000341
-    
-        WPFでクリック時に波紋を出すエフェクト(Ripple Effect)を実装する
-            https://takachan.hatenablog.com/entry/2017/12/21/234425
     
         Per-Monitor DPI 環境下で WPF の Window 位置を調整する
             https://blog.shibayan.jp/entry/20190612/1560267647
@@ -56,7 +46,7 @@
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
         
         <TabItem Header="Test" >
-            <menus:ListView2Page />
+            <menus:RippleButtonPage />
         </TabItem>
         <!-- ↑仮置き↑ -->
 
@@ -101,8 +91,8 @@
             <menus:ShapesMenuTab />
         </TabItem>
 
-        <TabItem Header="Menus" >
-            <menus:MenusMenuTab />
+        <TabItem Header="Informations" >
+            <menus:InformationsMenuTab />
         </TabItem>
 
         <TabItem Header="LayoutSingle" >

@@ -24,7 +24,11 @@
         <local:MarkupPage />
     </TabItem>
 
-    <TabItem Header="ValueConverter" >
+    <TabItem Header="TypeConverter" >
+        <local:TypeConverterPage />
+    </TabItem>
+
+    <TabItem Header="IValueConverter" >
         <local:ValueConverterPage />
     </TabItem>
 

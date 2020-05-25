@@ -17,11 +17,11 @@ namespace WpfControlSamples.Extensions
             if (!File.Exists(imagePath)) throw new FileNotFoundException();
 
             var bi = new BitmapImage();
-            using (var fs = File.Open(imagePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var stream = File.Open(imagePath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 bi.BeginInit();
                 bi.CacheOption = BitmapCacheOption.OnLoad;
-                bi.StreamSource = fs;
+                bi.StreamSource = stream;
                 bi.EndInit();
             }
             bi.Freeze();
@@ -45,6 +45,7 @@ namespace WpfControlSamples.Extensions
                 bi.StreamSource = stream;
                 bi.EndInit();
             }
+            bi.Freeze();
 
             if (bi.Width == 1 && bi.Height == 1) throw new OutOfMemoryException();
             return bi;

@@ -1,4 +1,4 @@
-﻿<TabControl x:Class="WpfControlSamples.Views.Menus.MenusMenuTab"
+﻿<TabControl x:Class="WpfControlSamples.Views.Menus.InformationsMenuTab"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

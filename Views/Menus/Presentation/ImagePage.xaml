@@ -17,10 +17,12 @@
                    Text="BuildAction: Resource" />
 
         <StackPanel Orientation="Horizontal" Background="LightGray" Margin="10" >
-            <!-- どちらの指定でも表示される -->
+            <!-- どのSource指定でも表示される -->
             <Image Source="/Resources/Images/Resource1.png"
                    Width="100" Height="100" />
             <Image Source="/WpfControlSamples;component/Resources/Images/Resource2.png"
+                   Width="100" Height="100" />
+            <Image Source="pack://application:,,,/WpfControlSamples;component/Resources/Images/Resource3.png"
                    Width="100" Height="100" />
         </StackPanel>
 
