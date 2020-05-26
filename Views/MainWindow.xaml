@@ -46,7 +46,7 @@
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
         
         <TabItem Header="Test" >
-            <menus:RippleButtonPage />
+            <menus:FluidMoveBehavior6Page />
         </TabItem>
         <!-- ↑仮置き↑ -->
 

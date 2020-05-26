@@ -12,7 +12,7 @@ using System.Windows.Media;
  *    https://stackoverflow.com/questions/833943/watermark-hint-text-placeholder-textbox
  *    
  *    使用例
- *      Margin は AdornerDecorator に設定しないすること（TextBox に設定すると Watermark がずれる）
+ *      Margin は AdornerDecorator に設定すること（TextBox に設定すると Watermark がずれる）
  *        <AdornerDecorator Margin="10,5" >
  *            <TextBox>
  *                <helper:WatermarkService.Watermark>
@@ -83,17 +83,15 @@ namespace WpfControlSamples.Views.Helpers
                 ((TextBox)control).TextChanged += Control_GotKeyboardFocus;
             }
 
-            if (d is ItemsControl && !(d is ComboBox))
+            if (d is ItemsControl control1 && !(d is ComboBox))
             {
-                var i = (ItemsControl)d;
-
                 // for Items property  
-                i.ItemContainerGenerator.ItemsChanged += ItemsChanged;
-                itemsControls.Add(i.ItemContainerGenerator, i);
+                control1.ItemContainerGenerator.ItemsChanged += ItemsChanged;
+                itemsControls.Add(control1.ItemContainerGenerator, control1);
 
                 // for ItemsSource property  
-                var prop = DependencyPropertyDescriptor.FromProperty(ItemsControl.ItemsSourceProperty, i.GetType());
-                prop.AddValueChanged(i, ItemsSourceChanged);
+                var prop = DependencyPropertyDescriptor.FromProperty(ItemsControl.ItemsSourceProperty, control1.GetType());
+                prop.AddValueChanged(control1, ItemsSourceChanged);
             }
         }
 
@@ -228,10 +226,10 @@ namespace WpfControlSamples.Views.Helpers
         private static bool ShouldShowWatermark(Control c)
         {
             if (c is ComboBox)
-                return (c as ComboBox).Text == string.Empty;
+                return string.IsNullOrEmpty((c as ComboBox).Text);
 
             if (c is TextBoxBase)
-                return (c as TextBox).Text == string.Empty;
+                return string.IsNullOrEmpty((c as TextBox).Text);
 
             if (c is ItemsControl)
                 return (c as ItemsControl).Items.Count == 0;
@@ -252,7 +250,7 @@ namespace WpfControlSamples.Views.Helpers
         /// <summary>
         /// <see cref="ContentPresenter"/> that holds the watermark
         /// </summary>
-        private readonly ContentPresenter contentPresenter;
+        private readonly ContentPresenter _contentPresenter;
 
         #endregion
 
@@ -267,7 +265,7 @@ namespace WpfControlSamples.Views.Helpers
         {
             IsHitTestVisible = false;
 
-            contentPresenter = new ContentPresenter
+            _contentPresenter = new ContentPresenter
             {
                 Content = watermark,
                 Opacity = 0.3,
@@ -276,8 +274,8 @@ namespace WpfControlSamples.Views.Helpers
 
             if (Control is ItemsControl && !(Control is ComboBox))
             {
-                contentPresenter.VerticalAlignment = VerticalAlignment.Center;
-                contentPresenter.HorizontalAlignment = HorizontalAlignment.Center;
+                _contentPresenter.VerticalAlignment = VerticalAlignment.Center;
+                _contentPresenter.HorizontalAlignment = HorizontalAlignment.Center;
             }
 
             // Hide the control adorner when the adorned element is hidden
@@ -324,7 +322,7 @@ namespace WpfControlSamples.Views.Helpers
         /// <returns>The child <see cref="Visual"/>.</returns>
         protected override Visual GetVisualChild(int index)
         {
-            return contentPresenter;
+            return _contentPresenter;
         }
 
         /// <summary>
@@ -335,7 +333,7 @@ namespace WpfControlSamples.Views.Helpers
         protected override Size MeasureOverride(Size constraint)
         {
             // Here's the secret to getting the adorner to cover the whole control
-            contentPresenter.Measure(Control.RenderSize);
+            _contentPresenter.Measure(Control.RenderSize);
             return Control.RenderSize;
         }
 
@@ -346,7 +344,7 @@ namespace WpfControlSamples.Views.Helpers
         /// <returns>The actual size used.</returns>
         protected override Size ArrangeOverride(Size finalSize)
         {
-            contentPresenter.Arrange(new Rect(finalSize));
+            _contentPresenter.Arrange(new Rect(finalSize));
             return finalSize;
         }
 

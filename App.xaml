@@ -11,7 +11,6 @@
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BoolToVisiConverter" />
             <vc:NotBooleanConverter x:Key="NotBoolConverter" />
-            <vc:InverseBooleanToVisibilityConverter x:Key="InvBoolToVisiConverter" />
             <vc:ColorToBrushConverter x:Key="ColorToBrushConverter" />
             <vc:EmptyStringToTrueConverter x:Key="EmptyStringToTrueConverter" />
             <vc:BooleansAreAllFalseConverter x:Key="BooleansAreAllFalseConverter" />

@@ -28,24 +28,28 @@
         <local:ConditionBehaviorPage />
     </TabItem>
 
-    <TabItem Header="FluidMove1" >
+    <TabItem Header="FluidMoveBehavior1" >
         <local:FluidMoveBehavior1Page />
     </TabItem>
 
-    <TabItem Header="FluidMove2" >
+    <TabItem Header="FluidMoveBehavior2" >
         <local:FluidMoveBehavior2Page />
     </TabItem>
 
-    <TabItem Header="FluidMove3" >
+    <TabItem Header="FluidMoveBehavior3" >
         <local:FluidMoveBehavior3Page />
     </TabItem>
 
-    <TabItem Header="FluidMove4" >
+    <TabItem Header="FluidMoveBehavior4" >
         <local:FluidMoveBehavior4Page />
     </TabItem>
 
-    <TabItem Header="FluidMove5" >
+    <TabItem Header="FluidMoveBehavior5" >
         <local:FluidMoveBehavior5Page />
     </TabItem>
 
+    <TabItem Header="FluidMoveBehavior6" >
+        <local:FluidMoveBehavior6Page />
+    </TabItem>
+    
 </TabControl>

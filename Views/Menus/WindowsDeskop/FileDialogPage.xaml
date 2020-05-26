@@ -9,15 +9,27 @@
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
+    <!-- How to reference System.Windows.Forms in .NET Core 3.0 for WPF apps?
+            https://stackoverflow.com/questions/58844785/how-to-reference-system-windows-forms-in-net-core-3-0-for-wpf-apps
+    -->
+    
     <ContentControl.DataContext>
         <local:FileDialogViewModel />
     </ContentControl.DataContext>
     
     <DockPanel Margin="10" >
-        <TextBlock DockPanel.Dock="Top" 
-                   Margin="0,10,0,0"
+        <TextBlock DockPanel.Dock="Top" Margin="0,10,0,0"
                    FontSize="{StaticResource FontSizeMedium}"
-                   Text="OpenFileDialog / SaveFileDialog" />
+                   Text="Open / Save FileDialog" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="10,10,0,0"
+                   Foreground="Red" >
+            Directory は基本機能のみで選択できない。
+            <LineBreak/>
+            System.Windows.Forms.dll を導入するか、OSS 探すしかないっぽい。
+            <LineBreak/>
+            OSS は Ookii.Dialogs が有名っぽい（未確認）
+        </TextBlock>
 
         <StackPanel DockPanel.Dock="Top" 
                     Margin="10" Background="LightBlue" >

@@ -32,12 +32,16 @@
         <local:DataGridPage />
     </TabItem>
 
-    <TabItem Header="CollectionView" >
-        <local:CollectionViewPage />
+    <TabItem Header="CollectionView1" >
+        <local:CollectionView1Page />
     </TabItem>
 
-    <TabItem Header="CollectionSource" >
-        <local:CollectionViewSourcePage />
+    <TabItem Header="CollectionView2" >
+        <local:CollectionView2Page />
+    </TabItem>
+
+    <TabItem Header="CollectionView3" >
+        <local:CollectionView3Page />
     </TabItem>
 
     <TabItem Header="ItemsControl(Radio)" >

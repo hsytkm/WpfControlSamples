@@ -18,17 +18,17 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class CollectionViewPage : ContentControl
+    public partial class CollectionView2Page : ContentControl
     {
-        public CollectionViewPage()
+        public CollectionView2Page()
         {
             InitializeComponent();
 
-            DataContext = new CollectionViewViewModel();
+            DataContext = new CollectionView2ViewModel();
         }
     }
 
-    class CollectionViewViewModel : MyBindableBase
+    class CollectionView2ViewModel : MyBindableBase
     {
         public IList<ColorListViewItem> SourceColors { get; } =
             Models.SampleData.WpfColors.Select(x => new ColorListViewItem(x)).ToList();
@@ -97,17 +97,4 @@ namespace WpfControlSamples.Views.Menus
 
     }
 
-    class HueGroupConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var hue = (int)Math.Round((double)value);
-            return (hue / 10) * 10;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }

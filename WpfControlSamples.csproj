@@ -84,7 +84,16 @@
     <Page Update="Views\Menus\Dispatchers\DispatchersMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\DisplayCollections\CollectionView3Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\EditingText\WatermarkTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\InteractionActions\RemoveItemInListBoxActionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior6SubItem.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior1Page.xaml">
@@ -105,7 +114,7 @@
     <Page Update="Views\Menus\Animations\DoubleAnimationPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\DisplayCollections\CollectionViewSourcePage.xaml">
+    <Page Update="Views\Menus\DisplayCollections\CollectionView2Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\DisplayCollections\DataGridPage.xaml">
@@ -136,6 +145,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\EditingText\EditingTextMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior6Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior5Page.xaml">
@@ -273,10 +285,10 @@
     <Page Update="Views\Menus\DisplayCollections\ComboBoxPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\SettingValues\FileDropPage.xaml">
+    <Page Update="Views\Menus\WindowsDeskop\FileDropPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\SettingValues\FileDialogPage.xaml">
+    <Page Update="Views\Menus\WindowsDeskop\FileDialogPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\SettingValues\CalendarPage.xaml">

@@ -17,6 +17,10 @@
             </Style>
 
             <conv:DoubleToIntegerConverter x:Key="DoubleToIntConverter" />
+
+            <conv:AddIntegerConverter x:Key="AddIntConverter" />
+            <system:Int32 x:Key="IntData">1</system:Int32>
+            <system:Int32 x:Key="IntTen">10</system:Int32>
         </ResourceDictionary>
     </ContentControl.Resources>
 
@@ -26,7 +30,7 @@
 
         <!-- DoubleToIntConverter -->
         <TextBlock Margin="10,5" FontSize="{StaticResource FontSizeMicro}"
-                   Text="ConverterParameterを使って、入力double に指定値を乗算する" />
+                   Text="ConverterParameterを使って、入力 double に指定値を乗算する" />
         <DockPanel Background="LightGray" Margin="10" >
             <Slider x:Name="slider1" Margin="30,10" Width="100" HorizontalAlignment="Left"
                     Minimum="0" Maximum="1" />
@@ -44,6 +48,26 @@
                            Text="{Binding Source={x:Reference slider1}, Path=Value, StringFormat='Value * 255 is {0}',
                                           Converter={StaticResource DoubleToIntConverter},
                                           ConverterParameter=255}" />
+            </StackPanel>
+        </DockPanel>
+
+        <!-- AddIntConverter -->
+        <TextBlock Margin="10,5" FontSize="{StaticResource FontSizeMicro}"
+                   Text="ConverterParameterを使って、入力 int に指定値を加算する" />
+        <DockPanel Background="LightGray" Margin="10" >
+            <StackPanel>
+                <TextBlock Margin="10,3"
+                           Text="{Binding Source={StaticResource IntData}, StringFormat='Value is {0}'}" />
+
+                <TextBlock Margin="10,3"
+                           Text="{Binding Source={StaticResource IntData}, StringFormat='Value + 1 is {0}',
+                                          Converter={StaticResource AddIntConverter},
+                                          ConverterParameter=1}" />
+
+                <TextBlock Margin="10,3"
+                           Text="{Binding Source={StaticResource IntData}, StringFormat='Value + 10 is {0}',
+                                          Converter={StaticResource AddIntConverter},
+                                          ConverterParameter={StaticResource IntTen}}" />
             </StackPanel>
         </DockPanel>
 

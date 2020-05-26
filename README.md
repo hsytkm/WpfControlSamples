@@ -3,7 +3,7 @@
 .NET Core WPF Control Samples
 
 
-## 参考にさせて頂いたウェブページ
+## Reference Website
 
 [Microsoft Docs WPF](https://docs.microsoft.com/ja-jp/dotnet/framework/wpf/)
 
@@ -16,6 +16,8 @@
 [ItemsControl 攻略 ～ 外観のカスタマイズ](http://grabacr.net/archives/1240)
 
 [創造的プログラミングと粘土細工](http://pro.art55.jp/)
+
+[What's the difference betwen a UserControl and a ContentControl?](https://stackoverflow.com/questions/18781679/whats-the-difference-betwen-a-usercontrol-and-a-contentcontrol)
 
 ## Assets
 

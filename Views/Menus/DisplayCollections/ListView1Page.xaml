@@ -121,6 +121,11 @@
                                                 Property="Background" Value="LightBlue" />
                                         <Setter Property="Foreground" Value="Blue" />
                                     </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="backgroundPanel"
+                                                Property="Background" Value="LightPink" />
+                                        <Setter Property="Foreground" Value="Red" />
+                                    </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>

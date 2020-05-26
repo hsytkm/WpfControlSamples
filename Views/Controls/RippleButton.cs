@@ -11,6 +11,9 @@ namespace WpfControlSamples.Views.Controls
 {
     // WPFでクリック時に波紋を出すエフェクト(Ripple Effect)を実装する
     // https://takachan.hatenablog.com/entry/2017/12/21/234425
+    // 
+    // ResourceDictionary の Style と合わせて使用する必要がある。
+    // 面倒なので Style をコードに埋め込みたい。
     class RippleButton : Button
     {
         public static readonly DependencyProperty RippleColorProperty =

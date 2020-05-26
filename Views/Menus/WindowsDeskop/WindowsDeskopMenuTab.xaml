@@ -28,4 +28,12 @@
         <local:ApplicationCommandsPage />
     </TabItem>
 
+    <TabItem Header="FileDialog" >
+        <local:FileDialogPage />
+    </TabItem>
+
+    <TabItem Header="FileDrop" >
+        <local:FileDropPage />
+    </TabItem>
+
 </TabControl>

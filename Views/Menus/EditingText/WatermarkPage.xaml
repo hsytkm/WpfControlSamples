@@ -14,8 +14,9 @@
                    Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
                    Text="Watermarked TextBox" />
 
+        <!-- Pattern 1 -->
         <TextBlock Margin="10,5"
-                   Text="xamlのみで実現(TextBoxに名前を付ける必用がありだるい…)" />
+                   Text="xamlのみで実現(TextBoxに名前を付ける必要がありだるい…)" />
         <Grid Margin="20,5" >
             <TextBox x:Name="textBox1" />
 
@@ -34,7 +35,7 @@
             </TextBlock>
 
             <!-- クリアボタン(文字が長くなるとボタンと被るが何もしていない…) -->
-            <Button Margin="0,0,5,0" HorizontalAlignment="Right" >
+            <Button HorizontalAlignment="Right" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click" >
                         <i:ChangePropertyAction TargetName="textBox1" PropertyName="Text" Value="" />
@@ -60,11 +61,11 @@
                                                 <Condition Binding="{Binding Text, Source={x:Reference Name=textBox1}, Converter={StaticResource EmptyStringToTrueConverter}}" Value="False" />
                                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
                                             </MultiDataTrigger.Conditions>
-                                            <Setter Property="Foreground" Value="Blue" />
+                                            <Setter Property="Foreground" Value="DodgerBlue" />
                                         </MultiDataTrigger>
                                     </ControlTemplate.Triggers>
 
-                                    <TextBlock Text="×■" FontWeight="Bold"
+                                    <TextBlock Text="×■" FontWeight="Bold" Background="White" Margin="1" Padding="5,0"
                                                Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" />
                                 </ControlTemplate>
                             </Setter.Value>
@@ -74,12 +75,23 @@
             </Button>
         </Grid>
 
+        <!-- Pattern 2 -->
+        <TextBlock Margin="10,20,0,5"
+                   Text="上と同じ。 ベタ xaml を ContentControl にまとめただけ" />
+        <local:WatermarkTextBox x:Name="watermarkTextBox"
+                                Margin="20,5"
+                                WatermarkText="This is watermark2." />
+
+        <TextBlock Margin="20,5" Foreground="Gray"
+                   Text="{Binding Text, Source={x:Reference watermarkTextBox}}" />
+
+        <!-- Pattern 3 -->
         <TextBlock Margin="10,20,0,5"
                    Text="添付プロパティで実現（ウェブコピペ） ※やる気出たらクリアボタンを内蔵させたい…" />
         <AdornerDecorator Margin="20,5" >
             <TextBox>
                 <helper:WatermarkService.Watermark>
-                    <TextBlock Margin="5,0,0,0" Text="This is watermark2." />
+                    <TextBlock Margin="5,0,0,0" Text="This is watermark3." />
                 </helper:WatermarkService.Watermark>
             </TextBox>
         </AdornerDecorator>

@@ -19,7 +19,7 @@
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
                    Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
-                   Text="ListBox2 (Multiple)" />
+                   Text="ListBox 2 (Multiple)" />
 
         <DockPanel DockPanel.Dock="Top" >
             <Button DockPanel.Dock="Right"
