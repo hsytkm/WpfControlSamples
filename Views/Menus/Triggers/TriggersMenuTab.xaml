@@ -8,12 +8,8 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Style="{StaticResource MyTabControlStyle2}" >
 
-    <TabItem Header="PropertyTrigger" >
-        <local:PropertyTriggerPage />
-    </TabItem>
-
-    <TabItem Header="MultiTrigger" >
-        <local:MultiTriggerPage />
+    <TabItem Header="EventTrigger" >
+        <local:EventTriggerPage />
     </TabItem>
 
     <TabItem Header="DataTrigger" >
@@ -22,6 +18,14 @@
 
     <TabItem Header="MultiDataTrigger" >
         <local:MultiDataTriggerPage />
+    </TabItem>
+
+    <TabItem Header="TriggerProperty" >
+        <local:TriggerPropertyPage />
+    </TabItem>
+    
+    <TabItem Header="MultiTrigger" >
+        <local:MultiTriggerPage />
     </TabItem>
 
 </TabControl>

@@ -14,58 +14,47 @@
     <ContentControl.Resources>
         <Path x:Key="arrowLeft"
               Stroke="Black" Fill="Black" Stretch="None"
-              VerticalAlignment="Center" HorizontalAlignment="Center" >
-            <Path.Data>
-                <Geometry>M0,3 L6,6 6,0Z</Geometry>
-            </Path.Data>
-        </Path>
+              VerticalAlignment="Center" HorizontalAlignment="Center"
+              Data="M0,3 L6,6 6,0Z" />
         <Path x:Key="arrowRight"
               Stroke="Black" Fill="Black" Stretch="None"
-              VerticalAlignment="Center" HorizontalAlignment="Center" >
-            <Path.Data>
-                <Geometry>M0,0 L6,3 L0,6Z</Geometry>
-            </Path.Data>
-        </Path>
-        <Style x:Key="myArrowTabControlStyle" TargetType="{x:Type TabControl}" >
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TabControl}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="24" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
+              VerticalAlignment="Center" HorizontalAlignment="Center"
+              Data="M0,0 L6,3 L0,6Z" />
 
-                            <DockPanel Grid.Row="0" Height="{TemplateBinding TabPanel.Height}" >
-                                <RepeatButton DockPanel.Dock="Right" Width="24"
-                                              Content="{StaticResource arrowRight}"
-                                              CommandTarget="{Binding Source={x:Reference Name=scrollViewer}}"
-                                              Command="ScrollBar.LineRightCommand" />
-                                <RepeatButton DockPanel.Dock="Right" Width="24"
-                                              Content="{StaticResource arrowLeft}"
-                                              CommandTarget="{Binding Source={x:Reference Name=scrollViewer}}"
-                                              Command="ScrollBar.LineLeftCommand" />
-                                <ScrollViewer x:Name="scrollViewer" CanContentScroll="True"
-                                              HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" >
-                                    <StackPanel Orientation="Horizontal" IsItemsHost="True" />
-                                </ScrollViewer>
-                            </DockPanel>
+        <ControlTemplate x:Key="TabControlTemplate" TargetType="{x:Type TabControl}" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-                            <Border Grid.Row="1"
-                                    BorderThickness="{TemplateBinding Border.BorderThickness}"
-                                    BorderBrush="{TemplateBinding Border.BorderBrush}"
-                                    Background="{TemplateBinding Panel.Background}" >
-                                <ContentPresenter ContentSource="SelectedContent"
-                                                  Content="{TemplateBinding TabControl.SelectedContent}"
-                                                  ContentTemplate="{TemplateBinding TabControl.SelectedContentTemplate}"
-                                                  ContentStringFormat="{TemplateBinding TabControl.SelectedContentStringFormat}"
-                                                  Margin="{TemplateBinding Control.Padding}" />
-                            </Border>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+                <DockPanel Grid.Row="0" Height="{TemplateBinding TabPanel.Height}" >
+                    <RepeatButton DockPanel.Dock="Right" Width="24"
+                                  Content="{StaticResource arrowRight}"
+                                  CommandTarget="{Binding Source={x:Reference Name=scrollViewer}}"
+                                  Command="ScrollBar.LineRightCommand" />
+                    <RepeatButton DockPanel.Dock="Right" Width="24"
+                                  Content="{StaticResource arrowLeft}"
+                                  CommandTarget="{Binding Source={x:Reference Name=scrollViewer}}"
+                                  Command="ScrollBar.LineLeftCommand" />
+                    <ScrollViewer x:Name="scrollViewer" CanContentScroll="True"
+                                  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" >
+                        <StackPanel Orientation="Horizontal" IsItemsHost="True" />
+                    </ScrollViewer>
+                </DockPanel>
+
+                <Border Grid.Row="1"
+                        BorderThickness="{TemplateBinding Border.BorderThickness}"
+                        BorderBrush="{TemplateBinding Border.BorderBrush}"
+                        Background="{TemplateBinding Panel.Background}" >
+                    <ContentPresenter ContentSource="SelectedContent"
+                                      Content="{TemplateBinding TabControl.SelectedContent}"
+                                      ContentTemplate="{TemplateBinding TabControl.SelectedContentTemplate}"
+                                      ContentStringFormat="{TemplateBinding TabControl.SelectedContentStringFormat}"
+                                      Margin="{TemplateBinding Control.Padding}" />
+                </Border>
+            </Grid>
+        </ControlTemplate>
     </ContentControl.Resources>
 
     <DockPanel Margin="10" >
@@ -86,7 +75,7 @@
                    Text="自作Style (TabTitle を 1段で表示)" />
 
         <TabControl DockPanel.Dock="Top" Margin="20,5"
-                    Style="{StaticResource myArrowTabControlStyle}"
+                    Template="{StaticResource TabControlTemplate}"
                     ItemsSource="{Binding TabContentSource, Mode=OneTime}"
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
 

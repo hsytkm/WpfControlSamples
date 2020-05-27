@@ -52,6 +52,13 @@ namespace WpfControlSamples.Views.Menus
         }
         private string _selectedColors;
 
+        public bool IsSelectionModeMultiple
+        {
+            get => _isSelectionModeMultiple;
+            set => SetProperty(ref _isSelectionModeMultiple, value);
+        }
+        private bool _isSelectionModeMultiple = true;
+        
         // 選択項目の追加/削除の通知
         public ObservableCollection<object> NotifySelectedColors { get; } =
             new ObservableCollection<object>();

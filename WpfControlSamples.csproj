@@ -26,6 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="Views\Menus\XamlFunctions\DynamicLoadTarget.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="Infrastructures\" />
   </ItemGroup>
@@ -42,6 +46,7 @@
     <Resource Include="Resources\Images\Resource2.png" />
     <Resource Include="Resources\Images\Resource3.png" />
     <Resource Include="Resources\Sounds\Resource1.wav" />
+    <Resource Include="Views\Menus\XamlFunctions\DynamicLoadTarget.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,7 +77,10 @@
     <Page Update="Views\Menus\Animations\AnimationsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Animations\HideControlAnimationPage.xaml">
+    <Page Update="Views\Menus\Animations\HideControlAnimation1Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Animations\HideControlAnimation2Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Animations\DoubleAnimationUsingKeyFramesPage.xaml">
@@ -85,6 +93,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\DisplayCollections\CollectionView3Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\DisplayCollections\ListBox3Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\EditingText\WatermarkTextBox.xaml">
@@ -189,7 +200,7 @@
     <Page Update="Views\Menus\InteractionActions\RemoveElementActionPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\InteractionTriggers\InteractionDataTriggerPage.xaml">
+    <Page Update="Views\Menus\InteractionTriggers\BehaviorsDataTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\InteractionActions\InteractionActionsMenuTab.xaml">
@@ -283,6 +294,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\DisplayCollections\ComboBoxPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Triggers\EventTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\WindowsDeskop\FileDropPage.xaml">
@@ -384,7 +398,7 @@
     <Page Update="Views\Menus\InteractionTriggers\TimerTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\InteractionTriggers\EventTriggerPage.xaml">
+    <Page Update="Views\Menus\InteractionTriggers\BehaviorsEventTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Triggers\MultiTriggerPage.xaml">
@@ -393,7 +407,7 @@
     <Page Update="Views\Menus\Triggers\MultiDataTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Triggers\PropertyTriggerPage.xaml">
+    <Page Update="Views\Menus\Triggers\TriggerPropertyPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Triggers\DataTriggerPage.xaml">
@@ -463,6 +477,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\WindowsDeskop\ApplicationCommandsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\XamlFunctions\DynamicXamlLoadPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\TypeConverterPage.xaml">

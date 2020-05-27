@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,15 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 using WpfControlSamples.Extensions;
 using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class HideControlAnimationPage : ContentControl
+    public partial class TriggerPropertyPage : ContentControl
     {
-        public HideControlAnimationPage()
+        public TriggerPropertyPage()
         {
             InitializeComponent();
         }

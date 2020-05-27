@@ -18,31 +18,48 @@
 
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
-                   Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
-                   Text="ListBox 2 (Multiple)" />
+                   Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
+                   Text="ListBox 2 (Multiple / Extended)" />
 
-        <DockPanel DockPanel.Dock="Top" >
-            <Button DockPanel.Dock="Right"
-                    Content="Clear" Width="100"
-                    Click="UnselectAllExecuted" />
-            <Button DockPanel.Dock="Right"
-                    Content="All" Width="100"
+        <DockPanel DockPanel.Dock="Top" Margin="10,0">
+            <Button DockPanel.Dock="Left" 
+                    Content="All" Width="100" Margin="10,0,0,0" Padding="10,5"
                     Command="ApplicationCommands.SelectAll" />
-
-            <TextBlock DockPanel.Dock="Top"
-                       Margin="0,10"
-                       TextWrapping="WrapWithOverflow" >
-                <Run Text="Selected Color : " FontWeight="Bold" />
-                <Run Text="{Binding SelectedColors, Mode=OneWay}" />
-            </TextBlock>
+            <Button DockPanel.Dock="Left" 
+                    Content="Clear" Width="100" Margin="10,0,0,0" Padding="10,5"
+                    Click="UnselectAllExecuted" />
+            <WrapPanel Margin="20,0,0,0" VerticalAlignment="Center">
+                <RadioButton Content="Multiple" Margin="0,0,20,0"
+                             IsChecked="{Binding IsSelectionModeMultiple, Mode=TwoWay}" />
+                <RadioButton Content="Extended" Margin="0,0,20,0" />
+            </WrapPanel>
         </DockPanel>
 
-        <ListBox x:Name="listBox"
-                 ItemsSource="{Binding SourceColors, Mode=OneWay}"
-                 SelectionMode="Multiple"
-                 VirtualizingStackPanel.IsVirtualizing="True"
-                 VirtualizingStackPanel.VirtualizationMode="Recycling" >
+        <TextBlock DockPanel.Dock="Top" 
+                   Margin="0,10" Height="100"
+                   TextWrapping="WrapWithOverflow" >
+            <Run Text="Selected Color : " FontWeight="Bold" />
+            <Run Text="{Binding SelectedColors, Mode=OneWay}" />
+        </TextBlock>
 
+        <ListBox x:Name="listBox"
+                 ItemsSource="{Binding SourceColors, Mode=OneWay}" >
+            <ListBox.Style>
+                <Style TargetType="{x:Type ListBox}" >
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelectionModeMultiple, Mode=OneWay}"
+                                     Value="True" >
+                            <Setter Property="SelectionMode" Value="Multiple" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelectionModeMultiple, Mode=OneWay}"
+                                     Value="False" >
+                            <Setter Property="SelectionMode" Value="Extended" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.Style>
+
+            <!-- Multiple用の Ctrl+A 対応 (Extended はコレがなくても動作する) -->
             <ListBox.InputBindings>
                 <KeyBinding Command="ApplicationCommands.SelectAll"
                             Modifiers="Ctrl" Key="A" />
@@ -75,13 +92,6 @@
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-
-            <!-- 仮想化してるつもり(効果を評価できてない。効果を雰囲気だけ見た) -->
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
             
         </ListBox>
         

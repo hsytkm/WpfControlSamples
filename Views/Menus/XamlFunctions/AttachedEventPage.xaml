@@ -4,21 +4,12 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
-                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
     <!-- WPF4.5入門 その46 「WPFのイベントシステム」
            https://blog.okazuki.jp/entry/2014/08/22/211021
     -->
-    <ContentControl.Resources>
-        <ResourceDictionary>
-            <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
-                <Setter Property="Margin" Value="0,10,0,0" />
-                <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
-            </Style>
-        </ResourceDictionary>
-    </ContentControl.Resources>
 
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"

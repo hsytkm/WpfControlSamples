@@ -29,6 +29,7 @@
             <Setter Property="Margin" Value="10,0,20,0" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
+            <Setter Property="SelectionMode" Value="Extended" />
         </Style>
 
         <!-- preview ItemsControl -->

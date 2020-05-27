@@ -28,6 +28,10 @@
             <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
                                    CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
         </i:KeyTrigger>
+        <i:KeyTrigger Modifiers="Ctrl" Key="D" >
+            <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
+                                   CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
+        </i:KeyTrigger>
 
         <!-- 全ての入力キーを表示したいなら、別の方法がありそう（未調査） -->
     </i:Interaction.Triggers>
@@ -37,7 +41,7 @@
                    Text="i:KeyTrigger" />
 
         <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
-                   Text="Detect key push:  F1 / F2 / F3 / F4" />
+                   Text="Detect key push:  F1 / F2 / F3 / F4 / Ctrl+D" />
 
         <TextBlock Margin="20,10" FontSize="{StaticResource FontSizeSmall}" Foreground="Blue"
                    Text="{Binding Message, Mode=OneWay}" />

@@ -41,37 +41,31 @@
                         <i:ChangePropertyAction TargetName="textBox1" PropertyName="Text" Value="" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <ControlTemplate.Triggers>
-                                        <!-- 1. Textが空なら、LightGray -->
-                                        <!-- 2. Textが空でなければ、Black -->
-                                        <!-- 3. Textが空でなくマウスオーバーなら、Blue -->
-                                        <DataTrigger Binding="{Binding Text, Source={x:Reference Name=textBox1}}" Value="" >
-                                            <Setter Property="Foreground" Value="LightGray" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Text, Source={x:Reference Name=textBox1}, Converter={StaticResource EmptyStringToTrueConverter}}" Value="False" >
-                                            <Setter Property="Foreground" Value="Black" />
-                                        </DataTrigger>
-                                        <MultiDataTrigger>
-                                            <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding Text, Source={x:Reference Name=textBox1}, Converter={StaticResource EmptyStringToTrueConverter}}" Value="False" />
-                                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
-                                            </MultiDataTrigger.Conditions>
-                                            <Setter Property="Foreground" Value="DodgerBlue" />
-                                        </MultiDataTrigger>
-                                    </ControlTemplate.Triggers>
-
-                                    <TextBlock Text="×■" FontWeight="Bold" Background="White" Margin="1" Padding="5,0"
-                                               Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" />
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate>
+                        <ControlTemplate.Triggers>
+                            <!-- 1. Textが空なら、LightGray -->
+                            <!-- 2. Textが空でなければ、Black -->
+                            <!-- 3. Textが空でなくマウスオーバーなら、Blue -->
+                            <DataTrigger Binding="{Binding Text, Source={x:Reference Name=textBox1}}" Value="" >
+                                <Setter Property="Foreground" Value="LightGray" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Text, Source={x:Reference Name=textBox1}, Converter={StaticResource EmptyStringToTrueConverter}}" Value="False" >
+                                <Setter Property="Foreground" Value="Black" />
+                            </DataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Text, Source={x:Reference Name=textBox1}, Converter={StaticResource EmptyStringToTrueConverter}}" Value="False" />
+                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Foreground" Value="DodgerBlue" />
+                            </MultiDataTrigger>
+                        </ControlTemplate.Triggers>
+                    
+                        <TextBlock Text="×■" FontWeight="Bold" Background="White" Margin="1" Padding="5,0"
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" />
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
         </Grid>
 

@@ -1,0 +1,147 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.HideControlAnimation2Page"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <ContentControl.Resources>
+        <!-- 隠すサイズはチューニング(Marginなどで変わる) -->
+        <system:Double x:Key="menuHeight">34</system:Double>
+
+        <Thickness x:Key="hideMargin">0,-34,0,0</Thickness>
+        <Thickness x:Key="showMargin">0,0,0,0</Thickness>
+
+        <Storyboard x:Key="hideMarginAnimation" >
+            <ThicknessAnimation Storyboard.TargetName="myItemsControl1"
+                                Storyboard.TargetProperty="Margin"
+                                To="{StaticResource hideMargin}"
+                                Duration="0:0:0.2" />
+        </Storyboard>
+        <Storyboard x:Key="showMarginAnimation" >
+            <ThicknessAnimation Storyboard.TargetName="myItemsControl1"
+                                Storyboard.TargetProperty="Margin"
+                                To="{StaticResource showMargin}"
+                                Duration="0:0:0.2" />
+        </Storyboard>
+
+        <Geometry x:Key="hideGeometry">M0,0 l5,5 l5,-5</Geometry>
+        <Geometry x:Key="showGeometry">M0,5 l5,-5 l5,5</Geometry>
+    </ContentControl.Resources>
+
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
+                   Text="HideControlAnimation 2" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="10,0"
+                   Text="ボタンクリックで上から表示されるツールバー" />
+
+        <!-- ClipToBounds により食み出し分を表示させない -->
+        <Border ClipToBounds="True" Margin="10" Background="DarkGray" >
+            <ItemsControl x:Name="myItemsControl1"
+                          HorizontalAlignment="Center" VerticalAlignment="Top" >
+                <i:Interaction.Triggers>
+                    <!-- フラグに応じてMargin(表示量)を切り替える -->
+                    <i:DataTrigger Binding="{Binding IsShowControl, Mode=OneWay}" Value="True" >
+                        <i:ControlStoryboardAction Storyboard="{StaticResource showMarginAnimation}" />
+                    </i:DataTrigger>
+                    <i:DataTrigger Binding="{Binding IsShowControl, Mode=OneWay}" Value="False" >
+                        <i:ControlStoryboardAction Storyboard="{StaticResource hideMarginAnimation}" />
+                    </i:DataTrigger>
+                </i:Interaction.Triggers>
+
+                <ItemsControl.Template>
+                    <ControlTemplate TargetType="{x:Type ItemsControl}" >
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Top" Height="{StaticResource menuHeight}" Background="LightPink" >
+                                <ItemsPresenter />
+                            </Grid>
+
+                            <Button IsTabStop="False" >
+                                <i:Interaction.Triggers>
+                                    <!-- クリックでフラグを切り替える -->
+                                    <i:EventTrigger EventName="Click" >
+                                        <i:InvokeCommandAction Command="{Binding SwitchShowHideCommand, Mode=OneTime}" />
+                                    </i:EventTrigger>
+
+                                    <!-- フラグに応じてToolTipの文言を切り替える -->
+                                    <i:DataTrigger Binding="{Binding IsShowControl, Mode=OneWay}" Value="True" >
+                                        <i:ChangePropertyAction TargetName="toolTipTextBlock"
+                                                                PropertyName="Text" Value="ツールバーを非表示" />
+                                    </i:DataTrigger>
+                                    <i:DataTrigger Binding="{Binding IsShowControl, Mode=OneWay}" Value="False" >
+                                        <i:ChangePropertyAction TargetName="toolTipTextBlock"
+                                                                PropertyName="Text" Value="ツールバーを表示" />
+                                    </i:DataTrigger>
+                                </i:Interaction.Triggers>
+
+                                <Button.ToolTip>
+                                    <TextBlock x:Name="toolTipTextBlock" />
+                                </Button.ToolTip>
+
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="ButtonBase.IsMouseOver" Value="True" >
+                                                <Setter Property="Foreground" Value="Blue" />
+                                            </Trigger>
+                                            <Trigger Property="ButtonBase.IsMouseOver" Value="False" >
+                                                <Setter Property="Foreground" Value="Black" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                        
+                                        <Border HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                Width="30" Height="10" Background="Brown" >
+                                            <Path HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                  StrokeThickness="3" Stroke="Yellow" >
+                                                <i:Interaction.Triggers>
+                                                    <!-- フラグに応じて矢印の向きを切り替える -->
+                                                    <i:DataTrigger Binding="{Binding IsShowControl, Mode=OneWay}" Value="True" >
+                                                        <i:ChangePropertyAction PropertyName="Data"
+                                                                                Value="{StaticResource showGeometry}" />
+                                                    </i:DataTrigger>
+                                                    <i:DataTrigger Binding="{Binding IsShowControl, Mode=OneWay}" Value="False" >
+                                                        <i:ChangePropertyAction PropertyName="Data"
+                                                                                Value="{StaticResource hideGeometry}" />
+                                                    </i:DataTrigger>
+
+                                                    <!-- マウスで矢印の色を切り替える -->
+                                                    <i:DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
+                                                                   Value="True" >
+                                                        <i:ChangePropertyAction PropertyName="Stroke" Value="Yellow" />
+                                                    </i:DataTrigger>
+                                                    <i:DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
+                                                                   Value="False" >
+                                                        <i:ChangePropertyAction PropertyName="Stroke" Value="Black" />
+                                                    </i:DataTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Path>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </DockPanel>
+                    </ControlTemplate>
+                </ItemsControl.Template>
+
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="20,5" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            
+                <Button Content="Button1" Margin="4,0" />
+                <Button Content="Button2" Margin="4,0" />
+                <Button Content="Button3" Margin="4,0" />
+                <Button Content="Button4" Margin="4,0" />
+                <Button Content="Button5" Margin="4,0" />
+                <Button Content="Button6" Margin="4,0" />
+            </ItemsControl>
+        </Border>
+    </DockPanel>
+
+</ContentControl>

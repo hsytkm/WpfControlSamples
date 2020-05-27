@@ -16,6 +16,10 @@
         <local:ListBox2Page />
     </TabItem>
 
+    <TabItem Header="ListBox3" >
+        <local:ListBox3Page />
+    </TabItem>
+
     <TabItem Header="ListView1" >
         <local:ListView1Page />
     </TabItem>

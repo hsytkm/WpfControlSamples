@@ -32,8 +32,12 @@
         <local:DoubleAnimationUsingKeyFramesPage />
     </TabItem>
 
-    <TabItem Header="HideControl" >
-        <local:HideControlAnimationPage />
+    <TabItem Header="HideControl1" >
+        <local:HideControlAnimation1Page />
+    </TabItem>
+
+    <TabItem Header="HideControl2" >
+        <local:HideControlAnimation2Page />
     </TabItem>
 
 </TabControl>

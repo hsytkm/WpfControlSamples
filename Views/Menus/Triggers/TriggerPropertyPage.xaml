@@ -1,4 +1,4 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.PropertyTriggerPage"
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.TriggerPropertyPage"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,7 +10,7 @@
 
     <StackPanel Margin="10" >
         <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
-                   Text="PropertyTrigger" />
+                   Text="TriggerProperty" />
 
         <TextBlock Margin="10"
                    Text="Change Background color when mouse over." />

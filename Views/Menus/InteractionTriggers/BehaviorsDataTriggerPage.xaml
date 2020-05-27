@@ -1,4 +1,4 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.InteractionDataTriggerPage"
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.BehaviorsDataTriggerPage"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -16,7 +16,7 @@
         <TextBlock Margin="10,10" >
             System.Windows.DataTrigger と Microsoft.Xaml.Behaviors.Core.DataTrigger があり、これは後者。
             <LineBreak/>
-            TriggerAction を使う場合は 後者 を使う認識やと思う。
+            XamlBehaviorsWpf が導入されてたら 後者 を使っときゃ良いと思う。
         </TextBlock>
 
         <DockPanel Margin="20,10" >

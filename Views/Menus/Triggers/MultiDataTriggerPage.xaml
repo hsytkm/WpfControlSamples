@@ -34,6 +34,7 @@
 
         <Ellipse StrokeThickness="5" Stroke="Red"
                  Width="60" Height="60" >
+            <!-- MultiDataTrigger も Style の中にしか書けないっぽい -->
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}" >
                     <Style.Triggers>

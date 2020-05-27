@@ -9,11 +9,11 @@
       Style="{StaticResource MyTabControlStyle2}" >
 
     <TabItem Header="EventTrigger" >
-        <local:EventTriggerPage />
+        <local:BehaviorsEventTriggerPage />
     </TabItem>
 
     <TabItem Header="DataTrigger" >
-        <local:InteractionDataTriggerPage />
+        <local:BehaviorsDataTriggerPage />
     </TabItem>
 
     <TabItem Header="KeyTrigger" >

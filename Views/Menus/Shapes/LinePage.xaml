@@ -9,6 +9,9 @@
 
     <!-- WPFサンプル:Line, Polyline, Polygonで直線、図形を描く
             http://gushwell.ldblog.jp/archives/52307936.html
+    
+        【WPF】Pathで線形を書く（直線のみ）
+            https://qiita.com/LemonLeaf/items/c089bbb497f53b59e0b4
     -->
 
     <StackPanel Margin="10" >

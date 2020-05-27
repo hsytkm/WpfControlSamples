@@ -77,33 +77,27 @@
 
         <TextBlock Margin="10" Text="ToggleButton (CustomFont Text)" FontSize="{StaticResource FontSizeMicro}"/>
         <CheckBox IsChecked="False" HorizontalAlignment="Center" >
-            <CheckBox.Style>
-                <Style TargetType="{x:Type CheckBox}" >
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="CheckBox.IsChecked" Value="True" >
-                                        <Setter TargetName="checkContent"
-                                                Property="TextBlock.Foreground" Value="Gray" />
-                                    </Trigger>
-                                    <Trigger Property="CheckBox.IsChecked" Value="False" >
-                                        <Setter TargetName="checkContent"
-                                                Property="TextBlock.Foreground" Value="Red" />
-                                    </Trigger>
-                                    <Trigger Property="ButtonBase.IsMouseOver" Value="True" >
-                                        <Setter TargetName="checkContent"
-                                                Property="TextBlock.Background" Value="Pink" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                                <TextBlock x:Name="checkContent"
-                                           Style="{StaticResource CustomFont}" Text="{StaticResource HeartIcon}"
-                                           FontSize="64"/>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </CheckBox.Style>
+            <CheckBox.Template>
+                <ControlTemplate>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="CheckBox.IsChecked" Value="True" >
+                            <Setter TargetName="checkContent"
+                                    Property="TextBlock.Foreground" Value="Gray" />
+                        </Trigger>
+                        <Trigger Property="CheckBox.IsChecked" Value="False" >
+                            <Setter TargetName="checkContent"
+                                    Property="TextBlock.Foreground" Value="Red" />
+                        </Trigger>
+                        <Trigger Property="ButtonBase.IsMouseOver" Value="True" >
+                            <Setter TargetName="checkContent"
+                                    Property="TextBlock.Background" Value="Pink" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                    <TextBlock x:Name="checkContent"
+                               Style="{StaticResource CustomFont}" Text="{StaticResource HeartIcon}"
+                               FontSize="64"/>
+                </ControlTemplate>
+            </CheckBox.Template>
         </CheckBox>
 
     </StackPanel>

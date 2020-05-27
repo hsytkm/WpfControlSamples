@@ -15,7 +15,8 @@
         xmlns:helper="clr-namespace:WpfControlSamples.Views.Helpers"
         mc:Ignorable="d"
         Title="WpfControlSamples"
-        Height="550" Width="800" >
+        Height="550" Width="800"
+        ResizeMode="CanResizeWithGrip" >
 
     <!-- チェックしたいウェブサイト
 
@@ -44,11 +45,11 @@
     -->
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
-        
+        <!-- 
         <TabItem Header="Test" >
-            <menus:FluidMoveBehavior6Page />
+            <menus:EventTriggerPage />
         </TabItem>
-        <!-- ↑仮置き↑ -->
+        ↑仮置き↑ -->
 
         
         <TabItem Header="Systems" >

@@ -1,0 +1,100 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ListBox3Page"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
+                   Text="ListBox 3" />
+
+        <DockPanel DockPanel.Dock="Top" Margin="10,0">
+            <Button DockPanel.Dock="Right" 
+                    Margin="5,0" Padding="5" Height="40"
+                    Content="Delete selected" Command="{Binding DeleteSelectedItemsCommand, Mode=OneTime}" />
+            <Button DockPanel.Dock="Right" 
+                    Margin="5,0" Padding="5" Height="40"
+                    Content="Add tail" Command="{Binding AddItemTailCommand, Mode=OneTime}" />
+            <Button DockPanel.Dock="Right" 
+                    Margin="5,0" Padding="5" Height="40"
+                    Content="Add head" Command="{Binding AddItemHeadCommand, Mode=OneTime}" />
+
+            <TextBlock Margin="10,0" >
+                一般的な Windows アプリの操作でリストのアイテムを削除する。
+                <LineBreak/>
+                　・各アイテムの Delete ボタンにより削除
+                <LineBreak/>
+                　・Delete item ボタンにより選択アイテムを削除
+                <LineBreak/>
+                　・Delete キー、Ctrl+D キー により選択アイテムを削除
+            </TextBlock>
+        </DockPanel>
+
+        <ListBox x:Name="listBox" Margin="10" 
+                 ItemsSource="{Binding Items, Mode=OneWay}"
+                 SelectionMode="Extended" >
+
+            <!-- ListBox.SelectedItems に setter がないので Action で対応 -->
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged" >
+                    <action:NotifySelectedItemsAction
+                        NotifySelectedItemsCollection="{Binding NotifySelectedColors, Mode=OneTime}" />
+                </i:EventTrigger>
+
+                <i:KeyTrigger Key="Delete" >
+                    <i:InvokeCommandAction Command="{Binding DeleteSelectedItemsCommand, Mode=OneTime}" />
+                </i:KeyTrigger>
+
+                <i:KeyTrigger Modifiers="Ctrl" Key="D" >
+                    <i:InvokeCommandAction Command="{Binding DeleteSelectedItemsCommand, Mode=OneTime}" />
+                </i:KeyTrigger>
+            </i:Interaction.Triggers>
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel>
+                        <i:Interaction.Behaviors>
+                            <i:FluidMoveBehavior AppliesTo="Children" Duration="0:0:0.1" >
+                                <i:FluidMoveBehavior.EaseX>
+                                    <QuinticEase EasingMode="EaseOut" />
+                                </i:FluidMoveBehavior.EaseX>
+                            </i:FluidMoveBehavior>
+                        </i:Interaction.Behaviors>
+                    </VirtualizingStackPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <Button DockPanel.Dock="Left"
+                                Margin="5,3" Padding="5,1" Content="Delete" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click" >
+                                    <i:RemoveItemInListBoxAction  />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Border DockPanel.Dock="Left"
+                                Margin="10,3"
+                                Background="{Binding Color, Mode=OneTime, Converter={StaticResource ColorToBrushConverter}}"
+                                Width="20" Height="20" CornerRadius="20" />
+                        <TextBlock DockPanel.Dock="Top"
+                                   FontSize="{StaticResource FontSizeMicro}"
+                                   Text="{Binding Name, Mode=OneTime}"
+                                   Margin="10,0" />
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            
+        </ListBox>
+        
+    </DockPanel>
+
+</ContentControl>

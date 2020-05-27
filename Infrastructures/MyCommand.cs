@@ -34,7 +34,6 @@ namespace WpfControlSamples.Infrastructures
 
     class MyCommand<T> : ICommand
     {
-
         private readonly Action<T> _execute;
         private readonly Func<bool> _canExecute;
 

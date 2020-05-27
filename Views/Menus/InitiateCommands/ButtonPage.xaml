@@ -11,6 +11,29 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Resources/IonIconFontFamilyResource.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="myButtonStyle1" TargetType="{x:Type Button}">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="Content" Value="これも釦" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="ButtonBase.IsMouseOver" Value="True" >
+                                    <Setter Property="Foreground" Value="Green" />
+                                </Trigger>
+                                <Trigger Property="ButtonBase.IsMouseOver" Value="False" >
+                                    <Setter Property="Foreground" Value="Gray" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                            <TextBlock FontSize="{StaticResource FontSizeLarge}"
+                                       FontWeight="Bold"
+                                       Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"
+                                       Text="{Binding Content, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </ContentControl.Resources>
 
@@ -45,58 +68,29 @@
         </StackPanel>
 
         <TextBlock Margin="20,0"  Text="以下もボタン" />
-        <Button Margin="0,0,5,0" HorizontalAlignment="Center"
-                Content="これも釦"
+        <Button Margin="0,0,5,0"
                 Command="{Binding .}"
-                CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" >
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="ButtonBase.IsMouseOver" Value="True" >
-                                        <Setter Property="Foreground" Value="Blue" />
-                                    </Trigger>
-                                    <Trigger Property="ButtonBase.IsMouseOver" Value="False" >
-                                        <Setter Property="Foreground" Value="Gray" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                                <TextBlock FontSize="{StaticResource FontSizeLarge}"
-                                           FontWeight="Bold"
-                                           Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"
-                                           Text="{Binding Content, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" />
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Style>
-        </Button>
+                CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"
+                Style="{StaticResource myButtonStyle1}" />
 
         <Button Margin="0,0,5,0" HorizontalAlignment="Center"
                 Command="{Binding .}"
                 CommandParameter="これもボタンだよ" >
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="ButtonBase.IsMouseOver" Value="True" >
-                                        <Setter Property="Foreground" Value="Blue" />
-                                    </Trigger>
-                                    <Trigger Property="ButtonBase.IsMouseOver" Value="False" >
-                                        <Setter Property="Foreground" Value="Gray" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                                <TextBlock FontFamily="{StaticResource IoniconsFontFamily}"
-                                           FontSize="64"
-                                           Text="{StaticResource WindowsIcon}" />
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Style>
+            <Button.Template>
+                <ControlTemplate>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ButtonBase.IsMouseOver" Value="True" >
+                            <Setter Property="Foreground" Value="Blue" />
+                        </Trigger>
+                        <Trigger Property="ButtonBase.IsMouseOver" Value="False" >
+                            <Setter Property="Foreground" Value="Gray" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                    <TextBlock FontFamily="{StaticResource IoniconsFontFamily}"
+                               FontSize="64"
+                               Text="{StaticResource WindowsIcon}" />
+                </ControlTemplate>
+            </Button.Template>
         </Button>
         
     </StackPanel>

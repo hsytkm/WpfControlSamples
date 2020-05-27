@@ -33,7 +33,7 @@
                       Loaded="myItemsControl_Loaded" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel>
+                    <VirtualizingStackPanel>
                         <i:Interaction.Behaviors>
                             <i:FluidMoveBehavior AppliesTo="Children" Duration="0:0:0.2" >
                                 <i:FluidMoveBehavior.EaseX>
@@ -41,7 +41,7 @@
                                 </i:FluidMoveBehavior.EaseX>
                             </i:FluidMoveBehavior>
                         </i:Interaction.Behaviors>
-                    </StackPanel>
+                    </VirtualizingStackPanel>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>

@@ -68,7 +68,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
 
-            <!-- 仮想化してるつもり(効果を評価できてない。効果を雰囲気だけ見た) -->
+            <!-- デフォルトでも仮想化されるっぽい（VirtualizingStackPanelになる） -->
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel />

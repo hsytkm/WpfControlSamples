@@ -68,5 +68,8 @@
         <local:AttachedEventPage />
     </TabItem>
 
-
+    <TabItem Header="DynamicXamlLoad" >
+        <local:DynamicXamlLoadPage />
+    </TabItem>
+    
 </TabControl>

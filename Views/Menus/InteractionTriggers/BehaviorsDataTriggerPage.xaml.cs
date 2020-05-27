@@ -17,9 +17,9 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class InteractionDataTriggerPage : ContentControl
+    public partial class BehaviorsDataTriggerPage : ContentControl
     {
-        public InteractionDataTriggerPage()
+        public BehaviorsDataTriggerPage()
         {
             InitializeComponent();
         }
