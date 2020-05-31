@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,32 +30,29 @@ namespace WpfControlSamples.Views.Menus
 
     class FileDropViewModel : MyBindableBase
     {
-        public IList<string> DroppedPaths
+        public ObservableCollection<string> DroppedPaths { get; } = new ObservableCollection<string>();
+
+        public FileDropViewModel()
         {
-            get => _droppedPaths;
-            set
-            {
-                if (SetProperty(ref _droppedPaths, value))
-                {
-                    DroppedPathsText = (value is null) ? null : ToNumberedText(value);
-                }
-
-                static string ToNumberedText(IList<string> paths)
-                {
-                    var sb = new StringBuilder();
-                    for (int i = 0; i < paths.Count; ++i)
-                        sb.AppendLine($"{i} : " + paths[i]);
-
-                    return sb.ToString();
-                }
-            }
+            DroppedPaths.CollectionChanged += DroppedPaths_CollectionChanged;
         }
-        private IList<string> _droppedPaths;
 
-        public ICommand ClearFilePathCommand => _clearFilePathCommand ??
-            (_clearFilePathCommand = new MyCommand(
-                () => DroppedPaths = null,
-                () => DroppedPaths != null && DroppedPaths.Any()));
+        private void DroppedPaths_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (!(sender is ObservableCollection<string> collection)) return;
+
+            //switch (e.Action)
+            //{
+            //    case NotifyCollectionChangedAction.Add:
+            //        break;
+            //}
+
+            DroppedPathsText = string.Join(Environment.NewLine, collection.Select(x => x));
+        }
+
+        public ICommand ClearFilePathCommand => _clearFilePathCommand ??= new MyCommand(
+                () => DroppedPaths.Clear(),
+                () => DroppedPaths.Any());
         private ICommand _clearFilePathCommand;
 
         public string DroppedPathsText
@@ -61,11 +61,10 @@ namespace WpfControlSamples.Views.Menus
             set
             {
                 if (SetProperty(ref _droppedPathsText, value))
-                {
                     (ClearFilePathCommand as MyCommand).ChangeCanExecute();
-                }
             }
         }
         private string _droppedPathsText;
     }
+
 }

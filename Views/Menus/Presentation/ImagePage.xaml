@@ -31,7 +31,20 @@
                    Text="BuildAction: EmbeddedResource" />
 
         <StackPanel Orientation="Horizontal" Background="LightGray" Margin="10" >
-            <Image Source="{Binding MyEmbeddedImage, Mode=OneTime}"
+            <Image Source="{Binding MyEmbeddedImage1, Mode=OneTime}"
+                   Width="100" Height="100" />
+
+            <StackPanel Margin="50,00,20,0" VerticalAlignment="Center" >
+                <Button Width="140" Height="30"
+                        Content="ToDefault"
+                        Command="{Binding ToDefaultCommand, Mode=OneTime}"/>
+
+                <Button Width="140" Height="30"
+                        Content="ToGray (R/G/B)"
+                        Command="{Binding ToGrayScaleCommand, Mode=OneTime}"/>
+            </StackPanel>
+
+            <Image Source="{Binding MyEmbeddedImage2, Mode=OneWay}"
                    Width="100" Height="100" />
         </StackPanel>
 

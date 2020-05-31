@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xaml.Behaviors;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 
 namespace WpfControlSamples.Views.Actions
 {
@@ -14,7 +16,7 @@ namespace WpfControlSamples.Views.Actions
         /// </summary>
         public static readonly DependencyProperty DroppedPathProperty
             = DependencyProperty.Register(
-                nameof(DroppedPath), typeof(string), typeof(GetDroppedFilePathAction), null);
+                nameof(DroppedPath), typeof(string), typeof(GetDroppedFilePathAction));
 
         public string DroppedPath
         {
@@ -29,11 +31,11 @@ namespace WpfControlSamples.Views.Actions
         /// </summary>
         public static readonly DependencyProperty DroppedPathsProperty
             = DependencyProperty.Register(
-                nameof(DroppedPaths), typeof(IList<string>), typeof(GetDroppedFilePathAction), null);
+                nameof(DroppedPaths), typeof(ObservableCollection<string>), typeof(GetDroppedFilePathAction));
 
-        public IList<string> DroppedPaths
+        public ObservableCollection<string> DroppedPaths
         {
-            get => (IList<string>)GetValue(DroppedPathsProperty);
+            get => (ObservableCollection<string>)GetValue(DroppedPathsProperty);
             set => SetValue(DroppedPathsProperty, value);
         }
         #endregion
@@ -57,25 +59,37 @@ namespace WpfControlSamples.Views.Actions
         protected override void Invoke(object parameter)
         {
             if (!(parameter is DragEventArgs e)) return;
+            var paths = GetFilePaths(e.Data).ToArray();
 
-            var paths = GetFilePaths(e.Data);
-            DroppedPaths = paths;
             DroppedPath = paths.Any() ? paths[0] : null;
+
+            // Ctrl押下じゃなければ既登録分を削除
+            var isPressCtrlKey = (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control;
+            if (!isPressCtrlKey) DroppedPaths.Clear();
+
+            foreach (var path in paths)
+            {
+                // 重複登録のチェックが必要
+                if (!DroppedPaths.Contains(path))
+                    DroppedPaths.Add(path);
+            }
         }
 
-        private static IList<string> GetFilePaths(IDataObject data)
+        private static IEnumerable<string> GetFilePaths(IDataObject data)
         {
             if (data.GetDataPresent(DataFormats.FileDrop))
             {
                 if (data.GetData(DataFormats.FileDrop) is string[] ss)
-                    return ss;
-
-                throw new FormatException();
+                {
+                    foreach (var s in ss)
+                        yield return s;
+                }
+                else { throw new FormatException(); }
             }
             else
             {
                 var path = data.GetData(DataFormats.Text)?.ToString();
-                return new List<string>() { path };
+                yield return path;
             }
         }
     }

@@ -28,20 +28,49 @@ namespace WpfControlSamples.Views.Menus
 
     class ImageViewModel : MyBindableBase
     {
-        public BitmapImage MyEmbeddedImage
+        public BitmapImage MyEmbeddedImage1 { get; }
+
+        private readonly BitmapImage _embeddedImage2;
+
+        public BitmapSource MyEmbeddedImage2
         {
-            get => _myEmbeddedImage;
-            private set => SetProperty(ref _myEmbeddedImage, value);
+            get => _myEmbeddedImage2;
+            private set => SetProperty(ref _myEmbeddedImage2, value);
         }
-        private BitmapImage _myEmbeddedImage;
+        private BitmapSource _myEmbeddedImage2;
 
         public ImageViewModel()
         {
+            MyEmbeddedImage1 = LoadMyEmbeddedImage("Resources.Images.EmbeddedResource1.png");
+
+            _embeddedImage2 = LoadMyEmbeddedImage("Resources.Images.EmbeddedResource2.png");
+            MyEmbeddedImage2 = _embeddedImage2;
+        }
+
+        // 埋め込みリソース の読み出し
+        private BitmapImage LoadMyEmbeddedImage(string resName)
+        {
             var myAssembly = System.Reflection.Assembly.GetExecutingAssembly();
             var prjName = "WpfControlSamples";
-            var resName = "Resources.Images.EmbeddedResource1.png";
             var fullResName = prjName + "." + resName;
-            MyEmbeddedImage = BitmapImageExtension.EmbeddedResourceNameToBitmapImage(fullResName, myAssembly);
+
+            using var stream = myAssembly.GetManifestResourceStream(fullResName);
+            return stream.ToBitmapImage();
         }
+
+        public ICommand ToDefaultCommand =>
+            _toDefaultCommand ??= new MyCommand(() => MyEmbeddedImage2 = _embeddedImage2);
+        private ICommand _toDefaultCommand;
+
+        private int grayScaleChannelPattern;
+        public ICommand ToGrayScaleCommand =>
+            _toGrayScaleCommand ??= new MyCommand(() =>
+            {
+                // BGRchを切り替える
+                grayScaleChannelPattern = (grayScaleChannelPattern + 1) % 3;
+                MyEmbeddedImage2 = _embeddedImage2.ToGrayScale(grayScaleChannelPattern);
+            });
+        private ICommand _toGrayScaleCommand;
+
     }
 }

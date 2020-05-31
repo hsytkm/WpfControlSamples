@@ -16,40 +16,39 @@
     
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
-                   Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
                    Text="FileDropSample" />
 
-        <StackPanel DockPanel.Dock="Top"
-                    Orientation="Horizontal" >
+        <DockPanel DockPanel.Dock="Top" >
+            <Button DockPanel.Dock="Right"
+                    Content="Clear Files"
+                    Padding="30,20" Margin="20"
+                    Command="{Binding ClearFilePathCommand, Mode=OneTime}" />
 
             <Border DockPanel.Dock="Top"
-                    Margin="20,10" Width="400" Height="200"
+                    Margin="10" Height="200"
                     Background="LightBlue" >
 
                 <!-- ドロップされたファイルPATHを通知する -->
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Drop" >
                         <action:GetDroppedFilePathAction
-                            DroppedPaths="{Binding DroppedPaths, Mode=OneWayToSource}" />
+                            DroppedPaths="{Binding DroppedPaths, Mode=OneWay}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
 
-                <TextBlock FontSize="{StaticResource FontSizeSmall}"
+                <TextBlock FontSize="{StaticResource FontSizeMicro}"
                            HorizontalAlignment="Center" VerticalAlignment="Center"
                            IsHitTestVisible="False" >
-                    ここにファイルを Drop すると、
+                    ここにファイルを Drop すると、下部に Path を表示します。
                     <LineBreak/>
-                    下部に Path を表示します。
+                    (Ctrl を押しながらの Drop で追加ができます)
                 </TextBlock>
             </Border>
-
-            <Button Content="Clear Files"
-                    Padding="30,20" Margin="0,50"
-                    Command="{Binding ClearFilePathCommand, Mode=OneTime}" />
-        </StackPanel>
+        </DockPanel>
 
         <!-- ドロップされたファイルPATH一覧 -->
-        <ctrl:ScrollEndTextBlock Padding="20,5"
+        <ctrl:ScrollEndTextBlock Margin="10,0" Padding="20,5"
                                  Background="LightGray" Foreground="Gray"
                                  Text="{Binding DroppedPathsText, Mode=OneWay}" />
     </DockPanel>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using System.Windows.Media.Imaging;
 
 namespace WpfControlSamples.Extensions
@@ -14,37 +13,26 @@ namespace WpfControlSamples.Extensions
         /// <returns></returns>
         public static BitmapImage FilePathToBitmapImage(this string imagePath)
         {
-            if (!File.Exists(imagePath)) throw new FileNotFoundException();
+            if (!File.Exists(imagePath)) throw new FileNotFoundException(imagePath);
 
-            var bi = new BitmapImage();
-            using (var stream = File.Open(imagePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                bi.BeginInit();
-                bi.CacheOption = BitmapCacheOption.OnLoad;
-                bi.StreamSource = stream;
-                bi.EndInit();
-            }
-            bi.Freeze();
-
-            if (bi.Width == 1 && bi.Height == 1) throw new OutOfMemoryException();
-            return bi;
+            using var stream = File.Open(imagePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            return stream.ToBitmapImage();
         }
 
         /// <summary>
-        /// 埋め込みリソースを画像として読み出す
+        /// 画像のStreamからBitmapImageを作成する
         /// </summary>
-        /// <param name="imagePath">ファイルパス</param>
+        /// <param name="stream"></param>
         /// <returns></returns>
-        public static BitmapImage EmbeddedResourceNameToBitmapImage(this string resourceName, Assembly assembly)
+        public static BitmapImage ToBitmapImage(this Stream stream)
         {
+            if (stream is null) throw new ArgumentNullException(nameof(stream));
+
             var bi = new BitmapImage();
-            using (var stream = assembly.GetManifestResourceStream(resourceName))
-            {
-                bi.BeginInit();
-                bi.CacheOption = BitmapCacheOption.OnLoad;
-                bi.StreamSource = stream;
-                bi.EndInit();
-            }
+            bi.BeginInit();
+            bi.CacheOption = BitmapCacheOption.OnLoad;
+            bi.StreamSource = stream;
+            bi.EndInit();
             bi.Freeze();
 
             if (bi.Width == 1 && bi.Height == 1) throw new OutOfMemoryException();

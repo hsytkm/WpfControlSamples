@@ -16,6 +16,7 @@
     <None Remove=".gitignore" />
     <None Remove="Resources\Fonts\ionicons.ttf" />
     <None Remove="Resources\Images\EmbeddedResource1.png" />
+    <None Remove="Resources\Images\EmbeddedResource2.png" />
     <None Remove="Resources\Images\picture1.jpg" />
     <None Remove="Resources\Images\Resource1.png" />
     <None Remove="Resources\Images\Resource2.png" />
@@ -36,6 +37,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Images\EmbeddedResource1.png" />
+    <EmbeddedResource Include="Resources\Images\EmbeddedResource2.png" />
     <EmbeddedResource Include="Resources\Sounds\EmbeddedResource1.wav" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
     <Resource Include="Resources\Fonts\ionicons.ttf">
