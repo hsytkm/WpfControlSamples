@@ -26,9 +26,6 @@
         【WPF】PropertyMetadataとUIPropertyMetadataとFrameworkPropertyMetadata
             http://pro.art55.jp/?eid=1198810
 
-        かずきさん54 カスタムコントロール
-            https://blog.okazuki.jp/entry/2014/09/08/221209
-    
         WPFサンプル:PowerPointで作成した図形をWPFで表示する
             http://gushwell.ldblog.jp/archives/52317471.html
 
@@ -45,11 +42,11 @@
     -->
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
-        
+        <!-- 
         <TabItem Header="Test" >
-            <menus:ProgressBarPage />
+            <menus:NumericUpDownPage />
         </TabItem>
-        <!-- ↑仮置き↑ -->
+        ↑仮置き↑ -->
 
         
         <TabItem Header="Systems" >
@@ -136,6 +133,10 @@
             <menus:AdornersMenuTab />
         </TabItem>
 
+        <TabItem Header="CustomControls" >
+            <menus:CustomControlsMenuTab />
+        </TabItem>
+        
     </TabControl>
 
 </Window>

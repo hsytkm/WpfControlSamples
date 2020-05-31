@@ -40,6 +40,7 @@
     <EmbeddedResource Include="Resources\Images\EmbeddedResource2.png" />
     <EmbeddedResource Include="Resources\Sounds\EmbeddedResource1.wav" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+    <ProjectReference Include="..\WpfControlSamples.CustomControlNumericUpDown\WpfControlSamples.CustomControlNumericUpDown.csproj" />
     <Resource Include="Resources\Fonts\ionicons.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -86,6 +87,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Animations\DoubleAnimationUsingKeyFramesPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\CustomControls\CustomControlsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Dispatchers\DispatcherCollectionPage.xaml">
