@@ -4,6 +4,7 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:ctrl="clr-namespace:WpfControlSamples.Views.Controls"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
@@ -48,6 +49,15 @@
                    Width="100" Height="100" />
         </StackPanel>
 
+        <TextBlock Margin="10,20,10,0" FontSize="{StaticResource FontSizeMicro}"
+                   Text="SVGファイルは WPFデフォでサポートされていない。以下が便利そう（未確認）" />
+        <ctrl:HyperlinkTextBlock Margin="30,10" FontSize="{StaticResource FontSizeMicro}"
+                                 Text="[GitHub] BerndK/SvgToXaml"
+                                 NavigateUri="https://github.com/BerndK/SvgToXaml" />
+        <ctrl:HyperlinkTextBlock Margin="30,0" FontSize="{StaticResource FontSizeMicro}"
+                                 Text="[GitHub] ElinamLLC/SharpVectors"
+                                 NavigateUri="https://github.com/ElinamLLC/SharpVectors" />
+        
     </StackPanel>
 
 </ContentControl>

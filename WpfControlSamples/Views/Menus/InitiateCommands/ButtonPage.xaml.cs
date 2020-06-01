@@ -50,5 +50,13 @@ namespace WpfControlSamples.Views.Menus
 
             DataContext = ButtonClick;
         }
+
+        private int _counter;
+        private void IncrementButton_Click(object sender, RoutedEventArgs e)
+            => numberTextBlock.Text = (++_counter).ToString();
+
+        private void DecrementButton_Click(object sender, RoutedEventArgs e)
+            => numberTextBlock.Text = (--_counter).ToString();
+
     }
 }

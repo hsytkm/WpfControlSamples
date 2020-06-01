@@ -41,6 +41,7 @@
     <EmbeddedResource Include="Resources\Sounds\EmbeddedResource1.wav" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
     <ProjectReference Include="..\WpfControlSamples.CustomControlNumericUpDown\WpfControlSamples.CustomControlNumericUpDown.csproj" />
+    <ProjectReference Include="..\WpfControlSamples.FileDialogLibrary\WpfControlSamples.FileDialogLibrary.csproj" />
     <Resource Include="Resources\Fonts\ionicons.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -98,6 +99,9 @@
     <Page Update="Views\Menus\Dispatchers\DispatchersMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\DisplayCollections\CollectionView4Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\DisplayCollections\CollectionView3Page.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -105,6 +109,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\EditingText\WatermarkTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Graphics\InkCanvasPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Graphics\Viewport3DPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\InteractionActions\RemoveItemInListBoxActionPage.xaml">
@@ -290,6 +300,9 @@
     <Page Update="Views\Menus\Informations\ThumbPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Presentation\WebBrowserPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Presentation\MediaElementPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -303,6 +316,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Triggers\EventTriggerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIElements\UIElementsMenuTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\UIElements\SaveToImagePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\WindowsDeskop\FullScreenPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\WindowsDeskop\FileDropPage.xaml">
@@ -326,46 +348,46 @@
     <Page Update="Views\Menus\SettingValues\SettingValuesMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\CombinedGeometryPage.xaml">
+    <Page Update="Views\Menus\Graphics\CombinedGeometryPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior2Page.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\VisualBrushPage.xaml">
+    <Page Update="Views\Menus\UIElements\VisualBrushPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\ClipPage.xaml">
+    <Page Update="Views\Menus\UIElements\ClipPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\OpacityPage.xaml">
+    <Page Update="Views\Menus\UIElements\OpacityPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\EffectsPage.xaml">
+    <Page Update="Views\Menus\UIElements\EffectsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\Brushes2Page.xaml">
+    <Page Update="Views\Menus\Graphics\Brushes2Page.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\Brushes1Page.xaml">
+    <Page Update="Views\Menus\Graphics\Brushes1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\TransformsPage.xaml">
+    <Page Update="Views\Menus\UIElements\TransformsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\LinePage.xaml">
+    <Page Update="Views\Menus\Graphics\LinePage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\PathPage.xaml">
+    <Page Update="Views\Menus\Graphics\PathPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\PolygonPage.xaml">
+    <Page Update="Views\Menus\Graphics\PolygonPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\ShapesMenuTab.xaml">
+    <Page Update="Views\Menus\Graphics\GraphicsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Shapes\EllipsePage.xaml">
+    <Page Update="Views\Menus\Graphics\EllipsePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Systems\FileVerInfoPage.xaml">

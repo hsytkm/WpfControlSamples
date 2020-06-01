@@ -13,9 +13,9 @@ using System.Windows.Shapes;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class ShapesMenuTab : TabControl
+    public partial class UIElementsMenuTab : TabControl
     {
-        public ShapesMenuTab()
+        public UIElementsMenuTab()
         {
             InitializeComponent();
         }

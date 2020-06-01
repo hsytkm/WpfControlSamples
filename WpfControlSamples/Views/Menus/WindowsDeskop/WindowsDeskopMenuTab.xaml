@@ -36,4 +36,12 @@
         <local:FileDropPage />
     </TabItem>
 
+    <TabItem Header="FolderDialog" >
+        <local:FolderDialogPage />
+    </TabItem>
+
+    <TabItem Header="FullScreen" >
+        <local:FullScreenPage />
+    </TabItem>
+
 </TabControl>

@@ -37,8 +37,9 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
 
-                <TextBlock FontSize="{StaticResource FontSizeMicro}"
+                <TextBlock FontSize="{StaticResource FontSizeMicro}" Padding="10"
                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                           TextAlignment="Center"
                            IsHitTestVisible="False" >
                     ここにファイルを Drop すると、下部に Path を表示します。
                     <LineBreak/>

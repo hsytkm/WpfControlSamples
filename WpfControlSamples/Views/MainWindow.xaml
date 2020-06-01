@@ -34,9 +34,6 @@
         [WPF] IDataErrorInfoとValidation.ErrorTemplateを利用してエラーを表示する
             https://www.pine4.net/Memo/Article/Archives/427
 
-        WPF 4.5での新機能 リアルタイムソート、グルーピング、フィルタリング(LiveShaping)
-            https://blog.okazuki.jp/entry/2013/12/07/000341
-    
         Per-Monitor DPI 環境下で WPF の Window 位置を調整する
             https://blog.shibayan.jp/entry/20190612/1560267647
     -->
@@ -44,7 +41,7 @@
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
         <!-- 
         <TabItem Header="Test" >
-            <menus:NumericUpDownPage />
+            <menus:PlaySoundActionPage />
         </TabItem>
         ↑仮置き↑ -->
 
@@ -85,8 +82,12 @@
             <menus:AnimationsMenuTab />
         </TabItem>
 
-        <TabItem Header="Shapes" >
-            <menus:ShapesMenuTab />
+        <TabItem Header="Graphics" >
+            <menus:GraphicsMenuTab />
+        </TabItem>
+
+        <TabItem Header="UIElements" >
+            <menus:UIElementsMenuTab />
         </TabItem>
 
         <TabItem Header="Informations" >

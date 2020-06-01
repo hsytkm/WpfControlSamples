@@ -48,6 +48,10 @@
         <local:CollectionView3Page />
     </TabItem>
 
+    <TabItem Header="CollectionView4" >
+        <local:CollectionView4Page />
+    </TabItem>
+    
     <TabItem Header="ItemsControl(Radio)" >
         <local:ItemsControl1Page />
     </TabItem>

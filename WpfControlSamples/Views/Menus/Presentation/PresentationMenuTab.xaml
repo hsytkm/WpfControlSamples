@@ -24,6 +24,10 @@
         <local:MediaElementPage />
     </TabItem>
 
+    <TabItem Header="WebBrowser" >
+        <local:WebBrowserPage />
+    </TabItem>
+
     <TabItem Header="EmbeddedFont" >
         <local:EmbeddedFontPage />
     </TabItem>

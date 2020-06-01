@@ -30,6 +30,7 @@ namespace WpfControlSamples.Extensions
             if (bitmap is null) throw new ArgumentNullException(nameof(bitmap));
             if (!(0 <= ch && ch <= 2)) return null;  // chは 0~2 指定を想定
 
+            // 画素値のbyte配列を取得
             var imagePixels = GetImagePixels(bitmap);
 
             // BGRA以外は未実装
@@ -51,7 +52,10 @@ namespace WpfControlSamples.Extensions
                 }
             }
 
+            // 画素値のbyte配列からBitmapSourceを作成
             var newBitmap = CreateWriteableBitmap(imagePixels);
+
+            newBitmap.Freeze();
             return newBitmap;
         }
 

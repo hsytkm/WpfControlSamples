@@ -1,0 +1,47 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.CollectionView4Page"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- WPF 4.5での新機能 リアルタイムソート、グルーピング、フィルタリング(LiveShaping)
+            https://blog.okazuki.jp/entry/2013/12/07/000341
+    -->
+    
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
+                   Text="CollectionView 4" />
+
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="10,0" FontSize="{StaticResource FontSizeMicro}"
+                   Text="ICollectionViewLiveShaping により、リアルタイムで見た目を更新する" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="20,10" >
+            生成ボタン： 15人の給料を表示する。
+            <LineBreak/>
+            転職ボタン： 各人の給料を更新する。（ICollectionViewLiveShaping により、自動で給料順にソートされる）
+        </TextBlock>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal"
+                    Margin="20,5" >
+            <Button Margin="10,0" Padding="10,5" Content="生成"
+                    Command="{Binding CreatePeopleCommand, Mode=OneTime}" />
+            <Button Margin="10,0" Padding="10,5" Content="転職"
+                    Command="{Binding UpdateSalaryCommand, Mode=OneTime}" />
+        </StackPanel>
+        
+        <DataGrid Margin="20,10" AutoGenerateColumns="False"
+                  ItemsSource="{Binding People, Mode=OneTime}" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="名前" Binding="{Binding Name, Mode=OneTime}" />
+                <DataGridTextColumn Header="給料" Binding="{Binding Salary, Mode=OneWay}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </DockPanel>
+
+</ContentControl>

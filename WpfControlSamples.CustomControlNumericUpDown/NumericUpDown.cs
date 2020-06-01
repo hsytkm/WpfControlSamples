@@ -69,8 +69,8 @@ namespace WpfControlSamples.CustomControlNumericUpDown
         }
 
         // XAMLで定義されたボタン格納用変数
-        private RepeatButton upButton;
-        private RepeatButton downButton;
+        private RepeatButton? upButton;
+        private RepeatButton? downButton;
 
         // ボタンのクリックイベント
         private void UpClick(object sender, RoutedEventArgs e) => Value++;

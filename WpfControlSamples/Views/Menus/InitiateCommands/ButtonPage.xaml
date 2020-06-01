@@ -43,19 +43,21 @@
 
         <TextBlock Margin="10,0" Text="Click イベントは Up 時に発火する。" />
 
-        <Button Margin="10"
-                Content="Button1 (Width/Height)"
-                Width="220" Height="80"
-                Command="{Binding .}"
-                CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" />
+        <StackPanel Margin="10" Orientation="Horizontal" >
+            <Button Margin="10,0"
+                    Content="Button1 (Width/Height)"
+                    Width="220" Height="80"
+                    Command="{Binding .}"
+                    CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" />
+            
+            <Button Margin="10,0"
+                    Content="ボタン2 (Padding)"
+                    Padding="20"
+                    Command="{Binding .}"
+                    CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" />
+        </StackPanel>
 
-        <Button Margin="10"
-                Content="ボタン2 (Padding)"
-                Padding="20"
-                Command="{Binding .}"
-                CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" />
-
-        <StackPanel Margin="20" Orientation="Horizontal" >
+        <StackPanel Margin="20,10" Orientation="Horizontal" >
             <Button Height="40" Width="120"
                     Content="Start Process"
                     Command="{Binding StartCommand, Mode=OneTime,
@@ -67,7 +69,24 @@
                                       RelativeSource={RelativeSource FindAncestor, AncestorType=local:ButtonPage}}" />
         </StackPanel>
 
-        <TextBlock Margin="20,0"  Text="以下もボタン" />
+        <TextBlock Margin="20,10" Text="Alt+I, Alt+D でボタンを操作できる (AccessText)" />
+        <StackPanel Margin="20,0" Orientation="Horizontal" >
+            <Button Margin="10,0" Padding="10,5" Click="IncrementButton_Click" >
+                <Button.Content>
+                    <AccessText Text="Increment (_I)" />
+                </Button.Content>
+            </Button>
+            <Button Margin="10,0" Padding="10,5" Click="DecrementButton_Click" >
+                <Button.Content>
+                    <AccessText Text="Decrement (_D)" />
+                </Button.Content>
+            </Button>
+
+            <TextBlock x:Name="numberTextBlock" Margin="20,0" VerticalAlignment="Center"
+                       FontSize="{StaticResource FontSizeSmall}" Text="0" />
+        </StackPanel>
+
+        <TextBlock Margin="20"  Text="以下もボタン" />
         <Button Margin="0,0,5,0"
                 Command="{Binding .}"
                 CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"

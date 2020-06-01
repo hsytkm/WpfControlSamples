@@ -21,6 +21,12 @@
 
 [【WPF】Pathで線形を書く（直線のみ）](https://qiita.com/LemonLeaf/items/c089bbb497f53b59e0b4)
 
+[C#+WPFチューニング戦記](http://proprogrammer.hatenadiary.jp/)
+
+[Msを16倍出し抜くwpf開発1回目](https://www.slideshare.net/cct-inc/ms16wpf1)
+
+[MVVMパターンの常識 ― 「M」「V」「VM」の役割とは？](https://www.atmarkit.co.jp/fdotnet/chushin/greatblogentry_02/greatblogentry_02_01.html)
+
 ## Assets
 
 [Ionicons](https://ionicons.com/)
@@ -30,5 +36,7 @@
 ## NuGet
 
 [Microsoft/XamlBehaviorsWpf](https://github.com/Microsoft/XamlBehaviorsWpf)
+
+[aybe/Windows-API-Code-Pack-1.1](https://github.com/aybe/Windows-API-Code-Pack-1.1)
 
 以上

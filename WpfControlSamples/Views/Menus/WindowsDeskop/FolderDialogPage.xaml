@@ -1,0 +1,45 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.FolderDialogPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- Is there some way to use a folder seletor (FolderBrowserDialog) in WPF Core?
+            https://stackoverflow.com/questions/58569627/is-there-some-way-to-use-a-folder-seletor-folderbrowserdialog-in-wpf-core
+
+         WPF > フォルダ選択
+            https://qiita.com/sugasaki/items/008c4f5c0589f0bf5962
+    -->
+    
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top" Margin="0,10"
+                   FontSize="{StaticResource FontSizeMedium}"
+                   Text="NuGet: OpenFolderDialog" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="10" >
+            フォルダ選択は WPF標準で提供されていないので、NuGet でパッケージを導入した。
+            <LineBreak/>
+            本プロジェクトの NuGetパッケージが増えるとややこしいので、プロジェクトを分けた。
+        </TextBlock>
+
+        <WrapPanel DockPanel.Dock="Top" Margin="20" >
+            <Button Margin="20,0" Padding="10" Width="150"
+                    Content="Open Single"
+                    Click="FolderOpenSingleButton_Click" />
+
+            <Button Margin="20,0" Padding="10" Width="150"
+                    Content="Open Multi"
+                    Click="FolderOpenMultiButton_Click" />
+        </WrapPanel>
+
+        <TextBlock Margin="30,0" 
+                   VerticalAlignment="Center"
+                   FontSize="{StaticResource FontSizeMicro}"
+                   Text="{Binding ., Mode=OneWay}" />
+
+    </DockPanel>
+
+</ContentControl>

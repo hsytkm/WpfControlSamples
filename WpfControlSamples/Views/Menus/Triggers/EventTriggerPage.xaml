@@ -39,10 +39,12 @@
             <LineBreak/>
             System.Windows.DataTrigger と違って、こいつは使わなさそう。
             <LineBreak/>
-            Storyboard を発火する以外のサンプルを見たことない。
+            Storyboard を発火する以外のサンプルを見たことないけど、TriggerAction なら発火できる。
+            <LineBreak/>
+            　※TriggerAction&lt;T&gt; を使う場合は、大人しく Behaviors の方を使いましょう…
         </TextBlock>
 
-        <Button DockPanel.Dock="Top" Margin="20" Height="40" Content="ぼやかす" >
+        <Button DockPanel.Dock="Top" Margin="20,10" Height="40" Content="ぼやかす" >
             <!-- DataTrigger はダメやけど、EventTrigger は FrameworkElement.Triggers に書ける。
                  よく使う DataTrigger の方をシンプルに書けるようにしてよ！ ぎゃくぎゃく！！ -->
             <Button.Triggers>
@@ -73,6 +75,16 @@
                 </TextBlock.Effect>
             </TextBlock>
         </Border>
+
+        <Button DockPanel.Dock="Top" Margin="20,40" Height="40" Content="SoundPlayerAction" >
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click">
+                    <EventTrigger.Actions>
+                        <SoundPlayerAction Source="/Resources/Sounds/Resource1.wav" />
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
 
     </StackPanel>
 

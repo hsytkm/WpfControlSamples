@@ -22,15 +22,6 @@
                    FontSize="{StaticResource FontSizeMedium}"
                    Text="Open / Save FileDialog" />
 
-        <TextBlock DockPanel.Dock="Top" Margin="10,10,0,0"
-                   Foreground="Red" >
-            Directory は基本機能のみで選択できない。
-            <LineBreak/>
-            System.Windows.Forms.dll を導入するか、OSS 探すしかないっぽい。
-            <LineBreak/>
-            OSS は Ookii.Dialogs が有名っぽい（未確認）
-        </TextBlock>
-
         <StackPanel DockPanel.Dock="Top" 
                     Margin="10" Background="LightBlue" >
             <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
