@@ -32,8 +32,12 @@
         <local:TreeViewPage />
     </TabItem>
 
-    <TabItem Header="DataGrid" >
-        <local:DataGridPage />
+    <TabItem Header="DataGrid1" >
+        <local:DataGrid1Page />
+    </TabItem>
+
+    <TabItem Header="DataGrid2" >
+        <local:DataGrid2Page />
     </TabItem>
 
     <TabItem Header="CollectionView1" >

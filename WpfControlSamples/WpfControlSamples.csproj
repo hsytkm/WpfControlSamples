@@ -108,6 +108,9 @@
     <Page Update="Views\Menus\DisplayCollections\ListBox3Page.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\DisplayCollections\DataGrid2Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\EditingText\WatermarkTextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -144,7 +147,7 @@
     <Page Update="Views\Menus\DisplayCollections\CollectionView2Page.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\DisplayCollections\DataGridPage.xaml">
+    <Page Update="Views\Menus\DisplayCollections\DataGrid1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\DisplayCollections\ListBox2Page.xaml">

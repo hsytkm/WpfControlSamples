@@ -18,7 +18,7 @@
         <TextBlock Margin="10,5"
                    Text="xamlのみで実現(TextBoxに名前を付ける必要がありだるい…)" />
         <Grid Margin="20,5" >
-            <TextBox x:Name="textBox1" />
+            <TextBox x:Name="textBox1" Padding="0,0,20,0" />
 
             <TextBlock Margin="5,0,0,0" IsHitTestVisible="False" Foreground="DarkGray"
                        Text="This is watermark1." >
@@ -34,7 +34,7 @@
                 </TextBlock.Style>
             </TextBlock>
 
-            <!-- クリアボタン(文字が長くなるとボタンと被るが何もしていない…) -->
+            <!-- クリアボタン -->
             <Button HorizontalAlignment="Right" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click" >
@@ -62,7 +62,7 @@
                             </MultiDataTrigger>
                         </ControlTemplate.Triggers>
                     
-                        <TextBlock Text="×■" FontWeight="Bold" Background="White" Margin="1" Padding="5,0"
+                        <TextBlock Text="×" FontWeight="Bold" Background="White" Margin="1" Padding="5,0"
                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" />
                     </ControlTemplate>
                 </Button.Template>

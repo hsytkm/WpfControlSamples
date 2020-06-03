@@ -18,17 +18,17 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class DataGridPage : ContentControl
+    public partial class DataGrid1Page : ContentControl
     {
-        public DataGridPage()
+        public DataGrid1Page()
         {
             InitializeComponent();
 
-            DataContext = new DataGridViewModel();
+            DataContext = new DataGrid1ViewModel();
         }
     }
 
-    class DataGridViewModel : MyBindableBase
+    class DataGrid1ViewModel : MyBindableBase
     {
         #region DataTable1
         public DataTable DataTableSource1 { get; } = GetDataTable(4, 4);

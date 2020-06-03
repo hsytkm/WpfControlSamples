@@ -39,11 +39,11 @@
     -->
 
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
-        <!-- 
+        
         <TabItem Header="Test" >
-            <menus:PlaySoundActionPage />
+            <menus:FolderDialogPage />
         </TabItem>
-        ↑仮置き↑ -->
+        <!-- ↑仮置き↑ -->
 
         
         <TabItem Header="Systems" >
