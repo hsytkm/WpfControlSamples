@@ -74,6 +74,24 @@
                        Text="{Binding SliderIntValue, Mode=OneWay, StringFormat='SliderIntValue:  {0}'}" />
         </DockPanel>
 
+        <!-- IntSlider改  https://qiita.com/KamadaKeisuke/items/67f6440ecd8b145076f2 -->
+        <DockPanel Margin="10" Background="LightGreen" >
+            <Slider x:Name="intSliderKai"
+                    DockPanel.Dock="Top" Margin="10"
+                    SmallChange="1" LargeChange="1"
+                    Minimum="{Binding SliderMin, Mode=OneTime}"
+                    Maximum="{Binding SliderMax, Mode=OneTime}"
+                    IsSnapToTickEnabled="True" TickFrequency="1" >
+                <i:Interaction.Behaviors>
+                    <vb:IntSliderBehavior IntValue="{Binding SliderIntValue, Mode=OneWayToSource}" />
+                </i:Interaction.Behaviors>
+            </Slider>
+
+            <TextBlock Margin="20,10"
+                       FontSize="{StaticResource FontSizeSmall}"
+                       Text="{Binding Value, Mode=OneWay, Source={x:Reference Name=intSliderKai}}" />
+        </DockPanel>
+
     </StackPanel>
 
 </ContentControl>
