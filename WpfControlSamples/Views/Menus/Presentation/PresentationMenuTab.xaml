@@ -16,6 +16,10 @@
         <local:TextBlockPage />
     </TabItem>
 
+    <TabItem Header="TextBlockLog" >
+        <local:TextBlockLogPage />
+    </TabItem>
+    
     <TabItem Header="Image" >
         <local:ImagePage />
     </TabItem>

@@ -303,6 +303,9 @@
     <Page Update="Views\Menus\Informations\ThumbPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\Presentation\TextBlockLogPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Presentation\WebBrowserPage.xaml">
       <SubType>Designer</SubType>
     </Page>
