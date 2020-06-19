@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,13 +16,17 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class ButtonPage : ContentControl
+    public partial class Button2Page : ContentControl
     {
-        public ICommand ButtonClick =>
-            _buttonClick ??= new MyCommand<string>(t => MessageBox.Show(t + " is pushed!", "PushPush"));
-        private ICommand _buttonClick;
+        public Button2Page()
+        {
+            InitializeComponent();
+            DataContext = new Button2ViewModel();
+        }
+    }
 
-        #region SwitchButtons
+    class Button2ViewModel : MyBindableBase
+    {
         private bool _isEnabled;
 
         public ICommand StartCommand =>
@@ -42,21 +47,29 @@ namespace WpfControlSamples.Views.Menus
             (StartCommand as MyCommand).ChangeCanExecute();
             (StopCommand as MyCommand).ChangeCanExecute();
         }
-        #endregion
 
-        public ButtonPage()
+
+        public int Counter
         {
-            InitializeComponent();
-
-            DataContext = ButtonClick;
+            get => _counter;
+            private set => SetProperty(ref _counter, value);
         }
-
         private int _counter;
-        private void IncrementButton_Click(object sender, RoutedEventArgs e)
-            => numberTextBlock.Text = (++_counter).ToString();
 
-        private void DecrementButton_Click(object sender, RoutedEventArgs e)
-            => numberTextBlock.Text = (--_counter).ToString();
+        public bool EnableButton
+        {
+            get => _enableButton;
+            set
+            {
+                if (SetProperty(ref _enableButton, value))
+                    (SwitchFlagCommand as MyCommand).ChangeCanExecute();
+            }
+        }
+        private bool _enableButton;
 
+        public ICommand SwitchFlagCommand => _switchFlagCommand ??= new MyCommand(
+            () => Counter++,
+            () => EnableButton);
+        private ICommand _switchFlagCommand;
     }
 }

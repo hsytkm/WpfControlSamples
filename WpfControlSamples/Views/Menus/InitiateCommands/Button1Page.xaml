@@ -1,4 +1,4 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ButtonPage"
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.Button1Page"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -55,18 +55,6 @@
                     Padding="20"
                     Command="{Binding .}"
                     CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" />
-        </StackPanel>
-
-        <StackPanel Margin="20,10" Orientation="Horizontal" >
-            <Button Height="40" Width="120"
-                    Content="Start Process"
-                    Command="{Binding StartCommand, Mode=OneTime,
-                                      RelativeSource={RelativeSource FindAncestor, AncestorType=local:ButtonPage}}" />
-
-            <Button Height="40" Width="120" Margin="20,0,0,0"
-                    Content="Stop Process"
-                    Command="{Binding StopCommand, Mode=OneTime,
-                                      RelativeSource={RelativeSource FindAncestor, AncestorType=local:ButtonPage}}" />
         </StackPanel>
 
         <TextBlock Margin="20,10" Text="Alt+I, Alt+D でボタンを操作できる (AccessText)" />

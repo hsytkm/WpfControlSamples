@@ -41,7 +41,7 @@
     <TabControl Style="{StaticResource MyTabControlStyle1}" >
         <!-- 
         <TabItem Header="Test" >
-            <menus:TextBlockLogPage />
+            <menus:PropetriesSettingsPage />
         </TabItem>
         ↑仮置き↑ -->
 

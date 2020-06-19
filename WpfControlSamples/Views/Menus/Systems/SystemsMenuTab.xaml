@@ -32,4 +32,8 @@
         <local:PropetriesResourcesPage />
     </TabItem>
 
+    <TabItem Header="PropetriesSettings" >
+        <local:PropetriesSettingsPage />
+    </TabItem>
+    
 </TabControl>

@@ -1,0 +1,61 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.PropetriesSettingsPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                xmlns:prop="clr-namespace:WpfControlSamples.Properties"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- Equivalent to UserSettings / ApplicationSettings in WPF dotnet core
+            https://stackoverflow.com/questions/56847571/equivalent-to-usersettings-applicationsettings-in-wpf-dotnet-core
+
+         Project -> Properties -> 追加 -> 新しい項目 -> 設定ファイル(Settings.settings)
+    -->
+    
+    <ContentControl.DataContext>
+        <local:PropetriesSettingsViewModel />
+    </ContentControl.DataContext>
+    
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top" Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="Propetries.Settings" />
+
+        <StackPanel Margin="10" Background="LightGreen" >
+            <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
+                       Text="アプリケーションのデータ保持（起動時に復元される）" />
+
+            <DockPanel Margin="20,10" >
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text="SettingSampleString" />
+                <TextBox Margin="20,0" 
+                         Text="{Binding SettingString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+
+            <StackPanel Margin="20,10" Orientation="Horizontal" >
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text="SettingSampleInt" />
+                <Slider Margin="20,0" Width="200"
+                        HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Minimum="0" Maximum="10" SmallChange="1" LargeChange="1"
+                        IsSnapToTickEnabled="True" TickFrequency="1"
+                        Value="{Binding SettingInt, Mode=TwoWay}" />
+
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text="{Binding SettingInt, Mode=OneWay}" />
+            </StackPanel>
+
+            <StackPanel Margin="20,10" Orientation="Horizontal" >
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text="SettingSampleBool" />
+
+                <CheckBox Margin="20,0" 
+                          IsChecked="{Binding SettingBool, Mode=TwoWay}" />
+            </StackPanel>
+
+        </StackPanel>
+    </DockPanel>
+
+</ContentControl>
