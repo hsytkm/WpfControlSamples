@@ -1,31 +1,32 @@
 # WpfControlSamples
 
-.NET Core WPF Control Samples
+.NET Core3.1 + WPF Control Samples
 
+Created in 2020/05
 
 ## Reference Website
 
 [Microsoft Docs WPF](https://docs.microsoft.com/ja-jp/dotnet/framework/wpf/)
 
-[‚©‚¸‚«‚ÌBlog@hatena / WPF4.5“ü–å ‚»‚Ì62u‚Ü‚Æ‚ßv](https://blog.okazuki.jp/entry/2014/12/27/200015)
+[ã‹ãšãã®Blog@hatena / WPF4.5å…¥é–€ ãã®62ã€Œã¾ã¨ã‚ã€](https://blog.okazuki.jp/entry/2014/12/27/200015)
 
-[Gushwell's Dev Notes / WPFƒTƒ“ƒvƒ‹E–ÚŸ](http://gushwell.ldblog.jp/archives/52313900.html)
+[Gushwell's Dev Notes / WPFã‚µãƒ³ãƒ—ãƒ«ãƒ»ç›®æ¬¡](http://gushwell.ldblog.jp/archives/52313900.html)
 
-[Ararami Studio / C#ŠJ”­‹Zp](https://araramistudio.jimdo.com/%E6%8A%80%E8%A1%93%E6%83%85%E5%A0%B1/c-%E9%96%8B%E7%99%BA%E6%8A%80%E8%A1%93/)
+[Ararami Studio / C#é–‹ç™ºæŠ€è¡“](https://araramistudio.jimdo.com/%E6%8A%80%E8%A1%93%E6%83%85%E5%A0%B1/c-%E9%96%8B%E7%99%BA%E6%8A%80%E8%A1%93/)
 
-[ItemsControl U—ª ` ŠOŠÏ‚ÌƒJƒXƒ^ƒ}ƒCƒY](http://grabacr.net/archives/1240)
+[ItemsControl æ”»ç•¥ ï½ å¤–è¦³ã®ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚º](http://grabacr.net/archives/1240)
 
-[‘n‘¢“IƒvƒƒOƒ‰ƒ~ƒ“ƒO‚Æ”S“y×H](http://pro.art55.jp/)
+[å‰µé€ çš„ãƒ—ãƒ­ã‚°ãƒ©ãƒŸãƒ³ã‚°ã¨ç²˜åœŸç´°å·¥](http://pro.art55.jp/)
 
 [What's the difference betwen a UserControl and a ContentControl?](https://stackoverflow.com/questions/18781679/whats-the-difference-betwen-a-usercontrol-and-a-contentcontrol)
 
-[yWPFzPath‚ÅüŒ`‚ğ‘‚­i’¼ü‚Ì‚İj](https://qiita.com/LemonLeaf/items/c089bbb497f53b59e0b4)
+[ã€WPFã€‘Pathã§ç·šå½¢ã‚’æ›¸ãï¼ˆç›´ç·šã®ã¿ï¼‰](https://qiita.com/LemonLeaf/items/c089bbb497f53b59e0b4)
 
-[C#+WPFƒ`ƒ…[ƒjƒ“ƒOí‹L](http://proprogrammer.hatenadiary.jp/)
+[C#+WPFãƒãƒ¥ãƒ¼ãƒ‹ãƒ³ã‚°æˆ¦è¨˜](http://proprogrammer.hatenadiary.jp/)
 
-[Ms‚ğ16”{o‚µ”²‚­wpfŠJ”­1‰ñ–Ú](https://www.slideshare.net/cct-inc/ms16wpf1)
+[Msã‚’16å€å‡ºã—æŠœãwpfé–‹ç™º1å›ç›®](https://www.slideshare.net/cct-inc/ms16wpf1)
 
-[MVVMƒpƒ^[ƒ“‚Ìí¯ \ uMvuVvuVMv‚Ì–ğŠ„‚Æ‚ÍH](https://www.atmarkit.co.jp/fdotnet/chushin/greatblogentry_02/greatblogentry_02_01.html)
+[MVVMãƒ‘ã‚¿ãƒ¼ãƒ³ã®å¸¸è­˜ â€• ã€ŒMã€ã€ŒVã€ã€ŒVMã€ã®å½¹å‰²ã¨ã¯ï¼Ÿ](https://www.atmarkit.co.jp/fdotnet/chushin/greatblogentry_02/greatblogentry_02_01.html)
 
 ## Assets
 
@@ -39,4 +40,4 @@
 
 [aybe/Windows-API-Code-Pack-1.1](https://github.com/aybe/Windows-API-Code-Pack-1.1)
 
-ˆÈã
+ä»¥ä¸Š
