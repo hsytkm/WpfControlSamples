@@ -19,11 +19,15 @@
     <TabItem Header="TextBlockLog" >
         <local:TextBlockLogPage />
     </TabItem>
-    
+
     <TabItem Header="Image" >
         <local:ImagePage />
     </TabItem>
 
+    <TabItem Header="ImageThumbnail" >
+        <local:ImageThumbnailPage />
+    </TabItem>
+    
     <TabItem Header="MediaElement" >
         <local:MediaElementPage />
     </TabItem>
