@@ -15,6 +15,9 @@
 
          WPF > フォルダ選択
             https://qiita.com/sugasaki/items/008c4f5c0589f0bf5962
+    
+         WPF MVVM L@bo #2 ～ MVVM さえあればいい。 ～
+            https://elf-mission.net/programming/wpf/mvvm-labo/phase02/#FolderBrowserDialog
     -->
     
     <DockPanel Margin="10" >
@@ -24,10 +27,10 @@
 
         <TextBlock DockPanel.Dock="Top" Margin="10"
                    FontSize="{StaticResource FontSizeMicro}"
-                   Text="フォルダ選択は WPF標準で提供されていないので、NuGet パッケージの導入が必要。" />
+                   Text="フォルダ選択は WPF標準で提供されていないので対応が必要。" />
 
         <!-- Pattern 1 -->
-        <StackPanel DockPanel.Dock="Top" Margin="10" Background="LightBlue" >
+        <StackPanel DockPanel.Dock="Top" Margin="10,0" Background="LightBlue" >
             <ctrl:HyperlinkTextBlock Margin="10"
                                      FontSize="{StaticResource FontSizeMicro}"
                                      Text="aybe/Windows-API-Code-Pack-1.1"
@@ -47,13 +50,13 @@
         </StackPanel>
 
         <!-- Pattern 2 -->
-        <StackPanel DockPanel.Dock="Top" Margin="10" Background="LightPink" >
+        <StackPanel DockPanel.Dock="Top" Margin="10,0" Background="LightPink" >
             <ctrl:HyperlinkTextBlock Margin="10"
                                      FontSize="{StaticResource FontSizeMicro}"
                                      Text="runceel/LivetExtensions"
                                      NavigateUri="https://github.com/runceel/Livet"/>
             <TextBlock Margin="20,0"
-                       Text="本流にパッケージ導入したくないので無効にしています。" />
+                       Text="本流にパッケージ導入したくないので無効にしています。(実装済みでコメント化)" />
 
             <WrapPanel Margin="20,10" >
                 <Button Margin="20,0" Padding="10" Width="150"
@@ -79,12 +82,29 @@
             </WrapPanel>
         </StackPanel>
 
+        <!-- Pattern 3 -->
+        <StackPanel DockPanel.Dock="Top" Margin="10,0" Background="LightGreen" >
+            <ctrl:HyperlinkTextBlock Margin="10"
+                                     FontSize="{StaticResource FontSizeMicro}"
+                                     Text="P/Invoke ネイティブ ライブラリーのダイアログ"
+                                     NavigateUri="https://shikaku-sh.hatenablog.com/entry/wpf-folder-selection-dialog#PInvoke-%E3%83%8D%E3%82%A4%E3%83%86%E3%82%A3%E3%83%96-%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%83%BC%E3%81%AE%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0"/>
+            <TextBlock Margin="20,0"
+                       Text="Nugetの導入なし。コードは泥臭いけど、一番すっきりするかも。" />
+
+            <WrapPanel Margin="20,10" >
+                <Button Margin="20,0" Padding="10" Width="150"
+                        Content="Open Single"
+                        Click="PInvokeFolderOpenSingleButton_Click" />
+            </WrapPanel>
+        </StackPanel>
+
         <!-- Selected result -->
-        <TextBlock Margin="30,0" 
+        <TextBlock DockPanel.Dock="Top" Margin="30,10" 
                    VerticalAlignment="Center"
                    FontSize="{StaticResource FontSizeMicro}"
                    Text="{Binding ., Mode=OneWay}" />
 
+        <Border/>
     </DockPanel>
 
 </ContentControl>

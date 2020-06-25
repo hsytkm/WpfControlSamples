@@ -28,6 +28,8 @@ Created in 2020/05
 
 [MVVMパターンの常識 ― 「M」「V」「VM」の役割とは？](https://www.atmarkit.co.jp/fdotnet/chushin/greatblogentry_02/greatblogentry_02_01.html)
 
+[WPF でフォルダー選択のダイアログを選択・実装する](https://shikaku-sh.hatenablog.com/entry/wpf-folder-selection-dialog)
+
 ## Assets
 
 [Ionicons](https://ionicons.com/)

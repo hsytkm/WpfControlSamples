@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfControlSamples.Extensions;
 using WpfControlSamples.Infrastructures;
+using WpfControlSamples.Views.Controls;
 
 namespace WpfControlSamples.Views.Menus
 {
@@ -55,6 +56,31 @@ namespace WpfControlSamples.Views.Menus
                 text = string.Join(Environment.NewLine, paths);
             }
             DataContext = text;
+        }
+
+        private void PInvokeFolderOpenSingleButton_Click(object sender, RoutedEventArgs e)
+        {
+            var result = FolderBrowserDialog.Result.None;
+            var browser = new FolderBrowserDialog
+            {
+                Title = "P/Invoke フォルダを選択してください",
+            };
+
+            // ウィンドウが取得できるときは設定する
+            if (sender is DependencyObject dep)
+            {
+                var window = Window.GetWindow(dep);
+                if (window != null) result = browser.ShowDialog(window);
+            }
+            else
+            {
+                result = browser.ShowDialog(IntPtr.Zero);
+            }
+
+            if (result == FolderBrowserDialog.Result.OK)
+            {
+                DataContext = browser.SelectedPath;
+            }
         }
     }
 }
