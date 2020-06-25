@@ -25,6 +25,10 @@
                    Width="100" Height="100" />
             <Image Source="pack://application:,,,/WpfControlSamples;component/Resources/Images/Resource3.png"
                    Width="100" Height="100" />
+
+            <!-- Bindingで表示版 -->
+            <Image Source="{Binding MyResourceImage, Mode=OneTime}"
+                   Width="100" Height="100" />
         </StackPanel>
 
         <!-- ビルドアクション：埋め込みリソース -->

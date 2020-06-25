@@ -27,6 +27,10 @@
     <TabItem Header="ImageThumbnail" >
         <local:ImageThumbnailPage />
     </TabItem>
+
+    <TabItem Header="ImageZoom" >
+        <local:ImageZoomPage />
+    </TabItem>
     
     <TabItem Header="MediaElement" >
         <local:MediaElementPage />

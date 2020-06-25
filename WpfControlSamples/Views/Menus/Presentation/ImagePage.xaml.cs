@@ -28,6 +28,8 @@ namespace WpfControlSamples.Views.Menus
 
     class ImageViewModel : MyBindableBase
     {
+        public BitmapImage MyResourceImage { get; }
+
         public BitmapImage MyEmbeddedImage1 { get; }
 
         private readonly BitmapImage _embeddedImage2;
@@ -41,6 +43,10 @@ namespace WpfControlSamples.Views.Menus
 
         public ImageViewModel()
         {
+            var uri = new Uri("pack://application:,,,/WpfControlSamples;component/Resources/Images/Resource3.png");
+            using var stream = Application.GetResourceStream(uri).Stream;
+            MyResourceImage = stream.ToBitmapImage();
+
             MyEmbeddedImage1 = LoadMyEmbeddedImage("Resources.Images.EmbeddedResource1.png");
 
             _embeddedImage2 = LoadMyEmbeddedImage("Resources.Images.EmbeddedResource2.png");
