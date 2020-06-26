@@ -93,8 +93,11 @@
 
             <WrapPanel Margin="20,10" >
                 <Button Margin="20,0" Padding="10" Width="150"
-                        Content="Open Single"
+                        Content="Open Single (Click)"
                         Click="PInvokeFolderOpenSingleButton_Click" />
+                <Button Margin="20,0" Padding="10" Width="180"
+                        Content="Open Single (Command)"
+                        Command="{Binding FolderOpenDialogCommand, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type local:FolderDialogPage}}}" />
             </WrapPanel>
         </StackPanel>
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
@@ -13,10 +14,11 @@ namespace WpfControlSamples.Views.Controls
     /// </summary>
     class FolderBrowserDialog
     {
+        #region enums
         /// <summary>
         /// SIGDN クラスは、IShellItem::GetDisplayName および SHGetNameFromIDList を使用して取得するアイテムの表示名の形式を定義します。
         /// </summary>
-        public enum SIGDN : uint
+        private enum SIGDN : uint
         {
             DESKTOPABSOLUTEEDITING = 0x8004c000,
             DESKTOPABSOLUTEPARSING = 0x80028000,
@@ -33,7 +35,7 @@ namespace WpfControlSamples.Views.Controls
         /// <see cref="FILEOPENDIALOGOPTIONS"/> 列挙型は、[開く] または [保存] ダイアログで使用できるオプションのセットを定義します。
         /// </summary>
         [Flags]
-        public enum FILEOPENDIALOGOPTIONS : uint
+        private enum FILEOPENDIALOGOPTIONS : uint
         {
             FOS_OVERWRITEPROMPT = 0x00000002,
             FOS_STRICTFILETYPES = 0x00000004,
@@ -64,6 +66,7 @@ namespace WpfControlSamples.Views.Controls
             FOS_FORCEPREVIEWPANEON = 0x40000000,
             FOS_SUPPORTSTREAMABLEITEMS = 0x80000000
         }
+        #endregion
 
         /// <summary>
         /// <see cref="Result"/> 列挙型は、ダイアログ ボックスの戻り値を示す識別子を表します。
@@ -179,34 +182,42 @@ namespace WpfControlSamples.Views.Controls
         /// <summary>
         /// ユーザーによって選択されたフォルダーのパスを取得または設定します。
         /// </summary>
-        public string SelectedPath { get; set; }
+        public string SelectedPath { get; private set; }
 
         /// <summary>
         /// ダイアログ上に表示されるタイトルのテキストを取得または設定します。
         /// </summary>
-        public string Title { get; set; }
+        public string Title { get; }
+
+        /// <summary>
+        /// ダイアログオープン時の初期PATH
+        /// </summary>
+        public string InitializedPath { get; }
 
         #endregion
 
-        #region Public Methods
-
-        public Result ShowDialog()
+        public FolderBrowserDialog(string title, string initializedPath = null)
         {
-            return ShowDialog(IntPtr.Zero);
+            Title = string.IsNullOrEmpty(title) ? "Folder Select Dialog" : title;
+            InitializedPath = initializedPath;
         }
 
-        public Result ShowDialog(Window owner)
-        {
-            if (owner is null)
-                throw new ArgumentNullException("指定したウィンドウは null です。オーナーを正しく設定できません。");
+        #region Public Methods
 
-            var handle = new WindowInteropHelper(owner).Handle;
+        public Result ShowDialog(Window windowOwner)
+        {
+            if (windowOwner is null) throw new ArgumentNullException(nameof(windowOwner));
+
+            var handle = new WindowInteropHelper(windowOwner).Handle;
             return ShowDialog(handle);
         }
 
-        public Result ShowDialog(IntPtr owner)
+        public Result ShowDialog() => ShowDialog(IntPtr.Zero);
+
+        private Result ShowDialog(IntPtr owner)
         {
-            var dialog = new FileOpenDialogInternal() as IFileOpenDialog;
+            if (!(new FileOpenDialogInternal() is IFileOpenDialog dialog))
+                throw new NullReferenceException(nameof(dialog));
 
             try
             {
@@ -214,11 +225,11 @@ namespace WpfControlSamples.Views.Controls
 
                 dialog.SetOptions(FILEOPENDIALOGOPTIONS.FOS_PICKFOLDERS | FILEOPENDIALOGOPTIONS.FOS_FORCEFILESYSTEM);
 
-                if (!string.IsNullOrEmpty(SelectedPath))
+                if (!string.IsNullOrEmpty(InitializedPath) && Directory.Exists(InitializedPath))
                 {
                     uint attributes = 0;
 
-                    if (SHILCreateFromPath(SelectedPath, out IntPtr idl, ref attributes) == 0)
+                    if (SHILCreateFromPath(InitializedPath, out IntPtr idl, ref attributes) == 0)
                     {
                         if (SHCreateShellItem(IntPtr.Zero, IntPtr.Zero, idl, out item) == 0)
                         {
@@ -232,11 +243,7 @@ namespace WpfControlSamples.Views.Controls
                     }
                 }
 
-                if (!string.IsNullOrEmpty(Title))
-                {
-                    dialog.SetTitle(Title);
-                }
-
+                dialog.SetTitle(Title);
                 var hr = dialog.Show(owner);
 
                 // 選択のキャンセルまたは例外
@@ -264,5 +271,6 @@ namespace WpfControlSamples.Views.Controls
         }
 
         #endregion
+
     }
 }

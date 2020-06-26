@@ -58,13 +58,17 @@ namespace WpfControlSamples.Views.Menus
             DataContext = text;
         }
 
-        private void PInvokeFolderOpenSingleButton_Click(object sender, RoutedEventArgs e)
+        public ICommand FolderOpenDialogCommand =>
+            _folderOpenDialogCommand ??= new MyCommand(() => CallFolderBrowserDialog(this));
+        private ICommand _folderOpenDialogCommand;
+
+        private void PInvokeFolderOpenSingleButton_Click(object sender, RoutedEventArgs e) =>
+            CallFolderBrowserDialog(sender);
+
+        private void CallFolderBrowserDialog(object sender)
         {
             var result = FolderBrowserDialog.Result.None;
-            var browser = new FolderBrowserDialog
-            {
-                Title = "P/Invoke フォルダを選択してください",
-            };
+            var browser = new FolderBrowserDialog("P/Invoke フォルダを選択してください");
 
             // ウィンドウが取得できるときは設定する
             if (sender is DependencyObject dep)
@@ -74,13 +78,15 @@ namespace WpfControlSamples.Views.Menus
             }
             else
             {
-                result = browser.ShowDialog(IntPtr.Zero);
+                result = browser.ShowDialog();
             }
 
             if (result == FolderBrowserDialog.Result.OK)
             {
-                DataContext = browser.SelectedPath;
+                // CommandParameter に IReactiveProperty<string> を指定して、VMに渡したりとか。
+                DataContext = browser.SelectedPath ?? "";
             }
         }
+
     }
 }
