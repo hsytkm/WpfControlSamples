@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Markup;
 using System.Windows.Media;
+using WpfControlSamples.Extensions;
 
 namespace WpfControlSamples.Views.MarkupExtensions
 {
@@ -14,12 +15,7 @@ namespace WpfControlSamples.Views.MarkupExtensions
 
         public byte A { set; get; } = byte.MaxValue;
 
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            var color = new SolidColorBrush(Color.FromArgb(A, R, G, B));
-            color.Freeze();
-            return color;
-        }
-
+        public override object ProvideValue(IServiceProvider serviceProvider) =>
+            new SolidColorBrush(Color.FromArgb(A, R, G, B)).WithFreeze();
     }
 }

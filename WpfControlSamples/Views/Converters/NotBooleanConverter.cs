@@ -5,17 +5,10 @@ using System.Windows.Data;
 namespace WpfControlSamples.Views.Converters
 {
     [ValueConversion(typeof(bool), typeof(bool))]
-    class NotBooleanConverter : IValueConverter
+    class NotBooleanConverter : GenericValueConverter<bool, bool>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is bool b) return !b;
-            throw new NotImplementedException();
-        }
+        public override bool Convert(bool b, object parameter, CultureInfo culture) => !b;
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public override bool ConvertBack(bool b, object parameter, CultureInfo culture) => default;
     }
 }

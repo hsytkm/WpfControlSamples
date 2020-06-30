@@ -5,28 +5,22 @@ using System.Windows.Data;
 namespace WpfControlSamples.Views.Converters
 {
     [ValueConversion(typeof(int), typeof(int))]
-    class AddIntegerConverter : IValueConverter
+    class AddIntegerConverter : GenericValueConverter<int, int>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override int Convert(int x, object parameter, CultureInfo culture)
         {
-            if (value is int x)
-            {
-                var y = GetParameter(parameter);
-                return x + y;
-            }
-
-            throw new NotSupportedException();
+            var y = GetParameter(parameter);
+            return x + y;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => throw new NotSupportedException();
-
-        private int GetParameter(object parameter)
+        private static int GetParameter(object parameter)
         {
             if (parameter is int i) return i;
             if (parameter is string s) return int.Parse(s);
 
             throw new NotSupportedException();
         }
+
+        public override int ConvertBack(int brush, object parameter, CultureInfo culture) => default;
     }
 }

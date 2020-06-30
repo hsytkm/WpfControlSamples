@@ -6,16 +6,10 @@ using System.Windows.Data;
 namespace WpfControlSamples.Views.Converters
 {
     [ValueConversion(typeof(StringBuilder), typeof(string))]
-    class StringBuilderToStringConverter : IValueConverter
+    class StringBuilderToStringConverter : GenericValueConverter<StringBuilder, string>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is null) throw new ArgumentNullException();
-            if (value is StringBuilder sb) return sb.ToString();
-            throw new NotImplementedException();
-        }
+        public override string Convert(StringBuilder sb, object parameter, CultureInfo culture) => sb.ToString();
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => new NotImplementedException();
+        public override StringBuilder ConvertBack(string s, object parameter, CultureInfo culture) => default;
     }
 }

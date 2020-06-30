@@ -5,15 +5,17 @@ using System.Windows.Data;
 namespace WpfControlSamples.Views.Converters
 {
     [ValueConversion(typeof(double), typeof(int))]
-    class DoubleToIntegerConverter : IValueConverter
+    class DoubleToIntegerConverter : GenericValueConverter<double, int>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
-            (int)Math.Round((double)value * GetParameter(parameter));
+        public override int Convert(double d, object parameter, CultureInfo culture)
+        {
+            var param = GetParameter(parameter);
+            return (int)Math.Round(d * param);
+        }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
-            throw new NotSupportedException();
+        public override double ConvertBack(int i, object parameter, CultureInfo culture) => default;
 
-        private double GetParameter(object parameter)
+        private static double GetParameter(object parameter)
         {
             if (parameter is double d) return (int)Math.Round(d);
             if (parameter is int i) return i;

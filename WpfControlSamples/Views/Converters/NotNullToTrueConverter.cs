@@ -4,13 +4,11 @@ using System.Windows.Data;
 
 namespace WpfControlSamples.Views.Converters
 {
-    [ValueConversion(typeof(bool), typeof(bool))]
-    class NotNullToTrueConverter : IValueConverter
+    [ValueConversion(typeof(object), typeof(bool))]
+    class NotNullToTrueConverter : GenericValueConverter<object, bool>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-            => !(value is null);
+        public override bool Convert(object obj, object parameter, CultureInfo culture) => !(obj is null);
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => throw new NotImplementedException();
+        public override object ConvertBack(bool b, object parameter, CultureInfo culture) => default;
     }
 }

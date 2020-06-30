@@ -15,6 +15,7 @@ namespace WpfControlSamples.Views.Converters
         public double FontSize { get; set; } = 12;
     }
 
+    [ValueConversion(typeof(object), typeof(object))]
     class RichTextBindingSourceToFlowDocumentConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -39,5 +40,4 @@ namespace WpfControlSamples.Views.Converters
             throw new NotImplementedException();
         }
     }
-
 }

@@ -117,6 +117,9 @@
     <Page Update="Views\Menus\DisplayCollections\CollectionView3Page.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\DisplayCollections\ListBox4Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\DisplayCollections\ListBox3Page.xaml">
       <SubType>Designer</SubType>
     </Page>

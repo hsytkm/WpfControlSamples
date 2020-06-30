@@ -7,17 +7,17 @@ namespace WpfControlSamples.Views.Converters
 {
     // How to display row numbers in a ListView?
     // https://stackoverflow.com/questions/660528/how-to-display-row-numbers-in-a-listview
-    class ListViewIndexConverter : IValueConverter
+
+    [ValueConversion(typeof(ListViewItem), typeof(string))]
+    class ListViewIndexConverter : GenericValueConverter<ListViewItem, string>
     {
-        public object Convert(object value, Type TargetType, object parameter, CultureInfo culture)
+        public override string Convert(ListViewItem item, object parameter, CultureInfo culture)
         {
-            var item = (ListViewItem)value;
             var listView = ItemsControl.ItemsControlFromItemContainer(item) as ListView;
             int index = listView.ItemContainerGenerator.IndexFromContainer(item);
             return (index + 1).ToString();
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => throw new NotImplementedException();
+        public override ListViewItem ConvertBack(string s, object parameter, CultureInfo culture) => default;
     }
 }

@@ -2,25 +2,17 @@
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
+using WpfControlSamples.Extensions;
 
 namespace WpfControlSamples.Views.Converters
 {
     [ValueConversion(typeof(Color), typeof(Brush))]
-    class ColorToBrushConverter : IValueConverter
+    class ColorToBrushConverter : GenericValueConverter<Color, Brush>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is Color color)
-            {
-                var brush = new SolidColorBrush(color);
-                brush.Freeze();
-                return brush;
-            }
-            throw new NotSupportedException(value.ToString());
-        }
+        public override Brush Convert(Color color, object parameter, CultureInfo culture) =>
+            new SolidColorBrush(color).WithFreeze();
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
-            throw new NotImplementedException();
+        public override Color ConvertBack(Brush brush, object parameter, CultureInfo culture) => default;
     }
 }
  

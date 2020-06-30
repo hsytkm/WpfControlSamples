@@ -51,10 +51,8 @@ namespace WpfControlSamples.Views.Menus
             var uriString = isEnableResource1
                 ? "pack://application:,,,/Resources/Images/Resource1.png"   // 画像は「リソース」
                 : "pack://application:,,,/Resources/Images/Resource2.png";  // 画像は「リソース」
-            var bitmapImage = new BitmapImage(new Uri(uriString));
-            bitmapImage.Freeze();
-            var imageBrush = new ImageBrush(bitmapImage);
-            imageBrush.Freeze();
+            var bitmapImage = new BitmapImage(new Uri(uriString)).WithFreeze();
+            var imageBrush = new ImageBrush(bitmapImage).WithFreeze();
             this.Resources[_imageBrushResourceKey] = imageBrush;
 
             // String

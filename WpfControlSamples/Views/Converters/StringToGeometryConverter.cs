@@ -7,26 +7,22 @@ using System.Windows.Media;
 namespace WpfControlSamples.Views.Converters
 {
     [ValueConversion(typeof(string), typeof(Geometry))]
-    class StringToGeometryConverter : IValueConverter
+    class StringToGeometryConverter : GenericValueConverter<string, Geometry>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override Geometry Convert(string text, object parameter, CultureInfo culture)
         {
-            if (value is string text)
-            {
-                var fontFamily = GetFontName(parameter);
+            var fontFamily = GetFontName(parameter);
 
-                var typeface = new Typeface(
-                    fontFamily,
-                    FontStyles.Normal, FontWeights.Normal, FontStretches.Normal);
+            var typeface = new Typeface(
+                fontFamily,
+                FontStyles.Normal, FontWeights.Normal, FontStretches.Normal);
 
-                var formattedText = new FormattedText(
-                    text,
-                    CultureInfo.CurrentCulture, FlowDirection.LeftToRight, typeface,
-                    emSize: 64, foreground: new SolidColorBrush(), pixelsPerDip: 1.25);
+            var formattedText = new FormattedText(
+                text,
+                CultureInfo.CurrentCulture, FlowDirection.LeftToRight, typeface,
+                emSize: 64, foreground: new SolidColorBrush(), pixelsPerDip: 1.25);
 
-                return formattedText.BuildGeometry(new Point());
-            }
-            throw new NotSupportedException();
+            return formattedText.BuildGeometry(new Point());
         }
 
         private static FontFamily GetFontName(object parameter)
@@ -36,7 +32,6 @@ namespace WpfControlSamples.Views.Converters
             return new FontFamily(fontname);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
-            throw new NotSupportedException();
+        public override string ConvertBack(Geometry geometry, object parameter, CultureInfo culture) => default;
     }
 }

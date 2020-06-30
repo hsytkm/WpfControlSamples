@@ -5,16 +5,14 @@ using System.Windows.Data;
 namespace WpfControlSamples.Views.Converters
 {
     [ValueConversion(typeof(string), typeof(bool))]
-    class EmptyStringToTrueConverter : IValueConverter
+    class EmptyStringToTrueConverter : GenericValueConverter<string, bool>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override bool Convert(string s, object parameter, CultureInfo culture)
         {
-            if (value is null) throw new ArgumentNullException();
-            if (value is string s) return string.IsNullOrEmpty(s);
-            throw new NotImplementedException();
+            if (s is null) throw new ArgumentNullException();
+            return string.IsNullOrEmpty(s);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => new NotImplementedException();
+        public override string ConvertBack(bool b, object parameter, CultureInfo culture) => default;
     }
 }
