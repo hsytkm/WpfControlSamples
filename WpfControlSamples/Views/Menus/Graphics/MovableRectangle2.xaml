@@ -13,6 +13,8 @@
 
         <Polygon Points="{Binding ., Mode=OneWay}"
                  Fill="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type local:MovableRectangle2}}}"
+                 Stroke="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:MovableRectangle2}}}"
+                 StrokeThickness="2"
                  PreviewMouseLeftButtonDown="Polygon_PreviewMouseLeftButtonDown"
                  PreviewMouseLeftButtonUp="Polygon_PreviewMouseLeftButtonUp" 
                  PreviewMouseMove="Polygon_PreviewMouseMove" />

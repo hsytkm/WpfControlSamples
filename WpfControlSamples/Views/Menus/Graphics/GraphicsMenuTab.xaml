@@ -44,8 +44,12 @@
         <local:Viewport3DPage />
     </TabItem>
 
-    <TabItem Header="MovableRectangle" >
-        <local:MovableRectanglePage />
+    <TabItem Header="MovableRectangle1" >
+        <local:MovableRectangle1Page />
+    </TabItem>
+
+    <TabItem Header="MovableRectangle2" >
+        <local:MovableRectangle2Page />
     </TabItem>
 
 </TabControl>

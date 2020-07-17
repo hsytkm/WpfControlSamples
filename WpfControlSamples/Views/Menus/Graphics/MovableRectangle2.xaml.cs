@@ -53,8 +53,16 @@ namespace WpfControlSamples.Views.Menus
         private static double Clamp(double self, double min, double max) =>
             Math.Max(min, Math.Min(max, self));
 
-        private static Point GetCanvasPosition(UIElement ui) =>
-            new Point(Canvas.GetLeft(ui), Canvas.GetTop(ui));
+        private static Point GetCanvasPosition(UIElement ui)
+        {
+            var left = Canvas.GetLeft(ui);
+            if (double.IsNaN(left)) left = 0;
+
+            var top = Canvas.GetTop(ui);
+            if (double.IsNaN(top)) top = 0;
+
+            return new Point(left, top);
+        }
 
         #region Thumb
         private void CornerThumb_DragDelta(object sender, DragDeltaEventArgs e)
@@ -134,13 +142,24 @@ namespace WpfControlSamples.Views.Menus
 
         private struct DragMove
         {
-            private Point _basePoint;
-            private Vector _baseAddress;
+            private readonly Point _basePoint;
+            private readonly Vector _baseAddress;
 
-            public DragMove(UIElement d) =>
-                (_basePoint, _baseAddress) = (GetCurrentMousePosition(d), new Vector(Canvas.GetLeft(d), Canvas.GetTop(d)));
+            public DragMove(UIElement ui) =>
+                (_basePoint, _baseAddress) = (GetCurrentMousePosition(ui), GetCanvasPosition(ui));
 
             private Point GetCurrentMousePosition(DependencyObject d) => Mouse.GetPosition(Window.GetWindow(d));
+
+            private static Vector GetCanvasPosition(UIElement ui)
+            {
+                var left = Canvas.GetLeft(ui);
+                if (double.IsNaN(left)) left = 0;
+
+                var top = Canvas.GetTop(ui);
+                if (double.IsNaN(top)) top = 0;
+
+                return new Vector(left, top);
+            }
 
             public Vector GetNewAddress(DependencyObject d)
             {

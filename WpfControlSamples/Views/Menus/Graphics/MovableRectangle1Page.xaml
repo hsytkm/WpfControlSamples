@@ -1,4 +1,4 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.MovableRectanglePage"
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.MovableRectangle1Page"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,7 +10,7 @@
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
                    Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
-                   Text="MovableRectangle" />
+                   Text="MovableRectangle 1" />
 
         <CheckBox DockPanel.Dock="Top" Margin="10,5" 
                   x:Name="checkBox1" IsChecked="True" Content="ClipToBounds" />
@@ -33,7 +33,7 @@
             <!-- 四隅を動かす矩形 -->
             <local:MovableRectangle2
                 Canvas.Left="200" Canvas.Top="200"
-                Background="Bisque"
+                Background="Bisque" BorderBrush="DarkGray"
                 CanvasWidthMax="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}"
                 CanvasHeightMax="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}" />
 

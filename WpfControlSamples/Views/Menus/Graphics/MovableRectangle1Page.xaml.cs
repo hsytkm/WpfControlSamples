@@ -18,9 +18,9 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class MovableRectanglePage : ContentControl
+    public partial class MovableRectangle1Page : ContentControl
     {
-        public MovableRectanglePage()
+        public MovableRectangle1Page()
         {
             InitializeComponent();
         }

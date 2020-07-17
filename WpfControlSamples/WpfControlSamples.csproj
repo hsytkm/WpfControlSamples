@@ -84,7 +84,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Views\Menus\Graphics\MovableRectanglePage.xaml">
+    <Page Update="Views\Menus\Graphics\MovableRectangle2Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\Graphics\MovableRectangle1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Graphics\MovableRectangle2.xaml">

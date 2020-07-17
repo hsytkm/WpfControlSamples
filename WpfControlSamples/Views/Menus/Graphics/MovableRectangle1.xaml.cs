@@ -178,8 +178,8 @@ namespace WpfControlSamples.Views.Menus
 
         private struct DragMove
         {
-            private Point _basePoint;
-            private Vector _baseAddress;
+            private readonly Point _basePoint;
+            private readonly Vector _baseAddress;
 
             //public DragMove(Point point, Vector vec) => (_basePoint, _baseAddress) = (point, vec);
 
