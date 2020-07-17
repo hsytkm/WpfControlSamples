@@ -39,9 +39,13 @@
     <TabItem Header="InkCanvas" >
         <local:InkCanvasPage />
     </TabItem>
-    
+
     <TabItem Header="Viewport3D" >
         <local:Viewport3DPage />
     </TabItem>
-    
+
+    <TabItem Header="MovableRectangle" >
+        <local:MovableRectanglePage />
+    </TabItem>
+
 </TabControl>

@@ -25,7 +25,7 @@
                      Fill="Green"
                      Canvas.Left="100" Canvas.Top="180" />
 
-            <Polygon Points="10,110 110,110 110,10"
+            <Polygon Points="{Binding ., Mode=OneTime}"
                      Stroke="Pink" StrokeThickness="4"
                      Canvas.Left="150" Canvas.Top="250" />
 

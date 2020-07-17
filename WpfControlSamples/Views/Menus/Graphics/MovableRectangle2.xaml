@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="WpfControlSamples.Views.Menus.MovableRectangle2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfControlSamples.Views.Menus" >
+
+    <Canvas>
+        <Panel.Resources>
+            <ControlTemplate x:Key="ResizeHandleTemplate" TargetType="{x:Type Thumb}" >
+                <Ellipse Width="10" Height="10" Margin="-5"
+                         Stroke="DimGray" Fill="Coral" />
+            </ControlTemplate>
+        </Panel.Resources>
+
+        <Polygon Points="{Binding ., Mode=OneWay}"
+                 Fill="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type local:MovableRectangle2}}}"
+                 PreviewMouseLeftButtonDown="Polygon_PreviewMouseLeftButtonDown"
+                 PreviewMouseLeftButtonUp="Polygon_PreviewMouseLeftButtonUp" 
+                 PreviewMouseMove="Polygon_PreviewMouseMove" />
+
+        <Thumb x:Name="thumb0"
+               Canvas.Left="0" Canvas.Top="0"
+               Template="{StaticResource ResizeHandleTemplate}"
+               Cursor="Hand"
+               DragDelta="CornerThumb_DragDelta" />
+
+        <Thumb x:Name="thumb1"
+               Canvas.Left="100" Canvas.Top="0"
+               Template="{StaticResource ResizeHandleTemplate}"
+               Cursor="Hand"
+               DragDelta="CornerThumb_DragDelta" />
+
+        <Thumb x:Name="thumb2"
+               Canvas.Left="100" Canvas.Top="100"
+               Template="{StaticResource ResizeHandleTemplate}"
+               Cursor="Hand"
+               DragDelta="CornerThumb_DragDelta" />
+
+        <Thumb x:Name="thumb3"
+               Canvas.Left="0" Canvas.Top="100"
+               Template="{StaticResource ResizeHandleTemplate}"
+               Cursor="Hand"
+               DragDelta="CornerThumb_DragDelta" />
+
+    </Canvas>
+
+</UserControl>

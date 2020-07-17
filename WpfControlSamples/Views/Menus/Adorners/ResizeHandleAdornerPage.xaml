@@ -71,6 +71,17 @@
                     </Style>
                 </Button.Style>
             </Button>
+
+            <local:MovableRectangle1
+                Canvas.Left="300" Canvas.Top="50"
+                MinWidth="10" MinHeight="10"
+                MaxWidth="500" MaxHeight="500"
+                Width="200" Height="40"
+                CanvasWidthMax="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}"
+                CanvasHeightMax="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}" >
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Foreground="White" Text="パワポっぽい枠(途中断念)" />
+            </local:MovableRectangle1>
         </Canvas>
 
     </DockPanel>

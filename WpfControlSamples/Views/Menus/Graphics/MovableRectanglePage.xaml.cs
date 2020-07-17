@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,20 +18,11 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class PolygonPage : ContentControl
+    public partial class MovableRectanglePage : ContentControl
     {
-        public PolygonPage()
+        public MovableRectanglePage()
         {
             InitializeComponent();
-
-            var points = new[]
-            {
-                new Point(10,110),
-                new Point(110,110),
-                new Point(110,10),
-            };
-
-            DataContext = new PointCollection(points);
         }
     }
 }
