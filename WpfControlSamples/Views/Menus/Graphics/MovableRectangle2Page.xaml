@@ -12,7 +12,12 @@
                    Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
                    Text="MovableRectangle 2" />
 
-        <ItemsControl x:Name="itemsControl" Background="LightBlue"
+        <TextBlock DockPanel.Dock="Top" Margin="10,5"
+                   FontSize="{StaticResource FontSizeMicro}"
+                   Text="DoubleClick to disable control." />
+
+        <ItemsControl x:Name="itemsControl"
+                      Background="LightBlue" Margin="10"
                       ItemsSource="{Binding ., Mode=OneTime}" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>

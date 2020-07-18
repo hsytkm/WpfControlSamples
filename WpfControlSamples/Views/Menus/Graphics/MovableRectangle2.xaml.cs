@@ -19,6 +19,16 @@ namespace WpfControlSamples.Views.Menus
     public partial class MovableRectangle2 : UserControl
     {
         #region DependencyProperty
+        public static readonly DependencyProperty IndexProperty =
+            DependencyProperty.Register(
+                nameof(IndexProperty), typeof(int), typeof(MovableRectangle2), new FrameworkPropertyMetadata(0));
+
+        public int Index
+        {
+            get => (int)GetValue(IndexProperty);
+            set => SetValue(IndexProperty, value);
+        }
+
         public static readonly DependencyProperty CanvasWidthMaxProperty =
             DependencyProperty.Register(
                 nameof(CanvasWidthMax), typeof(double), typeof(MovableRectangle2), new FrameworkPropertyMetadata(double.PositiveInfinity));
@@ -40,28 +50,45 @@ namespace WpfControlSamples.Views.Menus
         }
         #endregion
 
-        private readonly Thumb[] CornerThumbs;
+        private readonly Thumb[] _cornerThumbs;
+        private bool _canControl;
 
         public MovableRectangle2()
         {
             InitializeComponent();
 
-            CornerThumbs = new[] { thumb0, thumb1, thumb2, thumb3 };
-            UpdatePolygonPoints();
+            _cornerThumbs = new[] { thumb0, thumb1, thumb2, thumb3 };
+            _canControl = true;     // 操作可能で初期化
+
+            this.Loaded += MovableRectangle2_Loaded;
         }
 
-        private static double Clamp(double self, double min, double max) =>
-            Math.Max(min, Math.Min(max, self));
-
-        private static Point GetCanvasPosition(UIElement ui)
+        private void MovableRectangle2_Loaded(object sender, RoutedEventArgs e)
         {
-            var left = Canvas.GetLeft(ui);
-            if (double.IsNaN(left)) left = 0;
+            // Windowsのように画面ごとに初期位置をずらす
+            var offset = 10.0 * (Index % 5);
+            var width = 100.0;
+            var height = 100.0;
 
-            var top = Canvas.GetTop(ui);
-            if (double.IsNaN(top)) top = 0;
+            var leftTops = new[]
+            {
+                new Point(offset, offset),
+                new Point(offset + width, offset),
+                new Point(offset + width, offset + height),
+                new Point(offset, offset + height),
+            };
 
-            return new Point(left, top);
+            for (int i = 0; i < leftTops.Length; ++i)
+            {
+                var leftTop = leftTops[i];
+                var thumb = _cornerThumbs[i];
+
+                Canvas.SetLeft(thumb, leftTop.X);
+                Canvas.SetTop(thumb, leftTop.Y);
+            }
+
+            UpdatePolygonPoints();
+            UpdateCornerThumbsVisibility(_canControl);
         }
 
         #region Thumb
@@ -89,12 +116,12 @@ namespace WpfControlSamples.Views.Menus
 
         private void UpdatePolygonPoints()
         {
-            var points = CornerThumbs.Select(x => GetCanvasPosition(x));
-            
+            var points = _cornerThumbs.Select(x => GetCanvasPosition(x));
+
             // ◆めくられ対策は一旦無効
             //var sortedPoints = SortQuadranglePoints(points);
 
-            DataContext = new PointCollection(points);
+            polygon.Points = new PointCollection(points);
         }
 
         // 枠点をめくられないよう並べ替える(面積が最大を採用する実装)
@@ -172,6 +199,8 @@ namespace WpfControlSamples.Views.Menus
 
         private void Polygon_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (!_canControl) return;
+
             if (!(sender is FrameworkElement self)) return;
             self.CaptureMouse();
             self.Cursor = Cursors.Hand;
@@ -196,10 +225,10 @@ namespace WpfControlSamples.Views.Menus
             var parentCanvasPos = GetCanvasPosition(this);
 
             // 四隅座標を取得
-            var cornersLeft = CornerThumbs.Select(x => Canvas.GetLeft(x)).ToArray();
+            var cornersLeft = _cornerThumbs.Select(x => Canvas.GetLeft(x)).ToArray();
             var cornerLeftMin = parentCanvasPos.X + cornersLeft.Min();
             var cornerLeftMax = parentCanvasPos.X + cornersLeft.Max();
-            var cornersTop = CornerThumbs.Select(x => Canvas.GetTop(x)).ToArray();
+            var cornersTop = _cornerThumbs.Select(x => Canvas.GetTop(x)).ToArray();
             var cornerTopMin = parentCanvasPos.Y + cornersTop.Min();
             var cornerTopMax = parentCanvasPos.Y + cornersTop.Max();
 
@@ -214,6 +243,34 @@ namespace WpfControlSamples.Views.Menus
             Canvas.SetTop(this, newTop);
         }
         #endregion
+
+        private static double Clamp(double self, double min, double max) =>
+            Math.Max(min, Math.Min(max, self));
+
+        private static Point GetCanvasPosition(UIElement ui)
+        {
+            var left = Canvas.GetLeft(ui);
+            if (double.IsNaN(left)) left = 0;
+
+            var top = Canvas.GetTop(ui);
+            if (double.IsNaN(top)) top = 0;
+
+            return new Point(left, top);
+        }
+
+        private void UpdateCornerThumbsVisibility(bool isVisible)
+        {
+            foreach (var thumb in _cornerThumbs)
+            {
+                thumb.Visibility = isVisible ? Visibility.Visible : Visibility.Hidden;
+            }
+        }
+
+        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            _canControl = !_canControl;
+            UpdateCornerThumbsVisibility(_canControl);
+        }
 
     }
 }

@@ -29,17 +29,21 @@ namespace WpfControlSamples.Views.Menus
             itemsControl.Loaded += ItemsControl_Loaded;
         }
 
-        private static IEnumerable<MovableRectangle2> GetRectangles(double canvasWidth, double canvasHeight)
+        private static IEnumerable<MovableRectangle2> CreateMovableRectangle2(double canvasWidth, double canvasHeight)
         {
             var brushes = new[]
             {
                 Brushes.Bisque,
                 Brushes.SlateBlue,
-                Brushes.LightGoldenrodYellow
+                Brushes.LightGoldenrodYellow,
+                Brushes.LightSalmon,
+                Brushes.CornflowerBlue,
+                Brushes.Coral,
             };
 
-            return brushes.Select(brush => new MovableRectangle2()
+            return brushes.Select((brush, index) => new MovableRectangle2()
                 {
+                    Index = index,
                     CanvasWidthMax = canvasWidth,
                     CanvasHeightMax = canvasHeight,
                     Background = brush,
@@ -54,7 +58,7 @@ namespace WpfControlSamples.Views.Menus
             if (itemsControl.TryGetChildControl<Canvas>(out var canvas))
             {
                 // Canvas の Load 完了後に子要素を追加する
-                DataContext = GetRectangles(canvas.ActualWidth, canvas.ActualHeight);
+                DataContext = CreateMovableRectangle2(canvas.ActualWidth, canvas.ActualHeight);
             }
         }
     }
