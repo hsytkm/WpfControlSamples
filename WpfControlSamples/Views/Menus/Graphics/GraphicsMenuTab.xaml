@@ -44,6 +44,10 @@
         <local:Viewport3DPage />
     </TabItem>
 
+    <TabItem Header="HsbColor" >
+        <local:HsbColorPage />
+    </TabItem>
+
     <TabItem Header="MovableRectangle1" >
         <local:MovableRectangle1Page />
     </TabItem>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfControlSamples.Extensions;
 
 namespace WpfControlSamples.Views.Menus
 {
@@ -65,6 +66,9 @@ namespace WpfControlSamples.Views.Menus
 
         private void MovableRectangle2_Loaded(object sender, RoutedEventArgs e)
         {
+            // 連番をタイトルにしとく
+            titleTextBlock.Text = Index.ToString();
+
             // Windowsのように画面ごとに初期位置をずらす
             var offset = 10.0 * (Index % 5);
             var width = 100.0;
@@ -83,8 +87,7 @@ namespace WpfControlSamples.Views.Menus
                 var leftTop = leftTops[i];
                 var thumb = _cornerThumbs[i];
 
-                Canvas.SetLeft(thumb, leftTop.X);
-                Canvas.SetTop(thumb, leftTop.Y);
+                thumb.SetCanvasLeftTop(leftTop.X, leftTop.Y);
             }
 
             UpdatePolygonPoints();
@@ -96,18 +99,18 @@ namespace WpfControlSamples.Views.Menus
         {
             if (!(sender is Thumb thumb)) return;
 
-            var parentCanvasPos = GetCanvasPosition(this);
-            var oldThumbCanvasPos = GetCanvasPosition(thumb);
+            var parentCanvasPos = this.GetCanvasLeftTop();
+            var oldThumbCanvasPos = thumb.GetCanvasLeftTop();
 
             var leftMin = -parentCanvasPos.X;
             var leftMax = CanvasWidthMax - parentCanvasPos.X;
             var newLeft = Clamp(oldThumbCanvasPos.X + e.HorizontalChange, leftMin, leftMax);
-            Canvas.SetLeft(thumb, newLeft);
 
             var topMin = -parentCanvasPos.Y;
             var topMax = CanvasHeightMax - parentCanvasPos.Y;
             var newTop = Clamp(oldThumbCanvasPos.Y + e.VerticalChange, topMin, topMax);
-            Canvas.SetTop(thumb, newTop);
+
+            thumb.SetCanvasLeftTop(newLeft, newTop);
 
             UpdatePolygonPoints();
 
@@ -116,12 +119,16 @@ namespace WpfControlSamples.Views.Menus
 
         private void UpdatePolygonPoints()
         {
-            var points = _cornerThumbs.Select(x => GetCanvasPosition(x));
+            var points = _cornerThumbs.Select(x => x.GetCanvasLeftTop());
 
             // ◆めくられ対策は一旦無効
             //var sortedPoints = SortQuadranglePoints(points);
 
             polygon.Points = new PointCollection(points);
+
+            // タイトルの表示位置は一番左の隅を基準にする
+            var leftTopCorner = _cornerThumbs.Select(x => x.GetCanvasLeftTop()).OrderBy(x => x.X).First();
+            titlePanel.SetCanvasLeftTop(leftTopCorner);
         }
 
         // 枠点をめくられないよう並べ替える(面積が最大を採用する実装)
@@ -173,20 +180,9 @@ namespace WpfControlSamples.Views.Menus
             private readonly Vector _baseAddress;
 
             public DragMove(UIElement ui) =>
-                (_basePoint, _baseAddress) = (GetCurrentMousePosition(ui), GetCanvasPosition(ui));
+                (_basePoint, _baseAddress) = (GetCurrentMousePosition(ui), (Vector)ui.GetCanvasLeftTop());
 
             private Point GetCurrentMousePosition(DependencyObject d) => Mouse.GetPosition(Window.GetWindow(d));
-
-            private static Vector GetCanvasPosition(UIElement ui)
-            {
-                var left = Canvas.GetLeft(ui);
-                if (double.IsNaN(left)) left = 0;
-
-                var top = Canvas.GetTop(ui);
-                if (double.IsNaN(top)) top = 0;
-
-                return new Vector(left, top);
-            }
 
             public Vector GetNewAddress(DependencyObject d)
             {
@@ -222,41 +218,30 @@ namespace WpfControlSamples.Views.Menus
             if (!_dragMove.HasValue) return;
 
             var leftTop = _dragMove.Value.GetNewAddress(this);
-            var parentCanvasPos = GetCanvasPosition(this);
+            var parentCanvasPos = this.GetCanvasLeftTop();
 
             // 四隅座標を取得
-            var cornersLeft = _cornerThumbs.Select(x => Canvas.GetLeft(x)).ToArray();
+            var cornersLeft = _cornerThumbs.Select(x => x.GetCanvasLeft()).ToArray();
             var cornerLeftMin = parentCanvasPos.X + cornersLeft.Min();
             var cornerLeftMax = parentCanvasPos.X + cornersLeft.Max();
-            var cornersTop = _cornerThumbs.Select(x => Canvas.GetTop(x)).ToArray();
+            var cornersTop = _cornerThumbs.Select(x => x.GetCanvasTop()).ToArray();
             var cornerTopMin = parentCanvasPos.Y + cornersTop.Min();
             var cornerTopMax = parentCanvasPos.Y + cornersTop.Max();
 
             var leftMin = parentCanvasPos.X - cornerLeftMin;
             var leftMax = parentCanvasPos.X + (CanvasWidthMax - cornerLeftMax);
             var newLeft = Clamp(leftTop.X, leftMin, leftMax);
-            Canvas.SetLeft(this, newLeft);
 
             var topMin = parentCanvasPos.Y - cornerTopMin;
             var topMax = parentCanvasPos.Y + (CanvasHeightMax - cornerTopMax);
             var newTop = Clamp(leftTop.Y, topMin, topMax);
-            Canvas.SetTop(this, newTop);
+
+            this.SetCanvasLeftTop(newLeft, newTop);
         }
         #endregion
 
         private static double Clamp(double self, double min, double max) =>
             Math.Max(min, Math.Min(max, self));
-
-        private static Point GetCanvasPosition(UIElement ui)
-        {
-            var left = Canvas.GetLeft(ui);
-            if (double.IsNaN(left)) left = 0;
-
-            var top = Canvas.GetTop(ui);
-            if (double.IsNaN(top)) top = 0;
-
-            return new Point(left, top);
-        }
 
         private void UpdateCornerThumbsVisibility(bool isVisible)
         {

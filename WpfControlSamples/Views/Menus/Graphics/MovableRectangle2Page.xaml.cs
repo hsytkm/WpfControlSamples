@@ -37,8 +37,8 @@ namespace WpfControlSamples.Views.Menus
                 Brushes.SlateBlue,
                 Brushes.LightGoldenrodYellow,
                 Brushes.LightSalmon,
+                Brushes.Transparent,
                 Brushes.CornflowerBlue,
-                Brushes.Coral,
             };
 
             return brushes.Select((brush, index) => new MovableRectangle2()

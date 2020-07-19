@@ -67,7 +67,7 @@ namespace WpfControlSamples.Views.Menus
                     var horiChange = Math.Min(e.HorizontalChange, self.Width - widthMin);
 
                     var leftMax = CanvasWidthMax - widthMin;
-                    var oldLeft = Canvas.GetLeft(self);
+                    var oldLeft = self.GetCanvasLeft();
                     var newLeft = Clamp(oldLeft + horiChange, 0, leftMax);
                     Canvas.SetLeft(self, newLeft);
 
@@ -76,7 +76,7 @@ namespace WpfControlSamples.Views.Menus
                 }
                 else
                 {
-                    var widthMax = Math.Min(CanvasWidthMax - Canvas.GetLeft(self), self.MaxWidth);
+                    var widthMax = Math.Min(CanvasWidthMax - self.GetCanvasLeft(), self.MaxWidth);
                     self.Width = Clamp(self.Width + e.HorizontalChange, self.MinWidth, widthMax);
                 }
             }
@@ -90,7 +90,7 @@ namespace WpfControlSamples.Views.Menus
                     var vertChange = Math.Min(e.VerticalChange, self.Height - heightMin);
 
                     var topMax = CanvasHeightMax - heightMin;
-                    var oldTop = Canvas.GetTop(self);
+                    var oldTop = self.GetCanvasTop();
                     var newTop = Clamp(oldTop + vertChange, 0, topMax);
                     Canvas.SetTop(self, newTop);
 
@@ -99,7 +99,7 @@ namespace WpfControlSamples.Views.Menus
                 }
                 else
                 {
-                    var heightMax = Math.Min(CanvasHeightMax - Canvas.GetTop(self), self.MaxHeight);
+                    var heightMax = Math.Min(CanvasHeightMax - self.GetCanvasTop(), self.MaxHeight);
                     self.Height = Clamp(self.Height + e.VerticalChange, self.MinHeight, heightMax);
                 }
             }
@@ -149,7 +149,7 @@ namespace WpfControlSamples.Views.Menus
             if (!(AdornedBy.GetAdornedElementFromTemplateChild(thumb) is FrameworkElement self)) return;
 
             // ◆矩形回転時の中点が取得できていない…
-            var selfCenterPos = new Point(Canvas.GetLeft(self) + self.ActualWidth / 2.0, Canvas.GetTop(self) + self.ActualHeight / 2.0);
+            var selfCenterPos = new Point(self.GetCanvasLeft() + self.ActualWidth / 2.0, self.GetCanvasTop() + self.ActualHeight / 2.0);
 
             var changePos = new Point(-e.HorizontalChange, -e.VerticalChange);
 
@@ -184,7 +184,7 @@ namespace WpfControlSamples.Views.Menus
             //public DragMove(Point point, Vector vec) => (_basePoint, _baseAddress) = (point, vec);
 
             public DragMove(UIElement d) =>
-                (_basePoint, _baseAddress) = (GetCurrentMousePosition(d), new Vector(Canvas.GetLeft(d), Canvas.GetTop(d)));
+                (_basePoint, _baseAddress) = (GetCurrentMousePosition(d), (Vector)d.GetCanvasLeftTop());
 
             private Point GetCurrentMousePosition(DependencyObject d) => Mouse.GetPosition(Window.GetWindow(d));
 
@@ -224,8 +224,7 @@ namespace WpfControlSamples.Views.Menus
             var newLeft = Clamp(leftTop.X, 0, CanvasWidthMax - self.ActualWidth);
             var newTop = Clamp(leftTop.Y, 0, CanvasHeightMax - self.ActualHeight);
 
-            Canvas.SetLeft(self, newLeft);
-            Canvas.SetTop(self, newTop);
+            self.SetCanvasLeftTop(newLeft, newTop);
         }
         #endregion
 
