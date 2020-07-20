@@ -12,17 +12,44 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
+        }
+    }
+
+    class MainWindowViewModel : MyBindableBase
+    {
+        public TabItemPage[] TabItemPages { get; }
+
+        public TabItemPage SelectedTabItemPage
+        {
+            get => _selectedTabItemPage;
+            set
+            {
+                var oldPage = _selectedTabItemPage;
+                if (SetProperty(ref _selectedTabItemPage, value))
+                {
+                    oldPage?.ReleaseContent();
+                    _selectedTabItemPage?.LoadContent();
+                }
+            }
+        }
+        private TabItemPage _selectedTabItemPage;
+
+        public MainWindowViewModel()
+        {
+            var allPageTables = PagesSource.AllPageTables;
+            TabItemPages = allPageTables.Select(table => new TabItemPageParent(table)).ToArray();
+
+            SelectedTabItemPage = TabItemPages.First();
         }
     }
 }

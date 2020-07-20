@@ -9,6 +9,9 @@
 
     <!-- スクロール可能なタブコントロール
             http://www.kanazawa-net.ne.jp/~pmansato/wpf/wpf_custom_tabcontrol.htm
+    
+         TabItemと各TabItemの中身を動的に生成する
+            http://hkou.hatenablog.com/entry/2015/05/24/101245
     -->
 
     <ContentControl.Resources>

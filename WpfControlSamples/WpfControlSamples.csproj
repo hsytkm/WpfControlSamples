@@ -105,9 +105,6 @@
     <Page Update="Views\Menus\Adorners\ResizableTextBoxPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Animations\AnimationsMenuTab.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Menus\Animations\HideControlAnimation1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -117,13 +114,7 @@
     <Page Update="Views\Menus\Animations\DoubleAnimationUsingKeyFramesPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\CustomControls\CustomControlsMenuTab.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Menus\Dispatchers\DispatcherCollectionPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Menus\Dispatchers\DispatchersMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\DisplayCollections\CollectionView4Page.xaml">
@@ -204,9 +195,6 @@
     <Page Update="Views\Menus\EditingText\TextBoxPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\EditingText\EditingTextMenuTab.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior6Page.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -252,16 +240,7 @@
     <Page Update="Views\Menus\InteractionTriggers\BehaviorsDataTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\InteractionActions\InteractionActionsMenuTab.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Menus\InteractionTriggers\PropertyChangedTriggerPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Menus\InteractionBehaviors\InteractionBehaviorsMenuTab.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Menus\InteractionTriggers\InteractionTriggersMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\ItemTemplate\VisualStateManagerPage.xaml">
@@ -271,9 +250,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\ItemTemplate\ItemTemplateSelectorPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Menus\ItemTemplate\ItemTemplateMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\LayoutMultiple\TabControlPage.xaml">
@@ -300,9 +276,6 @@
     <Page Update="Views\Menus\LayoutMultiple\GridSplitterPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\LayoutMultiple\LayoutMultipleMenuTab.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Menus\LayoutMultiple\GridPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -322,9 +295,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\LayoutSingle\ExpanderPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Menus\LayoutSingle\LayoutSingleMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\LayoutSingle\BorderPage.xaml">
@@ -357,9 +327,6 @@
     <Page Update="Views\Menus\Triggers\EventTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\UIElements\UIElementsMenuTab.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Menus\UIElements\SaveToImagePage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -382,9 +349,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\SettingValues\SliderPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Menus\SettingValues\SettingValuesMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Graphics\CombinedGeometryPage.xaml">
@@ -423,9 +387,6 @@
     <Page Update="Views\Menus\Graphics\PolygonPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Graphics\GraphicsMenuTab.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Menus\Graphics\EllipsePage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -445,9 +406,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Systems\PropetriesResourcesPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Menus\Systems\SystemsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\InteractionBehaviors\ConditionBehaviorPage.xaml">
@@ -478,9 +436,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\Triggers\DataTriggerPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Menus\Triggers\TriggersMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\WindowsDeskop\MouseCursorPage.xaml">
@@ -537,12 +492,6 @@
     <Page Update="Views\Menus\Informations\ToolTipPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\Informations\InformationsMenuTab.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Menus\WindowsDeskop\WindowsDeskopMenuTab.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Menus\WindowsDeskop\ApplicationCommandsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -595,9 +544,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\XamlFunctions\MultiBinding1Page.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Menus\XamlFunctions\XamlFunctionsMenuTab.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

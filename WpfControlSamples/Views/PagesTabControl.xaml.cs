@@ -11,11 +11,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfControlSamples.Views.Menus
+namespace WpfControlSamples.Views
 {
-    public partial class WindowsDeskopMenuTab : TabControl
+    public partial class PagesTabControl : TabControl
     {
-        public WindowsDeskopMenuTab()
+        public PagesTabControl()
         {
             InitializeComponent();
         }
