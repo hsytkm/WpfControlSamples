@@ -22,7 +22,8 @@ namespace WpfControlSamples.Views.Menus
         #region DependencyProperty
         public static readonly DependencyProperty IndexProperty =
             DependencyProperty.Register(
-                nameof(IndexProperty), typeof(int), typeof(MovableRectangle2), new FrameworkPropertyMetadata(0));
+                nameof(IndexProperty), typeof(int), typeof(MovableRectangle2),
+                new FrameworkPropertyMetadata(0));
 
         public int Index
         {
@@ -32,7 +33,10 @@ namespace WpfControlSamples.Views.Menus
 
         public static readonly DependencyProperty CanvasWidthMaxProperty =
             DependencyProperty.Register(
-                nameof(CanvasWidthMax), typeof(double), typeof(MovableRectangle2), new FrameworkPropertyMetadata(double.PositiveInfinity));
+                nameof(CanvasWidthMax), typeof(double), typeof(MovableRectangle2),
+                new FrameworkPropertyMetadata(double.PositiveInfinity,
+                    (sender, e) => ((MovableRectangle2)sender).OnCanvasSizeMaxChanged(widthChanged: (double)e.NewValue - (double)e.OldValue)),
+                new ValidateValueCallback(IsValidLength));
 
         public double CanvasWidthMax
         {
@@ -42,12 +46,37 @@ namespace WpfControlSamples.Views.Menus
 
         public static readonly DependencyProperty CanvasHeightMaxProperty =
             DependencyProperty.Register(
-                nameof(CanvasHeightMax), typeof(double), typeof(MovableRectangle2), new FrameworkPropertyMetadata(double.PositiveInfinity));
+                nameof(CanvasHeightMax), typeof(double), typeof(MovableRectangle2),
+                new FrameworkPropertyMetadata(double.PositiveInfinity,
+                    (sender, e) => ((MovableRectangle2)sender).OnCanvasSizeMaxChanged(heightChanged: (double)e.NewValue - (double)e.OldValue)),
+                new ValidateValueCallback(IsValidLength));
 
         public double CanvasHeightMax
         {
             get => (double)GetValue(CanvasHeightMaxProperty);
             set => SetValue(CanvasHeightMaxProperty, value);
+        }
+
+        // 検証コールバックで正数チェック
+        private static bool IsValidLength(object value) => (value is double d) && d > 0;
+
+        // Canvasサイズの変化時の処理
+        private void OnCanvasSizeMaxChanged(double widthChanged = 0, double heightChanged = 0)
+        {
+            if (double.IsInfinity(widthChanged) || double.IsInfinity(heightChanged)) return;
+
+            ShiftPolygonPositionLocal();
+
+            foreach (var thumb in _cornerThumbs)
+            {
+                LimitThumbPosition(thumb);
+            }
+
+            // Canvasが大きい場合は枠を水平/垂直に移動（枠移動量0を要求して更新)
+            void ShiftPolygonPositionLocal() => ShiftPolygonPosition(new Vector(0, 0));
+
+            // Canvasが小さい場合は枠を押し潰し（点移動量0を要求して更新）
+            void LimitThumbPosition(Thumb thumb) => ChangeThumbPosition(thumb, horizontalChange: 0, verticalChange: 0);
         }
         #endregion
 
@@ -99,22 +128,28 @@ namespace WpfControlSamples.Views.Menus
         {
             if (!(sender is Thumb thumb)) return;
 
+            ChangeThumbPosition(thumb, e.HorizontalChange, e.VerticalChange);
+            e.Handled = true;
+        }
+
+        private void ChangeThumbPosition(Thumb thumb, double horizontalChange, double verticalChange)
+        {
+            if (thumb is null) throw new ArgumentNullException(nameof(thumb));
+
             var parentCanvasPos = this.GetCanvasLeftTop();
             var oldThumbCanvasPos = thumb.GetCanvasLeftTop();
 
             var leftMin = -parentCanvasPos.X;
             var leftMax = CanvasWidthMax - parentCanvasPos.X;
-            var newLeft = Clamp(oldThumbCanvasPos.X + e.HorizontalChange, leftMin, leftMax);
+            var newLeft = Clamp(oldThumbCanvasPos.X + horizontalChange, leftMin, leftMax);
 
             var topMin = -parentCanvasPos.Y;
             var topMax = CanvasHeightMax - parentCanvasPos.Y;
-            var newTop = Clamp(oldThumbCanvasPos.Y + e.VerticalChange, topMin, topMax);
+            var newTop = Clamp(oldThumbCanvasPos.Y + verticalChange, topMin, topMax);
 
             thumb.SetCanvasLeftTop(newLeft, newTop);
 
             UpdatePolygonPoints();
-
-            e.Handled = true;
         }
 
         private void UpdatePolygonPoints()
@@ -177,14 +212,14 @@ namespace WpfControlSamples.Views.Menus
         private struct DragMove
         {
             private readonly Point _basePoint;
-            private readonly Vector _baseAddress;
+            private readonly Point _baseAddress;
 
             public DragMove(UIElement ui) =>
-                (_basePoint, _baseAddress) = (GetCurrentMousePosition(ui), (Vector)ui.GetCanvasLeftTop());
+                (_basePoint, _baseAddress) = (GetCurrentMousePosition(ui), ui.GetCanvasLeftTop());
 
             private Point GetCurrentMousePosition(DependencyObject d) => Mouse.GetPosition(Window.GetWindow(d));
 
-            public Vector GetNewAddress(DependencyObject d)
+            public Point GetNewAddress(DependencyObject d)
             {
                 var newPoint = GetCurrentMousePosition(d);
                 var shift = newPoint - _basePoint;
@@ -217,26 +252,44 @@ namespace WpfControlSamples.Views.Menus
         {
             if (!_dragMove.HasValue) return;
 
-            var leftTop = _dragMove.Value.GetNewAddress(this);
+            // 新座標を移動量に換算
+            var newPos = _dragMove.Value.GetNewAddress(this);
+            var currentPos = this.GetCanvasLeftTop();
+            var moveVector = newPos - currentPos;
+
+            ShiftPolygonPosition(moveVector);
+        }
+
+        private void ShiftPolygonPosition(Vector moveVector)
+        {
             var parentCanvasPos = this.GetCanvasLeftTop();
+            var newPos = parentCanvasPos + moveVector;
 
-            // 四隅座標を取得
-            var cornersLeft = _cornerThumbs.Select(x => x.GetCanvasLeft()).ToArray();
-            var cornerLeftMin = parentCanvasPos.X + cornersLeft.Min();
-            var cornerLeftMax = parentCanvasPos.X + cornersLeft.Max();
-            var cornersTop = _cornerThumbs.Select(x => x.GetCanvasTop()).ToArray();
-            var cornerTopMin = parentCanvasPos.Y + cornersTop.Min();
-            var cornerTopMax = parentCanvasPos.Y + cornersTop.Max();
+            // 枠の四隅座標を親Canvas基準に変換
+            var cornerRect = Rect.Offset(GetCornerRect(), (Vector)parentCanvasPos);
 
-            var leftMin = parentCanvasPos.X - cornerLeftMin;
-            var leftMax = parentCanvasPos.X + (CanvasWidthMax - cornerLeftMax);
-            var newLeft = Clamp(leftTop.X, leftMin, leftMax);
+            var leftMin = parentCanvasPos.X - cornerRect.Left;
+            var leftMax = parentCanvasPos.X + (CanvasWidthMax - cornerRect.Right);
+            var newLeft = Clamp(newPos.X, leftMin, leftMax);
 
-            var topMin = parentCanvasPos.Y - cornerTopMin;
-            var topMax = parentCanvasPos.Y + (CanvasHeightMax - cornerTopMax);
-            var newTop = Clamp(leftTop.Y, topMin, topMax);
+            var topMin = parentCanvasPos.Y - cornerRect.Top;
+            var topMax = parentCanvasPos.Y + (CanvasHeightMax - cornerRect.Bottom);
+            var newTop = Clamp(newPos.Y, topMin, topMax);
 
             this.SetCanvasLeftTop(newLeft, newTop);
+
+            // 枠の四隅座標を取得
+            Rect GetCornerRect()
+            {
+                var cornersLeft = _cornerThumbs.Select(x => x.GetCanvasLeft()).ToArray();
+                var cornerLeftMin = cornersLeft.Min();
+                var cornerLeftMax = cornersLeft.Max();
+                var cornersTop = _cornerThumbs.Select(x => x.GetCanvasTop()).ToArray();
+                var cornerTopMin = cornersTop.Min();
+                var cornerTopMax = cornersTop.Max();
+
+                return new Rect(new Point(cornerLeftMin, cornerTopMin), new Point(cornerLeftMax, cornerTopMax));
+            }
         }
         #endregion
 

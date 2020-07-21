@@ -3,14 +3,21 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
+using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views
 {
-    public class TabItemPage
+    class TabItemPage : MyBindableBase
     {
         public Type PageType { get; }
         public string Name { get; }
-        public Control Content { get; internal set; }
+        public Control Content
+        {
+            get => _content;
+            internal set => SetProperty(ref _content, value);
+        }
+        private Control _content;
+
         internal TabItemPage(Type type, string name) => (PageType, Name) = (type, name);
         public TabItemPage(Type type)
             : this(type, type.ToString().Split('.').Last().Replace("Page", "")) { }
@@ -18,21 +25,18 @@ namespace WpfControlSamples.Views
         {
             if (Content != null) ReleaseContent();
             Content = (ContentControl)Activator.CreateInstance(PageType);
-
-            //Debug.WriteLine($"LoadContent() : {PageType}");
         }
         public virtual void ReleaseContent()
         {
             if (Content is IDisposable d) d.Dispose();
             Content = null;
-
-            //Debug.WriteLine($"ReleaseContent() : {PageType}");
         }
     }
 
-    public class TabItemPageParent : TabItemPage
+    class TabItemPageParent : TabItemPage
     {
-        public readonly TabItemPage[] _children;
+        private readonly TabItemPage[] _children;
+
         internal TabItemPageParent(PageTable table)
             : base(typeof(PagesTabControl), table.Title)
         {
@@ -40,18 +44,31 @@ namespace WpfControlSamples.Views
         }
         public override void LoadContent()
         {
-            // ◆Table内の全Pageを読んでるのでメモリ面でイマイチ。直す
-            foreach (var child in _children)
-            {
-                child.LoadContent();
-            }
-
-            if (Content != null) ReleaseContent();
-            Content = new PagesTabControl()
+            var pagesTabControl = new PagesTabControl()
             {
                 ItemsSource = _children,
                 Background = Brushes.LightGray,
             };
+
+            // 選択されたControlを読み込む（表示中のContentのみを読み込む）
+            pagesTabControl.SelectionChanged += (_, e) =>
+            {
+                foreach (var item in e.RemovedItems)
+                {
+                    if (item is TabItemPage page)
+                        page.ReleaseContent();
+
+                }
+
+                foreach (var item in e.AddedItems)
+                {
+                    if (item is TabItemPage page)
+                        page.LoadContent();
+                }
+            };
+
+            if (Content != null) ReleaseContent();
+            Content = pagesTabControl;
         }
         public override void ReleaseContent()
         {

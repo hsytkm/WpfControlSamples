@@ -58,7 +58,19 @@ namespace WpfControlSamples.Views.Menus
             if (itemsControl.TryGetChildControl<Canvas>(out var canvas))
             {
                 // Canvas の Load 完了後に子要素を追加する
-                DataContext = CreateMovableRectangle2(canvas.ActualWidth, canvas.ActualHeight);
+                DataContext = CreateMovableRectangle2(canvas.ActualWidth, canvas.ActualHeight).ToArray();
+
+                // Canvas のサイズ変化時に子枠達のDepPropertyを更新する
+                canvas.SizeChanged += (_, e) =>
+                {
+                    if (!(DataContext is MovableRectangle2[] rects)) return;
+
+                    foreach (var rect in rects)
+                    {
+                        rect.CanvasWidthMax = e.NewSize.Width;
+                        rect.CanvasHeightMax = e.NewSize.Height;
+                    }
+                };
             }
         }
     }

@@ -27,9 +27,9 @@ namespace WpfControlSamples.Views
 
     class MainWindowViewModel : MyBindableBase
     {
-        public TabItemPage[] TabItemPages { get; }
+        public TabItemPageParent[] TabItemPageParents { get; }
 
-        public TabItemPage SelectedTabItemPage
+        public TabItemPageParent SelectedTabItemPageParent
         {
             get => _selectedTabItemPage;
             set
@@ -42,14 +42,14 @@ namespace WpfControlSamples.Views
                 }
             }
         }
-        private TabItemPage _selectedTabItemPage;
+        private TabItemPageParent _selectedTabItemPage;
 
         public MainWindowViewModel()
         {
             var allPageTables = PagesSource.AllPageTables;
-            TabItemPages = allPageTables.Select(table => new TabItemPageParent(table)).ToArray();
+            TabItemPageParents = allPageTables.Select(table => new TabItemPageParent(table)).ToArray();
 
-            SelectedTabItemPage = TabItemPages.First();
+            SelectedTabItemPageParent = TabItemPageParents.First();
         }
     }
 }

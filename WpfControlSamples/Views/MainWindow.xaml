@@ -38,7 +38,8 @@
             https://blog.shibayan.jp/entry/20190612/1560267647
     -->
 
-    <local:PagesTabControl ItemsSource="{Binding TabItemPages, Mode=OneTime}"
-                           SelectedItem="{Binding SelectedTabItemPage, Mode=TwoWay}" />
+    <local:PagesTabControl
+        ItemsSource="{Binding TabItemPageParents, Mode=OneTime}"
+        SelectedItem="{Binding SelectedTabItemPageParent, Mode=TwoWay}" />
     
 </Window>
