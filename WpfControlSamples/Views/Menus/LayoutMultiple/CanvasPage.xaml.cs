@@ -18,6 +18,8 @@ namespace WpfControlSamples.Views.Menus
 {
     public partial class CanvasPage : ContentControl
     {
+        public Point ControlPoint1 { get; } = new Point(50, 80);
+
         public CanvasPage()
         {
             InitializeComponent();

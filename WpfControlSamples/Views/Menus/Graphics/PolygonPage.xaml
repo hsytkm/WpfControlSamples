@@ -4,8 +4,13 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
+
+    <ContentControl.Resources>
+        <conv:PointArrayToPointCollectionConverter x:Key="PointArrayToPointCollectionConverter" />
+    </ContentControl.Resources>
 
     <StackPanel Margin="10" >
         <TextBlock FontSize="{StaticResource FontSizeMedium}"
@@ -21,11 +26,12 @@
                      Stroke="Black" StrokeThickness="4"
                      Canvas.Left="40" Canvas.Top="120" />
 
-            <Polygon Points="10,110 110,110 110,10"
+            <Polygon Points="{Binding PointCollection, RelativeSource={RelativeSource AncestorType={x:Type local:PolygonPage}}}"
                      Fill="Green"
                      Canvas.Left="100" Canvas.Top="180" />
 
-            <Polygon Points="{Binding ., Mode=OneTime}"
+            <Polygon Points="{Binding PointArray, RelativeSource={RelativeSource AncestorType={x:Type local:PolygonPage}},
+                                      Converter={StaticResource PointArrayToPointCollectionConverter}}"
                      Stroke="Pink" StrokeThickness="4"
                      Canvas.Left="150" Canvas.Top="250" />
 

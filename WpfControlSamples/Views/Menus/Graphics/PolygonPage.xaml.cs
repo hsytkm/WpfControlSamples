@@ -19,18 +19,25 @@ namespace WpfControlSamples.Views.Menus
 {
     public partial class PolygonPage : ContentControl
     {
-        public PolygonPage()
-        {
-            InitializeComponent();
-
-            var points = new[]
-            {
+        public PointCollection PointCollection { get; } = new PointCollection(
+           new[]
+           {
                 new Point(10,110),
                 new Point(110,110),
                 new Point(110,10),
+           });
+
+        public Point[] PointArray { get; } =
+            new[]
+            {
+                new Point(110,10),
+                new Point(10,110),
+                new Point(110,110),
             };
 
-            DataContext = new PointCollection(points);
+        public PolygonPage()
+        {
+            InitializeComponent();
         }
     }
 }

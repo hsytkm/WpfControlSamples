@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -25,52 +26,63 @@ namespace WpfControlSamples.Views.Menus
         public MovableRectangle2Page()
         {
             InitializeComponent();
-
-            itemsControl.Loaded += ItemsControl_Loaded;
+            DataContext = new MovableRectangle2ViewModel();
         }
+    }
 
-        private static IEnumerable<MovableRectangle2> CreateMovableRectangle2(double canvasWidth, double canvasHeight)
+    class PolygonRectangle : MyBindableBase
+    {
+        public int Index { get; }
+        public Color ThemeColor1 { get; }
+        public Color ThemeColor2 { get; }
+        public Point[] CornerPoints
         {
-            var brushes = new[]
+            get => _cornerPoints;
+            set => SetProperty(ref _cornerPoints, value);
+        }
+        private Point[] _cornerPoints;
+        public PolygonRectangle(int index, Color themeColor)
+        {
+            Index = index;
+            ThemeColor1 = themeColor;
+            ThemeColor2 = Colors.Gray;
+            CornerPoints = GetDefaultCornerPoints(index);
+        }
+        private static Point[] GetDefaultCornerPoints(int index)
+        {
+            var offset = 20.0 * (index % 5);
+            var width = 100.0;
+            var height = 60.0;
+            return new[]
             {
-                Brushes.Bisque,
-                Brushes.SlateBlue,
-                Brushes.LightGoldenrodYellow,
-                Brushes.LightSalmon,
-                Brushes.Transparent,
-                Brushes.CornflowerBlue,
+                new Point(offset, offset),
+                new Point(offset + width, offset),
+                new Point(offset + width, offset + height),
+                new Point(offset, offset + height),
+            };
+        }
+    }
+
+    class MovableRectangle2ViewModel : MyBindableBase
+    {
+        public ObservableCollection<PolygonRectangle> PolygonRectangles { get; } =
+            new ObservableCollection<PolygonRectangle>();
+
+        public MovableRectangle2ViewModel()
+        {
+            var themeColors = new[]
+            {
+                Colors.Bisque,
+                Colors.SlateBlue,
+                Colors.LightGoldenrodYellow,
+                Colors.LightSalmon,
+                Colors.Transparent,
+                Colors.CornflowerBlue,
             };
 
-            return brushes.Select((brush, index) => new MovableRectangle2()
-                {
-                    Index = index,
-                    CanvasWidthMax = canvasWidth,
-                    CanvasHeightMax = canvasHeight,
-                    Background = brush,
-                    BorderBrush = Brushes.Gray
-                });
-        }
-
-        private void ItemsControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (!(sender is ItemsControl itemsControl)) return;
-
-            if (itemsControl.TryGetChildControl<Canvas>(out var canvas))
+            for (int i = 0; i < themeColors.Length; ++i)
             {
-                // Canvas の Load 完了後に子要素を追加する
-                DataContext = CreateMovableRectangle2(canvas.ActualWidth, canvas.ActualHeight).ToArray();
-
-                // Canvas のサイズ変化時に子枠達のDepPropertyを更新する
-                canvas.SizeChanged += (_, e) =>
-                {
-                    if (!(DataContext is MovableRectangle2[] rects)) return;
-
-                    foreach (var rect in rects)
-                    {
-                        rect.CanvasWidthMax = e.NewSize.Width;
-                        rect.CanvasHeightMax = e.NewSize.Height;
-                    }
-                };
+                PolygonRectangles.Add(new PolygonRectangle(i, themeColors[i]));
             }
         }
     }

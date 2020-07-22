@@ -10,11 +10,15 @@
                 <Ellipse Width="10" Height="10" Margin="-5"
                          Stroke="DimGray" Fill="Coral" />
             </ControlTemplate>
+            <Style x:Key="ResizeHandleThumbStyle" TargetType="{x:Type Thumb}" >
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Template" Value="{StaticResource ResizeHandleTemplate}" />
+            </Style>
         </Panel.Resources>
 
         <Polygon x:Name="polygon"
-                 Fill="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type local:MovableRectangle2}}}"
-                 Stroke="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:MovableRectangle2}}}"
+                 Fill="{Binding BackgroundBrush, RelativeSource={RelativeSource AncestorType={x:Type local:MovableRectangle2}}}"
+                 Stroke="{Binding StrokeBrush, RelativeSource={RelativeSource AncestorType={x:Type local:MovableRectangle2}}}"
                  StrokeThickness="2"
                  PreviewMouseLeftButtonDown="Polygon_PreviewMouseLeftButtonDown"
                  PreviewMouseLeftButtonUp="Polygon_PreviewMouseLeftButtonUp" 
@@ -22,29 +26,25 @@
 
         <Border x:Name="titlePanel" Margin="-20,-20,0,0"
                 IsHitTestVisible="False"
-                Background="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type local:MovableRectangle2}}}" >
+                Background="{Binding BackgroundBrush, RelativeSource={RelativeSource AncestorType={x:Type local:MovableRectangle2}}}" >
             <TextBlock x:Name="titleTextBlock" FontSize="14"
                        HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Border>
 
         <Thumb x:Name="thumb0"
-               Template="{StaticResource ResizeHandleTemplate}"
-               Cursor="Hand"
+               Style="{StaticResource ResizeHandleThumbStyle}"
                DragDelta="CornerThumb_DragDelta" />
 
         <Thumb x:Name="thumb1"
-               Template="{StaticResource ResizeHandleTemplate}"
-               Cursor="Hand"
+               Style="{StaticResource ResizeHandleThumbStyle}"
                DragDelta="CornerThumb_DragDelta" />
 
         <Thumb x:Name="thumb2"
-               Template="{StaticResource ResizeHandleTemplate}"
-               Cursor="Hand"
+               Style="{StaticResource ResizeHandleThumbStyle}"
                DragDelta="CornerThumb_DragDelta" />
 
         <Thumb x:Name="thumb3"
-               Template="{StaticResource ResizeHandleTemplate}"
-               Cursor="Hand"
+               Style="{StaticResource ResizeHandleThumbStyle}"
                DragDelta="CornerThumb_DragDelta" />
     </Canvas>
 </UserControl>

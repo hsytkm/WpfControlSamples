@@ -33,7 +33,7 @@
             <!-- 四隅を動かす矩形 -->
             <local:MovableRectangle2
                 Canvas.Left="200" Canvas.Top="200"
-                Background="Bisque" BorderBrush="DarkGray"
+                BackgroundBrush="Bisque" StrokeBrush="DarkGray"
                 CanvasWidthMax="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}"
                 CanvasHeightMax="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}" />
 

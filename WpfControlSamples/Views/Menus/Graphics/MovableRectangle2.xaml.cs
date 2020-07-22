@@ -22,7 +22,7 @@ namespace WpfControlSamples.Views.Menus
         #region DependencyProperty
         public static readonly DependencyProperty IndexProperty =
             DependencyProperty.Register(
-                nameof(IndexProperty), typeof(int), typeof(MovableRectangle2),
+                nameof(Index), typeof(int), typeof(MovableRectangle2),
                 new FrameworkPropertyMetadata(0));
 
         public int Index
@@ -30,6 +30,44 @@ namespace WpfControlSamples.Views.Menus
             get => (int)GetValue(IndexProperty);
             set => SetValue(IndexProperty, value);
         }
+
+        public static readonly DependencyProperty BackgroundBrushProperty =
+            DependencyProperty.Register(
+                nameof(BackgroundBrush), typeof(Brush), typeof(MovableRectangle2),
+                new FrameworkPropertyMetadata(Brushes.Red));
+
+        public Brush BackgroundBrush
+        {
+            get => (Brush)GetValue(BackgroundBrushProperty);
+            set => SetValue(BackgroundBrushProperty, value);
+        }
+
+        public static readonly DependencyProperty StrokeBrushProperty =
+            DependencyProperty.Register(
+                nameof(StrokeBrush), typeof(Brush), typeof(MovableRectangle2),
+                new FrameworkPropertyMetadata(Brushes.Blue));
+
+        public Brush StrokeBrush
+        {
+            get => (Brush)GetValue(StrokeBrushProperty);
+            set => SetValue(StrokeBrushProperty, value);
+        }
+
+        public static readonly DependencyProperty CornerPointCollectionProperty =
+            DependencyProperty.Register(
+                nameof(CornerPointCollection), typeof(PointCollection), typeof(MovableRectangle2),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    (sender, e) => ((MovableRectangle2)sender).OnCornerPointsChanged((PointCollection)e.NewValue)));
+
+        public PointCollection CornerPointCollection
+        {
+            get => (PointCollection)GetValue(CornerPointCollectionProperty);
+            set => SetValue(CornerPointCollectionProperty, value);
+        }
+
+        // Canvasサイズの変化時の処理
+        private void OnCornerPointsChanged(PointCollection points) =>
+            polygon.Points = new PointCollection(points);
 
         public static readonly DependencyProperty CanvasWidthMaxProperty =
             DependencyProperty.Register(
@@ -57,8 +95,8 @@ namespace WpfControlSamples.Views.Menus
             set => SetValue(CanvasHeightMaxProperty, value);
         }
 
-        // 検証コールバックで正数チェック
-        private static bool IsValidLength(object value) => (value is double d) && d > 0;
+        // 検証コールバックで念のため負数除外
+        private static bool IsValidLength(object value) => (value is double d) && d >= 0;
 
         // Canvasサイズの変化時の処理
         private void OnCanvasSizeMaxChanged(double widthChanged = 0, double heightChanged = 0)
@@ -82,6 +120,7 @@ namespace WpfControlSamples.Views.Menus
 
         private readonly Thumb[] _cornerThumbs;
         private bool _canControl;
+        private UIElement _baseControlOnCanvas;
 
         public MovableRectangle2()
         {
@@ -95,35 +134,50 @@ namespace WpfControlSamples.Views.Menus
 
         private void MovableRectangle2_Loaded(object sender, RoutedEventArgs e)
         {
+            // ItemsControl内に配置されてたら(ItemsSourceなら) ContentPresenter を操作し、
+            // そうでなければ(Canvas下に直で定義されてたら)自身のCanvas.Left(Top)を操作する。
+            var parent = VisualTreeHelper.GetParent(this);
+            _baseControlOnCanvas = (parent is ContentPresenter presenter) ? (UIElement)presenter : (UIElement)this;
+
             // 連番をタイトルにしとく
             titleTextBlock.Text = Index.ToString();
 
-            // Windowsのように画面ごとに初期位置をずらす
-            var offset = 10.0 * (Index % 5);
-            var width = 100.0;
-            var height = 100.0;
-
-            var leftTops = new[]
+            // 枠の初期値を設定
+            if (CornerPointCollection != null)
             {
-                new Point(offset, offset),
-                new Point(offset + width, offset),
-                new Point(offset + width, offset + height),
-                new Point(offset, offset + height),
-            };
-
-            for (int i = 0; i < leftTops.Length; ++i)
+                for (int i = 0; i < Math.Min(_cornerThumbs.Length, CornerPointCollection.Count); ++i)
+                {
+                    _cornerThumbs[i].SetCanvasLeftTop(CornerPointCollection[i]);
+                }
+            }
+            else
             {
-                var leftTop = leftTops[i];
-                var thumb = _cornerThumbs[i];
+                // 初期の枠位置が外部から指定されなかった場合の対応（動作確認用）
+                var offset = 10.0 * (Index % 5);
+                var width = 100.0;
+                var height = 100.0;
 
-                thumb.SetCanvasLeftTop(leftTop.X, leftTop.Y);
+                var leftTops = new[]
+                {
+                    new Point(offset, offset),
+                    new Point(offset + width, offset),
+                    new Point(offset + width, offset + height),
+                    new Point(offset, offset + height),
+                };
+                for (int i = 0; i < leftTops.Length; ++i)
+                {
+                    var leftTop = leftTops[i];
+                    var thumb = _cornerThumbs[i];
+
+                    thumb.SetCanvasLeftTop(leftTop.X, leftTop.Y);
+                }
             }
 
             UpdatePolygonPoints();
             UpdateCornerThumbsVisibility(_canControl);
         }
 
-        #region Thumb
+#region Thumb
         private void CornerThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
             if (!(sender is Thumb thumb)) return;
@@ -136,15 +190,15 @@ namespace WpfControlSamples.Views.Menus
         {
             if (thumb is null) throw new ArgumentNullException(nameof(thumb));
 
-            var parentCanvasPos = this.GetCanvasLeftTop();
+            var baseCanvasPos = _baseControlOnCanvas.GetCanvasLeftTop();
             var oldThumbCanvasPos = thumb.GetCanvasLeftTop();
 
-            var leftMin = -parentCanvasPos.X;
-            var leftMax = CanvasWidthMax - parentCanvasPos.X;
+            var leftMin = -baseCanvasPos.X;
+            var leftMax = CanvasWidthMax - baseCanvasPos.X;
             var newLeft = Clamp(oldThumbCanvasPos.X + horizontalChange, leftMin, leftMax);
 
-            var topMin = -parentCanvasPos.Y;
-            var topMax = CanvasHeightMax - parentCanvasPos.Y;
+            var topMin = -baseCanvasPos.Y;
+            var topMax = CanvasHeightMax - baseCanvasPos.Y;
             var newTop = Clamp(oldThumbCanvasPos.Y + verticalChange, topMin, topMax);
 
             thumb.SetCanvasLeftTop(newLeft, newTop);
@@ -155,59 +209,15 @@ namespace WpfControlSamples.Views.Menus
         private void UpdatePolygonPoints()
         {
             var points = _cornerThumbs.Select(x => x.GetCanvasLeftTop());
-
-            // ◆めくられ対策は一旦無効
-            //var sortedPoints = SortQuadranglePoints(points);
-
-            polygon.Points = new PointCollection(points);
+            CornerPointCollection = new PointCollection(points);
 
             // タイトルの表示位置は一番左の隅を基準にする
             var leftTopCorner = _cornerThumbs.Select(x => x.GetCanvasLeftTop()).OrderBy(x => x.X).First();
             titlePanel.SetCanvasLeftTop(leftTopCorner);
         }
+#endregion
 
-        // 枠点をめくられないよう並べ替える(面積が最大を採用する実装)
-        private static Point[] SortQuadranglePoints(IEnumerable<Point> points)
-        {
-            return Enumerate(points)
-                .OrderByDescending(x => CalcQuadrangleArea(x))
-                .First();
-
-            // 全ての要素を使った順列を求める
-            // https://qiita.com/gushwell/items/8780fc2b71f2182f36ac
-            static IEnumerable<T[]> Enumerate<T>(IEnumerable<T> items)
-            {
-                if (items.Count() == 1)
-                {
-                    yield return new T[] { items.First() };
-                    yield break;
-                }
-                foreach (var item in items)
-                {
-                    var leftside = new T[] { item };
-                    var unused = items.Except(leftside);
-                    foreach (var rightside in Enumerate(unused))
-                    {
-                        yield return leftside.Concat(rightside).ToArray();
-                    }
-                }
-            }
-
-            // 四点から面積を求める(座標法)
-            // https://ja.wikipedia.org/wiki/%E5%BA%A7%E6%A8%99%E6%B3%95
-            static double CalcQuadrangleArea(Point[] ps)
-            {
-                if (ps.Length != 4) throw new ArgumentException(nameof(ps.Length));  // 四角形以外は想定外
-
-                return (ps[0].X * ps[1].Y - ps[1].X * ps[0].Y
-                      + ps[1].X * ps[2].Y - ps[2].X * ps[1].Y
-                      + ps[2].X * ps[3].Y - ps[3].X * ps[2].Y
-                      + ps[3].X * ps[0].Y - ps[0].X * ps[3].Y) / 2.0;
-            }
-        }
-        #endregion
-
-        #region SelfDragMove
+#region SelfDragMove
 
         private struct DragMove
         {
@@ -236,7 +246,7 @@ namespace WpfControlSamples.Views.Menus
             self.CaptureMouse();
             self.Cursor = Cursors.Hand;
 
-            _dragMove = new DragMove(this);
+            _dragMove = new DragMove(_baseControlOnCanvas);
         }
 
         private void Polygon_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -253,8 +263,8 @@ namespace WpfControlSamples.Views.Menus
             if (!_dragMove.HasValue) return;
 
             // 新座標を移動量に換算
-            var newPos = _dragMove.Value.GetNewAddress(this);
-            var currentPos = this.GetCanvasLeftTop();
+            var newPos = _dragMove.Value.GetNewAddress(_baseControlOnCanvas);
+            var currentPos = _baseControlOnCanvas.GetCanvasLeftTop();
             var moveVector = newPos - currentPos;
 
             ShiftPolygonPosition(moveVector);
@@ -262,7 +272,7 @@ namespace WpfControlSamples.Views.Menus
 
         private void ShiftPolygonPosition(Vector moveVector)
         {
-            var parentCanvasPos = this.GetCanvasLeftTop();
+            var parentCanvasPos = _baseControlOnCanvas.GetCanvasLeftTop();
             var newPos = parentCanvasPos + moveVector;
 
             // 枠の四隅座標を親Canvas基準に変換
@@ -276,7 +286,7 @@ namespace WpfControlSamples.Views.Menus
             var topMax = parentCanvasPos.Y + (CanvasHeightMax - cornerRect.Bottom);
             var newTop = Clamp(newPos.Y, topMin, topMax);
 
-            this.SetCanvasLeftTop(newLeft, newTop);
+            _baseControlOnCanvas.SetCanvasLeftTop(newLeft, newTop);
 
             // 枠の四隅座標を取得
             Rect GetCornerRect()
@@ -291,7 +301,7 @@ namespace WpfControlSamples.Views.Menus
                 return new Rect(new Point(cornerLeftMin, cornerTopMin), new Point(cornerLeftMax, cornerTopMax));
             }
         }
-        #endregion
+#endregion
 
         private static double Clamp(double self, double min, double max) =>
             Math.Max(min, Math.Min(max, self));

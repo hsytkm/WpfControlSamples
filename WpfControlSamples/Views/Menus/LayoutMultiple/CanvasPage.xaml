@@ -13,11 +13,14 @@
                    Background="LightBlue"
                    Text="Left=100, Top=50" />
 
-        <!-- 他のコントロールの上に描画されるけど何とかならへんっけ？ -->
         <TextBlock Canvas.Bottom="0" Canvas.Right="10"
                    Background="LightPink"
                    Text="Bottom=0, Right=10" />
 
+        <!-- Canvs.Left(Top) を添付プロパティから設定 -->
+        <TextBlock local:AttachedCanvasPosition.LeftTop="{Binding ControlPoint1, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:CanvasPage}}}"
+                   Background="LightGreen"
+                   Text="Left=50, Top=80 (Binding)" />
     </Canvas>
 
 </ContentControl>
