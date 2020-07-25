@@ -31,5 +31,11 @@ namespace WpfControlSamples.Extensions
         public static void SetCanvasLeftTop(this UIElement element, Point leftTop) =>
             element.SetCanvasLeftTop(leftTop.X, leftTop.Y);
 
+        public static void ShiftCanvasLeftTop(this UIElement element, Vector shift)
+        {
+            var oldPos = element.GetCanvasLeftTop();
+            element.SetCanvasLeftTop(oldPos + shift);
+        }
+
     }
 }

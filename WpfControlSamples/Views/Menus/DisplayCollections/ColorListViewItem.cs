@@ -21,7 +21,7 @@ namespace WpfControlSamples.Views.Menus
             Color = x.Color;
             ColorLevel = $"A={Color.A}, R={Color.R}, G={Color.G}, B={Color.B}";
 
-            HsbColor = x.Color.ToHsb();
+            HsbColor = x.Color.ToHsbColor();
             HsbLevel = HsbColor.ToString();
             Hue = HsbColor.Hue;
         }

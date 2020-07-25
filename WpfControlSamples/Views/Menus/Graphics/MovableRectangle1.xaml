@@ -36,8 +36,8 @@
                     <Thumb Template="{StaticResource RotateHandleTemplate}"
                            HorizontalAlignment="Left" VerticalAlignment="Top"
                            Margin="0,-30" Cursor="Hand"
-                           PreviewMouseLeftButtonDown="Thumb_PreviewMouseLeftButtonDown"
-                           PreviewMouseLeftButtonUp="Thumb_PreviewMouseLeftButtonUp"
+                           PreviewMouseLeftButtonDown="RotateThumb_PreviewMouseLeftButtonDown"
+                           PreviewMouseLeftButtonUp="RotateThumb_PreviewMouseLeftButtonUp"
                            DragDelta="RotateThumb_DragDelta" />
                 </Grid>
 

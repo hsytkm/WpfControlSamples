@@ -13,8 +13,7 @@
     </ContentControl.Resources>
 
     <DockPanel Margin="10" >
-        <TextBlock DockPanel.Dock="Top"
-                   Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+        <TextBlock DockPanel.Dock="Top" FontSize="{StaticResource FontSizeMedium}"
                    Text="MovableRectangle 2" />
 
         <TextBlock DockPanel.Dock="Top" Margin="10,5"

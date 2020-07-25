@@ -86,6 +86,7 @@ namespace WpfControlSamples.Views
             typeof(HsbColorPage),
             typeof(MovableRectangle1Page),
             typeof(MovableRectangle2Page),
+            typeof(TrigonometricFunction1Page),
         };
 
         private static readonly IEnumerable<Type> _indicateActivityPages = new[]

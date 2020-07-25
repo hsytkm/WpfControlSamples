@@ -1,0 +1,147 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.TrigonometricFunction1Page"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <ContentControl.Resources>
+        <Brush x:Key="dim1Brush">Coral</Brush>
+        <Brush x:Key="dim2Brush">DodgerBlue</Brush>
+
+        <Style x:Key="propertyTextBlockStyle" TargetType="{x:Type TextBlock}" >
+            <Setter Property="Margin" Value="8,0,0,5" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style x:Key="ellipseStyle" TargetType="{x:Type Ellipse}" >
+            <Setter Property="Width" Value="10" />
+            <Setter Property="Height" Value="10" />
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="Stroke" Value="DimGray" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+        <Style x:Key="infomationBorderStyle" TargetType="{x:Type Border}" >
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="BorderThickness" Value="3" />
+        </Style>
+        <Style x:Key="infomationTitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
+            <Setter Property="Margin" Value="0,0,0,5" />
+            <Setter Property="TextDecorations" Value="Underline" />
+            <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
+        </Style>
+        <Style TargetType="{x:Type Line}" >
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+        </Style>
+        <Style x:Key="pointTitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
+            <Setter Property="Margin" Value="-20,-20,0,0" />
+            <Setter Property="Padding" Value="3,1" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <ControlTemplate x:Key="thumbTemplate" TargetType="{x:Type Thumb}" >
+            <Grid Margin="-5,-5,0,0" >
+                <TextBlock Style="{StaticResource pointTitleTextBlockStyle}"
+                           Text="{Binding Path=(local:AttachedMessage.Message), RelativeSource={RelativeSource AncestorType={x:Type Thumb}}}"
+                           Foreground="{TemplateBinding Background}" />
+                <Ellipse Style="{StaticResource ellipseStyle}" Fill="{TemplateBinding Background}" />
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="thumbStyle" TargetType="{x:Type Thumb}" >
+            <Setter Property="Template" Value="{StaticResource thumbTemplate}" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </ContentControl.Resources>
+
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top" FontSize="{StaticResource FontSizeMedium}"
+                   Text="Trigonometric Function 1" />
+
+        <Grid DockPanel.Dock="Top" Margin="10" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- 1 Dimension -->
+            <Border Style="{StaticResource infomationBorderStyle}" BorderBrush="{StaticResource dim1Brush}" Margin="0,0,5,0" >
+                <StackPanel>
+                    <TextBlock Text="1 Dimension" Style="{StaticResource infomationTitleTextBlockStyle}" />
+                    <TextBlock Style="{StaticResource propertyTextBlockStyle}" >
+                        <Run Text="{Binding OneDimPoints[0], Mode=OneWay, StringFormat='P0 : ({0:f2})'}" />
+                        <LineBreak />
+                        <Run Text="{Binding OneDimPoints[1], Mode=OneWay, StringFormat='P1 : ({0:f2})'}" />
+                        <LineBreak />
+                        <Run Text="{Binding OneDimDistance, Mode=OneWay, StringFormat='Distance : {0:f2}'}" />
+                        <LineBreak />
+                        <Run Text="{Binding OneDimSlope, Mode=OneWay, StringFormat='Slope(a) : {0:f2}'}" />
+                        <LineBreak />
+                        <Run Text="{Binding OneDimIntercept, Mode=OneWay, StringFormat='Intercept(b) : {0:f2}'}" />
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <!-- 2 Dimensions -->
+            <Border Grid.Column="1" Style="{StaticResource infomationBorderStyle}" BorderBrush="{StaticResource dim2Brush}" >
+                <StackPanel>
+                    <TextBlock Text="2 Dimensions" Style="{StaticResource infomationTitleTextBlockStyle}" />
+                    <TextBlock Style="{StaticResource propertyTextBlockStyle}" >
+                        <Run Text="{Binding TwoDimPoints[0], Mode=OneWay, StringFormat='P0 : ({0:f2})'}" />
+                        <LineBreak />
+                        <Run Text="{Binding TwoDimPoints[1], Mode=OneWay, StringFormat='P1 : ({0:f2})'}" />
+                        <LineBreak />
+                        <Run Text="{Binding TwoDimPoints[2], Mode=OneWay, StringFormat='P2 : ({0:f2})'}" />
+                        <LineBreak />
+                        <Run Text="{Binding TwoDimArea, Mode=OneWay, StringFormat='Area : {0:f2}'}" />
+                        <LineBreak />
+                        <Run Text="{Binding TwoDimAngle012, Mode=OneWay, StringFormat='∠012 : {0:f2}°'}" />
+                        <LineBreak />
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Canvas Margin="30,15,30,0" Background="LightGray" >
+            <Thumb x:Name="originPoint"
+                   local:AttachedMessage.Message="Origin"
+                   Background="Gray" Cursor="Arrow"
+                   Style="{StaticResource thumbStyle}" />
+
+            <!-- 1 Dimension -->
+            <Line x:Name="line1" Stroke="{StaticResource dim1Brush}" />
+            <Thumb x:Name="point1_0" Canvas.Left="10" Canvas.Top="10"
+                   local:AttachedMessage.Message="{Binding OneDimPoint0Name, Mode=OneWay}"
+                   Background="{StaticResource dim1Brush}"
+                   Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
+            <Thumb x:Name="point1_1" Canvas.Left="60" Canvas.Top="60"
+                   local:AttachedMessage.Message="{Binding OneDimPoint1Name, Mode=OneWay}"
+                   Background="{StaticResource dim1Brush}"
+                   Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
+
+            <!-- 2 Dimensions -->
+            <Line x:Name="line2_0" Stroke="{StaticResource dim2Brush}" />
+            <Line x:Name="line2_1" Stroke="{StaticResource dim2Brush}" />
+            <Line x:Name="line2_2" Stroke="{StaticResource dim2Brush}" />
+            <Thumb x:Name="point2_0" Canvas.Left="200" Canvas.Top="50"
+                   local:AttachedMessage.Message="{Binding TwoDimPoint0Name, Mode=OneWay}"
+                   Background="{StaticResource dim2Brush}"
+                   Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
+            <Thumb x:Name="point2_1" Canvas.Left="250" Canvas.Top="150"
+                   local:AttachedMessage.Message="{Binding TwoDimPoint1Name, Mode=OneWay}"
+                   Background="{StaticResource dim2Brush}"
+                   Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
+            <Thumb x:Name="point2_2" Canvas.Left="80" Canvas.Top="100"
+                   local:AttachedMessage.Message="{Binding TwoDimPoint2Name, Mode=OneWay}"
+                   Background="{StaticResource dim2Brush}"
+                   Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
+
+        </Canvas>
+    </DockPanel>
+</ContentControl>

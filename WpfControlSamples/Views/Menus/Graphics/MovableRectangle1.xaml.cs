@@ -22,7 +22,8 @@ namespace WpfControlSamples.Views.Menus
         #region DependencyProperty
         public static readonly DependencyProperty CanvasWidthMaxProperty =
             DependencyProperty.Register(
-                nameof(CanvasWidthMax), typeof(double), typeof(MovableRectangle1), new FrameworkPropertyMetadata(double.PositiveInfinity));
+                nameof(CanvasWidthMax), typeof(double), typeof(MovableRectangle1),
+                new FrameworkPropertyMetadata(double.PositiveInfinity));
 
         public double CanvasWidthMax
         {
@@ -32,7 +33,8 @@ namespace WpfControlSamples.Views.Menus
 
         public static readonly DependencyProperty CanvasHeightMaxProperty =
             DependencyProperty.Register(
-                nameof(CanvasHeightMax), typeof(double), typeof(MovableRectangle1), new FrameworkPropertyMetadata(double.PositiveInfinity));
+                nameof(CanvasHeightMax), typeof(double), typeof(MovableRectangle1),
+                new FrameworkPropertyMetadata(double.PositiveInfinity));
 
         public double CanvasHeightMax
         {
@@ -56,28 +58,28 @@ namespace WpfControlSamples.Views.Menus
             if (!(sender is Thumb thumb)) return;
 
             //サイズ変更の対象要素を取得する
-            if (!(AdornedBy.GetAdornedElementFromTemplateChild(thumb) is FrameworkElement self)) return;
+            if (!(AdornedBy.GetAdornedElementFromTemplateChild(thumb) is FrameworkElement owner)) return;
 
             // サイズ変更(横)
             if (thumb.HorizontalAlignment != HorizontalAlignment.Center)
             {
                 if (thumb.HorizontalAlignment == HorizontalAlignment.Left)
                 {
-                    var widthMin = self.MinWidth;
-                    var horiChange = Math.Min(e.HorizontalChange, self.Width - widthMin);
+                    var widthMin = owner.MinWidth;
+                    var horiChange = Math.Min(e.HorizontalChange, owner.Width - widthMin);
 
                     var leftMax = CanvasWidthMax - widthMin;
-                    var oldLeft = self.GetCanvasLeft();
+                    var oldLeft = owner.GetCanvasLeft();
                     var newLeft = Clamp(oldLeft + horiChange, 0, leftMax);
-                    Canvas.SetLeft(self, newLeft);
+                    Canvas.SetLeft(owner, newLeft);
 
-                    var widthMax = Math.Min(CanvasWidthMax - newLeft, self.MaxWidth);
-                    self.Width = Clamp(self.Width - (newLeft - oldLeft), widthMin, widthMax);
+                    var widthMax = Math.Min(CanvasWidthMax - newLeft, owner.MaxWidth);
+                    owner.Width = Clamp(owner.Width - (newLeft - oldLeft), widthMin, widthMax);
                 }
                 else
                 {
-                    var widthMax = Math.Min(CanvasWidthMax - self.GetCanvasLeft(), self.MaxWidth);
-                    self.Width = Clamp(self.Width + e.HorizontalChange, self.MinWidth, widthMax);
+                    var widthMax = Math.Min(CanvasWidthMax - owner.GetCanvasLeft(), owner.MaxWidth);
+                    owner.Width = Clamp(owner.Width + e.HorizontalChange, owner.MinWidth, widthMax);
                 }
             }
 
@@ -86,29 +88,29 @@ namespace WpfControlSamples.Views.Menus
             {
                 if (thumb.VerticalAlignment == VerticalAlignment.Top)
                 {
-                    var heightMin = self.MinHeight;
-                    var vertChange = Math.Min(e.VerticalChange, self.Height - heightMin);
+                    var heightMin = owner.MinHeight;
+                    var vertChange = Math.Min(e.VerticalChange, owner.Height - heightMin);
 
                     var topMax = CanvasHeightMax - heightMin;
-                    var oldTop = self.GetCanvasTop();
+                    var oldTop = owner.GetCanvasTop();
                     var newTop = Clamp(oldTop + vertChange, 0, topMax);
-                    Canvas.SetTop(self, newTop);
+                    Canvas.SetTop(owner, newTop);
 
-                    var heightMax = Math.Min(CanvasHeightMax - newTop, self.MaxHeight);
-                    self.Height = Clamp(self.Height - (newTop - oldTop), heightMin, heightMax);
+                    var heightMax = Math.Min(CanvasHeightMax - newTop, owner.MaxHeight);
+                    owner.Height = Clamp(owner.Height - (newTop - oldTop), heightMin, heightMax);
                 }
                 else
                 {
-                    var heightMax = Math.Min(CanvasHeightMax - self.GetCanvasTop(), self.MaxHeight);
-                    self.Height = Clamp(self.Height + e.VerticalChange, self.MinHeight, heightMax);
+                    var heightMax = Math.Min(CanvasHeightMax - owner.GetCanvasTop(), owner.MaxHeight);
+                    owner.Height = Clamp(owner.Height + e.VerticalChange, owner.MinHeight, heightMax);
                 }
             }
 
-            if (self.RenderTransform is RotateTransform rotate)
-            {
-                rotate.CenterX = self.Width / 2.0;
-                rotate.CenterY = self.Height / 2.0;
-            }
+            //if (owner.RenderTransform is RotateTransform rotate)
+            //{
+            //    rotate.CenterX = owner.Width / 2.0;
+            //    rotate.CenterY = owner.Height / 2.0;
+            //}
 
             //Debug.WriteLine($"T={Canvas.GetTop(self):f2}, L={Canvas.GetLeft(self):f2}, W={self.Width:f2}, H={self.Height:f2}");
 
@@ -117,59 +119,66 @@ namespace WpfControlSamples.Views.Menus
         #endregion
 
         #region Thumb_Rotate
-        private Point? _startPoint = null;
-        private void Thumb_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private Point? _rotateStartPoint = null;
+        private void RotateThumb_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!(sender is FrameworkElement self)) return;
-            self.CaptureMouse();
+            if (!(sender is FrameworkElement thumb)) return;
+            thumb.CaptureMouse();
 
-            var canvas = this.FindVisualParent<Canvas>();
-            if (canvas is null) return;
-            _startPoint = Mouse.GetPosition(canvas);
+            if (!(AdornedBy.GetAdornedElementFromTemplateChild(thumb) is FrameworkElement owner)) return;
 
-            if (!(this.RenderTransform is RotateTransform))
+            if (!(owner.RenderTransform is RotateTransform))
             {
-                this.RenderTransform = new RotateTransform();
+                owner.RenderTransform = new RotateTransform();
             }
+
+            var canvas = owner.FindVisualParent<Canvas>();
+            if (canvas is null) return;
+            _rotateStartPoint = Mouse.GetPosition(canvas);
         }
 
-        private void Thumb_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void RotateThumb_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (!(sender is FrameworkElement self)) return;
-            self.ReleaseMouseCapture();
-            _startPoint = null;
+            if (!(sender is FrameworkElement thumb)) return;
+            thumb.ReleaseMouseCapture();
+            _rotateStartPoint = null;
         }
 
         private void RotateThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            if (!_startPoint.HasValue) return;
+            if (!_rotateStartPoint.HasValue) return;
             if (!(sender is Thumb thumb)) return;
 
             //サイズ変更の対象要素を取得する
-            if (!(AdornedBy.GetAdornedElementFromTemplateChild(thumb) is FrameworkElement self)) return;
+            if (!(AdornedBy.GetAdornedElementFromTemplateChild(thumb) is FrameworkElement owner)) return;
 
             // ◆矩形回転時の中点が取得できていない…
-            var selfCenterPos = new Point(self.GetCanvasLeft() + self.ActualWidth / 2.0, self.GetCanvasTop() + self.ActualHeight / 2.0);
+            var selfCenterPos = new Point(owner.GetCanvasLeft() + owner.ActualWidth / 2.0, owner.GetCanvasTop() + owner.ActualHeight / 2.0);
+            var p0 = selfCenterPos;
+            var p1 = _rotateStartPoint.Value + new Vector(e.HorizontalChange, e.VerticalChange);
+            var radian = CalcAngle(p1, p0);
 
-            var changePos = new Point(-e.HorizontalChange, -e.VerticalChange);
-
-            var p1 = new Point(0, 0);
-            var p2 = (selfCenterPos - _startPoint.Value) + changePos; 
-            var radian = CalcAngle(p1, p2);
-
-            //Debug.WriteLine($"P1={p1:f1}, P2={p2:f1}, Center={selfCenterPos:f1}, Cursor={cursorPos:f1}, Angle={radian:f1}, Delta={e.HorizontalChange:f1}, {e.VerticalChange:f1}");
-
-            if (self.RenderTransform is RotateTransform rotate)
+            if (owner.RenderTransform is RotateTransform rotate)
             {
-                rotate.CenterX = self.ActualWidth / 2.0;
-                rotate.CenterY = self.ActualHeight / 2.0;
-                rotate.Angle = radian;
+                rotate.CenterX = owner.ActualWidth / 2.0;
+                rotate.CenterY = owner.ActualHeight / 2.0;
+                rotate.Angle = ChopAngle(radian);
             }
+
+            // 回転でAdonerの描画更新が発生しないので、所有者コントロールのサイズを変えることで更新させる。◆全然ダメ
+            //owner.Width = owner.ActualWidth + 0.01;
 
             e.Handled = true;
 
             static double CalcAngle(in Point p1, in Point p2) =>
-                Math.Atan2((p2.Y - p1.Y), (p2.X - p1.X)) * (180 / Math.PI) - 90.0;
+                (Math.Atan2((p2.Y - p1.Y), (p2.X - p1.X)) * 180d / Math.PI) - 90d;
+
+            static double ChopAngle(double angle)
+            {
+                while (angle < 0) { angle += 360d; }
+                while (angle > 360) { angle -= 360d; }
+                return angle;
+            }
         }
 
         #endregion
@@ -186,9 +195,9 @@ namespace WpfControlSamples.Views.Menus
             public DragMove(UIElement d) =>
                 (_basePoint, _baseAddress) = (GetCurrentMousePosition(d), (Vector)d.GetCanvasLeftTop());
 
-            private Point GetCurrentMousePosition(DependencyObject d) => Mouse.GetPosition(Window.GetWindow(d));
+            private static Point GetCurrentMousePosition(DependencyObject d) => Mouse.GetPosition(Window.GetWindow(d));
 
-            public Vector GetNewAddress(DependencyObject d)
+            public readonly Vector GetNewAddress(DependencyObject d)
             {
                 var newPoint = GetCurrentMousePosition(d);
                 var shift = newPoint - _basePoint;

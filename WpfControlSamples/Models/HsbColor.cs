@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Media;
 
 namespace WpfControlSamples.Models
@@ -14,7 +13,13 @@ namespace WpfControlSamples.Models
         public double Hue
         {
             get => _hue;
-            set => _hue = ColorExtension.ChopIn360(value);
+            set
+            {
+                var h = value;
+                while (h < 0) { h += 360; }
+                while (h > 360) { h -= 360; }
+                _hue = h;
+            }
         }
         private double _hue;
 
@@ -59,18 +64,16 @@ namespace WpfControlSamples.Models
 #endif
     }
 
-    static class HsbColorExt
+    static class HsbColorExtension
     {
-        public static HsbColor ToHsb(this Color source)
+        public static HsbColor ToHsbColor(this Color source)
         {
-            double nR = source.NormalizedRed();
-            double nG = source.NormalizedGreen();
-            double nB = source.NormalizedBlue();
+            double nR = source.R / (double)byte.MaxValue;
+            double nG = source.G / (double)byte.MaxValue;
+            double nB = source.B / (double)byte.MaxValue;
 
-            var nRGBs = new[] { nR, nG, nB };
-            double max = nRGBs.Max();
-            double min = nRGBs.Min();
-
+            double max = Math.Max(nR, Math.Max(nG, nB));
+            double min = Math.Min(nR, Math.Min(nG, nB));
             double diff = max - min;
 
             var hue = diff == 0 ? 0
@@ -85,7 +88,7 @@ namespace WpfControlSamples.Models
 
 #if false
         // ◆何かずれてる…
-        public static Color ToRgb(this HsbColor source)
+        public static Color ToRgbColor(this HsbColor source)
         {
             double max = source.Brightness;
             double min = max * (1d - source.Saturation);
@@ -107,7 +110,7 @@ namespace WpfControlSamples.Models
             return ColorExtension.NormalizedRgbToColor(nR, nG, nB);
         }
 #else
-        public static Color ToRgb(this HsbColor source)
+        public static Color ToRgbColor(this HsbColor source)
         {
             var hue = source.Hue;
             var saturation = source.Saturation;
@@ -133,21 +136,6 @@ namespace WpfControlSamples.Models
             };
         }
 #endif
-    }
 
-    static class ColorExtension
-    {
-        public static double ChopIn360(double x)
-        {
-            while (x < 0) { x += 360d; }
-            return Math.Max(0d, Math.Min(x, 360d));
-        }
-
-        public static Color NormalizedRgbToColor(double r, double g, double b) =>
-            Color.FromScRgb(1f, (float)r, (float)g, (float)b);
-
-        public static double NormalizedRed(this ref Color color) => color.R / (double)byte.MaxValue;
-        public static double NormalizedGreen(this ref Color color) => color.G / (double)byte.MaxValue;
-        public static double NormalizedBlue(this ref Color color) => color.B / (double)byte.MaxValue;
     }
 }

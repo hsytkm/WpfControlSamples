@@ -142,7 +142,7 @@ namespace WpfControlSamples.Views.Menus
             this.PropertyChanged -= OnHsbColorPropertyChanged;
             this.PropertyChanged -= OnColorChannelsPropertyChanged;
 
-            MyHsbColor = MyRgbColor.ToHsb();
+            MyHsbColor = MyRgbColor.ToHsbColor();
             UpdateColorChannels(MyRgbColor, MyHsbColor);
 
             this.PropertyChanged += OnHsbColorPropertyChanged;
@@ -160,7 +160,7 @@ namespace WpfControlSamples.Views.Menus
             this.PropertyChanged -= OnRgbColorPropertyChanged;
             this.PropertyChanged -= OnColorChannelsPropertyChanged;
 
-            MyRgbColor = MyHsbColor.ToRgb();
+            MyRgbColor = MyHsbColor.ToRgbColor();
             UpdateColorChannels(MyRgbColor, MyHsbColor);
 
             this.PropertyChanged += OnRgbColorPropertyChanged;
