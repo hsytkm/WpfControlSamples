@@ -38,6 +38,7 @@
                 </Line.Stroke>
             </Line>
 
+            <!-- 点線 破線 -->
             <Polyline Canvas.Left="10" Canvas.Top="100"
                       Points="20,120 120,30 120,120 230,30"
                       Stroke="Salmon" StrokeThickness="3"

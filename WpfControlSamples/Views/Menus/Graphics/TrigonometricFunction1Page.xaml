@@ -2,20 +2,30 @@
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
     <ContentControl.Resources>
-        <Brush x:Key="dim1Brush">Coral</Brush>
-        <Brush x:Key="dim2Brush">DodgerBlue</Brush>
+        <conv:PointArrayToPointCollectionConverter x:Key="PointArrayToPointCollectionConverter" />
+        <conv:EllipseSizeToMarginConverter x:Key="EllipseSizeToMarginConverter" />
+        
+        <Brush x:Key="blackBrush">Black</Brush>
+        <Brush x:Key="redBrush">Red</Brush>
+        
+        <Brush x:Key="lineBrush">Coral</Brush>
+        <Brush x:Key="triangleBrush">DodgerBlue</Brush>
+        <Brush x:Key="quadrangleBrush">Green</Brush>
 
         <Style x:Key="propertyTextBlockStyle" TargetType="{x:Type TextBlock}" >
             <Setter Property="Margin" Value="8,0,0,5" />
             <Setter Property="FontSize" Value="14" />
         </Style>
-        <Style x:Key="ellipseStyle" TargetType="{x:Type Ellipse}" >
+        <Style x:Key="cornerEllipseStyle" TargetType="{x:Type Ellipse}" >
             <Setter Property="Width" Value="10" />
             <Setter Property="Height" Value="10" />
             <Setter Property="StrokeThickness" Value="2" />
@@ -23,9 +33,27 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
+        <Style x:Key="dotEllipseStyle" TargetType="{x:Type Ellipse}" >
+            <Setter Property="Width" Value="4" />
+            <Setter Property="Height" Value="4" />
+            <Setter Property="Margin" Value="-2,-2,0,0" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Stroke" Value="DimGray" />
+            <Setter Property="Fill" Value="DarkGray" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="scribedCircleEllipseStyle" TargetType="{x:Type Ellipse}" >
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Opacity" Value="0.3" />
+            <Setter Property="Fill" Value="Transparent" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
         <Style x:Key="infomationBorderStyle" TargetType="{x:Type Border}" >
             <Setter Property="Padding" Value="10,5" />
             <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="Margin" Value="0,0,5,0" />
         </Style>
         <Style x:Key="infomationTitleTextBlockStyle" TargetType="{x:Type TextBlock}" >
             <Setter Property="Margin" Value="0,0,0,5" />
@@ -44,13 +72,19 @@
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
-
+        <Style TargetType="{x:Type Polyline}" >
+            <Setter Property="Stroke" Value="Gray" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="StrokeDashArray" Value="1 2" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+        </Style>
         <ControlTemplate x:Key="thumbTemplate" TargetType="{x:Type Thumb}" >
             <Grid Margin="-5,-5,0,0" >
                 <TextBlock Style="{StaticResource pointTitleTextBlockStyle}"
                            Text="{Binding Path=(local:AttachedMessage.Message), RelativeSource={RelativeSource AncestorType={x:Type Thumb}}}"
                            Foreground="{TemplateBinding Background}" />
-                <Ellipse Style="{StaticResource ellipseStyle}" Fill="{TemplateBinding Background}" />
+                <Ellipse Style="{StaticResource cornerEllipseStyle}"
+                         Fill="{TemplateBinding Background}" />
             </Grid>
         </ControlTemplate>
         <Style x:Key="thumbStyle" TargetType="{x:Type Thumb}" >
@@ -61,7 +95,7 @@
 
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top" FontSize="{StaticResource FontSizeMedium}"
-                   Text="Trigonometric Function 1" />
+                   Text="三角関数" />
 
         <Grid DockPanel.Dock="Top" Margin="10" >
             <Grid.ColumnDefinitions>
@@ -70,76 +104,194 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!-- 1 Dimension -->
-            <Border Style="{StaticResource infomationBorderStyle}" BorderBrush="{StaticResource dim1Brush}" Margin="0,0,5,0" >
+            <!-- Line -->
+            <Border Style="{StaticResource infomationBorderStyle}"
+                    BorderBrush="{StaticResource lineBrush}" >
                 <StackPanel>
-                    <TextBlock Text="1 Dimension" Style="{StaticResource infomationTitleTextBlockStyle}" />
+                    <TextBlock Text="Line" Style="{StaticResource infomationTitleTextBlockStyle}" />
                     <TextBlock Style="{StaticResource propertyTextBlockStyle}" >
-                        <Run Text="{Binding OneDimPoints[0], Mode=OneWay, StringFormat='P0 : ({0:f2})'}" />
+                        <TextBlock.Foreground>
+                            <Binding Path="LineIsValid" >
+                                <Binding.Converter>
+                                    <conv:BooleanToObjectConverter TrueObject="{StaticResource blackBrush}" FalseObject="{StaticResource redBrush}" />
+                                </Binding.Converter>
+                            </Binding>
+                        </TextBlock.Foreground>
+                        <Run Text="{Binding LinePoints[0], Mode=OneWay, StringFormat='P0 : ({0:f2})'}" />
                         <LineBreak />
-                        <Run Text="{Binding OneDimPoints[1], Mode=OneWay, StringFormat='P1 : ({0:f2})'}" />
+                        <Run Text="{Binding LinePoints[1], Mode=OneWay, StringFormat='P1 : ({0:f2})'}" />
                         <LineBreak />
-                        <Run Text="{Binding OneDimDistance, Mode=OneWay, StringFormat='Distance : {0:f2}'}" />
+                        <Run Text="{Binding LineDistance, Mode=OneWay, StringFormat='Distance : {0:f2}'}" />
                         <LineBreak />
-                        <Run Text="{Binding OneDimSlope, Mode=OneWay, StringFormat='Slope(a) : {0:f2}'}" />
+                        <Run Text="{Binding LineSlope, Mode=OneWay, StringFormat='Slope(a) : {0:f2}'}" />
                         <LineBreak />
-                        <Run Text="{Binding OneDimIntercept, Mode=OneWay, StringFormat='Intercept(b) : {0:f2}'}" />
+                        <Run Text="{Binding LineIntercept, Mode=OneWay, StringFormat='Intercept(b) : {0:f2}'}" />
                     </TextBlock>
                 </StackPanel>
             </Border>
 
-            <!-- 2 Dimensions -->
-            <Border Grid.Column="1" Style="{StaticResource infomationBorderStyle}" BorderBrush="{StaticResource dim2Brush}" >
+            <!-- Triangle -->
+            <Border Grid.Column="1" Style="{StaticResource infomationBorderStyle}"
+                    BorderBrush="{StaticResource triangleBrush}" >
                 <StackPanel>
-                    <TextBlock Text="2 Dimensions" Style="{StaticResource infomationTitleTextBlockStyle}" />
+                    <TextBlock Text="Triangle" Style="{StaticResource infomationTitleTextBlockStyle}" />
                     <TextBlock Style="{StaticResource propertyTextBlockStyle}" >
-                        <Run Text="{Binding TwoDimPoints[0], Mode=OneWay, StringFormat='P0 : ({0:f2})'}" />
+                        <TextBlock.Foreground>
+                            <Binding Path="TriangleIsValid" >
+                                <Binding.Converter>
+                                    <conv:BooleanToObjectConverter TrueObject="{StaticResource blackBrush}" FalseObject="{StaticResource redBrush}" />
+                                </Binding.Converter>
+                            </Binding>
+                        </TextBlock.Foreground>
+                        <Run Text="{Binding TrianglePoints[0], Mode=OneWay, StringFormat='P0 : ({0:f2})'}" />
                         <LineBreak />
-                        <Run Text="{Binding TwoDimPoints[1], Mode=OneWay, StringFormat='P1 : ({0:f2})'}" />
+                        <Run Text="{Binding TrianglePoints[1], Mode=OneWay, StringFormat='P1 : ({0:f2})'}" />
                         <LineBreak />
-                        <Run Text="{Binding TwoDimPoints[2], Mode=OneWay, StringFormat='P2 : ({0:f2})'}" />
+                        <Run Text="{Binding TrianglePoints[2], Mode=OneWay, StringFormat='P2 : ({0:f2})'}" />
                         <LineBreak />
-                        <Run Text="{Binding TwoDimArea, Mode=OneWay, StringFormat='Area : {0:f2}'}" />
+                        <Run Text="{Binding TriangleAngle012, Mode=OneWay, StringFormat='∠012 : {0:f2}°'}" />
                         <LineBreak />
-                        <Run Text="{Binding TwoDimAngle012, Mode=OneWay, StringFormat='∠012 : {0:f2}°'}" />
+                        <Run Text="{Binding TriangleArea, Mode=OneWay, StringFormat='面積 : {0:f2}'}" />
+                        <!-- ◆座標系の変換に未対応
                         <LineBreak />
+                        <Run Text="{Binding TriangleCenterPoint, Mode=OneWay, StringFormat='重心 : {0:f1}'}" />
+                        <LineBreak />
+                        <Run Text="{Binding TriangleCircumscribedCircleCenterPoint, Mode=OneWay, StringFormat='外心 : {0:f1}'}" />
+                        -->
+                        <LineBreak />
+                        <Run Text="{Binding TriangleCircumscribedCircleDiameterSize.Width, Mode=OneWay, StringFormat='外接円直径 : {0:f1}'}" />
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <!-- Quadrangle -->
+            <Border Grid.Column="2" Style="{StaticResource infomationBorderStyle}"
+                    BorderBrush="{StaticResource quadrangleBrush}" >
+                <StackPanel>
+                    <TextBlock Text="Quadrangle" Style="{StaticResource infomationTitleTextBlockStyle}" />
+                    <TextBlock Style="{StaticResource propertyTextBlockStyle}" >
+                        <TextBlock.Foreground>
+                            <Binding Path="QuadrangleIsValid" >
+                                <Binding.Converter>
+                                    <conv:BooleanToObjectConverter TrueObject="{StaticResource blackBrush}" FalseObject="{StaticResource redBrush}" />
+                                </Binding.Converter>
+                            </Binding>
+                        </TextBlock.Foreground>
+                        <Run Text="{Binding QuadranglePoints[0], Mode=OneWay, StringFormat='P0 : ({0:f2})'}" />
+                        <LineBreak />
+                        <Run Text="{Binding QuadranglePoints[1], Mode=OneWay, StringFormat='P1 : ({0:f2})'}" />
+                        <LineBreak />
+                        <Run Text="{Binding QuadranglePoints[2], Mode=OneWay, StringFormat='P2 : ({0:f2})'}" />
+                        <LineBreak />
+                        <Run Text="{Binding QuadranglePoints[3], Mode=OneWay, StringFormat='P3 : ({0:f2})'}" />
+                        <LineBreak />
+                        <Run Text="{Binding QuadrangleArea, Mode=OneWay, StringFormat='面積 : {0:f2}'}" />
+                        <!-- ◆座標系の変換に未対応
+                        <LineBreak />
+                        <Run Text="{Binding QuadrangleCenterPoint, Mode=OneWay, StringFormat='重心 : {0:f1}'}" />
+                        -->
                     </TextBlock>
                 </StackPanel>
             </Border>
         </Grid>
 
         <Canvas Margin="30,15,30,0" Background="LightGray" >
-            <Thumb x:Name="originPoint"
+            <Thumb x:Name="originPoint" Background="Gray" Cursor="Arrow"
                    local:AttachedMessage.Message="Origin"
-                   Background="Gray" Cursor="Arrow"
                    Style="{StaticResource thumbStyle}" />
 
-            <!-- 1 Dimension -->
-            <Line x:Name="line1" Stroke="{StaticResource dim1Brush}" />
-            <Thumb x:Name="point1_0" Canvas.Left="10" Canvas.Top="10"
-                   local:AttachedMessage.Message="{Binding OneDimPoint0Name, Mode=OneWay}"
-                   Background="{StaticResource dim1Brush}"
+            <!-- Line -->
+            <Line x:Name="line1" Stroke="{StaticResource lineBrush}" />
+            <Polyline Points="{Binding LineAssistShapePoints, Mode=OneWay, Converter={StaticResource PointArrayToPointCollectionConverter}}" />
+            <Thumb x:Name="thumbPoint0" Canvas.Left="10" Canvas.Top="10"
+                   local:AttachedMessage.Message="{Binding LinePointNames[0], Mode=OneWay}"
+                   Background="{StaticResource lineBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
-            <Thumb x:Name="point1_1" Canvas.Left="60" Canvas.Top="60"
-                   local:AttachedMessage.Message="{Binding OneDimPoint1Name, Mode=OneWay}"
-                   Background="{StaticResource dim1Brush}"
+            <Thumb x:Name="thumbPoint1" Canvas.Left="20" Canvas.Top="50"
+                   local:AttachedMessage.Message="{Binding LinePointNames[1], Mode=OneWay}"
+                   Background="{StaticResource lineBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
 
-            <!-- 2 Dimensions -->
-            <Line x:Name="line2_0" Stroke="{StaticResource dim2Brush}" />
-            <Line x:Name="line2_1" Stroke="{StaticResource dim2Brush}" />
-            <Line x:Name="line2_2" Stroke="{StaticResource dim2Brush}" />
-            <Thumb x:Name="point2_0" Canvas.Left="200" Canvas.Top="50"
-                   local:AttachedMessage.Message="{Binding TwoDimPoint0Name, Mode=OneWay}"
-                   Background="{StaticResource dim2Brush}"
+            <!-- Triangle -->
+            <Line x:Name="triangleLine0" Stroke="{StaticResource triangleBrush}" />
+            <Line x:Name="triangleLine1" Stroke="{StaticResource triangleBrush}" />
+            <Line x:Name="triangleLine2" Stroke="{StaticResource triangleBrush}" />
+            <Polyline Points="{Binding TriangleAssistShapePoints, Mode=OneWay, Converter={StaticResource PointArrayToPointCollectionConverter}}" />
+            <Ellipse Style="{StaticResource dotEllipseStyle}" Fill="{StaticResource triangleBrush}" >
+                <i:Interaction.Triggers>
+                    <i:PropertyChangedTrigger Binding="{Binding TriangleCenterPoint, Mode=OneWay}" >
+                        <action:SetCanvasLeftTopAction />
+                    </i:PropertyChangedTrigger>
+                </i:Interaction.Triggers>
+            </Ellipse>
+            
+            <!-- 外接円 -->
+            <Ellipse Style="{StaticResource scribedCircleEllipseStyle}"
+                     Stroke="{StaticResource triangleBrush}"
+                     Width="{Binding TriangleCircumscribedCircleDiameterSize.Width, Mode=OneWay}"
+                     Height="{Binding TriangleCircumscribedCircleDiameterSize.Height, Mode=OneWay}"
+                     Margin="{Binding TriangleCircumscribedCircleDiameterSize, Mode=OneWay, Converter={StaticResource EllipseSizeToMarginConverter}}" >
+                <i:Interaction.Triggers>
+                    <i:PropertyChangedTrigger Binding="{Binding TriangleCircumscribedCircleCenterPoint, Mode=OneWay}" >
+                        <action:SetCanvasLeftTopAction />
+                    </i:PropertyChangedTrigger>
+                </i:Interaction.Triggers>
+            </Ellipse>
+
+            <!-- 内接円 -->
+            <Ellipse Style="{StaticResource scribedCircleEllipseStyle}"
+                     Stroke="{StaticResource triangleBrush}"
+                     Width="{Binding TriangleInscribedCircleDiameterSize.Width, Mode=OneWay}"
+                     Height="{Binding TriangleInscribedCircleDiameterSize.Height, Mode=OneWay}"
+                     Margin="{Binding TriangleInscribedCircleDiameterSize, Mode=OneWay, Converter={StaticResource EllipseSizeToMarginConverter}}" >
+                <i:Interaction.Triggers>
+                    <i:PropertyChangedTrigger Binding="{Binding TriangleInscribedCircleCenterPoint, Mode=OneWay}" >
+                        <action:SetCanvasLeftTopAction />
+                    </i:PropertyChangedTrigger>
+                </i:Interaction.Triggers>
+            </Ellipse>
+            
+            <Thumb x:Name="thumbPoint3_0" Canvas.Left="100" Canvas.Top="30"
+                   local:AttachedMessage.Message="{Binding TrianglePointNames[0], Mode=OneWay}"
+                   Background="{StaticResource triangleBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
-            <Thumb x:Name="point2_1" Canvas.Left="250" Canvas.Top="150"
-                   local:AttachedMessage.Message="{Binding TwoDimPoint1Name, Mode=OneWay}"
-                   Background="{StaticResource dim2Brush}"
+            <Thumb x:Name="thumbPoint3_1" Canvas.Left="200" Canvas.Top="60"
+                   local:AttachedMessage.Message="{Binding TrianglePointNames[1], Mode=OneWay}"
+                   Background="{StaticResource triangleBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
-            <Thumb x:Name="point2_2" Canvas.Left="80" Canvas.Top="100"
-                   local:AttachedMessage.Message="{Binding TwoDimPoint2Name, Mode=OneWay}"
-                   Background="{StaticResource dim2Brush}"
+            <Thumb x:Name="thumbPoint3_2" Canvas.Left="120" Canvas.Top="90"
+                   local:AttachedMessage.Message="{Binding TrianglePointNames[2], Mode=OneWay}"
+                   Background="{StaticResource triangleBrush}"
+                   Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
+
+            <!-- Quadrangle -->
+            <Line x:Name="quadrangleLine0" Stroke="{StaticResource quadrangleBrush}" />
+            <Line x:Name="quadrangleLine1" Stroke="{StaticResource quadrangleBrush}" />
+            <Line x:Name="quadrangleLine2" Stroke="{StaticResource quadrangleBrush}" />
+            <Line x:Name="quadrangleLine3" Stroke="{StaticResource quadrangleBrush}" />
+            <Polyline Points="{Binding QuadrangleAssistShapePoints, Mode=OneWay, Converter={StaticResource PointArrayToPointCollectionConverter}}" />
+            <Ellipse Style="{StaticResource dotEllipseStyle}" Fill="{StaticResource quadrangleBrush}" >
+                <i:Interaction.Triggers>
+                    <i:PropertyChangedTrigger Binding="{Binding QuadrangleCenterPoint, Mode=OneWay}" >
+                        <action:SetCanvasLeftTopAction />
+                    </i:PropertyChangedTrigger>
+                </i:Interaction.Triggers>
+            </Ellipse>
+            <Thumb x:Name="thumbPoint4_0" Canvas.Left="20" Canvas.Top="130"
+                   local:AttachedMessage.Message="{Binding QuadranglePointNames[0], Mode=OneWay}"
+                   Background="{StaticResource quadrangleBrush}"
+                   Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
+            <Thumb x:Name="thumbPoint4_1" Canvas.Left="140" Canvas.Top="120"
+                   local:AttachedMessage.Message="{Binding QuadranglePointNames[1], Mode=OneWay}"
+                   Background="{StaticResource quadrangleBrush}"
+                   Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
+            <Thumb x:Name="thumbPoint4_2" Canvas.Left="210" Canvas.Top="160"
+                   local:AttachedMessage.Message="{Binding QuadranglePointNames[2], Mode=OneWay}"
+                   Background="{StaticResource quadrangleBrush}"
+                   Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
+            <Thumb x:Name="thumbPoint4_3" Canvas.Left="50" Canvas.Top="190"
+                   local:AttachedMessage.Message="{Binding QuadranglePointNames[3], Mode=OneWay}"
+                   Background="{StaticResource quadrangleBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
 
         </Canvas>
