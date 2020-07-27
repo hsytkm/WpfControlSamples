@@ -5,6 +5,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
                 xmlns:behavior="clr-namespace:WpfControlSamples.Views.Behaviors"
+                xmlns:atprop="clr-namespace:WpfControlSamples.Views.AttachedProperties"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
@@ -28,9 +29,9 @@
                 <Style x:Key="ButtonAlertStyle" TargetType="{x:Type Button}" >
                     <Setter Property="Height" Value="40" />
                     <Setter Property="Margin" Value="20,10" />
-                    <Setter Property="behavior:StyleBehaviorCollection.StyleBehaviors">
+                    <Setter Property="atprop:StyleBehaviorCollection.StyleBehaviors">
                         <Setter.Value>
-                            <behavior:StyleBehaviorCollection>
+                            <atprop:StyleBehaviorCollection>
                                 <!--
                                     表示文字に Content の内容を含めるため、以下の xaml を書いたところ期待通りに動作するが、
                                     実行時にエラーが出る… なぜ？
@@ -45,7 +46,7 @@
                                         target property is 'Message' (type 'String')
                                 -->
                                 <behavior:AlertBehavior Message="AlertBehaviorをStyleから設定してます" />
-                            </behavior:StyleBehaviorCollection>
+                            </atprop:StyleBehaviorCollection>
                         </Setter.Value>
                     </Setter>
                 </Style>

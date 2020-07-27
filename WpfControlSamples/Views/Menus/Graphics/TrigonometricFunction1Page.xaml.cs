@@ -22,19 +22,6 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    static class AttachedMessage
-    {
-        public static readonly DependencyProperty MessageProperty =
-            DependencyProperty.RegisterAttached(
-                "Message", typeof(string), typeof(AttachedMessage));
-
-        public static string GetMessage(UIElement element) =>
-            (string)element.GetValue(MessageProperty);
-
-        public static void SetMessage(UIElement element, string value) =>
-            element.SetValue(MessageProperty, value);
-    }
-
     public partial class TrigonometricFunction1Page : ContentControl
     {
         private readonly TrigonometricFunction1ViewModel _viewModel = new TrigonometricFunction1ViewModel();
@@ -69,6 +56,7 @@ namespace WpfControlSamples.Views.Menus
                 _parentCanvas = GetParentCanvas(originPoint);
                 _parentCanvas.SizeChanged += (_, __) => OnPointThumbChanged();
 
+                originPoint.SetCanvasLeftTop(_parentCanvas.ActualWidth / 2.0, _parentCanvas.ActualHeight / 2.0);
                 OnPointThumbChanged();
             };
         }
@@ -98,11 +86,15 @@ namespace WpfControlSamples.Views.Menus
             var canvasSize = GetActualSize(_parentCanvas);
 
             // 原点コントロールの更新
-            originPoint.SetCanvasLeftTop(0, canvasSize.Height);
+            var oldOriginPoint = originPoint.GetCanvasTop();
+            Canvas.SetTop(originPoint, Math.Min(oldOriginPoint, canvasSize.Height));
+            var originCanvasPoint = originPoint.GetCanvasLeftTop();
+            SetLineXY(lineAxisX, new Point(0, originCanvasPoint.Y), new Point(canvasSize.Width, originCanvasPoint.Y));
+            SetLineXY(lineAxisY, new Point(originCanvasPoint.X, 0), new Point(originCanvasPoint.X, canvasSize.Height));
 
             // View ⇔ ViewModel の座標変換メソッド (View:左上, ViewModel:右下)
-            var viewToViewModelCoordinateFunc = new Func<Point, Point>(p => new Point(p.X, canvasSize.Height - p.Y));
-            var viewModelToViewCoordinateFunc = new Func<Point, Point>(p => new Point(p.X, canvasSize.Height - p.Y));
+            var viewToViewModelCoordinateFunc = new Func<Point, Point>(p => new Point(p.X - originCanvasPoint.X, - (p.Y - originCanvasPoint.Y)));
+            var viewModelToViewCoordinateFunc = new Func<Point, Point>(p => new Point(p.X + originCanvasPoint.X, - (p.Y - originCanvasPoint.Y)));
             _viewModel.ToViewCoordinate = viewModelToViewCoordinateFunc;
 
             // 各コントロールの更新
@@ -170,12 +162,12 @@ namespace WpfControlSamples.Views.Menus
         public ObservableCollection<string> LinePointNames { get; } =
             new ObservableCollection<string>(Enumerable.Repeat("", 2));
 
-        public Point[] LineAssistShapePoints
+        public Point[] LineArrowPoints
         {
-            get => _lineAssistShapePoints;
-            private set => SetProperty(ref _lineAssistShapePoints, value);
+            get => _lineArrowPoints;
+            private set => SetProperty(ref _lineArrowPoints, value);
         }
-        private Point[] _lineAssistShapePoints = Enumerable.Empty<Point>().ToArray();
+        private Point[] _lineArrowPoints = Enumerable.Empty<Point>().ToArray();
 
         public bool LineIsValid
         {
@@ -336,7 +328,26 @@ namespace WpfControlSamples.Views.Menus
                 LineDistance = MathLineExtension.GetDistance(ps[0], ps[1]);
                 LineSlope = MathLineExtension.GetSlope(ps[0], ps[1]);
                 LineIntercept = MathLineExtension.GetIntercept(ps[0], ps[1]);
-                LineAssistShapePoints = GetAssistRectanglePointsOnView(ps, ToViewCoordinate);
+                LineArrowPoints = GetArrowPoints(ps[0], ps[1]).Select(p => ToViewCoordinate(p)).ToArray();
+            }
+
+            static Point[] GetArrowPoints(Point p0, Point p1)
+            {
+                var _arrowRadian = 30.0 * Math.PI / 180.0;
+                var _arrowLengthMax = 20.0;
+
+                var distance = MathLineExtension.GetDistance(p0, p1);
+                var arrowlength = Math.Min(distance, _arrowLengthMax);
+
+                var radian = Math.Atan2(p1.Y - p0.Y, p1.X - p0.X);
+                var leftWingPoint = new Point(
+                    p1.X - arrowlength * Math.Cos(radian + _arrowRadian),
+                    p1.Y - arrowlength * Math.Sin(radian + _arrowRadian));
+                var rightWingPoint = new Point(
+                    p1.X - arrowlength * Math.Cos(radian - _arrowRadian),
+                    p1.Y - arrowlength * Math.Sin(radian - _arrowRadian));
+
+                return new[] { leftWingPoint, p1, rightWingPoint };
             }
         }
 

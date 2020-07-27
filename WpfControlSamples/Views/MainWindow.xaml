@@ -13,6 +13,7 @@
         xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
         xmlns:behavior="clr-namespace:WpfControlSamples.Views.Behaviors"
         xmlns:helper="clr-namespace:WpfControlSamples.Views.Helpers"
+        xmlns:atprop="clr-namespace:WpfControlSamples.Views.AttachedProperties"
         mc:Ignorable="d"
         Title="WpfControlSamples"
         Height="550" Width="800"

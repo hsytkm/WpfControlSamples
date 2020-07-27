@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 
-namespace WpfControlSamples.Views.Behaviors
+namespace WpfControlSamples.Views.AttachedProperties
 {
     // WPFのBehaviorをStyleで使う方法
     // https://blog.okazuki.jp/entry/2016/07/19/192918

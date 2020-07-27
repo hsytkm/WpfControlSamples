@@ -7,6 +7,7 @@
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
                 xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
                 xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
+                xmlns:atprop="clr-namespace:WpfControlSamples.Views.AttachedProperties"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
@@ -16,7 +17,7 @@
         
         <Brush x:Key="blackBrush">Black</Brush>
         <Brush x:Key="redBrush">Red</Brush>
-        
+
         <Brush x:Key="lineBrush">Coral</Brush>
         <Brush x:Key="triangleBrush">DodgerBlue</Brush>
         <Brush x:Key="quadrangleBrush">Green</Brush>
@@ -60,6 +61,11 @@
             <Setter Property="TextDecorations" Value="Underline" />
             <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
         </Style>
+        <Style x:Key="axisLine" TargetType="{x:Type Line}" >
+            <Setter Property="Stroke" Value="Gray" />
+            <Setter Property="StrokeThickness" Value="0.5" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+        </Style>
         <Style TargetType="{x:Type Line}" >
             <Setter Property="StrokeThickness" Value="2" />
             <Setter Property="IsHitTestVisible" Value="False" />
@@ -72,6 +78,11 @@
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
+        <Style x:Key="arrowPolyLineStyle" TargetType="{x:Type Polyline}" >
+            <Setter Property="Stroke" Value="{StaticResource lineBrush}" />
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+        </Style>
         <Style TargetType="{x:Type Polyline}" >
             <Setter Property="Stroke" Value="Gray" />
             <Setter Property="StrokeThickness" Value="1" />
@@ -81,7 +92,7 @@
         <ControlTemplate x:Key="thumbTemplate" TargetType="{x:Type Thumb}" >
             <Grid Margin="-5,-5,0,0" >
                 <TextBlock Style="{StaticResource pointTitleTextBlockStyle}"
-                           Text="{Binding Path=(local:AttachedMessage.Message), RelativeSource={RelativeSource AncestorType={x:Type Thumb}}}"
+                           Text="{Binding Path=(atprop:AttachedBuiltIn.Text), RelativeSource={RelativeSource AncestorType={x:Type Thumb}}}"
                            Foreground="{TemplateBinding Background}" />
                 <Ellipse Style="{StaticResource cornerEllipseStyle}"
                          Fill="{TemplateBinding Background}" />
@@ -195,20 +206,24 @@
             </Border>
         </Grid>
 
-        <Canvas Margin="30,15,30,0" Background="LightGray" >
-            <Thumb x:Name="originPoint" Background="Gray" Cursor="Arrow"
-                   local:AttachedMessage.Message="Origin"
-                   Style="{StaticResource thumbStyle}" />
+        <Canvas Margin="15,15,15,0" Background="LightGray" >
+            <!-- 原点 -->
+            <Line x:Name="lineAxisX" Style="{StaticResource axisLine}" />
+            <Line x:Name="lineAxisY" Style="{StaticResource axisLine}" />
+            <Thumb x:Name="originPoint" Background="Gray"
+                   atprop:AttachedBuiltIn.Text="Origin"
+                   Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
 
             <!-- Line -->
             <Line x:Name="line1" Stroke="{StaticResource lineBrush}" />
-            <Polyline Points="{Binding LineAssistShapePoints, Mode=OneWay, Converter={StaticResource PointArrayToPointCollectionConverter}}" />
-            <Thumb x:Name="thumbPoint0" Canvas.Left="10" Canvas.Top="10"
-                   local:AttachedMessage.Message="{Binding LinePointNames[0], Mode=OneWay}"
+            <Polyline Style="{StaticResource arrowPolyLineStyle}"
+                      Points="{Binding LineArrowPoints, Mode=OneWay, Converter={StaticResource PointArrayToPointCollectionConverter}}" />
+            <Thumb x:Name="thumbPoint0" Canvas.Left="20" Canvas.Top="50"
+                   atprop:AttachedBuiltIn.Text="{Binding LinePointNames[0], Mode=OneWay}"
                    Background="{StaticResource lineBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
-            <Thumb x:Name="thumbPoint1" Canvas.Left="20" Canvas.Top="50"
-                   local:AttachedMessage.Message="{Binding LinePointNames[1], Mode=OneWay}"
+            <Thumb x:Name="thumbPoint1" Canvas.Left="10" Canvas.Top="10"
+                   atprop:AttachedBuiltIn.Text="{Binding LinePointNames[1], Mode=OneWay}"
                    Background="{StaticResource lineBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
 
@@ -252,15 +267,15 @@
             </Ellipse>
             
             <Thumb x:Name="thumbPoint3_0" Canvas.Left="100" Canvas.Top="30"
-                   local:AttachedMessage.Message="{Binding TrianglePointNames[0], Mode=OneWay}"
+                   atprop:AttachedBuiltIn.Text="{Binding TrianglePointNames[0], Mode=OneWay}"
                    Background="{StaticResource triangleBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
             <Thumb x:Name="thumbPoint3_1" Canvas.Left="200" Canvas.Top="60"
-                   local:AttachedMessage.Message="{Binding TrianglePointNames[1], Mode=OneWay}"
+                   atprop:AttachedBuiltIn.Text="{Binding TrianglePointNames[1], Mode=OneWay}"
                    Background="{StaticResource triangleBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
             <Thumb x:Name="thumbPoint3_2" Canvas.Left="120" Canvas.Top="90"
-                   local:AttachedMessage.Message="{Binding TrianglePointNames[2], Mode=OneWay}"
+                   atprop:AttachedBuiltIn.Text="{Binding TrianglePointNames[2], Mode=OneWay}"
                    Background="{StaticResource triangleBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
 
@@ -278,19 +293,19 @@
                 </i:Interaction.Triggers>
             </Ellipse>
             <Thumb x:Name="thumbPoint4_0" Canvas.Left="20" Canvas.Top="130"
-                   local:AttachedMessage.Message="{Binding QuadranglePointNames[0], Mode=OneWay}"
+                   atprop:AttachedBuiltIn.Text="{Binding QuadranglePointNames[0], Mode=OneWay}"
                    Background="{StaticResource quadrangleBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
             <Thumb x:Name="thumbPoint4_1" Canvas.Left="140" Canvas.Top="120"
-                   local:AttachedMessage.Message="{Binding QuadranglePointNames[1], Mode=OneWay}"
+                   atprop:AttachedBuiltIn.Text="{Binding QuadranglePointNames[1], Mode=OneWay}"
                    Background="{StaticResource quadrangleBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
             <Thumb x:Name="thumbPoint4_2" Canvas.Left="210" Canvas.Top="160"
-                   local:AttachedMessage.Message="{Binding QuadranglePointNames[2], Mode=OneWay}"
+                   atprop:AttachedBuiltIn.Text="{Binding QuadranglePointNames[2], Mode=OneWay}"
                    Background="{StaticResource quadrangleBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
             <Thumb x:Name="thumbPoint4_3" Canvas.Left="50" Canvas.Top="190"
-                   local:AttachedMessage.Message="{Binding QuadranglePointNames[3], Mode=OneWay}"
+                   atprop:AttachedBuiltIn.Text="{Binding QuadranglePointNames[3], Mode=OneWay}"
                    Background="{StaticResource quadrangleBrush}"
                    Style="{StaticResource thumbStyle}" DragDelta="PointThumb_DragDelta" />
 
