@@ -7,6 +7,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
                 xmlns:ctrl="clr-namespace:WpfControlSamples.Views.Controls"
+                xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
@@ -29,7 +30,7 @@
                    FontSize="{StaticResource FontSizeMicro}"
                    Text="フォルダ選択は WPF標準で提供されていないので対応が必要。" />
 
-        <!-- Pattern 1 -->
+        <!-- Pattern 1 : あやしいNuGetパッケージ -->
         <StackPanel DockPanel.Dock="Top" Margin="10,0" Background="LightBlue" >
             <ctrl:HyperlinkTextBlock Margin="10"
                                      FontSize="{StaticResource FontSizeMicro}"
@@ -49,19 +50,19 @@
             </WrapPanel>
         </StackPanel>
 
-        <!-- Pattern 2 -->
+        <!-- Pattern 2 : Livetやけど、内部であやしいNuGetパッケージを使用していそう -->
         <StackPanel DockPanel.Dock="Top" Margin="10,0" Background="LightPink" >
             <ctrl:HyperlinkTextBlock Margin="10"
                                      FontSize="{StaticResource FontSizeMicro}"
                                      Text="runceel/LivetExtensions"
                                      NavigateUri="https://github.com/runceel/Livet"/>
-            <TextBlock Margin="20,0"
+            <TextBlock Margin="20,0,20,10"
                        Text="本流にパッケージ導入したくないので無効にしています。(実装済みでコメント化)" />
 
+            <!-- 非推奨なので無効化
             <WrapPanel Margin="20,10" >
                 <Button Margin="20,0" Padding="10" Width="150"
                         Content="Open Single" IsEnabled="False" >
-                    <!--
                     <Button.IsEnabled>True</Button.IsEnabled>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -77,27 +78,50 @@
                     </i:Interaction.Triggers>
                     
                     <TextBlock Text="Multi選択の作法は不明（未調査）" />
-                    -->
                 </Button>
             </WrapPanel>
+            -->
         </StackPanel>
 
-        <!-- Pattern 3 -->
+        <!-- Pattern 3 : P/Invoke のあやしさあるけど、あやしさパッケージよりマシかも。-->
         <StackPanel DockPanel.Dock="Top" Margin="10,0" Background="LightGreen" >
             <ctrl:HyperlinkTextBlock Margin="10"
                                      FontSize="{StaticResource FontSizeMicro}"
                                      Text="P/Invoke ネイティブ ライブラリーのダイアログ"
                                      NavigateUri="https://shikaku-sh.hatenablog.com/entry/wpf-folder-selection-dialog#PInvoke-%E3%83%8D%E3%82%A4%E3%83%86%E3%82%A3%E3%83%96-%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%83%BC%E3%81%AE%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0"/>
             <TextBlock Margin="20,0"
-                       Text="Nugetの導入なし。コードは泥臭いけど、一番すっきりするかも。" />
+                       Text="Nugetの導入なく一番すっきりする(コードは泥臭いけど)  複数フォルダ選択は未調査…" />
 
             <WrapPanel Margin="20,10" >
-                <Button Margin="20,0" Padding="10" Width="150"
+                <Button Margin="20,0,5,0" Padding="5,10" Width="150"
                         Content="Open Single (Click)"
                         Click="PInvokeFolderOpenSingleButton_Click" />
                 <Button Margin="20,0" Padding="10" Width="180"
                         Content="Open Single (Command)"
                         Command="{Binding FolderOpenDialogCommand, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type local:FolderDialogPage}}}" />
+
+                <!-- Viewのフォルダ選択オススメ！ -->
+                <Button Margin="20,5,20,0" Padding="10" Width="150"
+                        Content="Open Single (Action)" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click" >
+                            <action:OpenFolderDialogAction Title="Open folder"
+                                                           SelectedFolderPath="{Binding SelectedFolderPath, Mode=OneWayToSource}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <!-- おまけ：選択した結果をCommandParameterにInvoke -->
+                <Button Margin="20,5,20,0" Padding="10" Width="150"
+                        Content="Open Single (Action)" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click" >
+                            <action:OpenFolderDialogThenInvokeCommandAction
+                                Title="Open folder"
+                                Command="{Binding ShowMessageBoxCommand, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type local:FolderDialogPage}}}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
             </WrapPanel>
         </StackPanel>
 
@@ -105,7 +129,7 @@
         <TextBlock DockPanel.Dock="Top" Margin="30,10" 
                    VerticalAlignment="Center"
                    FontSize="{StaticResource FontSizeMicro}"
-                   Text="{Binding ., Mode=OneWay}" />
+                   Text="{Binding SelectedFolderPath, Mode=OneWay}" />
 
         <Border/>
     </DockPanel>

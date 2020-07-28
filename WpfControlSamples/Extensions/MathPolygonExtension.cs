@@ -34,7 +34,7 @@ namespace WpfControlSamples.Extensions
         }
 
         // 傾きと切片
-        public static (double slope, double intercept)GetSlopeIntercept(Point p0, Point p1)
+        public static (double slope, double intercept) GetSlopeIntercept(Point p0, Point p1)
         {
             var a = GetSlope(p0, p1);
             var b = p0.Y - (a * p0.X);

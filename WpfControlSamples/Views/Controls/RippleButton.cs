@@ -50,7 +50,7 @@ namespace WpfControlSamples.Views.Controls
 
             (storyboard.Children[2] as ThicknessAnimation).From = new Thickness(mousePos.X, mousePos.Y, 0, 0);
 
-            (storyboard.Children[2] as ThicknessAnimation).To =  new Thickness(
+            (storyboard.Children[2] as ThicknessAnimation).To = new Thickness(
                 mousePos.X - effectMaxSize / 2, mousePos.Y - effectMaxSize / 2, 0, 0);
 
             (storyboard.Children[3] as DoubleAnimation).To = effectMaxSize;

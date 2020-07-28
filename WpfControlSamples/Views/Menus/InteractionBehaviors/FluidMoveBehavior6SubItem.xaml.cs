@@ -21,7 +21,7 @@ namespace WpfControlSamples.Views.Menus
     {
         // 本Viewのアイテム連番(先頭=0)
         public static readonly DependencyProperty ItemIndexProperty =
-            DependencyProperty.Register(nameof(ItemIndex),typeof(int), typeof(FluidMoveBehavior6SubItem));
+            DependencyProperty.Register(nameof(ItemIndex), typeof(int), typeof(FluidMoveBehavior6SubItem));
         public int ItemIndex
         {
             get => (int)GetValue(ItemIndexProperty);

@@ -41,7 +41,7 @@ namespace WpfControlSamples.Views.Menus
             var offset = (extentHeight / 2d) - (viewportHeight / 2d);
             scrollViewer.ScrollToVerticalOffset(offset);
         }
-        
+
         private void ScrollViewer_ScrollToBottom(object sender, RoutedEventArgs e)
         {
             scrollViewer.ScrollToBottom();

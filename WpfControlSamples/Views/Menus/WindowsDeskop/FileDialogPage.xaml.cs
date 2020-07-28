@@ -47,6 +47,10 @@ namespace WpfControlSamples.Views.Menus
             var ret = dialog.ShowDialog();
             savePathTextBlock.Text = (ret.HasValue && ret.Value) ? dialog.FileName : "キャンセルされました";
         }
+
+        public ICommand ShowMessageBoxCommand =>
+            _showMessageBoxCommand ??= new MyCommand<string>(message => MessageBox.Show(message, "MyCommand", MessageBoxButton.OK));
+        private ICommand _showMessageBoxCommand;
     }
 
     class FileDialogViewModel : MyBindableBase

@@ -22,7 +22,7 @@ namespace WpfControlSamples.Views.Menus
 {
     public partial class MouseCursorPage : ContentControl
     {
-        private readonly static IList<Cursor> _mouseCursors =
+        private static readonly IList<Cursor> _mouseCursors =
             typeof(Cursors).GetProperties(BindingFlags.Static | BindingFlags.Public)
                 .Select(x => (Cursor)x.GetValue(null))
                 .ToList();

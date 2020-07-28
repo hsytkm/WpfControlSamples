@@ -21,7 +21,7 @@ namespace WpfControlSamples.Views.Controls
     /// </summary>
     class HyperlinkTextBlock : TextBlock
     {
-        public new static readonly DependencyProperty TextProperty =
+        public static new readonly DependencyProperty TextProperty =
             DependencyProperty.Register(nameof(Text), typeof(string), typeof(HyperlinkTextBlock));
 
         public new string Text

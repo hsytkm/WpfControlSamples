@@ -83,8 +83,10 @@ namespace WpfControlSamples.Views.Menus
 
             var brushes = Models.SampleData.WpfSolidColorBrushes;
             var random = new Random().Next(0, brushes.Count);
-            var item = new FluidMoveBehavior6SubItem();
-            item.Background = brushes[random].Brush;
+            var item = new FluidMoveBehavior6SubItem
+            {
+                Background = brushes[random].Brush
+            };
 
             _viewItemsSource.Add(item);
 

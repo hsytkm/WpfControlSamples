@@ -34,7 +34,7 @@ namespace WpfControlSamples.Views.Helpers
         public static readonly DependencyProperty WatermarkProperty =
             DependencyProperty.RegisterAttached(
                 "Watermark", typeof(object), typeof(WatermarkService),
-                new FrameworkPropertyMetadata((object)null, new PropertyChangedCallback(OnWatermarkChanged)));
+                new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnWatermarkChanged)));
 
         #region Private Fields
 
@@ -50,8 +50,7 @@ namespace WpfControlSamples.Views.Helpers
         /// </summary>
         /// <param name="d"><see cref="DependencyObject"/> to get the property from</param>
         /// <returns>The value of the Watermark property</returns>
-        public static object GetWatermark(DependencyObject d)
-            => (object)d.GetValue(WatermarkProperty);
+        public static object GetWatermark(DependencyObject d) => d.GetValue(WatermarkProperty);
 
         /// <summary>
         /// Sets the Watermark property.  This dependency property indicates the watermark for the control.

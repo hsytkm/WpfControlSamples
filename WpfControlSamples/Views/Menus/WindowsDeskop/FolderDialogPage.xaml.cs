@@ -22,9 +22,12 @@ namespace WpfControlSamples.Views.Menus
 {
     public partial class FolderDialogPage : ContentControl
     {
+        private readonly FolderDialogViewModel _viewModel = new FolderDialogViewModel();
+
         public FolderDialogPage()
         {
             InitializeComponent();
+            DataContext = _viewModel;
         }
 
         private void FolderOpenSingleButton_Click(object sender, RoutedEventArgs e)
@@ -34,7 +37,7 @@ namespace WpfControlSamples.Views.Menus
             if (path is null) path = "null";
             if (string.IsNullOrEmpty(path)) path = "empty";
 
-            DataContext = path;
+            _viewModel.SelectedFolderPath = path;
         }
 
         private void FolderOpenMultiButton_Click(object sender, RoutedEventArgs e)
@@ -55,7 +58,7 @@ namespace WpfControlSamples.Views.Menus
             {
                 text = string.Join(Environment.NewLine, paths);
             }
-            DataContext = text;
+            _viewModel.SelectedFolderPath = text;
         }
 
         public ICommand FolderOpenDialogCommand =>
@@ -84,9 +87,23 @@ namespace WpfControlSamples.Views.Menus
             if (result == FolderBrowserDialog.Result.OK)
             {
                 // CommandParameter に IReactiveProperty<string> を指定して、VMに渡したりとか。
-                DataContext = browser.SelectedPath ?? "";
+                _viewModel.SelectedFolderPath = browser.SelectedPath ?? "";
             }
         }
 
+        public ICommand ShowMessageBoxCommand =>
+            _showMessageBoxCommand ??= new MyCommand<string>(message => MessageBox.Show(message, "MyCommand", MessageBoxButton.OK));
+        private ICommand _showMessageBoxCommand;
     }
+
+    class FolderDialogViewModel : MyBindableBase
+    {
+        public string SelectedFolderPath
+        {
+            get => _selectedFolderPath;
+            set => SetProperty(ref _selectedFolderPath, value);
+        }
+        private string _selectedFolderPath;
+    }
+
 }

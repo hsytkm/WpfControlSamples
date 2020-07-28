@@ -22,8 +22,7 @@
                    FontSize="{StaticResource FontSizeMedium}"
                    Text="Open / Save FileDialog" />
 
-        <StackPanel DockPanel.Dock="Top" 
-                    Margin="10" Background="LightBlue" >
+        <StackPanel DockPanel.Dock="Top" Margin="10" Background="LightBlue" >
             <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
                        Text="Code Behind" />
 
@@ -52,7 +51,7 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Margin="10" Background="LightPink" >
+        <StackPanel DockPanel.Dock="Top" Margin="10,5" Background="LightPink" >
             <TextBlock Margin="10" FontSize="{StaticResource FontSizeSmall}"
                        Text="EventTrigger (MVVM Pattern)" />
 
@@ -78,7 +77,7 @@
 
             <!-- Save -->
             <StackPanel Orientation="Horizontal" >
-                <Button Margin="20,10,0,0" Padding="10" Width="150"
+                <Button Margin="20,10,0,10" Padding="10" Width="150"
                         Content="SaveFileDialogAction" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -97,6 +96,39 @@
             </StackPanel>
         </StackPanel>
 
+        <!-- おまけ with Command -->
+        <DockPanel Margin="10,5" Background="LightGreen" >
+            <TextBlock DockPanel.Dock="Top"
+                       Margin="10" FontSize="{StaticResource FontSizeSmall}"
+                       Text="Dialog with Invoke Command" />
+
+            <WrapPanel Margin="0" >
+                <Button Margin="20,10,0,0" Padding="10" Width="150"
+                        Content="OpenFileDialogAction" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <action:OpenFileDialogThenInvokeCommandAction
+                                Title="ファイルを開く"
+                                Filter="全てのファイル(*.*)|*.*"
+                                Command="{Binding ShowMessageBoxCommand, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type local:FileDialogPage}}}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <Button Margin="20,10,0,0" Padding="10" Width="150"
+                        Content="SaveFileDialogAction" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <action:SaveFileDialogThenInvokeCommandAction
+                                Title="ファイルを保存"
+                                Filter="全てのファイル(*.*)|*.*"
+                                Command="{Binding ShowMessageBoxCommand, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type local:FileDialogPage}}}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </WrapPanel>
+        </DockPanel>
+        
     </DockPanel>
 
 </ContentControl>

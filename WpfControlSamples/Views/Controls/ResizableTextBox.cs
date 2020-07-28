@@ -88,9 +88,9 @@ namespace WpfControlSamples.Views.Controls
 
             var w = element.Width;
             var h = element.Height;
-            if (w.Equals(Double.NaN))
+            if (w.Equals(double.NaN))
                 w = element.DesiredSize.Width;
-            if (h.Equals(Double.NaN))
+            if (h.Equals(double.NaN))
                 h = element.DesiredSize.Height;
 
             w += e.HorizontalChange;

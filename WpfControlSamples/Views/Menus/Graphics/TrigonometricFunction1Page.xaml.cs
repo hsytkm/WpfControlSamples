@@ -71,7 +71,7 @@ namespace WpfControlSamples.Views.Menus
         }
 
         private static Size GetActualSize(FrameworkElement fe) => new Size(fe.ActualWidth, fe.ActualHeight);
-        
+
         private static void SetLineXY(Line line, Point p0, Point p1)
         {
             line.X1 = p0.X;
@@ -93,8 +93,8 @@ namespace WpfControlSamples.Views.Menus
             SetLineXY(lineAxisY, new Point(originCanvasPoint.X, 0), new Point(originCanvasPoint.X, canvasSize.Height));
 
             // View ⇔ ViewModel の座標変換メソッド (View:左上, ViewModel:右下)
-            var viewToViewModelCoordinateFunc = new Func<Point, Point>(p => new Point(p.X - originCanvasPoint.X, - (p.Y - originCanvasPoint.Y)));
-            var viewModelToViewCoordinateFunc = new Func<Point, Point>(p => new Point(p.X + originCanvasPoint.X, - (p.Y - originCanvasPoint.Y)));
+            var viewToViewModelCoordinateFunc = new Func<Point, Point>(p => new Point(p.X - originCanvasPoint.X, -(p.Y - originCanvasPoint.Y)));
+            var viewModelToViewCoordinateFunc = new Func<Point, Point>(p => new Point(p.X + originCanvasPoint.X, -(p.Y - originCanvasPoint.Y)));
             _viewModel.ToViewCoordinate = viewModelToViewCoordinateFunc;
 
             // 各コントロールの更新
@@ -219,7 +219,7 @@ namespace WpfControlSamples.Views.Menus
             private set => SetProperty(ref _triangleCircumscribedCircleCenterPoint, value);
         }
         private Point _triangleCircumscribedCircleCenterPoint;
-        
+
         public Size TriangleCircumscribedCircleDiameterSize
         {
             get => _triangleCircumscribedCircleDiameterSize;

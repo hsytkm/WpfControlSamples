@@ -34,7 +34,7 @@ namespace WpfControlSamples.Views.Menus
         private const int DefaultItemCount = 8;
 
         /// <summary>表示コレクションの元情報</summary>
-        public readonly static IList<ColorListViewItem> _sourceColors =
+        public static readonly IList<ColorListViewItem> _sourceColors =
             Models.SampleData.WpfColors.Select(x => new ColorListViewItem(x)).ToList();
 
         private int _referenceCounter = DefaultItemCount;

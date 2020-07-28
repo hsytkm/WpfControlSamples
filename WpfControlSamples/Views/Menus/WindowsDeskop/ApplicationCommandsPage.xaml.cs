@@ -56,7 +56,7 @@ namespace WpfControlSamples.Views.Menus
             e.CanExecute = checkBox.IsChecked ?? false;
         }
 
-        private static void ShowMessageBox([CallerMemberName]string caller = "UnknownMethod")
+        private static void ShowMessageBox([CallerMemberName] string caller = "UnknownMethod")
         {
             MessageBox.Show("Called " + caller);
         }

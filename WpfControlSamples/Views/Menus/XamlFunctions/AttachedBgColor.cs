@@ -38,7 +38,7 @@ namespace WpfControlSamples.Views.Menus
 
         private static void OnBgColorPropertyChanged(DependencyObject sender, object oldValue, object newValue)
         {
-           if (sender is Control control && newValue is string name)
+            if (sender is Control control && newValue is string name)
             {
                 var color = GetExistColorKeyValue(name).Color;
                 control.Background = color.ToFreezedSolidColorBrush();

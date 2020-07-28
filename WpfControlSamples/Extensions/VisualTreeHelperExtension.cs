@@ -60,7 +60,7 @@ namespace WpfControlSamples.Extensions
         /// <param name="d"></param>
         /// <param name="child"></param>
         /// <returns></returns>
-        public static bool TryGetChildControl<T>(this DependencyObject d,  out T child)
+        public static bool TryGetChildControl<T>(this DependencyObject d, out T child)
             where T : DependencyObject
         {
             if (d is T control1)

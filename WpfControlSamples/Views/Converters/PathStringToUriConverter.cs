@@ -7,7 +7,7 @@ namespace WpfControlSamples.Views.Converters
     [ValueConversion(typeof(string), typeof(Uri))]
     class PathStringToUriConverter : GenericValueConverter<string, Uri>
     {
-        private readonly static Uri _emptyUri = new Uri("about:blank");
+        private static readonly Uri _emptyUri = new Uri("about:blank");
 
         public override Uri Convert(string uriString, object parameter, CultureInfo culture)
         {

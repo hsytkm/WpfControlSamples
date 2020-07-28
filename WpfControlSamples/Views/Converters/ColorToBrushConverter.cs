@@ -15,4 +15,3 @@ namespace WpfControlSamples.Views.Converters
         public override Color ConvertBack(Brush brush, object parameter, CultureInfo culture) => default;
     }
 }
- 
