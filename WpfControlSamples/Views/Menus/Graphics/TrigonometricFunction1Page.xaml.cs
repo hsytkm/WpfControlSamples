@@ -324,10 +324,11 @@ namespace WpfControlSamples.Views.Menus
                     LinePointNames[i] = $"p{i} ({ps[i]:f1})";
                 }
 
-                LineIsValid = MathLineExtension.IsValidLine(ps[0], ps[1]);
+                var linear = new LinearEquation(ps[0], ps[1]);
+                LineIsValid = linear.IsValid;
+                LineSlope = linear.Slope;
+                LineIntercept = linear.Intercept;
                 LineDistance = MathLineExtension.GetDistance(ps[0], ps[1]);
-                LineSlope = MathLineExtension.GetSlope(ps[0], ps[1]);
-                LineIntercept = MathLineExtension.GetIntercept(ps[0], ps[1]);
                 LineArrowPoints = GetArrowPoints(ps[0], ps[1]).Select(p => ToViewCoordinate(p)).ToArray();
             }
 

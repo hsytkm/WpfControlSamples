@@ -64,7 +64,7 @@
                             <action:OpenFileDialogAction
                                 Title="ファイルを開く"
                                 Filter="全てのファイル(*.*)|*.*"
-                                SelectedFilePath="{Binding SelectedOpenPath, Mode=OneWayToSource}" />
+                                SelectedFilePath="{Binding SelectedOpenPath, Mode=TwoWay}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
@@ -84,7 +84,7 @@
                             <action:SaveFileDialogAction
                                 Title="ファイルを保存"
                                 Filter="全てのファイル(*.*)|*.*"
-                                SelectedFilePath="{Binding SelectedSavePath, Mode=OneWayToSource}" />
+                                SelectedFilePath="{Binding SelectedSavePath, Mode=TwoWay}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>

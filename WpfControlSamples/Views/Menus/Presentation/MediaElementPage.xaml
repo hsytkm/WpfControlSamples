@@ -45,7 +45,7 @@
                         <action:OpenFileDialogAction
                                 Title="動画ファイルを開く"
                                 Filter="MP4ファイル|*.mp4"
-                                SelectedFilePath="{Binding MovieFilePath, Mode=OneWayToSource}" />
+                                SelectedFilePath="{Binding MovieFilePath, Mode=TwoWay}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

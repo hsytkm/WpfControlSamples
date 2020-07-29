@@ -6,11 +6,67 @@ using System.Windows;
 
 namespace WpfControlSamples.Extensions
 {
+    /// <summary>一次方程式 y=ax+b</summary>
+    struct LinearEquation
+    {
+        public readonly Point Point0;
+        public readonly Point Point1;
+        public readonly bool IsValid;
+        public readonly double Slope;
+        public readonly double Intercept;
+
+        public LinearEquation(Point p0, Point p1)
+        {
+            Point0 = p0;
+            Point1 = p1;
+            IsValid = IsValidLine(p0, p1);
+            Slope = GetSlope(p0, p1);
+            Intercept = GetIntercept(p0, Slope);
+        }
+
+        // 直線の妥当性チェック
+        public static bool IsValidLine(in Point p0, in Point p1) => p0 != p1;
+
+        // 傾き
+        public static double GetSlope(in Point p0, in Point p1)
+        {
+            var bb = p1.X - p0.X;
+            return bb == 0 ? 0 : (p1.Y - p0.Y) / bb;
+        }
+
+        // 切片
+        public static double GetIntercept(in Point p0, double slope) => p0.Y - (slope * p0.X);
+
+
+        // 2本の直線(傾き/切片)から交点を求める(線分を2点の外側に延長して計算する)
+        private static bool TryGetIntersectionPoint(in LinearEquation linear0, in LinearEquation linear1, out Point point)
+        {
+            var bb = linear0.Slope - linear1.Slope;
+            if (bb == 0) return false;  // 2本の直線が平行(交点なし)
+
+            var x = (linear1.Intercept - linear0.Intercept) / bb;
+            var y = (linear0.Slope * linear1.Intercept - linear0.Intercept * linear1.Slope) / bb;
+            point = new Point(x, y);
+            return true;
+        }
+
+        // 2本の直線が交わるかチェックする(線分を2点の外側に延ばさない)
+        public static bool IsLineSegmentsIntersect(in LinearEquation linear0, in LinearEquation linear1)
+        {
+            // 2辺の交点が取れない(線分が平行している)場合は交わらない
+            if (!TryGetIntersectionPoint(linear0, linear1, out var intersectPoint)) return false;
+
+            // 2辺の交点が線分上に存在するか判定
+            var online0 = MathLineExtension.IsInsidePoint(linear0.Point0, linear0.Point1, intersectPoint);
+            var online1 = MathLineExtension.IsInsidePoint(linear1.Point0, linear1.Point1, intersectPoint);
+
+            // どちらの辺にも乗ってる場合は交わってる(true)
+            return (online0 && online1);
+        }
+    }
+
     static class MathLineExtension
     {
-        // 直線の妥当性チェック
-        public static bool IsValidLine(Point p0, Point p1) => p0 != p1;
-
         // 距離
         public static double GetDistance(Point p0, Point p1)
         {
@@ -19,45 +75,22 @@ namespace WpfControlSamples.Extensions
             return Math.Sqrt((x * x) + (y * y));
         }
 
-        // 傾き
-        public static double GetSlope(Point p0, Point p1)
-        {
-            var bb = p1.X - p0.X;
-            return bb == 0 ? 0 : (p1.Y - p0.Y) / bb;
-        }
-
-        // 切片
-        public static double GetIntercept(Point p0, Point p1)
-        {
-            var (_, b) = GetSlopeIntercept(p0, p1);
-            return b;
-        }
-
-        // 傾きと切片
-        public static (double slope, double intercept) GetSlopeIntercept(Point p0, Point p1)
-        {
-            var a = GetSlope(p0, p1);
-            var b = p0.Y - (a * p0.X);
-            return (a, b);
-        }
-
-        // 2本の直線(傾き/切片)から交点を求める
-        public static Point GetIntersectionPoint(double a, double b, double c, double d)
-        {
-            var bb = a - c;
-            if (bb == 0) throw new ArgumentException();
-
-            var x = (d - b) / bb;
-            var y = (a * d - b * c) / bb;
-            return new Point(x, y);
-        }
-
         // 2点の中点
         public static Point GetMiddlePoint(Point p0, Point p1)
         {
             var x = (p1.X - p0.X) / 2.0;
             var y = (p1.Y - p0.Y) / 2.0;
             return new Point(p0.X + x, p0.Y + y);
+        }
+
+        // P2 が P0, P1 の範囲内に存在するかチェック
+        public static bool IsInsidePoint(in Point p0, in Point p1, in Point p2)
+        {
+            var xmin = Math.Min(p0.X, p1.X);
+            var xmax = Math.Max(p0.X, p1.X);
+            var ymin = Math.Min(p0.Y, p1.Y);
+            var ymax = Math.Max(p0.Y, p1.Y);
+            return (xmin <= p2.X && p2.X <= xmax && ymin <= p2.Y && p2.Y <= ymax);
         }
     }
 
@@ -267,7 +300,7 @@ namespace WpfControlSamples.Extensions
     static class MathQuadrangleExtension
     {
         /// <summary>
-        ///  四点から面積を求める(座標法) https://ja.wikipedia.org/wiki/%E5%BA%A7%E6%A8%99%E6%B3%95
+        /// 四点から面積を求める(座標法) https://ja.wikipedia.org/wiki/%E5%BA%A7%E6%A8%99%E6%B3%95
         /// </summary>
         /// <param name="ps"></param>
         /// <returns></returns>
@@ -353,12 +386,29 @@ namespace WpfControlSamples.Extensions
         /// 枠点のめくられチェック
         /// </summary>
         /// <param name="points"></param>
-        /// <returns></returns>
+        /// <returns>true=めくられている</returns>
         private static bool IsTurnOverPolygonPoints(Point[] points)
         {
-            if (points.Length <= 3) return false;
+            if (points.Length <= 3) return false;   // 三角形はめくりようがないのでOK
+            if (points.Length > 4) throw new ArgumentException("四角形より上は未確認。多分動くはず");
 
-            // ◆未実装 NotImplementedException()
+            // 四角形の各辺
+            var sideLines = points.GetPolygonSideLines().ToArray();
+
+            // 辺が隣接していない辺と交差しないことをチェックする
+            // L3 は L2,L4 と隣接してるので、隣接してない L1 と図形内で交差しないかチェックする
+            for (var i = 2; i < sideLines.Length; ++i)
+            {
+                for (var j = i - 2; j >= 0; --j)
+                {
+                    // LastとFirstの辺ならチェック不要(隣接してる)
+                    if (i == sideLines.Length - 1 && j == 0) break;
+
+                    // 辺が交わってるので、めくれてる(true)
+                    if (LinearEquation.IsLineSegmentsIntersect(sideLines[i], sideLines[j]))
+                        return true;
+                }
+            }
             return false;
         }
 
@@ -451,5 +501,23 @@ namespace WpfControlSamples.Extensions
             yield return rect.BottomRight;
             yield return rect.BottomLeft;
         }
+
+        /// <summary>
+        /// 多角形の辺の一次関数を順に返す
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns></returns>
+        public static IEnumerable<LinearEquation> GetPolygonSideLines(this Point[] points)
+        {
+            if (points.Length <= 2) throw new ArgumentException("don't have side line");
+
+            var length = points.Length;
+            for (var i = 0; i < length; ++i)
+            {
+                var j = (i + 1) % length;
+                yield return new LinearEquation(points[i], points[j]);
+            }
+        }
+
     }
 }

@@ -36,7 +36,7 @@ namespace WpfControlSamples.Views.Actions
             var result = browser.ShowDialog(window);
             var selectedPath = (result == FolderBrowserDialog.Result.OK) ? browser.SelectedPath ?? null : null;
 
-            if (selectedPath != null && Command.CanExecute(selectedPath))
+            if (!string.IsNullOrEmpty(selectedPath) && Command.CanExecute(selectedPath))
                 Command.Execute(selectedPath);
         }
     }

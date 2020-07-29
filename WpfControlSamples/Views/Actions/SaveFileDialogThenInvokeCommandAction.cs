@@ -49,7 +49,7 @@ namespace WpfControlSamples.Views.Actions
             var ret = dialog.ShowDialog();
             var selectedPath = (ret.HasValue && ret.Value) ? dialog.FileName : null;
 
-            if (selectedPath != null && Command.CanExecute(selectedPath))
+            if (!string.IsNullOrEmpty(selectedPath) && Command.CanExecute(selectedPath))
                 Command.Execute(selectedPath);
         }
     }

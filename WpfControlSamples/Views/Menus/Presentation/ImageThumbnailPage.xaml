@@ -28,7 +28,7 @@
                         <action:OpenFileDialogAction
                                 Title="ファイルを開く"
                                 Filter="画像ファイル(*.*)|*.*"
-                                SelectedFilePath="{Binding SelectedOpenPath, Mode=OneWayToSource}" />
+                                SelectedFilePath="{Binding SelectedOpenPath, Mode=TwoWay}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

@@ -30,7 +30,7 @@
         <ItemsControl DockPanel.Dock="Top"
                       x:Name="myItemsControl" Margin="10,0"
                       ItemsSource="{Binding ., Mode=OneTime}" 
-                      Loaded="myItemsControl_Loaded" >
+                      Loaded="MyItemsControl_Loaded" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel>

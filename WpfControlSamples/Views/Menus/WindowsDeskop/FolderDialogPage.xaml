@@ -106,7 +106,7 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click" >
                             <action:OpenFolderDialogAction Title="Open folder"
-                                                           SelectedFolderPath="{Binding SelectedFolderPath, Mode=OneWayToSource}" />
+                                                           SelectedFolderPath="{Binding SelectedFolderPath, Mode=TwoWay}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>

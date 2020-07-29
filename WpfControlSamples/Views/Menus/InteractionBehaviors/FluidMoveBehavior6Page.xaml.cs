@@ -107,7 +107,7 @@ namespace WpfControlSamples.Views.Menus
 
 
         // 1つの RadioButton だけ true にする対応。ダサい。もうちょっとカッコイイ実装ない？
-        private void myItemsControl_Loaded(object sender, RoutedEventArgs e)
+        private void MyItemsControl_Loaded(object sender, RoutedEventArgs e)
         {
             var viewModels = _viewItemsSource.Select(x => x.DataContext).Cast<FluidMoveBehavior6SubItemViewModel>().ToList();
 

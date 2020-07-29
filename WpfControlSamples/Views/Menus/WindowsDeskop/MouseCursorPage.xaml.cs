@@ -27,8 +27,8 @@ namespace WpfControlSamples.Views.Menus
                 .Select(x => (Cursor)x.GetValue(null))
                 .ToList();
 
-        public ICommand RadioButtonChangedCommand => _radioButtonChangedCommand ??
-            (_radioButtonChangedCommand = new MyCommand<Cursor>(cursor => previewArea.Cursor = cursor));
+        public ICommand RadioButtonChangedCommand =>
+            _radioButtonChangedCommand ??= new MyCommand<Cursor>(cursor => previewArea.Cursor = cursor);
         private ICommand _radioButtonChangedCommand;
 
         public MouseCursorPage()
