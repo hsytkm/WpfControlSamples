@@ -60,11 +60,35 @@ namespace WpfControlSamples.Extensions
         }
 
         /// <summary>
-        /// BitmapImageから画素値のbyte配列を読み出す
+        /// BitmapSource から1画素の値を読み出す
         /// </summary>
         /// <param name="bitmap"></param>
         /// <returns></returns>
-        private static ImagePixels GetImagePixels(BitmapImage bitmap)
+        public static Color GetImagePixel(this BitmapSource bitmap, int pointX, int pointY)
+        {
+            if (bitmap is null) throw new ArgumentNullException(nameof(bitmap));
+
+            int imageWidth = bitmap.PixelWidth;
+            int imageHeight = bitmap.PixelHeight;
+            int pixelsByte = (bitmap.Format.BitsPerPixel + 7) / 8; // bit→Byte変換
+
+            pointX = Math.Max(0, Math.Min(imageWidth - 1, pointX));
+            pointY = Math.Max(0, Math.Min(imageHeight - 1, pointY));
+
+            var roi = new Int32Rect(pointX, pointY, 1, 1);
+            var stride = roi.Width * pixelsByte;
+            var pixels = new byte[stride * roi.Height];
+            bitmap.CopyPixels(roi, pixels, stride, 0);
+
+            return Color.FromRgb(pixels[2], pixels[1], pixels[0]);
+        }
+
+        /// <summary>
+        /// BitmapSource から画素値のbyte配列を読み出す
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <returns></returns>
+        private static ImagePixels GetImagePixels(BitmapSource bitmap)
         {
             if (bitmap is null) throw new ArgumentNullException(nameof(bitmap));
 
@@ -73,9 +97,9 @@ namespace WpfControlSamples.Extensions
             int pixelsByte = (bitmap.Format.BitsPerPixel + 7) / 8; // bit→Byte変換
 
             var roi = new Int32Rect(0, 0, imageWidth, imageHeight);
-            var pixels = new byte[roi.Width * roi.Height * pixelsByte];
-
-            bitmap.CopyPixels(pixels, roi.Width * pixelsByte, 0);
+            var stride = roi.Width * pixelsByte;
+            var pixels = new byte[stride * roi.Height];
+            bitmap.CopyPixels(pixels, stride, 0);
 
             return new ImagePixels(roi, pixelsByte, pixels);
         }

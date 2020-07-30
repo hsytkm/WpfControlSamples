@@ -17,11 +17,20 @@
         <TextBlock DockPanel.Dock="Top" Margin="5" FontSize="{StaticResource FontSizeMicro}"
                    Text="画像のズーム表示" />
 
-        <TextBlock DockPanel.Dock="Top" Margin="10,0" >
-            <Run Text="- Ctrl + MouseWheel でズーム" />
-            <LineBreak/>
-            <Run Text="- Shift + MouseWheel で水平移動" />
-        </TextBlock>
+        <DockPanel DockPanel.Dock="Top" >
+            <TextBlock DockPanel.Dock="Left" Margin="10,0" >
+                <Run Text="- Ctrl + MouseWheel でズーム" />
+                <LineBreak/>
+                <Run Text="- Shift + MouseWheel で水平移動" />
+            </TextBlock>
+            <Border DockPanel.Dock="Left" Width="40" Height="40" Margin="20,0,0,0"
+                    Background="{Binding ImageCursorColor, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" />
+            <TextBlock Margin="20,0" >
+                <Run Text="{Binding MousePosOnImageSource, Mode=OneWay, StringFormat='Cursor={0}'}" />
+                <LineBreak/>
+                <Run Text="{Binding ImageCursorColor, Mode=OneWay}" />
+            </TextBlock>
+        </DockPanel>
 
         <DockPanel DockPanel.Dock="Top" Margin="10,0" >
             <TextBlock DockPanel.Dock="Right" Margin="10,5" VerticalAlignment="Center"
@@ -61,6 +70,10 @@
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SizeChanged" >
                         <action:ImageBitmapScalingModeAction />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviewMouseMove" >
+                        <action:MousePositionOnImagePixelAction
+                            MousePosition="{Binding MousePosOnImageSource, Mode=OneWayToSource}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Image>

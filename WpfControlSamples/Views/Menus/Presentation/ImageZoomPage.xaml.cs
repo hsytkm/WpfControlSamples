@@ -39,7 +39,7 @@ namespace WpfControlSamples.Views.Menus
         private Size _myImagePixelSize;
 
         public double ZoomRatioMin { get; } = 0.1;
-        public double ZoomRatioMax { get; } = 8.0;
+        public double ZoomRatioMax { get; } = 32.0;
 
         public double ZoomRatio
         {
@@ -61,6 +61,20 @@ namespace WpfControlSamples.Views.Menus
 
         public ICommand To1XCommand => _to1XCommand ??= new MyCommand(() => ZoomRatio = 1.0);
         private ICommand _to1XCommand;
+
+        public Point MousePosOnImageSource
+        {
+            get => _mousePosOnImageSource;
+            set => SetProperty(ref _mousePosOnImageSource, value);
+        }
+        private Point _mousePosOnImageSource;
+
+        public Color ImageCursorColor
+        {
+            get => _imageCursorColor;
+            set => SetProperty(ref _imageCursorColor, value);
+        }
+        private Color _imageCursorColor;
 
         public ImageZoomViewModel()
         {
@@ -88,6 +102,10 @@ namespace WpfControlSamples.Views.Menus
                             var newRatio = ZoomRatio + ratioPlus;
                             ZoomRatio = Math.Max(ZoomRatioMin, Math.Min(ZoomRatioMax, newRatio));
                         }
+                        break;
+
+                    case nameof(MousePosOnImageSource):
+                        ImageCursorColor = MyImage.GetImagePixel((int)MousePosOnImageSource.X, (int)MousePosOnImageSource.Y);
                         break;
                 }
             };
