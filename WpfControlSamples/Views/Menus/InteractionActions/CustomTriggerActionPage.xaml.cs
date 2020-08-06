@@ -18,9 +18,9 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class TriggerActionPage : ContentControl
+    public partial class CustomTriggerActionPage : ContentControl
     {
-        public TriggerActionPage()
+        public CustomTriggerActionPage()
         {
             InitializeComponent();
         }

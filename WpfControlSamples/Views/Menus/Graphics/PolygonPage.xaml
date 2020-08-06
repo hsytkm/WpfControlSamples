@@ -33,6 +33,7 @@
             <Polygon Points="{Binding PointArray, RelativeSource={RelativeSource AncestorType={x:Type local:PolygonPage}},
                                       Converter={StaticResource PointArrayToPointCollectionConverter}}"
                      Stroke="Pink" StrokeThickness="4"
+                     StrokeDashArray="4 2" 
                      Canvas.Left="150" Canvas.Top="250" />
 
             <Polygon Points="250 30 337 300 106 133 392 133 161 300"

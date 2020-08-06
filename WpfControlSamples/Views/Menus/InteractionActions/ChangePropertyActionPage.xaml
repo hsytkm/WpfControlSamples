@@ -31,19 +31,18 @@
                      Margin="50,10" Width="40" Height="40" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseEnter" >
-                        <i:ChangePropertyAction TargetName="ellipse1"
-                                                PropertyName="Fill"
+                        <i:ChangePropertyAction PropertyName="Fill"
                                                 Value="Pink" />
-                        <i:ChangePropertyAction TargetName="ellipse1"
-                                                PropertyName="Width"
+                        <i:ChangePropertyAction PropertyName="Width"
                                                 Value="10" Increment="True" />
                     </i:EventTrigger>
                     
                     <i:EventTrigger EventName="MouseLeave" >
+                        <!-- TargetedTriggerAction<T> から派生してるので TargetName とかを指定可能 -->
                         <i:ChangePropertyAction TargetName="ellipse1"
                                                 PropertyName="Fill"
                                                 Value="LightGray" />
-                        <i:ChangePropertyAction TargetName="ellipse1"
+                        <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type Ellipse}}}"
                                                 PropertyName="Width"
                                                 Value="-5" Increment="True" />
                     </i:EventTrigger>

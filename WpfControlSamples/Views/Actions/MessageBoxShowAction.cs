@@ -4,9 +4,7 @@ using System.Windows;
 
 namespace WpfControlSamples.Views.Actions
 {
-    // Action のターゲット要素をその親以外にしたい場合は、
-    // 基底クラスを TriggerAction でなく TargetedTriggerAction にする
-
+    // TriggerAction<T> の自作
     class MessageBoxShowAction : TriggerAction<DependencyObject>
     {
         public static readonly DependencyProperty MessageProperty
@@ -20,7 +18,7 @@ namespace WpfControlSamples.Views.Actions
 
         protected override void Invoke(object parameter)
         {
-            var targetName = (this.AssociatedObject is FrameworkElement fe) ? $"{fe.Name}" : "";
+            var targetName = (this.AssociatedObject is FrameworkElement fe) ? fe.Name : "";
             MessageBox.Show(targetName + " : " + Message);
         }
     }
@@ -40,7 +38,8 @@ namespace WpfControlSamples.Views.Actions
 
         protected override void Invoke(object parameter)
         {
-            var targetName = (this.Target is FrameworkElement fe) ? $"{fe.Name}" : "";
+            // this.Target で View から指定したコントロールを取得できる
+            var targetName = (this.Target is FrameworkElement fe) ? fe.Name : "";
             MessageBox.Show(targetName + " : " + Message);
         }
     }

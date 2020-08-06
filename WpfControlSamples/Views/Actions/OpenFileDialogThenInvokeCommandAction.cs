@@ -39,6 +39,8 @@ namespace WpfControlSamples.Views.Actions
             set => SetValue(CommandProperty, value);
         }
 
+        private readonly object Parameter = null;   // NotImprement
+
         protected override void Invoke(object parameter)
         {
             var dialog = new OpenFileDialog
@@ -49,7 +51,7 @@ namespace WpfControlSamples.Views.Actions
             var ret = dialog.ShowDialog();
             var selectedPath = (ret.HasValue && ret.Value) ? dialog.FileName : null;
 
-            if (!string.IsNullOrEmpty(selectedPath) && Command.CanExecute(selectedPath))
+            if (!string.IsNullOrEmpty(selectedPath) && Command.CanExecute(Parameter))
                 Command.Execute(selectedPath);
         }
     }

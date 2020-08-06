@@ -123,7 +123,7 @@ namespace WpfControlSamples.Views
             typeof(PlaySoundActionPage),
             typeof(RemoveElementActionPage),
             typeof(RemoveItemInListBoxActionPage),
-            typeof(TriggerActionPage),
+            typeof(CustomTriggerActionPage),
         };
 
         private static readonly IEnumerable<Type> _interactionBehaviorPages = new[]
@@ -148,6 +148,7 @@ namespace WpfControlSamples.Views
             typeof(KeyTriggerPage),
             typeof(TimerTriggerPage),
             typeof(PropertyChangedTriggerPage),
+            typeof(CustomTriggerPage),
         };
 
         private static readonly IEnumerable<Type> _itemTemplatePages = new[]
@@ -206,6 +207,7 @@ namespace WpfControlSamples.Views
 
         private static readonly IEnumerable<Type> _systemPages = new[]
         {
+            //typeof(BlankPage),
             //typeof(BlankPage),
             typeof(SystemTopPage),
             typeof(EnvironmentPage),

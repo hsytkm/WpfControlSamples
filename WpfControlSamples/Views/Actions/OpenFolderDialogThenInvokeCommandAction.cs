@@ -28,6 +28,8 @@ namespace WpfControlSamples.Views.Actions
             set => SetValue(CommandProperty, value);
         }
 
+        private readonly object Parameter = null;   // NotImprement
+
         protected override void Invoke(object parameter)
         {
             if (!(Window.GetWindow(AssociatedObject) is Window window)) return;
@@ -36,7 +38,7 @@ namespace WpfControlSamples.Views.Actions
             var result = browser.ShowDialog(window);
             var selectedPath = (result == FolderBrowserDialog.Result.OK) ? browser.SelectedPath ?? null : null;
 
-            if (!string.IsNullOrEmpty(selectedPath) && Command.CanExecute(selectedPath))
+            if (!string.IsNullOrEmpty(selectedPath) && Command.CanExecute(Parameter))
                 Command.Execute(selectedPath);
         }
     }

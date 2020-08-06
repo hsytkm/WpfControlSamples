@@ -240,6 +240,9 @@
     <Page Update="Views\Menus\InteractionActions\RemoveElementActionPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\InteractionTriggers\CustomTriggerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\InteractionTriggers\BehaviorsDataTriggerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -417,7 +420,7 @@
     <Page Update="Views\Menus\InteractionBehaviors\TranslateZoomRotateBehaviorPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\InteractionActions\TriggerActionPage.xaml">
+    <Page Update="Views\Menus\InteractionActions\SelfMadeCustomTriggerActionPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\InteractionTriggers\KeyTriggerPage.xaml">
