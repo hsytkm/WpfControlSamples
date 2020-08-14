@@ -19,6 +19,16 @@
         Height="550" Width="800"
         ResizeMode="CanResizeWithGrip" >
 
+    <Window.Resources>
+        <!-- 自作ContextMenuの登録。既存コンテキストメニューを拡張する実装を有効にしているので無効化中。
+        <ContextMenu x:Key="myContextMenu" MenuItem.Click="ContextMenu_Click" >
+            <MenuItem Header="Item1" />
+            <MenuItem Header="Item2" />
+            <MenuItem Header="Item3" />
+        </ContextMenu>
+        -->
+    </Window.Resources>
+        
     <!-- チェックしたいウェブサイト
 
         かずきさん44 FrameworkPropertyMetadata が理解できてない
