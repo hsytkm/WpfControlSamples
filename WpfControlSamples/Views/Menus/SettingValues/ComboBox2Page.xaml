@@ -4,6 +4,7 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:markup="clr-namespace:WpfControlSamples.Views.MarkupExtensions"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
@@ -17,9 +18,9 @@
              CollectionViewPage.xaml.cs のように CollectionViewSource.GetDefaultView() を使った方が
              疎結合でベターだと思う。
         -->
-        <TextBlock Margin="10,0,0,5"
-                   Text="ComboBoxのItemsSourceをグルーピングする" />
-        <ComboBox Margin="10,0"
+        <TextBlock Margin="10,0,0,5" FontSize="{StaticResource FontSizeMicro}"
+                   Text="1. Grouping of collection items" />
+        <ComboBox Margin="20,0"
                   ItemsSource="{Binding ItemsSource, Mode=OneTime}" >
             <ComboBox.GroupStyle>
                 <GroupStyle>
@@ -41,17 +42,25 @@
             </ItemsControl.ItemTemplate>
         </ComboBox>
 
-        <TextBlock Margin="10,20,0,5"
-                   Text="ComboBoxにDictionaryをバインドする" />
-        <ComboBox Margin="10,0"
-                  ItemsSource="{Binding Charactors, Mode=OneTime}"
+        <TextBlock Margin="10,20,0,5" FontSize="{StaticResource FontSizeMicro}"
+                   Text="2. Binding Dictionary" />
+        <ComboBox Margin="20,0"
+                  ItemsSource="{Binding CharactorsDictionary, Mode=OneTime}"
                   DisplayMemberPath="Key"
                   SelectedValuePath="Value"
                   SelectedValue="{Binding SelectedCharactorName, Mode=TwoWay}" />
-
         <TextBlock Margin="20,10"
                    FontSize="{StaticResource FontSizeMicro}"
-                   Text="{Binding SelectedCharactorName, Mode=OneWay, StringFormat='Stand is {0}.'}" />
+                   Text="{Binding SelectedCharactorName, Mode=OneWay, StringFormat='Selected Stand is {0}.'}" />
+
+        <TextBlock Margin="10,20,0,5" FontSize="{StaticResource FontSizeMicro}"
+                   Text="3. Binding Enum" />
+        <ComboBox Margin="20,0"
+                  ItemsSource="{markup:EnumBindingSource local:JoJoStoryEnum}"
+                  SelectedValue="{Binding SelectedStory, Mode=TwoWay}" />
+        <TextBlock Margin="20,10"
+                   FontSize="{StaticResource FontSizeMicro}"
+                   Text="{Binding SelectedStory, Mode=OneWay, StringFormat='Selected Story is {0}.'}" />
     </StackPanel>
 
 </ContentControl>

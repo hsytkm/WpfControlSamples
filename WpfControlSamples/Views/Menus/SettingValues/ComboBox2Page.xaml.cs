@@ -29,29 +29,22 @@ namespace WpfControlSamples.Views.Menus
 
     class ComboBox2ViewModel : MyBindableBase
     {
+        #region Grouping
         /* ComboBox.ItemsSource に ListCollectionView を直接バインドしているが、
          * CollectionViewPage.xaml.cs のように CollectionViewSource.GetDefaultView() を使った方が
          * 疎結合でベターだと思う。
          */
-        public ListCollectionView ItemsSource { get; }
+        public ListCollectionView ItemsSource => _itemsSource ??= GetItemsSource();
+        private ListCollectionView _itemsSource;
 
-        public IDictionary<string, string> Charactors { get; } =
-            new Dictionary<string, string>()
-            {
-                { "承太郎", "スタープラチナ" },
-                { "DIO", "ザ・ワールド" },
-                { "ジョセフ", "ハーミットパープル" },
-                { "ポルナレフ", "シルバーチャリオッツ" },
-            };
-
-        public string SelectedCharactorName
+        class ComboBox2Data
         {
-            get => _selectedCharactorName;
-            set => SetProperty(ref _selectedCharactorName, value);
+            public string Belonging { get; }
+            public string CharactorName { get; }
+            public ComboBox2Data(string b, string n) => (Belonging, CharactorName) = (b, n);
         }
-        private string _selectedCharactorName;
 
-        public ComboBox2ViewModel()
+        private ListCollectionView GetItemsSource()
         {
             // 主キーの登場順にグルーピングされるっぽい
             var itemsSource = new List<ComboBox2Data>
@@ -71,16 +64,50 @@ namespace WpfControlSamples.Views.Menus
             };
             var view = new ListCollectionView(itemsSource);
             view.GroupDescriptions.Add(new PropertyGroupDescription(nameof(ComboBox2Data.Belonging)));
-
-            ItemsSource = view;
+            return view;
         }
+        #endregion
+
+        #region Dictionary
+        public IDictionary<string, string> CharactorsDictionary { get; } =
+            new Dictionary<string, string>()
+            {
+                { "Jotaro", "Star Platinum" },
+                { "DIO", "World 21" },
+                { "Joseph", "Hermit Purple" },
+                { "Polnareff", "Silver Chariot" },
+            };
+
+        public string SelectedCharactorName
+        {
+            get => _selectedCharactorName;
+            set => SetProperty(ref _selectedCharactorName, value);
+        }
+        private string _selectedCharactorName;
+        #endregion
+
+        #region Enum
+        public JoJoStoryEnum SelectedStory
+        {
+            get => _selectedStory;
+            set => SetProperty(ref _selectedStory, value);
+        }
+        private JoJoStoryEnum _selectedStory = JoJoStoryEnum.StardustCrusaders;
+        #endregion
+
     }
 
-    class ComboBox2Data
+    // ◆本当は ComboBox2ViewModelクラス の中に定義したかったけど、xamlからのTypeの参照実装が分からなかった…
+    public enum JoJoStoryEnum
     {
-        public string Belonging { get; }
-        public string CharactorName { get; }
-        public ComboBox2Data(string b, string n) =>
-            (Belonging, CharactorName) = (b, n);
-    }
+        PhantomBlood,
+        BattleTendency,
+        StardustCrusaders,
+        DiamondIsUnbreakable,
+        GoldenWind,
+        StoneOcean,
+        SteelBallRun,
+        JoJolion
+    };
+
 }
