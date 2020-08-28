@@ -54,6 +54,7 @@ namespace WpfControlSamples.Views
             typeof(ListBox4Page),
             typeof(ListView1Page),
             typeof(ListView2Page),
+            typeof(ListView3Page),
             typeof(TreeViewPage),
             typeof(DataGrid1Page),
             typeof(DataGrid2Page),
