@@ -61,6 +61,12 @@
         <TextBlock Margin="20,10"
                    FontSize="{StaticResource FontSizeMicro}"
                    Text="{Binding SelectedStory, Mode=OneWay, StringFormat='Selected Story is {0}.'}" />
+
+        <TextBlock Margin="10,20,0,5" FontSize="{StaticResource FontSizeMicro}"
+                   Text="4. Binding Enum with Description" />
+        <ComboBox Margin="20,0"
+                  ItemsSource="{markup:EnumBindingSource local:JoJoStoryEnumWithDescription}" />
+
     </StackPanel>
 
 </ContentControl>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfControlSamples.Extensions;
 using WpfControlSamples.Infrastructures;
+using WpfControlSamples.Views.TypeConverters;
 
 namespace WpfControlSamples.Views.Menus
 {
@@ -110,4 +112,21 @@ namespace WpfControlSamples.Views.Menus
         JoJolion
     };
 
+    // ◆本当は ComboBox2ViewModelクラス の中に定義したかったけど、xamlからのTypeの参照実装が分からなかった…
+    [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+    public enum JoJoStoryEnumWithDescription
+    {
+        [Description("ファントムブラッド")]
+        PhantomBlood = 1,
+        [Description("戦闘潮流")]
+        BattleTendency,
+        [Description("スターダストクルセイダース")]
+        StardustCrusaders,
+        [Description("ダイヤモンドは砕けない")]
+        DiamondIsUnbreakable,
+        GoldenWind,
+        StoneOcean,
+        SteelBallRun,
+        JoJolion
+    };
 }
