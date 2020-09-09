@@ -1,4 +1,4 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.TabControlPage"
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.TabControl2Page"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -63,7 +63,7 @@
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
                    Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
-                   Text="TabControl" />
+                   Text="TabControl 2" />
 
         <TextBlock DockPanel.Dock="Top"
                    Margin="10,10,0,0" FontSize="{StaticResource FontSizeMicro}"

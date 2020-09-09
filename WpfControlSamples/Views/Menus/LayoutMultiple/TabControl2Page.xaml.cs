@@ -16,17 +16,17 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class TabControlPage : ContentControl
+    public partial class TabControl2Page : ContentControl
     {
-        public TabControlPage()
+        public TabControl2Page()
         {
             InitializeComponent();
 
-            DataContext = new TabControlViewModel();
+            DataContext = new TabControl2ViewModel();
         }
     }
 
-    class TabControlViewModel : MyBindableBase
+    class TabControl2ViewModel : MyBindableBase
     {
         public string[] TabContentSource { get; } =
             new[]
@@ -49,7 +49,7 @@ namespace WpfControlSamples.Views.Menus
         }
         private string _selectedItem;
 
-        public TabControlViewModel()
+        public TabControl2ViewModel()
         {
             SelectedItem = TabContentSource[0];
         }

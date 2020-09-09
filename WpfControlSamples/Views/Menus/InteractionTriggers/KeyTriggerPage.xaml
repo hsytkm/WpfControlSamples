@@ -11,24 +11,24 @@
 
     <i:Interaction.Triggers>
         <!-- F1 のみメソッドにしてみた-->
-        <i:KeyTrigger Key="F1" >
+        <i:KeyTrigger Key="F1" ActiveOnFocus="True" >
             <i:CallMethodAction TargetObject="{Binding}" MethodName="PushKeyF1"  />
         </i:KeyTrigger>
 
         <!-- F1 以外は CommandParameter で Key を表示 -->
-        <i:KeyTrigger Key="F2" >
+        <i:KeyTrigger Key="F2" ActiveOnFocus="True" >
             <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
                                    CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
         </i:KeyTrigger>
-        <i:KeyTrigger Key="F3" >
+        <i:KeyTrigger Key="F3" ActiveOnFocus="True" >
             <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
                                    CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
         </i:KeyTrigger>
-        <i:KeyTrigger Key="F4" >
+        <i:KeyTrigger Key="F4" ActiveOnFocus="True" >
             <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
                                    CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
         </i:KeyTrigger>
-        <i:KeyTrigger Modifiers="Ctrl" Key="D" >
+        <i:KeyTrigger Modifiers="Ctrl" Key="D" ActiveOnFocus="True" >
             <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
                                    CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
         </i:KeyTrigger>

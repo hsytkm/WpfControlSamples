@@ -43,7 +43,7 @@ namespace WpfControlSamples.Views.Menus
                 {
                     // View / ViewModel のそれぞれで勝手に index を管理している（VMで一元管理した方が良い）
                     var index = SourceColors.IndexOf(item) + 1;
-                    builder.AppendLine($"{index}\t{item.Name}\t{item.Color}");
+                    builder.AppendLine($"{index}\t{item.Name}\t{item.ColorLevel}");
                 }
                 Clipboard.SetText(builder.ToString());
             });

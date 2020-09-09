@@ -258,7 +258,10 @@
     <Page Update="Views\Menus\ItemTemplate\ItemTemplateSelectorPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\LayoutMultiple\TabControlPage.xaml">
+    <Page Update="Views\Menus\LayoutMultiple\TabControl2Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\LayoutMultiple\TabControl1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\LayoutMultiple\CanvasPage.xaml">

@@ -55,6 +55,7 @@ namespace WpfControlSamples.Views
             typeof(ListView1Page),
             typeof(ListView2Page),
             typeof(ListView3Page),
+            typeof(ListView4Page),
             typeof(TreeViewPage),
             typeof(DataGrid1Page),
             typeof(DataGrid2Page),
@@ -169,7 +170,8 @@ namespace WpfControlSamples.Views
             typeof(DockPanelPage),
             typeof(WrapPanelPage),
             typeof(CanvasPage),
-            typeof(TabControlPage),
+            typeof(TabControl1Page),
+            typeof(TabControl2Page),
         };
 
         private static readonly IEnumerable<Type> _layoutSinglePages = new[]

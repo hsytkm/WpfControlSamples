@@ -17,14 +17,15 @@
 
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
-                   Margin="0,10,0,5" FontSize="{StaticResource FontSizeMedium}"
+                   Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
                    Text="ListView3" />
 
-        <TextBlock DockPanel.Dock="Top" Text="Ctrl+C 対応" />
+        <TextBlock DockPanel.Dock="Top" Margin="10,5"
+                   Text="Ctrl+C 対応 (CodeBehind でコピーするアイテムを指定)" />
 
         <ListView ItemsSource="{Binding SourceColors, Mode=OneTime}" >
             <i:Interaction.Triggers>
-                <i:KeyTrigger Modifiers="Ctrl" Key="C" >
+                <i:KeyTrigger Modifiers="Ctrl" Key="C" ActiveOnFocus="True" >
                     <i:InvokeCommandAction Command="{Binding SelectedItemsCopyCommand, Mode=OneTime}"
                                            CommandParameter="{Binding SelectedItems, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" />
                 </i:KeyTrigger>
