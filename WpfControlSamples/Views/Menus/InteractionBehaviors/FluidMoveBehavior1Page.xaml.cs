@@ -31,7 +31,7 @@ namespace WpfControlSamples.Views.Menus
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var element = myPanel.Children.Cast<UIElement>().Last();
+            var element = myPanel.Children.OfType<UIElement>().Last();
             myPanel.Children.Remove(element);
             myPanel.Children.Insert(0, element);
         }

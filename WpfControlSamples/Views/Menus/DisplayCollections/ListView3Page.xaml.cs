@@ -34,7 +34,7 @@ namespace WpfControlSamples.Views.Menus
         public ICommand SelectedItemsCopyCommand =>
             _selectedItemsCopyCommand ??= new MyCommand<object>(param =>
             {
-                var items = ((System.Collections.IList)param).Cast<ColorListViewItem>();
+                var items = ((System.Collections.IList)param).OfType<ColorListViewItem>();
                 var builder = new StringBuilder();
 
                 // Viewの選択順に並んでいるので元コレクションの並びにソート

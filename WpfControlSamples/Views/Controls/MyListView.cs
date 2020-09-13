@@ -25,10 +25,12 @@ namespace WpfControlSamples.Views.Controls
             if (!(sender is ListView listView)) return;
 
             // Ctrl + C
-            var isCtrlKey = (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control;
+            var isCtrlKey = (Keyboard.Modifiers & ModifierKeys.Control) != ModifierKeys.None;
             if (!(isCtrlKey && e.Key == Key.C)) return;
 
             CopyGridViewColumnsToClipboard(listView);
+
+            e.Handled = true;
         }
 
         /// <summary>
@@ -37,13 +39,13 @@ namespace WpfControlSamples.Views.Controls
         private static void CopyGridViewColumnsToClipboard(ListView listView)
         {
             // SelectedItems
-            var selectedItems = listView.SelectedItems.Cast<object>();
+            var selectedItems = listView.SelectedItems.OfType<object>();
             if (!selectedItems.Any()) return;
             var itemsType = selectedItems.First().GetType();
 
             // Sort SelectedItems by index
-            var itemsSource = listView.ItemsSource.Cast<object>().ToList();
-            var sortedSelectedItems = selectedItems.OrderBy(x => itemsSource.IndexOf(x));
+            var itemsSource = listView.ItemsSource.OfType<object>();
+            var sortedSelectedItems = selectedItems.OrderBy(x => itemsSource.ToList().IndexOf(x));
 
             // Ctrl + C
             if (!(listView.View is GridView gridView)) return;

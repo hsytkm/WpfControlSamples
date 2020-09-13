@@ -32,7 +32,7 @@ namespace WpfControlSamples.Views.Controls
                 return;
             }
 
-            var newString = (newValue is string) ? (string)newValue : newValue.ToString();
+            var newString = (newValue is string s) ? s : newValue.ToString();
 
             if (!(Content is TextBlock textBlock))
             {

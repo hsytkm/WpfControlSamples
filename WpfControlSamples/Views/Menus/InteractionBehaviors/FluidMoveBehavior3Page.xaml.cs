@@ -38,7 +38,7 @@ namespace WpfControlSamples.Views.Menus
 
         private void MoveChildren(Panel from, Panel to)
         {
-            var elements = from.Children.Cast<UIElement>().ToList();
+            var elements = from.Children.OfType<UIElement>().ToList();
             from.Children.Clear();
 
             foreach (var element in elements)

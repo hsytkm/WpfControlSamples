@@ -66,7 +66,7 @@ namespace WpfControlSamples.Views.Menus
             _deleteSelectedItemsCommand ??= new MyCommand(() =>
             {
                 // 削除中にコレクションの変更通知が来てコレクション要素数変わっちゃうので配列化しとく
-                var deleteItems = NotifySelectedColors.Cast<ColorListViewItem>().ToArray();
+                var deleteItems = NotifySelectedColors.OfType<ColorListViewItem>().ToArray();
                 foreach (var item in deleteItems)
                 {
                     if (Items.Contains(item))
