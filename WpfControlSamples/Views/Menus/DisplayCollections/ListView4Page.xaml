@@ -18,18 +18,42 @@
         <TextBlock DockPanel.Dock="Top" Margin="10,5"
                    Text="Ctrl+C 対応 (GridView の表示内容を Clipboard にコピー)" />
 
-        <ctrl:MyListView ItemsSource="{Binding SourceColors, Mode=OneTime}" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" Width="100"
-                                    DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Color"
-                                    DisplayMemberBinding="{Binding ColorLevel}" />
-                    <GridViewColumn Header="Hsb"
-                                    DisplayMemberBinding="{Binding HsbLevel}" />
-                </GridView>
-            </ListView.View>
-        </ctrl:MyListView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ctrl:MyListView ItemsSource="{Binding SourceColors1, Mode=OneTime}" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="100"
+                                        DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Color"
+                                        DisplayMemberBinding="{Binding ColorLevel}" />
+                        <GridViewColumn Header="Hsb"
+                                        DisplayMemberBinding="{Binding HsbLevel}" />
+                    </GridView>
+                </ListView.View>
+            </ctrl:MyListView>
+            
+            <!-- 配列要素のバインディングもCtrl+Cでコピー対応(List<T>でも可) -->
+            <ctrl:MyListView Grid.Row="1" ItemsSource="{Binding SourceColors2, Mode=OneTime}" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name"
+                                        DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Color0(R)"
+                                        DisplayMemberBinding="{Binding Colors[0]}" />
+                        <GridViewColumn Header="Color1(G)"
+                                        DisplayMemberBinding="{Binding Colors[1]}" />
+                        <GridViewColumn Header="Color2(B)"
+                                        DisplayMemberBinding="{Binding Colors[2]}" />
+                    </GridView>
+                </ListView.View>
+            </ctrl:MyListView>
+        </Grid>
+
     </DockPanel>
 
 </ContentControl>

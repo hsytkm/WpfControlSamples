@@ -28,7 +28,21 @@ namespace WpfControlSamples.Views.Menus
 
     class ListView4ViewModel : MyBindableBase
     {
-        public IList<ColorListViewItem> SourceColors { get; } =
+        public IList<ColorListViewItem> SourceColors1 { get; } =
             Models.SampleData.WpfColors.Select(x => new ColorListViewItem(x)).ToList();
+
+        public IList<ListView4ColorData> SourceColors2 { get; } =
+            Models.SampleData.WpfColors.Select(x => new ListView4ColorData(x.Name, x.Color)).ToList();
+    }
+
+    class ListView4ColorData
+    {
+        public string Name { get; }
+        public byte[] Colors { get; }
+        public ListView4ColorData(string n, Color c)
+        {
+            Name = n;
+            Colors = new[] { c.R, c.G, c.B };
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -47,7 +48,6 @@ namespace WpfControlSamples.Views.Controls
             var itemsSource = listView.ItemsSource.OfType<object>();
             var sortedSelectedItems = selectedItems.OrderBy(x => itemsSource.ToList().IndexOf(x));
 
-            // Ctrl + C
             if (!(listView.View is GridView gridView)) return;
             if (!(gridView.Columns is GridViewColumnCollection columns)) return;
 
@@ -55,20 +55,51 @@ namespace WpfControlSamples.Views.Controls
             var builder = new StringBuilder();
             builder.AppendLine(string.Join(_separator, columns.Select(c => c.Header.ToString())));
 
-            // Copy Values
-            var bindingProperties = columns
+            var propHints = columns
                 .Select(col => ((Binding)col.DisplayMemberBinding).Path.Path)
-                .Select(name => itemsType.GetProperty(name))
+                .Select(path => GetPropertyHint(path))
                 .ToArray();
 
             foreach (var item in sortedSelectedItems)
             {
-                var values = bindingProperties
-                    .Select(prop => prop.GetValue(item)?.ToString() ?? "");
+                var values = propHints.Select(hint => GetPropValue(hint, item)?.ToString() ?? "");
                 builder.AppendLine(string.Join(_separator, values));
             }
 
             Clipboard.SetText(builder.ToString());
+
+            // リフレクションでプロパティを取得するための情報を取得する
+            static (string name, int? index) GetPropertyHint(string pathName)
+            {
+                static bool IsArrayPropName(string sourceName, out string arrayName, out int index)
+                {
+                    var match = Regex.Match(sourceName, @"^(?<name>.+)\[(?<index>[0-9]+)\]$");
+                    if (match.Success)
+                    {
+                        arrayName = match.Groups["name"].Value;
+                        index = Convert.ToInt32(match.Groups["index"].Value);
+                        return true;
+                    }
+                    arrayName = sourceName;
+                    index = -1;
+                    return false;
+                }
+                return IsArrayPropName(pathName, out var arrayName, out var index)
+                    ? (arrayName, (int?)index) : (pathName, null);
+            }
+
+            // プロパティ名の値を取得する（配列も無理やり対応）
+            static object GetPropValue((string name, int? index) hint, object obj)
+            {
+                var type = obj.GetType();
+                var value = type.GetProperty(hint.name).GetValue(obj);
+
+                // 配列(List<T>)の読み出し
+                if (hint.index.HasValue && value.GetType().IsArray)
+                    return ((Array)value).Cast<object>().ElementAt(hint.index.Value);
+
+                return value;
+            }
         }
 
     }
