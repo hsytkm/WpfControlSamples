@@ -16,17 +16,17 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class TextBoxPage : ContentControl
+    public partial class TextBox1Page : ContentControl
     {
-        public TextBoxPage()
+        public TextBox1Page()
         {
             InitializeComponent();
 
-            DataContext = new TextBoxViewModel();
+            DataContext = new TextBox1ViewModel();
         }
     }
 
-    class TextBoxViewModel : MyBindableBase
+    class TextBox1ViewModel : MyBindableBase
     {
         public string InputText1
         {
@@ -56,8 +56,8 @@ namespace WpfControlSamples.Views.Menus
         }
         private string _inputText3;
 
-        public ICommand TextEnterCommand => _textEnterCommand ??
-            (_textEnterCommand = new MyCommand<string>(text => InputText2 = text.ToUpper()));
+        public ICommand TextEnterCommand => _textEnterCommand ??=
+            new MyCommand<string>(text => InputText2 = text.ToUpper());
         private ICommand _textEnterCommand;
 
     }

@@ -84,6 +84,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Views\Menus\EditingText\TextBox2Page.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\Graphics\TrigonometricFunction1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -195,7 +198,7 @@
     <Page Update="Views\Menus\EditingText\WatermarkPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menus\EditingText\TextBoxPage.xaml">
+    <Page Update="Views\Menus\EditingText\TextBox1Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menus\InteractionBehaviors\FluidMoveBehavior6Page.xaml">

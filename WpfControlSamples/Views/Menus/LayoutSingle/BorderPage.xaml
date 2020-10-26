@@ -30,24 +30,95 @@
                        Text="CornerRadius" />
         </Border>
 
-        <Border Margin="0,5"
-                Background="LightPink"
-                BorderBrush="LightBlue"
-                BorderThickness="3"
-                Width="100" Height="100"
-                CornerRadius="100" >
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                       Text="Circle" />
-        </Border>
+        <StackPanel Margin="0,5" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Border Margin="20,5"
+                    Background="LightPink"
+                    BorderBrush="LightBlue"
+                    BorderThickness="3"
+                    Width="100" Height="100"
+                    CornerRadius="100" >
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Text="Circle" />
+            </Border>
+           
+            <Border Margin="20,5"
+                    Background="LightGreen"
+                    BorderThickness="2"
+                    Width="150" Height="60"
+                    CornerRadius="0,5,10,30" >
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Text="CornerRadius" />
+            </Border>
+        </StackPanel>
 
-        <Border Margin="0,5"
-                Background="LightGreen"
-                BorderThickness="2"
-                Width="150" Height="60"
-                CornerRadius="0,5,10,30" >
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                       Text="CornerRadius" />
-        </Border>
+        <StackPanel Margin="0,5" HorizontalAlignment="Center" >
+            <Panel.Resources>
+                <Style TargetType="{x:Type UniformGrid}" >
+                    <Setter Property="Width" Value="80" />
+                    <Setter Property="Height" Value="80" />
+                    <Setter Property="Rows" Value="2" />
+                    <Setter Property="Columns" Value="2" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </Panel.Resources>
+
+            <TextBlock Margin="0,10" >
+                <Run Text="Border.Thickness は Content の内側に描画されて、ContentArea が狭くなる。" />
+                <LineBreak/>
+                <Run Text="下の Windows っぽいShapeのサイズは同じ。" />
+                <LineBreak/>
+                <Run Text="右は Thickness*2 だけ、Border自体のサイズを大きくすることで ContentArea を揃えている。" />
+            </TextBlock>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- 枠線=なし -->
+                <Border Grid.Column="0"
+                        BorderBrush="Red" BorderThickness="0"
+                        Width="{Binding ActualWidth, Source={x:Reference _borderChild0}}"
+                        Height="{Binding ActualHeight, Source={x:Reference _borderChild0}}"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <UniformGrid x:Name="_borderChild0" >
+                        <Grid Background="LightPink" />
+                        <Grid Background="LightGreen" />
+                        <Grid Background="LightBlue" />
+                        <Grid Background="LightYellow" />
+                    </UniformGrid>
+                </Border>
+
+                <!-- 枠線=太 -->
+                <Border Grid.Column="1"
+                        BorderBrush="Red" BorderThickness="10"
+                        Width="{Binding ActualWidth, Source={x:Reference _borderChild1}}"
+                        Height="{Binding ActualHeight, Source={x:Reference _borderChild1}}" >
+                    <UniformGrid x:Name="_borderChild1" >
+                        <Grid Background="LightPink" />
+                        <Grid Background="LightGreen" />
+                        <Grid Background="LightBlue" />
+                        <Grid Background="LightYellow" />
+                    </UniformGrid>
+                </Border>
+
+                <!-- 枠線=太+枠線分だけBorderサイズを大きくする -->
+                <Border Grid.Column="2"
+                        BorderBrush="Red" BorderThickness="10"
+                        Width="100"
+                        Height="100" >
+                    <UniformGrid x:Name="_borderChild2" >
+                        <Grid Background="LightPink" />
+                        <Grid Background="LightGreen" />
+                        <Grid Background="LightBlue" />
+                        <Grid Background="LightYellow" />
+                    </UniformGrid>
+                </Border>
+            </Grid>
+        </StackPanel>
 
     </StackPanel>
 

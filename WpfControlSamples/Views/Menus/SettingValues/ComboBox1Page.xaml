@@ -1,4 +1,4 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ComboBoxPage"
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ComboBox1Page"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

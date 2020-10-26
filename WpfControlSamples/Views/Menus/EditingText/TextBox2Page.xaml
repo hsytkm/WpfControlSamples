@@ -1,0 +1,61 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.TextBox2Page"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!--
+        IDataErrorInfoの汎用的な実装
+            https://blog.okazuki.jp/entry/20100419/1271686512
+
+        [WPF] IDataErrorInfoとValidation.ErrorTemplateを利用してエラーを表示する
+            https://www.pine4.net/Memo/Article/Archives/427
+    -->
+    <StackPanel Margin="10" >
+        <Panel.Resources>
+            <ControlTemplate x:Key="validationTemplate">
+                <Grid>
+                    <Border Background="Red"
+                            Width="15" Height="15"
+                            HorizontalAlignment="Right"
+                            CornerRadius="5"
+                            Margin="0,0,4,0"
+                            ToolTip="{Binding AdornedElement.(Validation.Errors).CurrentItem.ErrorContent, ElementName=adornedElem}" >
+
+                        <TextBlock TextAlignment="Center"
+                                   Foreground="White" FontWeight="Bold"
+                                   VerticalAlignment="Center"
+                                   Text="!" />
+                    </Border>
+      
+                    <AdornedElementPlaceholder x:Name="adornedElem" >
+                        <Border BorderBrush="Red"
+                                BorderThickness="2"
+                                Width="{Binding ElementName=adornedElem, Path=AdornedElement.ActualWidth}" />
+                    </AdornedElementPlaceholder>
+                </Grid>
+            </ControlTemplate>
+        </Panel.Resources>
+
+        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="TextBox 2" />
+
+        <TextBox Validation.ErrorTemplate="{StaticResource validationTemplate}" >
+            <TextBox.Text>
+                <Binding Path="Number" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged" >
+                    <Binding.ValidationRules>
+                        <local:NumericValidation />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox Text="{Binding Number, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                 Validation.ErrorTemplate="{StaticResource validationTemplate}" />
+
+    </StackPanel>
+
+</ContentControl>

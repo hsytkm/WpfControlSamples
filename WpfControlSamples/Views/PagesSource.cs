@@ -68,7 +68,8 @@ namespace WpfControlSamples.Views
 
         private static readonly IEnumerable<Type> _editingTextPages = new[]
         {
-            typeof(TextBoxPage),
+            typeof(TextBox1Page),
+            typeof(TextBox2Page),
             typeof(PasswordBoxPage),
             typeof(RichTextBoxPage),
             typeof(WatermarkPage),
@@ -201,8 +202,9 @@ namespace WpfControlSamples.Views
         private static readonly IEnumerable<Type> _settingValuePages = new[]
         {
             typeof(SliderPage),
-            typeof(ComboBoxPage),
+            typeof(ComboBox1Page),
             typeof(ComboBox2Page),
+            typeof(ComboBox3Page),
             typeof(CheckBoxPage),
             typeof(RadioButtonPage),
             typeof(CalendarPage),
@@ -210,7 +212,7 @@ namespace WpfControlSamples.Views
 
         private static readonly IEnumerable<Type> _systemPages = new[]
         {
-            //typeof(BlankPage),
+            typeof(BorderPage),
             //typeof(BlankPage),
             typeof(SystemTopPage),
             typeof(EnvironmentPage),

@@ -41,11 +41,6 @@
         WPFサンプル:PowerPointで作成した図形をWPFで表示する
             http://gushwell.ldblog.jp/archives/52317471.html
 
-        IDataErrorInfoの汎用的な実装
-            https://blog.okazuki.jp/entry/20100419/1271686512
-        [WPF] IDataErrorInfoとValidation.ErrorTemplateを利用してエラーを表示する
-            https://www.pine4.net/Memo/Article/Archives/427
-
         Per-Monitor DPI 環境下で WPF の Window 位置を調整する
             https://blog.shibayan.jp/entry/20190612/1560267647
     -->

@@ -17,17 +17,17 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class ComboBoxPage : ContentControl
+    public partial class ComboBox1Page : ContentControl
     {
-        public ComboBoxPage()
+        public ComboBox1Page()
         {
             InitializeComponent();
 
-            DataContext = new ComboBoxViewModel();
+            DataContext = new ComboBox1ViewModel();
         }
     }
 
-    class ComboBoxViewModel : MyBindableBase
+    class ComboBox1ViewModel : MyBindableBase
     {
         private static IList<(string Name, Color Color)> Colors =>
             Models.SampleData.WpfColors;
@@ -43,7 +43,7 @@ namespace WpfControlSamples.Views.Menus
                 if (SetProperty(ref _selectedItem, value))
                 {
                     var x = Colors.First(x => x.Name == value);
-                    SelectedNameColor = new ComboboxColor(x.Name, x.Color);
+                    SelectedNameColor = new ComboBox1Color(x.Name, x.Color);
                 }
             }
         }
@@ -51,29 +51,29 @@ namespace WpfControlSamples.Views.Menus
         #endregion
 
         #region ComboBox2
-        public IList<ComboboxColor> ItemsSourceNameColor { get; } =
-            Colors.Select(x => new ComboboxColor(x.Name, x.Color)).ToList();
+        public IList<ComboBox1Color> ItemsSourceNameColor { get; } =
+            Colors.Select(x => new ComboBox1Color(x.Name, x.Color)).ToList();
 
-        public ComboboxColor SelectedNameColor
+        public ComboBox1Color SelectedNameColor
         {
             get => _selectedNameColor;
             set => SetProperty(ref _selectedNameColor, value);
         }
-        private ComboboxColor _selectedNameColor;
+        private ComboBox1Color _selectedNameColor;
         #endregion
 
-        public ComboBoxViewModel()
+        public ComboBox1ViewModel()
         {
             SelectedItem = ItemsSource.First();
             SelectedNameColor = ItemsSourceNameColor.First();
         }
     }
 
-    class ComboboxColor
+    class ComboBox1Color
     {
         public string Name { get; }
         public Color Color { get; }
-        public ComboboxColor(string name, Color color) =>
+        public ComboBox1Color(string name, Color color) =>
             (Name, Color) = (name, color);
         public override string ToString() => Name;
     }
