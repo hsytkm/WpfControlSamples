@@ -113,6 +113,7 @@ namespace WpfControlSamples.Views
             typeof(Button1Page),
             typeof(Button2Page),
             typeof(RepeatButtonPage),
+            typeof(ToggleButton1Page),
         };
 
         private static readonly IEnumerable<Type> _interactionActionPages = new[]
@@ -212,7 +213,7 @@ namespace WpfControlSamples.Views
 
         private static readonly IEnumerable<Type> _systemPages = new[]
         {
-            typeof(BorderPage),
+            //typeof(BlankPage),
             //typeof(BlankPage),
             typeof(SystemTopPage),
             typeof(EnvironmentPage),
