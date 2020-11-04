@@ -18,7 +18,7 @@ namespace WpfControlSamples.Views.Converters
             {
                 var geneType = type.GetGenericTypeDefinition();
                 if (geneType == typeof(List<>))
-                    return ((IEnumerable)value).OfType<object>().First();
+                    return ((IEnumerable)value).OfType<object>().FirstOrDefault();
             }
 
             throw new NotImplementedException();

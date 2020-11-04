@@ -23,8 +23,6 @@ namespace WpfControlSamples.Views.Menus
         public DataGrid1Page()
         {
             InitializeComponent();
-
-            DataContext = new DataGrid1ViewModel();
         }
     }
 
