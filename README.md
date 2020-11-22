@@ -6,7 +6,7 @@ Created in 2020/05
 
 
 
-## Reference Website
+## Websites
 
 [Microsoft Docs WPF](https://docs.microsoft.com/ja-jp/dotnet/framework/wpf/)
 
@@ -29,6 +29,25 @@ Created in 2020/05
 [MVVMパターンの常識 ― 「M」「V」「VM」の役割とは？](https://www.atmarkit.co.jp/fdotnet/chushin/greatblogentry_02/greatblogentry_02_01.html)
 
 [WPF でフォルダー選択のダイアログを選択・実装する](https://shikaku-sh.hatenablog.com/entry/wpf-folder-selection-dialog)
+
+
+
+### Per-Monitor DPI
+
+[Developing a Per-Monitor DPI-Aware WPF Application - MSDN](http://msdn.microsoft.com/en-us/library/windows/desktop/ee308410(v=vs.85).aspx)
+
+[デスクトップアプリの高DPI対応 #1 – 高DPI対応とは](https://nishy-software.com/ja/dev-sw/windows-high-dpi-desktop-app-1/)
+
+[デスクトップアプリの高DPI対応 #3 – WPFアプリ](https://nishy-software.com/ja/dev-sw/windows-high-dpi-desktop-app-3/)
+
+[タスク マネージャーでアプリのDPI対応を確認可能 - 窓の杜](https://forest.watch.impress.co.jp/docs/news/1148530.html)
+
+[Per-Monitor DPI 環境下で WPF の Window 位置を調整する - しばやん雑記](https://blog.shibayan.jp/entry/20190612/1560267647)
+
+[Windows 8.1 で加わった Per-Monitor DPI と WPF での対応方法 - grabacr.nét](http://grabacr.net/archives/1132)
+
+[.Net 4.6.2以降でのWPFのPer-Monitor DPI対応 - SourceChord](http://sourcechord.hatenablog.com/entry/2016/12/14/081112)
+
 
 
 
