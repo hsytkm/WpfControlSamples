@@ -11,16 +11,29 @@
         <TextBlock DockPanel.Dock="Top"
                    FontSize="{StaticResource FontSizeMedium}"
                    Text="InkCanvas" />
-        
+
         <TextBlock DockPanel.Dock="Top"
                    Margin="10" FontSize="{StaticResource FontSizeMicro}"
                    Text="線が描ける。タッチデバイスでどう動作するかは知らんす…" />
 
-        <InkCanvas Margin="10,0" Background="LightGray" >
-            <InkCanvas.DefaultDrawingAttributes>
-                <DrawingAttributes Color="Red" Width="10" />
-            </InkCanvas.DefaultDrawingAttributes>
-        </InkCanvas>
+        <Button DockPanel.Dock="Top" Margin="10,5" Padding="5"
+                Content="クリア" Click="ClearButton_Click" />
 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <InkCanvas x:Name="inkCanvas" Margin="10,0" Background="LightGray"
+                       EditingMode="Ink"
+                       StrokeCollected="InkCanvas_StrokeCollected" >
+                <InkCanvas.DefaultDrawingAttributes>
+                    <DrawingAttributes Color="Red" Width="10" />
+                </InkCanvas.DefaultDrawingAttributes>
+            </InkCanvas>
+
+            <Image Grid.Column="1" x:Name="image" />
+        </Grid>
     </DockPanel>
 </ContentControl>
