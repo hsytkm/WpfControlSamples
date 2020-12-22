@@ -196,6 +196,7 @@ namespace WpfControlSamples.Views
             typeof(ImagePage),
             typeof(ImageThumbnailPage),
             typeof(ImageZoomPage),
+            typeof(ImageClickPage),
             typeof(MediaElementPage),
             typeof(WebBrowserPage),
             typeof(EmbeddedFontPage),

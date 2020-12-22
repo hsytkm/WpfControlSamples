@@ -1,0 +1,63 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ImageClickPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <ContentControl.Resources>
+        <Style TargetType="{x:Type Ellipse}" >
+            <Setter Property="Width" Value="10" />
+            <Setter Property="Height" Value="10" />
+            <Setter Property="Margin" Value="-5,-5,0,0" />
+        </Style>
+    </ContentControl.Resources>
+
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="ImageClick" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="5" FontSize="{StaticResource FontSizeMicro}"
+                   Text="画像上のクリック点を取得" />
+
+        <DockPanel DockPanel.Dock="Top" Margin="10,0" >
+            <TextBlock DockPanel.Dock="Top"
+                       Text="{Binding MouseLeftButtonDownPointOnImageSource, Mode=OneWay, StringFormat='・左クリック : 赤点　Cursor={0}'}" />
+            <TextBlock DockPanel.Dock="Top"
+                       Text="{Binding MouseRightButtonDownPointOnImageSource, Mode=OneWay, StringFormat='・右クリック : 緑点　Cursor={0}'}" />
+            <TextBlock Text="・ダブルクリック : 実装なし　※Image (UIElement) に DoubleClickEvent が実装されていないので標準では対応不可" />
+        </DockPanel>
+
+        <Canvas Margin="10" Background="Red"
+                HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Image Source="{Binding MyImage, Mode=OneTime}"
+                   Width="{Binding MyImage.PixelWidth, Mode=OneTime}"
+                   Height="{Binding MyImage.PixelHeight, Mode=OneTime}" >
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown" >
+                        <action:MousePositionOnImagePixelAction
+                            MousePosition="{Binding MouseLeftButtonDownPointOnImageSource, Mode=OneWayToSource}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviewMouseRightButtonUp" >
+                        <action:MousePositionOnImagePixelAction
+                            MousePosition="{Binding MouseRightButtonDownPointOnImageSource, Mode=OneWayToSource}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Image>
+
+            <Ellipse local:AttachedCanvasPosition.LeftTop="{Binding MouseLeftButtonDownPointOnImageSource, Mode=OneWay}"
+                     Fill="Magenta" />
+
+            <Ellipse local:AttachedCanvasPosition.LeftTop="{Binding MouseRightButtonDownPointOnImageSource, Mode=OneWay}"
+                     Fill="Lime" />
+        </Canvas>
+
+    </DockPanel>
+
+</ContentControl>

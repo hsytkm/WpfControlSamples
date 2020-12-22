@@ -15,7 +15,7 @@
                    Text="ImageEmbeddedThumbnail" />
 
         <TextBlock DockPanel.Dock="Top" Margin="10" >
-            <Run Text="選択された画像ファイルを埋め込みサムネイル優先で読み込む" FontSize="{StaticResource FontSizeMicro}" />
+            <Run Text="選択された画像ファイル内の埋め込みサムネイルを優先して読み込む" FontSize="{StaticResource FontSizeMicro}" />
             <LineBreak/>
             <Run Text="※Lumix の 4:3 の埋め込みサムネイルの画像サイズは 160x120" />
         </TextBlock>
