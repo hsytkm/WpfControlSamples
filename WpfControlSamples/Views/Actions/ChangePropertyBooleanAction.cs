@@ -39,19 +39,15 @@ namespace WpfControlSamples.Views.Actions
         {
             static bool TryGetBool(object obj, out bool value)
             {
-                if (obj is bool b0)
+                var (result, val) = obj switch
                 {
-                    value = b0;
-                    return true;
-                }
-                if (obj is DependencyPropertyChangedEventArgs e && e.NewValue is bool b1)
-                {
-                    value = b1;
-                    return true;
-                }
+                    bool b => (true, b),
+                    DependencyPropertyChangedEventArgs e when e.NewValue is bool b => (true, b),
+                    _ => (false, false)
+                };
 
-                value = false;
-                return false;
+                value = val;
+                return result;
             }
 
             if (!TryGetBool(parameter, out var b)) return;

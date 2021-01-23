@@ -88,6 +88,18 @@
     <Page Update="Views\Menus\DisplayCollections\DataGrid3Page.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\DisplayCollections\ListBox7Page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\DisplayCollections\ListBox6Page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menus\DisplayCollections\ListBox5Page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\EditingText\TextBox2Page.xaml">
       <SubType>Designer</SubType>
     </Page>
