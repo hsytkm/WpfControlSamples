@@ -1,0 +1,60 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.CustomTriggerAction2Page"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
+                xmlns:trigger="clr-namespace:WpfControlSamples.Views.Triggers"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <StackPanel Margin="10" >
+        <TextBlock Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
+                   Text="自作TriggerAction2" />
+        <TextBlock Margin="10,0" Foreground="Blue"
+                   Text="bool値に応じて xaml で定義した Style を切り替える。" />
+
+        <TextBlock Margin="10,5,0,0" >
+            　BehaviorsDataTriggerPage.xaml でも同じことを別の実装で実現している。
+            <LineBreak />
+            　そちらは 自作Action を使用しないけど、xaml 記述がちょい冗長なので、こちらがオススメ。
+            <LineBreak />
+            　（True/False の状態を1行で書けない） 
+        </TextBlock>
+
+        <!-- BehaviorsDataTriggerPage.xaml でも同じことを別の実装で実現してる -->
+        <DockPanel Margin="20,10" >
+            <Panel.Resources>
+                <Style x:Key="textBlockStyle0" TargetType="{x:Type TextBlock}">
+                    <Setter Property="Text" Value="textBlockStyle0" />
+                    <Setter Property="Foreground" Value="Red" />
+                    <Setter Property="Background" Value="LightPink" />
+                </Style>
+                <Style x:Key="textBlockStyle1" TargetType="{x:Type TextBlock}">
+                    <Setter Property="Text" Value="textBlockStyle1" />
+                    <Setter Property="Foreground" Value="Blue" />
+                    <Setter Property="Background" Value="LightBlue" />
+                </Style>
+            </Panel.Resources>
+
+            <CheckBox x:Name="_checkBox" DockPanel.Dock="Top" Margin="0,5"
+                      Content="Switch TextBlock Style (StaticResource)" />
+
+            <TextBlock x:Name="_textBlock" Padding="10,5" >
+                <i:Interaction.Triggers>
+                    <i:PropertyChangedTrigger Binding="{Binding IsChecked, ElementName=_checkBox}">
+                        <action:ChangePropertyBooleanAction
+                            PropertyName="Style"
+                            ValueWhenTrue="{StaticResource textBlockStyle0}"
+                            ValueWhenFalse="{StaticResource textBlockStyle1}" />
+                        </i:PropertyChangedTrigger>
+                </i:Interaction.Triggers>
+            </TextBlock>
+
+        </DockPanel>
+
+    </StackPanel>
+
+</ContentControl>

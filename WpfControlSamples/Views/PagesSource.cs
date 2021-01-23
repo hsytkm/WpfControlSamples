@@ -128,7 +128,8 @@ namespace WpfControlSamples.Views
             typeof(PlaySoundActionPage),
             typeof(RemoveElementActionPage),
             typeof(RemoveItemInListBoxActionPage),
-            typeof(CustomTriggerActionPage),
+            typeof(CustomTriggerAction1Page),
+            typeof(CustomTriggerAction2Page),
         };
 
         private static readonly IEnumerable<Type> _interactionBehaviorPages = new[]

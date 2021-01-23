@@ -13,7 +13,7 @@
         <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
                    Text="i:DataTrigger" />
 
-        <TextBlock Margin="10,10" >
+        <TextBlock Margin="10" >
             System.Windows.DataTrigger と Microsoft.Xaml.Behaviors.Core.DataTrigger があり、これは後者。
             <LineBreak/>
             XamlBehaviorsWpf が導入されてたら 後者 を使っときゃ良いと思う。
@@ -33,6 +33,45 @@
                     </i:DataTrigger>
                 </i:Interaction.Triggers>
             </TextBox>
+        </DockPanel>
+
+        <TextBlock Margin="10,30,0,0" >
+            bool値に応じて xaml で定義した Style を切り替える。
+            <LineBreak />
+            　CustomTriggerAction2Page.xaml でも同じことを別の実装で実現している。
+            <LineBreak />
+            　そちらは 自作Action を使うけど xaml はスッキリ書ける。
+        </TextBlock>
+
+        <DockPanel Margin="20,10" >
+            <Panel.Resources>
+                <Style x:Key="textBlockStyle0" TargetType="{x:Type TextBlock}">
+                    <Setter Property="Text" Value="textBlockStyle0" />
+                    <Setter Property="Foreground" Value="Red" />
+                    <Setter Property="Background" Value="LightPink" />
+                </Style>
+                <Style x:Key="textBlockStyle1" TargetType="{x:Type TextBlock}">
+                    <Setter Property="Text" Value="textBlockStyle1" />
+                    <Setter Property="Foreground" Value="Blue" />
+                    <Setter Property="Background" Value="LightBlue" />
+                </Style>
+            </Panel.Resources>
+
+            <CheckBox x:Name="_checkBox" DockPanel.Dock="Top" Margin="0,5"
+                      Content="Switch TextBlock Style (StaticResource)" />
+
+            <TextBlock Padding="10,5">
+                <i:Interaction.Triggers>
+                    <i:DataTrigger Binding="{Binding IsChecked, ElementName=_checkBox}" Value="False" >
+                        <i:ChangePropertyAction PropertyName="Style"
+                                                Value="{StaticResource textBlockStyle0}" />
+                    </i:DataTrigger>
+                    <i:DataTrigger Binding="{Binding IsChecked, ElementName=_checkBox}" Value="True" >
+                        <i:ChangePropertyAction PropertyName="Style"
+                                                Value="{StaticResource textBlockStyle1}" />
+                    </i:DataTrigger>
+                </i:Interaction.Triggers>
+            </TextBlock>
         </DockPanel>
 
     </StackPanel>

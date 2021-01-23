@@ -151,6 +151,9 @@
     <Page Update="Views\Menus\Graphics\Viewport3DPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\InteractionActions\CustomTriggerAction2Page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="Views\Menus\InteractionActions\RemoveItemInListBoxActionPage.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -37,15 +37,51 @@ namespace WpfControlSamples.Views.Actions
 
         protected override void Invoke(object parameter)
         {
-            if (!(parameter is bool b)) return;
-            if (Target is null) return;
+            static bool TryGetBool(object obj, out bool value)
+            {
+                if (obj is bool b0)
+                {
+                    value = b0;
+                    return true;
+                }
+                if (obj is DependencyPropertyChangedEventArgs e && e.NewValue is bool b1)
+                {
+                    value = b1;
+                    return true;
+                }
+
+                value = false;
+                return false;
+            }
+
+            if (!TryGetBool(parameter, out var b)) return;
             if (string.IsNullOrEmpty(PropertyName)) return;
+            if (Target is null)
+            {
+                _initializeDelayParameter = b;
+                return;
+            }
 
             var newValue = b ? ValueWhenTrue : ValueWhenFalse;
             var targetType = Target.GetType();
             var propertyInfo = targetType.GetProperty(PropertyName);
 
-            propertyInfo.SetValue(Target, newValue, Array.Empty<object>());
+            propertyInfo.SetValue(Target, newValue, null);
         }
+
+        // 遅延用のパラメータ
+        private bool? _initializeDelayParameter = null;
+
+        protected override void OnTargetChanged(DependencyObject oldTarget, DependencyObject newTarget)
+        {
+            if (!_initializeDelayParameter.HasValue) return;
+
+            // 初回の読込みで Target is null だったりするので、Target 更新時にしてみる。
+            // ちょっと小手先感があるけどまぁいいや。
+            var b = _initializeDelayParameter.Value;
+            _initializeDelayParameter = null;
+            Invoke(b);
+        }
+
     }
 }
