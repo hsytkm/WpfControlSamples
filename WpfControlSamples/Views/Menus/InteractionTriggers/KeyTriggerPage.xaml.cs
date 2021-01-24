@@ -34,7 +34,7 @@ namespace WpfControlSamples.Views.Menus
             get => _message;
             private set => SetProperty(ref _message, value);
         }
-        private string _message;
+        private string _message = "Push any key.";
 
         public ICommand PushKeyCommand => _pushKeyCommand ??
             (_pushKeyCommand = new MyCommand<object>(x => Message = x.ToString()));

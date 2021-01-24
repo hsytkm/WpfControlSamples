@@ -11,25 +11,29 @@
 
     <i:Interaction.Triggers>
         <!-- F1 のみメソッドにしてみた-->
-        <i:KeyTrigger Key="F1" ActiveOnFocus="True" >
-            <i:CallMethodAction TargetObject="{Binding}" MethodName="PushKeyF1"  />
+        <i:KeyTrigger Key="F1" >
+            <i:CallMethodAction TargetObject="{Binding}" MethodName="PushKeyF1" />
         </i:KeyTrigger>
 
         <!-- F1 以外は CommandParameter で Key を表示 -->
-        <i:KeyTrigger Key="F2" ActiveOnFocus="True" >
-            <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
+        <i:KeyTrigger Key="F2" >
+            <i:InvokeCommandAction Command="{Binding PushKeyCommand, Mode=OneTime}"
                                    CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
         </i:KeyTrigger>
-        <i:KeyTrigger Key="F3" ActiveOnFocus="True" >
-            <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
+        <i:KeyTrigger Key="F3" FiredOn="KeyDown" >
+            <i:InvokeCommandAction Command="{Binding PushKeyCommand, Mode=OneTime}"
                                    CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
         </i:KeyTrigger>
-        <i:KeyTrigger Key="F4" ActiveOnFocus="True" >
-            <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
+        <i:KeyTrigger Key="F4"  FiredOn="KeyUp" >
+            <i:InvokeCommandAction Command="{Binding PushKeyCommand, Mode=OneTime}"
                                    CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
         </i:KeyTrigger>
-        <i:KeyTrigger Modifiers="Ctrl" Key="D" ActiveOnFocus="True" >
-            <i:InvokeCommandAction Command="{Binding PushKeyCommand}"
+        <i:KeyTrigger Key="F5" ActiveOnFocus="True" >
+            <i:InvokeCommandAction Command="{Binding PushKeyCommand, Mode=OneTime}"
+                                   CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
+        </i:KeyTrigger>
+        <i:KeyTrigger Modifiers="Ctrl" Key="D" >
+            <i:InvokeCommandAction Command="{Binding PushKeyCommand, Mode=OneTime}"
                                    CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
         </i:KeyTrigger>
 
@@ -41,10 +45,35 @@
                    Text="i:KeyTrigger" />
 
         <TextBlock Margin="10" FontSize="{StaticResource FontSizeMicro}"
-                   Text="Detect key push:  F1 / F2 / F3 / F4 / Ctrl+D" />
+                   Text="Detect key push:  F1 / F2 / F3 / F4 / F5 / Ctrl+D" />
 
         <TextBlock Margin="20,10" FontSize="{StaticResource FontSizeSmall}" Foreground="Blue"
                    Text="{Binding Message, Mode=OneWay}" />
+
+        <TextBlock Margin="20,10" FontSize="{StaticResource FontSizeMicro}" >
+            F1 : CallMethodAction
+            <LineBreak/>
+            F2 : Default
+            <LineBreak/>
+            F3 : FiredOn="KeyDown"
+            <LineBreak/>
+            F4 : FiredOn="KeyUp"
+            <LineBreak/>
+            F5 : ActiveOnFocus="True"
+            <LineBreak/>
+            Ctrl+D : Modifiers="Ctrl"
+            <LineBreak/>
+        </TextBlock>
+
+        <TextBlock Margin="20,10" >
+            ActiveOnFocus="True" を設定すると発火しなくなっている気がする (2021/1)
+            <LineBreak/>
+            当初導入時（2020/5?）は動作していた気がするのになぜ？？
+            <LineBreak/>
+            <LineBreak/>
+            Key は UIElement.InputBindings を使っても検出できる。
+        </TextBlock>
+        
     </StackPanel>
 
 </ContentControl>

@@ -219,9 +219,6 @@ namespace WpfControlSamples.Views
 
         private static readonly IEnumerable<Type> _systemPages = new[]
         {
-            typeof(ListBox7Page),
-            typeof(ListBox6Page),
-            typeof(ListBox5Page),
             //typeof(BlankPage),
             //typeof(BlankPage),
             typeof(SystemTopPage),
