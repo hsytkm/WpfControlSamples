@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,10 +71,10 @@ namespace WpfControlSamples.Views.Menus
 
         public IList<DataGridProduct> Products { get; } = new List<DataGridProduct>()
         {
-            new DataGridProduct("Lumix", "GH5", 5555, true, DataGridProduct.ProductMaker.Panasonic),
-            new DataGridProduct("α", "α7", 777, false, DataGridProduct.ProductMaker.Sony),
-            new DataGridProduct("EOS", "1Dx", 10000, true, DataGridProduct.ProductMaker.Canon),
-            new DataGridProduct("Kiss","X7", 3000, true, DataGridProduct.ProductMaker.Canon),
+            new DataGridProduct("Lumix", "GH5", 5555, true, DataGridProduct.ProductMaker.Panasonic, new DateTime(2017,3,23)),
+            new DataGridProduct("α", "α7", 777, false, DataGridProduct.ProductMaker.Sony, new DateTime(2013,11,15)),
+            new DataGridProduct("EOS", "1DX", 10000, true, DataGridProduct.ProductMaker.Canon, new DateTime(2012,6,20)),
+            new DataGridProduct("Kiss","X7", 3000, true, DataGridProduct.ProductMaker.Canon, new DateTime(2013,4,24)),
         };
     }
 
@@ -87,9 +88,22 @@ namespace WpfControlSamples.Views.Menus
         public int Price { get; set; }
         public bool HasStock { get; set; }
         public ProductMaker Maker { get; set; }
+        public DateTime ReleaseDate
+        {
+            get => _releaseDate;
+            set
+            {
+                if (_releaseDate != value)
+                {
+                    _releaseDate = value;
+                    Debug.WriteLine(_releaseDate);
+                }
+            }
+        }
+        private DateTime _releaseDate;
 
-        public DataGridProduct(string bland, string name, int price, bool hasStock, ProductMaker maker) =>
-            (Bland, Name, Price, HasStock, Maker) = (bland, name, price, hasStock, maker);
+        public DataGridProduct(string bland, string name, int price, bool hasStock, ProductMaker maker, DateTime releaseDate) =>
+            (Bland, Name, Price, HasStock, Maker, ReleaseDate) = (bland, name, price, hasStock, maker, releaseDate);
     }
 
     class ProductMakerToComboBox

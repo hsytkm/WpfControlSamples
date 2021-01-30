@@ -30,6 +30,8 @@ Created in 2020/05
 
 [WPF でフォルダー選択のダイアログを選択・実装する](https://shikaku-sh.hatenablog.com/entry/wpf-folder-selection-dialog)
 
+[【WPF】ViewModelがINotifyPropertyChangedを実装していないとメモリリークする件 - aridai.NET](https://aridai.net/articles/15.html)
+
 
 
 ### Per-Monitor DPI

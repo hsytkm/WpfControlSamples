@@ -4,6 +4,7 @@ using System.Windows.Input;
 
 namespace WpfControlSamples.Views.Behaviors
 {
+    // MouseCaptureAction でも同様のことができる。 個人的にはTriggerAction版の方が好み
     class MouseCaptureBehavior : Behavior<FrameworkElement>
     {
         protected override void OnAttached()
@@ -29,8 +30,8 @@ namespace WpfControlSamples.Views.Behaviors
         /// <param name="e"></param>
         private static void AssociatedObject_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!(sender is FrameworkElement fe)) return;
-            fe.CaptureMouse();
+            if (!(sender is IInputElement inputElement)) return;
+            inputElement.CaptureMouse();
         }
 
         /// <summary>
@@ -40,8 +41,8 @@ namespace WpfControlSamples.Views.Behaviors
         /// <param name="e"></param>
         private static void AssociatedObject_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (!(sender is FrameworkElement fe)) return;
-            fe.ReleaseMouseCapture();
+            if (!(sender is IInputElement inputElement)) return;
+            inputElement.ReleaseMouseCapture();
         }
     }
 }
