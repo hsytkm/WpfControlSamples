@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -10,7 +11,7 @@ namespace WpfControlSamples.Infrastructures
 
         protected virtual bool SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
-            if (Equals(field, value)) return false;
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
             field = value;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             return true;
@@ -18,10 +19,11 @@ namespace WpfControlSamples.Infrastructures
 
         //protected virtual bool SetPropertyWithDispose<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         //{
-        //    if (Equals(field, value)) return false;
+        //    if (EqualityComparer<T>.Default.Equals(field, value)) return false;
         //    if (field is IDisposable d) d.Dispose();
-
-        //    return SetProperty(ref field, value, propertyName);
+        //    field = value;
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //    return true;
         //}
 
         protected virtual void NotifyPropertyChanged(string propertyName)

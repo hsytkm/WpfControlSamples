@@ -1,0 +1,43 @@
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ParseXamlPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- DataGridTemplateColumns, AutoGenerateColumns=true and binding to a DataTable
+           https://stackoverflow.com/questions/20493184/datagridtemplatecolumns-autogeneratecolumns-true-and-binding-to-a-datatable
+    -->
+
+    <ContentControl.DataContext>
+        <local:ParseXamlViewModel />
+    </ContentControl.DataContext>
+    
+    <DockPanel Margin="10" >
+        <TextBlock DockPanel.Dock="Top" Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
+                   Text="ParseXaml" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="10,0"
+                   Text="文字列から xaml を動的に生成する" />
+
+        <TextBox x:Name="xamlTextBox" DockPanel.Dock="Top" Margin="10,10"
+                 AcceptsReturn="True"
+                 Text="&lt;Grid Background=&quot;Pink&quot; &gt; &#xD;&#xA;
+     &lt;TextBlock Padding=&quot;20&quot; FontSize=&quot;20&quot; &#xD;&#xA;
+                 Foreground=&quot;Red&quot; &#xD;&#xA;
+                 Text=&quot;It was created from text.&quot; /&gt; &#xD;&#xA;
+&lt;/Grid&gt;" />
+
+        <Button DockPanel.Dock="Top" Margin="10,5" Padding="5"
+                Content="Parse text"
+                Command="{Binding ParseCommand, Mode=OneTime}"
+                CommandParameter="{Binding Text, Source={x:Reference Name=xamlTextBox}}" />
+
+        <Grid Margin="10" >
+            <ContentControl Content="{Binding ControlFromXamlText, Mode=OneWay}" />
+        </Grid>
+    </DockPanel>
+
+</ContentControl>

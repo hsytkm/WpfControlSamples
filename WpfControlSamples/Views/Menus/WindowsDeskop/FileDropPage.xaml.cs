@@ -30,6 +30,13 @@ namespace WpfControlSamples.Views.Menus
 
     class FileDropViewModel : MyBindableBase
     {
+        public string DroppedPath
+        {
+            get => _droppedPath;
+            set => SetProperty(ref _droppedPath, value);
+        }
+        private string _droppedPath;
+
         public ObservableCollection<string> DroppedPaths { get; } = new ObservableCollection<string>();
 
         public FileDropViewModel()

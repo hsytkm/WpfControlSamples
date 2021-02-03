@@ -16,17 +16,32 @@
                    Margin="10" FontSize="{StaticResource FontSizeMicro}"
                    Text="Simple TabItems" />
 
-        <TabControl Margin="20,5" >
-            <TabItem Header="Header1" >
-                <StackPanel>
+        <UniformGrid Rows="2" >
+            <!-- タグを横に並べる -->
+            <TabControl Margin="20,5" >
+                <TabItem Header="Header1" >
+                    <StackPanel>
+                        <TextBox Margin="10" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Header2" >
+                    <TextBlock Margin="10"
+                               Text="{Binding Header, RelativeSource={RelativeSource AncestorType={x:Type TabItem}}}" />
+                </TabItem>        
+            </TabControl>
+
+            <!-- タグを縦に並べる -->
+            <TabControl Margin="20,5" TabStripPlacement="Left" >
+                <TabItem Header="Header1" >
+                    <StackPanel>
+                        <TextBox Margin="10" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Header2" >
                     <TextBox Margin="10" />
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Header2" >
-                <TextBlock Margin="10"
-                           Text="{Binding Header, RelativeSource={RelativeSource AncestorType={x:Type TabItem}}}" />
-            </TabItem>        
-        </TabControl>
+                </TabItem>
+            </TabControl>
+        </UniformGrid>
     </DockPanel>
 
 </ContentControl>

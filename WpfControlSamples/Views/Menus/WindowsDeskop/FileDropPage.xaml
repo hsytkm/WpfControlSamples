@@ -1,5 +1,6 @@
 ﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.FileDropPage"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:system="clr-namespace:System;assembly=System.Runtime"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
@@ -15,24 +16,28 @@
     </ContentControl.DataContext>
     
     <DockPanel Margin="10" >
+        <Panel.Resources>
+            <system:String x:Key="DroppedPathDefaultMessage">Accepts file drop (this is TargetNullValue)</system:String>
+        </Panel.Resources>
+
         <TextBlock DockPanel.Dock="Top"
                    Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
                    Text="FileDropSample" />
 
-        <DockPanel DockPanel.Dock="Top" >
+        <DockPanel DockPanel.Dock="Top" Margin="10,5" >
             <Button DockPanel.Dock="Right"
                     Content="Clear Files"
-                    Padding="30,20" Margin="20"
+                    Padding="30,20" Margin="10,0"
                     Command="{Binding ClearFilePathCommand, Mode=OneTime}" />
 
             <Border DockPanel.Dock="Top"
-                    Margin="10" Height="200"
-                    Background="LightBlue" >
+                    Margin="10,0" Height="200" Background="LightBlue" >
 
                 <!-- ドロップされたファイルPATHを通知する -->
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Drop" >
                         <action:GetDroppedFilePathAction
+                            DroppedPath="{Binding DroppedPath, Mode=OneWayToSource}"
                             DroppedPaths="{Binding DroppedPaths, Mode=OneWay}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
@@ -41,15 +46,19 @@
                            HorizontalAlignment="Center" VerticalAlignment="Center"
                            TextAlignment="Center"
                            IsHitTestVisible="False" >
-                    ここにファイルを Drop すると、下部に Path を表示します。
+                    ここにファイルを Drop すると、Path を表示します。
                     <LineBreak/>
                     (Ctrl を押しながらの Drop で追加ができます)
                 </TextBlock>
             </Border>
         </DockPanel>
 
+        <!-- ドロップされた先頭のファイルPATH -->
+        <TextBlock DockPanel.Dock="Top" Margin="10,5"  Padding="10,0" Background="LightPink"
+                   Text="{Binding DroppedPath, Mode=OneWay, TargetNullValue={StaticResource DroppedPathDefaultMessage}}" />
+
         <!-- ドロップされたファイルPATH一覧 -->
-        <ctrl:ScrollEndTextBlock Margin="10,0" Padding="20,5"
+        <ctrl:ScrollEndTextBlock Margin="10,0" Padding="10,5"
                                  Background="LightGray" Foreground="Gray"
                                  Text="{Binding DroppedPathsText, Mode=OneWay}" />
     </DockPanel>

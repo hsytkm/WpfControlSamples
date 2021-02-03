@@ -529,6 +529,10 @@
     <Page Update="Views\Menus\WindowsDeskop\ApplicationCommandsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menus\XamlFunctions\ParseXamlPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Menus\XamlFunctions\DynamicXamlLoadPage.xaml">
       <SubType>Designer</SubType>
     </Page>
