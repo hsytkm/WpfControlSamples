@@ -17,7 +17,9 @@
                    Text="DataGrid 3" />
 
         <TextBlock Margin="10,0" FontSize="{StaticResource FontSizeMicro}" >
-            <Run Text="DataGrid の行入れ替え/ソート/リサイズを禁止 (プロパティのみで対応可)" />
+            <Run Text="DataGrid の行入れ替え/ソート/リサイズを禁止 ＋ Ctrl+C でヘッダーもコピー" />
+            <LineBreak />
+            <Run Text="(プロパティのみで対応可)" />
             <LineBreak />
             <Run Text="　上：デフォルト  /  下：色々と禁止" />
         </TextBlock>
@@ -27,9 +29,14 @@
                   ItemsSource="{Binding Products, Mode=OneWay}" />
 
         <DataGrid Margin="20,10"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
                   CanUserReorderColumns="False"
-                  CanUserSortColumns="False"
                   CanUserResizeColumns="False"
+                  CanUserResizeRows="False"
+                  CanUserSortColumns="False"
+                  IsReadOnly="False"
+                  ClipboardCopyMode="IncludeHeader"
                   ItemsSource="{Binding Products, Mode=OneWay}" />
     </StackPanel>
 
