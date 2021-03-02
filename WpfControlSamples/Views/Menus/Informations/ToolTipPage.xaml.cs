@@ -22,6 +22,7 @@ namespace WpfControlSamples.Views.Menus
         public ToolTipPage()
         {
             InitializeComponent();
+            DataContext = 1.23456789;
         }
 
         private void TextBlock_ToolTipOpening(object sender, ToolTipEventArgs e)
