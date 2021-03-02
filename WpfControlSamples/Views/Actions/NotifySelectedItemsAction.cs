@@ -8,13 +8,13 @@ using System.Windows.Controls.Primitives;
 namespace WpfControlSamples.Views.Actions
 {
     // Selector.SelectedItems に setter がないので TriggerAction で対応
-    // 
+    //
     //  <i:Interaction.Triggers>
     //      <i:EventTrigger EventName="SelectionChanged" >
     //          <action:NotifySelectedItemsAction NotifySelectedItemsCollection="{Binding NotifySelectedItems, Mode=OneTime}" />
     //       </i:EventTrigger>
     //  </i:Interaction.Triggers>
-    // 
+    //
     // Generic クラスにしたいけど、WPF は x:TypeArguments(XAML2009) が使えないっぽい。なんでやねん
 
     class NotifySelectedItemsAction : TriggerAction<Selector>

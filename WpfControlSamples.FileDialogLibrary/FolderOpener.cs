@@ -9,14 +9,14 @@ namespace WpfControlSamples.FileDialogLibrary
      *  （ややこしくなるので本プロジェクトから分離した）
      *    - WindowsAPICodePack-Core
      *    - WindowsAPICodePack-Shell
-     * 
+     *
      *  どちらもライセンスは free っぽい。
      *    The library is not developed anymore by Microsoft
      *    and seems to have been left as 'free to use'.
-     *  
+     *
      *  LivetExtensions(zlibライセンス) も良さげ。
      *  海外では Ookii.Dialogs も有名っぽかった（未確認）
-     *  
+     *
      */
     public static class FolderOpener
     {

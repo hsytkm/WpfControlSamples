@@ -6,7 +6,7 @@ namespace WpfControlSamples.Views.Helpers
     /*
      * TreeView.SelectedItem に setter がないので 添付プロパティ で対応
      * TreeViewHelperBehavior の 添付プロパティ版
-     * 
+     *
      * 添付プロパティよりも Behavior の方が良い。
      *  - SelectedItem に初期値を設定しないと、イベントAttachされない
      *    (そのくせに、SelectedItem に setter がないから TwoWay バインドにならない)

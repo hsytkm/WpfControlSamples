@@ -7,9 +7,9 @@ namespace WpfControlSamples.Views.Behaviors
     /*
      * TreeView.SelectedItem に setter がないので Behavior で対応
      * TreeViewHelper の Behavior版（添付プロパティよりも Behavior の方が優れてる）
-     * 
+     *
      *   ◆Behavior から TriggerAction に作り替えた方が良い気がするが、そもそも使わないので放っておく。
-     * 
+     *
      */
     class TreeViewHelperBehavior : Behavior<TreeView>
     {

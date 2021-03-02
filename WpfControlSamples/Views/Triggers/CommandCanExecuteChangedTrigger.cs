@@ -6,7 +6,7 @@ using System.Windows.Input;
 namespace WpfControlSamples.Views.Triggers
 {
     /*  Triggerの自作：Command.CanExecute の変化でトリガ発火するが、Event.Remove が怪しい…
-     *  
+     *
      *  ReferenceSource
      *    https://referencesource.microsoft.com/#PresentationFramework/src/Framework/System/windows/Controls/Primitives/ButtonBase.cs
      */

@@ -8,7 +8,7 @@ namespace WpfControlSamples.Extensions
     {
         /// <summary>
         /// 引数PATHを画像として読み出す
-        /// 以下でも読めるがファイルがロックされるので。  
+        /// 以下でも読めるがファイルがロックされるので。
         ///   image.Source = new BitmapImage(new Uri(imagePath));
         /// </summary>
         /// <param name="imagePath">ファイルパス</param>

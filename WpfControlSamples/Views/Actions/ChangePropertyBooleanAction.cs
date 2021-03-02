@@ -5,7 +5,7 @@ using System.Windows;
 namespace WpfControlSamples.Views.Actions
 {
     /*  Trigger からの bool通知に応じて Property を変更する
-     * 
+     *
      *  ReferenceSource
      *    https://github.com/microsoft/XamlBehaviorsWpf/blob/7c79fe973777cc261e951bb133dff1974d27cb8a/src/Microsoft.Xaml.Behaviors/Core/ChangePropertyAction.cs
      */

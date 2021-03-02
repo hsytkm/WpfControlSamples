@@ -23,10 +23,10 @@ namespace WpfControlSamples.Views.Converters
 #else
     /* Xamarin.Formsのようにジェネリックのクラスにしたかったけど、
      * ジェネリックの属性ができないっぽいので断念して object型 にした（ちゃんと調べてない）
-     * 
+     *
      *  Creating Generic IValueConverter to convert data types to string
      *  https://stackoverflow.com/questions/14110335/creating-generic-ivalueconverter-to-convert-data-types-to-string
-     *  
+     *
      */
     [ValueConversion(typeof(bool), typeof(object))]
     class BooleanToObjectConverter_Old : IValueConverter
