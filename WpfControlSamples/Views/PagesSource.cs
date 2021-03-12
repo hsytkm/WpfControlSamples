@@ -179,6 +179,7 @@ namespace WpfControlSamples.Views
             typeof(CanvasPage),
             typeof(TabControl1Page),
             typeof(TabControl2Page),
+            typeof(TabControl3Page),
         };
 
         private static readonly IEnumerable<Type> _layoutSinglePages = new[]
