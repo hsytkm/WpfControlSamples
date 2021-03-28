@@ -22,6 +22,7 @@ namespace WpfControlSamples.Views.Menus
         public LinePage()
         {
             InitializeComponent();
+            DataContext = new Point[] { new Point(420, 230), new Point(340, 150) };
         }
     }
 }

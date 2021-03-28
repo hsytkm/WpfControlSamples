@@ -4,6 +4,7 @@ using System.Windows.Markup;
 namespace WpfControlSamples.Views.MarkupExtensions
 {
     // https://www.youtube.com/watch?v=Bp5LFXjwtQ0
+    [MarkupExtensionReturnType(typeof(Array))]
     class EnumBindingSourceExtension : MarkupExtension
     {
         public Type EnumType { get; }

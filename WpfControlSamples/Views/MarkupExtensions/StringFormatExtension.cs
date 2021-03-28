@@ -10,6 +10,7 @@ namespace WpfControlSamples.Views.MarkupExtensions
     // How to Append text to static resource in Xamarin.Forms?
     // https://stackoverflow.com/questions/47350470/how-to-append-text-to-static-resource-in-xamarin-forms
     //[ContentProperty(nameof(StaticResourceKey))]
+    [MarkupExtensionReturnType(typeof(string))]
     class StringFormatExtension : MarkupExtension
     {
         public string StringFormat { get; set; }

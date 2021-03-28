@@ -8,6 +8,7 @@ namespace WpfControlSamples.Views.MarkupExtensions
 {
     // WPFサンプル:Pathオブジェクトを使い、枠付きテキストを表示する
     //   http://gushwell.ldblog.jp/archives/52313757.html
+    [MarkupExtensionReturnType(typeof(Geometry))]
     class OutlinedTextPathExtension : MarkupExtension
     {
         public string Text { set; get; }

@@ -5,6 +5,7 @@ using WpfControlSamples.Extensions;
 
 namespace WpfControlSamples.Views.MarkupExtensions
 {
+    [MarkupExtensionReturnType(typeof(Brush))]
     class RgbBrushExtension : MarkupExtension
     {
         public byte R { set; get; }

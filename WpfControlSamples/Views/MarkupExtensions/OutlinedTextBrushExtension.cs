@@ -9,6 +9,7 @@ namespace WpfControlSamples.Views.MarkupExtensions
     // WPFサンプル:DrawingBrushで枠付きテキストを表示する
     //   http://gushwell.ldblog.jp/archives/52312432.html
     // これよりも OutlinedTextPathExtension の方が良さげ。どっちも使ったことないけど…
+    [MarkupExtensionReturnType(typeof(Brush))]
     class OutlinedTextBrushExtension : MarkupExtension
     {
         public string Text { set; get; }
