@@ -11,7 +11,7 @@
 
     <ContentControl.Resources>
         <ResourceDictionary>
-            <conv:ListViewIndexConverter x:Key="ListViewIndexConverter"/>
+            <conv:ListBoxIndexConverter x:Key="ListBoxIndexConverter"/>
         </ResourceDictionary>
     </ContentControl.Resources>
 
@@ -37,9 +37,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Width="30" TextAlignment="Center"
-                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, 
-                                                          AncestorType={x:Type ListViewItem}}, 
-                                                          Converter={StaticResource ListViewIndexConverter}}" />
+                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, 
+                                                          Converter={StaticResource ListBoxIndexConverter}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

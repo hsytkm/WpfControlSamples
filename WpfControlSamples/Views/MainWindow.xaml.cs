@@ -128,7 +128,7 @@ namespace WpfControlSamples.Views
         #endregion
     }
 
-    class MainWindowViewModel : MyBindableBase
+    class MainWindowViewModel : MyBindableBase, IDisposable
     {
         public TabItemPageParent[] TabItemPageParents { get; }
 
@@ -153,6 +153,11 @@ namespace WpfControlSamples.Views
             TabItemPageParents = allPageTables.Select(table => new TabItemPageParent(table)).ToArray();
 
             SelectedTabItemPageParent = TabItemPageParents.First();
+        }
+
+        public void Dispose()
+        {
+            // called from Closed event of window.
         }
     }
 }

@@ -10,7 +10,7 @@
 
     <ContentControl.Resources>
         <ResourceDictionary>
-            <conv:ListViewIndexConverter x:Key="ListViewIndexConverter"/>
+            <conv:ListBoxIndexConverter x:Key="ListBoxIndexConverter"/>
         </ResourceDictionary>
     </ContentControl.Resources>
 
@@ -20,8 +20,11 @@
                    Text="ListView1" />
 
         <TextBlock DockPanel.Dock="Top"
-                   Foreground="Red" FontWeight="Bold"
-                   Text="シングル選択しか実装してないけど、ListBox と同じ実装でマルチ選択もできる" />
+                   Foreground="Red" FontWeight="Bold">
+            <Run Text="シングル選択しか実装してないけど、ListBox と同じ実装でマルチ選択もできる" />
+            <LineBreak/>
+            <Run Text="ListView を仮想化してるので連番がずれます。仮想化を無効にすれば正常に取得できます。" />
+        </TextBlock>
 
         <!-- ViewModel に SelecttedItem をバインドして表示してる(個人的にベタな実装) -->
         <StackPanel DockPanel.Dock="Top"
@@ -144,9 +147,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Width="30" TextAlignment="Center"
-                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, 
-                                                          AncestorType={x:Type ListViewItem}}, 
-                                                          Converter={StaticResource ListViewIndexConverter}}" />
+                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, 
+                                                          Converter={StaticResource ListBoxIndexConverter}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

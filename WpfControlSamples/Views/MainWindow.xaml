@@ -20,6 +20,12 @@
         Height="550" Width="800"
         ResizeMode="CanResizeWithGrip" >
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed" >
+            <action:DataContextDisposeAction />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Window.Resources>
         <!-- 自作ContextMenuの登録。既存コンテキストメニューを拡張する実装を有効にしているので無効化中。
         <ContextMenu x:Key="myContextMenu" MenuItem.Click="ContextMenu_Click" >
