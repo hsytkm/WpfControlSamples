@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Media;
 using WpfControlSamples.Models;
 
 namespace WpfControlSamples.Views.Menus
 {
-    class ColorListViewItem
+    class ColorListViewItem : IEquatable<ColorListViewItem>
     {
         public string Name { get; }
         public Color Color { get; }
@@ -25,5 +26,7 @@ namespace WpfControlSamples.Views.Menus
             HsbLevel = HsbColor.ToString();
             Hue = HsbColor.Hue;
         }
+
+        public bool Equals([AllowNull] ColorListViewItem other) => this.Color == other.Color;
     }
 }

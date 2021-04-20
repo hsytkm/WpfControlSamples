@@ -214,7 +214,8 @@ namespace WpfControlSamples.Views
             typeof(ComboBox2Page),
             typeof(ComboBox3Page),
             typeof(CheckBoxPage),
-            typeof(RadioButtonPage),
+            typeof(RadioButton1Page),
+            typeof(RadioButton2Page),
             typeof(CalendarPage),
         };
 

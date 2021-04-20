@@ -1,0 +1,67 @@
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.RadioButton2Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <ContentControl.DataContext>
+        <local:RadioButton2ViewModel />
+    </ContentControl.DataContext>
+
+    <StackPanel Margin="10">
+        <TextBlock
+            Margin="0,10"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="RadioButton2" />
+
+        <TextBlock
+            Margin="5"
+            FontSize="{StaticResource FontSizeMicro}"
+            Text="Collection を ItemsControl 内の RadioButton に表示する &#xD;&#xA; (ItemsControl1Page.xaml とほぼ同じ)" />
+
+        <ItemsControl
+            Margin="10"
+            Background="LightGray"
+            ItemsSource="{Binding SourceColors, Mode=OneTime}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton Margin="10" GroupName="group1">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <action:SelectRadioButtonAction SelectedItem="{Binding DataContext.SelectedColor, Mode=OneTime, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:RadioButton2Page}}}" />
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Checked">
+                                <action:SelectRadioButtonAction SelectedItem="{Binding DataContext.SelectedColor, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:RadioButton2Page}}}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                        <TextBlock
+                            Background="{Binding Color, Mode=OneTime, Converter={StaticResource ColorToBrushConverter}}"
+                            Foreground="Gray"
+                            Text="{Binding Name, Mode=OneTime}" />
+                    </RadioButton>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+        <TextBlock Margin="20,5" FontSize="{StaticResource FontSizeSmall}">
+            <Run Text="Selected Item : " />
+            <Run Foreground="{Binding SelectedColor.Color, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" Text="■" />
+            <Run Text="{Binding SelectedColor.Name, Mode=OneWay}" />
+        </TextBlock>
+
+    </StackPanel>
+</ContentControl>

@@ -39,7 +39,7 @@ namespace WpfControlSamples.Views.Menus
         }
         private ColorListViewItem _selectedColor;
 
-        public ICommand RadioButtonChangedCommand => _radioButtonChangedCommand ??
+        public ICommand RadioButtonChangedCommand => _radioButtonChangedCommand ??=
             (_radioButtonChangedCommand = new MyCommand<ColorListViewItem>(item => SelectedColor = item));
         private ICommand _radioButtonChangedCommand;
 

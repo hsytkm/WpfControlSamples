@@ -16,17 +16,17 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class RadioButtonPage : ContentControl
+    public partial class RadioButton1Page : ContentControl
     {
-        public RadioButtonPage()
+        public RadioButton1Page()
         {
             InitializeComponent();
 
-            DataContext = new RadioButtonViewModel();
+            DataContext = new RadioButton1ViewModel();
         }
     }
 
-    class RadioButtonViewModel : MyBindableBase
+    class RadioButton1ViewModel : MyBindableBase
     {
         public bool CheckFlag1
         {
