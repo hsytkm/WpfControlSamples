@@ -1,0 +1,52 @@
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.Button3Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mkup="clr-namespace:WpfControlSamples.Views.MarkupExtensions"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <ContentControl.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="20,10" />
+            <Setter Property="Padding" Value="0,20" />
+        </Style>
+    </ContentControl.Resources>
+
+    <StackPanel Margin="10">
+        <TextBlock
+            Margin="10"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="Button 3  (Async Command)" />
+
+        <TextBlock
+            Margin="10,0"
+            FontSize="{StaticResource FontSizeMicro}"
+            Text="{Binding Result, Mode=OneWay, StringFormat='Result = {0}'}" />
+
+        <Button
+            Command="{Binding HeavyActionCommand, Mode=OneTime}"
+            Content="AsyncCommand : Task 実行中は CanExecute を false にする" />
+
+        <Button
+            Command="{Binding HeavyFuncCommand, Mode=OneTime}"
+            CommandParameter="{mkup:ToInt Value=5}"
+            Content="AsyncCommand&lt;T&gt; : 上の引数あり版。CommandParameter を 2倍する" />
+
+        <Border Margin="0,50,0,0" />
+
+        <Button
+            Command="{Binding DelayActionCommand, Mode=OneTime}"
+            Content="DelayActionCommand : 連打防止のため、一瞬で終わる同期処理の後にウェイトする" />
+
+        <Button
+            Command="{Binding DelayFuncCommand, Mode=OneTime}"
+            CommandParameter="{mkup:ToInt Value=8}"
+            Content="DelayActionCommand : 上の引数あり版。CommandParameter を 2倍する" />
+
+    </StackPanel>
+</ContentControl>

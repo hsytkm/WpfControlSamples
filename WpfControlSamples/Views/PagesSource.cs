@@ -116,6 +116,7 @@ namespace WpfControlSamples.Views
         {
             typeof(Button1Page),
             typeof(Button2Page),
+            typeof(Button3Page),
             typeof(RepeatButtonPage),
             typeof(ToggleButton1Page),
         };

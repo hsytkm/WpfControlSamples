@@ -11,7 +11,7 @@
         <TextBlock Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
                    Text="Button 2" />
 
-        <TextBlock Margin="10,0" Text="ChangeCanExecute()" />
+        <TextBlock Margin="10,0" Text="ChangeCanExecute()" FontSize="{StaticResource FontSizeSmall}" />
 
         <StackPanel Margin="20,30" Orientation="Horizontal" >
             <Button Height="40" Width="120"
