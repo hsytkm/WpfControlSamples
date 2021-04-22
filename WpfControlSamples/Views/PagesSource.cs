@@ -46,8 +46,10 @@ namespace WpfControlSamples.Views
             typeof(DispatcherCollectionPage),
         };
 
-        private static readonly IEnumerable<Type> _displayCollectionPages = new[]
+        private static readonly IEnumerable<Type> _displayCollection1Pages = new[]
         {
+            typeof(ItemsControl1Page),
+            typeof(TreeViewPage),
             typeof(ListBox1Page),
             typeof(ListBox2Page),
             typeof(ListBox3Page),
@@ -55,11 +57,15 @@ namespace WpfControlSamples.Views
             typeof(ListBox5Page),
             typeof(ListBox6Page),
             typeof(ListBox7Page),
+            typeof(ListBox8Page),
             typeof(ListView1Page),
             typeof(ListView2Page),
             typeof(ListView3Page),
             typeof(ListView4Page),
-            typeof(TreeViewPage),
+        };
+
+        private static readonly IEnumerable<Type> _displayCollection2Pages = new[]
+        {
             typeof(DataGrid1Page),
             typeof(DataGrid2Page),
             typeof(DataGrid3Page),
@@ -67,7 +73,6 @@ namespace WpfControlSamples.Views
             typeof(CollectionView2Page),
             typeof(CollectionView3Page),
             typeof(CollectionView4Page),
-            typeof(ItemsControl1Page),
         };
 
         private static readonly IEnumerable<Type> _editingTextPages = new[]
@@ -307,7 +312,8 @@ namespace WpfControlSamples.Views
             new PageTable("SettingValues", _settingValuePages),
             new PageTable("EditingText", _editingTextPages),
             new PageTable("IndicateActivity", _indicateActivityPages),
-            new PageTable("DisplayCollections", _displayCollectionPages),
+            new PageTable("DisplayCollections1", _displayCollection1Pages),
+            new PageTable("DisplayCollections2", _displayCollection2Pages),
             new PageTable("ItemTemplate", _itemTemplatePages),
             new PageTable("Adorners", _adornerPages),
             new PageTable("CustomControls", _customControlPages),

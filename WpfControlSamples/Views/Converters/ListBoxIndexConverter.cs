@@ -8,7 +8,7 @@ namespace WpfControlSamples.Views.Converters
     /* How to display row numbers in a ListView?
      * https://stackoverflow.com/questions/660528/how-to-display-row-numbers-in-a-listview
      *
-     * ListViewItem inherits from ListBoxItem. 
+     * ListViewItem inherits from ListBoxItem.
      */
     [ValueConversion(typeof(ListBoxItem), typeof(int))]
     class ListBoxIndexConverter : GenericValueConverter<ListBoxItem, int>
