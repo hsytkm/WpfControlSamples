@@ -13,8 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfControlSamples.Extensions;
 using WpfControlSamples.Infrastructures;
+using WpfControlSamples.ViewModels;
 
 namespace WpfControlSamples.Views.Menus
 {

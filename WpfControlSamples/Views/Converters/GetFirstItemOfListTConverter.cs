@@ -14,10 +14,17 @@ namespace WpfControlSamples.Views.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var type = value.GetType();
-            if (type.IsGenericType)
+
+            if (type.IsArray)
             {
-                var geneType = type.GetGenericTypeDefinition();
-                if (geneType == typeof(List<>))
+                return ((Array)value).GetValue(0);
+            }
+            else if (type.IsGenericType)
+            {
+                var isGenericIEnumerable = type.GetInterfaces()
+                    .Any(t => t.IsConstructedGenericType && t.GetGenericTypeDefinition() == typeof(IEnumerable<>));
+
+                if (isGenericIEnumerable)
                     return ((IEnumerable)value).OfType<object>().FirstOrDefault();
             }
 

@@ -1,42 +1,117 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ComboBox3Page"
-                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
-                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
-                mc:Ignorable="d" 
-                d:DesignHeight="450" d:DesignWidth="800">
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.ComboBox3Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <ContentControl.Resources>
         <ResourceDictionary>
             <conv:GetFirstItemOfListTConverter x:Key="FirstItemConverter" />
+            <conv:IntegerToBooleanConverter x:Key="IntToBoolConverter" />
         </ResourceDictionary>
     </ContentControl.Resources>
-    
-    <StackPanel Margin="10" >
 
-        <TextBlock Margin="0,0,0,5"
-                   FontSize="{StaticResource FontSizeMedium}"
-                   Text="ComboBox (3)" />
+    <StackPanel Margin="10">
 
-        <TextBlock Margin="0,0,0,5"
-                   FontSize="{StaticResource FontSizeMicro}"
-                   Text="Only ItemsSource (default SelectedItem = null)" />
-        <ComboBox x:Name="_comboBox1" ItemsSource="{Binding Colors, Mode=OneTime}" />
-        <Button Content="Show Value 1"
-                Command="{Binding ShowValueCommand, Mode=OneTime}"
-                CommandParameter="{Binding SelectedItem, Source={x:Reference _comboBox1}}" />
+        <TextBlock
+            Margin="0,0,0,5"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="ComboBox (3)" />
 
-        <TextBlock Margin="0,20,0,5"
-                   FontSize="{StaticResource FontSizeMicro}"
-                   Text="Set ItemsSource[0] to SelectedItem using Converter" />
-        <ComboBox  x:Name="_comboBox2" ItemsSource="{Binding Colors, Mode=OneTime}"
-                  SelectedItem="{Binding Colors, Mode=OneTime, Converter={StaticResource FirstItemConverter}}" />
-        <Button Content="Show Value 2"
-                Command="{Binding ShowValueCommand, Mode=OneTime}"
-                CommandParameter="{Binding SelectedItem, Source={x:Reference _comboBox2}}" />
+        <TextBlock
+            Margin="5"
+            FontSize="{StaticResource FontSizeSmall}"
+            Text="SelectedItem に初期値を設定する。(ItemsSource[0])" />
 
+        <DockPanel Margin="10">
+            <TextBlock
+                Margin="0,5"
+                DockPanel.Dock="Top"
+                FontSize="{StaticResource FontSizeMicro}"
+                Text="Only ItemsSource (default SelectedItem = null)" />
+            <ComboBox
+                x:Name="_comboBox1"
+                Width="200"
+                Height="30"
+                VerticalContentAlignment="Center"
+                DockPanel.Dock="Left"
+                ItemsSource="{Binding Colors, Mode=OneTime}" />
+            <TextBlock
+                Margin="20"
+                FontSize="{StaticResource FontSizeMicro}"
+                Text="{Binding SelectedItem, Source={x:Reference _comboBox1}, StringFormat='SelectedItem is {0}.'}" />
+        </DockPanel>
+
+        <DockPanel Margin="10">
+            <TextBlock
+                Margin="0,5"
+                DockPanel.Dock="Top"
+                FontSize="{StaticResource FontSizeMicro}"
+                Text="Set ItemsSource[0] to SelectedItem using Converter" />
+            <ComboBox
+                x:Name="_comboBox2"
+                Width="200"
+                Height="30"
+                VerticalContentAlignment="Center"
+                DockPanel.Dock="Left"
+                ItemsSource="{Binding Colors, Mode=OneTime}"
+                SelectedItem="{Binding Colors, Mode=OneTime, Converter={StaticResource FirstItemConverter}}" />
+            <TextBlock
+                Margin="20"
+                FontSize="{StaticResource FontSizeMicro}"
+                Text="{Binding SelectedItem, Source={x:Reference _comboBox2}, StringFormat='SelectedItem is {0}.'}" />
+        </DockPanel>
+
+        <DockPanel Margin="10">
+            <TextBlock
+                Margin="0,5"
+                DockPanel.Dock="Top"
+                FontSize="{StaticResource FontSizeMicro}"
+                Text="Set ItemsSource[0] to SelectedItem using 専用 class" />
+
+            <UniformGrid
+                Height="30"
+                Columns="4"
+                DockPanel.Dock="Bottom">
+                <Button
+                    Command="{Binding AddFirstItemCommand}"
+                    Content="AddFirst" />
+                <Button
+                    Command="{Binding DeleteFirstItemCommand}"
+                    Content="DeleteFirst" />
+                <Button
+                    Command="{Binding DeleteLastItemCommand}"
+                    Content="DeleteLast" />
+                <Button
+                    Command="{Binding DeleteAllItemsCommand}"
+                    Content="Clear" />
+            </UniformGrid>
+
+            <ComboBox
+                Width="200"
+                Height="30"
+                VerticalContentAlignment="Center"
+                DockPanel.Dock="Left"
+                IsEnabled="{Binding CollectionItemPair.Collection.Count, Mode=OneWay, Converter={StaticResource IntToBoolConverter}}"
+                ItemsSource="{Binding CollectionItemPair.Collection, Mode=OneWay}"
+                SelectedItem="{Binding CollectionItemPair.SelectedItem, Mode=TwoWay}" />
+
+            <StackPanel>
+                <TextBlock
+                    Margin="20,5,0,0"
+                    FontSize="{StaticResource FontSizeMicro}"
+                    Text="{Binding CollectionItemPair.SelectedItem, Mode=OneWay, StringFormat='SelectedItem is {0}.'}" />
+                <TextBlock
+                    Margin="20,0,0,5"
+                    FontSize="{StaticResource FontSizeMicro}"
+                    Text="{Binding CollectionItemPair.Collection.Count, Mode=OneWay, StringFormat='Collection count is {0}.'}" />
+            </StackPanel>
+        </DockPanel>
     </StackPanel>
-
 </ContentControl>
