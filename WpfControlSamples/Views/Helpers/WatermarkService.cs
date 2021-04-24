@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
@@ -41,7 +42,7 @@ namespace WpfControlSamples.Views.Helpers
         /// <summary>
         /// Dictionary of ItemsControls
         /// </summary>
-        private static readonly Dictionary<object, ItemsControl> itemsControls = new Dictionary<object, ItemsControl>();
+        private static readonly Dictionary<object, ItemsControl> itemsControls = new();
 
         #endregion
 

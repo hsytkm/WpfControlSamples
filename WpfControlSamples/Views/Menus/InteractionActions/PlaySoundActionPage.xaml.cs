@@ -1,4 +1,5 @@
-﻿using Microsoft.Xaml.Behaviors;
+﻿#nullable disable
+using Microsoft.Xaml.Behaviors;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -32,7 +33,7 @@ namespace WpfControlSamples.Views.Menus
     class PlaySoundActionViewMode : MyBindableBase
     {
         private readonly Uri _resourceWavSoundUri =
-            new Uri(@"pack://application:,,,/WpfControlSamples;component/Resources/Sounds/Resource1.wav");
+            new(@"pack://application:,,,/WpfControlSamples;component/Resources/Sounds/Resource1.wav");
 
         public ICommand PlayResouceWavCommand =>
             _playResouceWavCommand ??= new MyCommand(() =>

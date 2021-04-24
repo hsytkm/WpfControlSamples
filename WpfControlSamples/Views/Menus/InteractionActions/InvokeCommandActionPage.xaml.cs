@@ -1,4 +1,5 @@
-﻿using Microsoft.Xaml.Behaviors;
+﻿#nullable disable
+using Microsoft.Xaml.Behaviors;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,8 +30,7 @@ namespace WpfControlSamples.Views.Menus
 
     class InvokeCommandActionViewModel : MyBindableBase
     {
-        public ICommand MessageCommand => _messageCommand ??
-            (_messageCommand = new MyCommand<string>(msg => Message = msg));
+        public ICommand MessageCommand => _messageCommand ??= new MyCommand<string>(msg => Message = msg);
         private ICommand _messageCommand;
 
         public string Message
@@ -40,12 +40,11 @@ namespace WpfControlSamples.Views.Menus
         }
         private string _message;
 
-        public ICommand MouseMoveToPointCommand1 => _mouseMoveToPointCommand1 ??
-            (_mouseMoveToPointCommand1 = new MyCommand<FrameworkElement>(fe =>
+        public ICommand MouseMoveToPointCommand1 => _mouseMoveToPointCommand1 ??= new MyCommand<FrameworkElement>(fe =>
             {
                 var point = Mouse.GetPosition((IInputElement)fe);
                 MousePoint1 = $"MousePoint1: ({point.X:f1}, {point.Y:f1})";
-            }));
+            });
         private ICommand _mouseMoveToPointCommand1;
 
         public string MousePoint1
@@ -55,12 +54,11 @@ namespace WpfControlSamples.Views.Menus
         }
         private string _mousePoint1;
 
-        public ICommand MouseMoveToPointCommand2 => _mouseMoveToPointCommand2 ??
-            (_mouseMoveToPointCommand2 = new MyCommand<FrameworkElement>(fe =>
+        public ICommand MouseMoveToPointCommand2 => _mouseMoveToPointCommand2 ??= new MyCommand<FrameworkElement>(fe =>
             {
                 var point = Mouse.GetPosition((IInputElement)fe);
                 MousePoint2 = $"MousePoint2: ({point.X:f1}, {point.Y:f1})";
-            }));
+            });
         private ICommand _mouseMoveToPointCommand2;
 
         public string MousePoint2

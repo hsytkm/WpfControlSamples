@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -55,10 +56,10 @@ namespace WpfControlSamples.Views.Menus
         // リサイズハンドルのイベント処理
         private void ResizeThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            if (!(sender is Thumb thumb)) return;
+            if (sender is not Thumb thumb) return;
 
             //サイズ変更の対象要素を取得する
-            if (!(AdornedBy.GetAdornedElementFromTemplateChild(thumb) is FrameworkElement owner)) return;
+            if (AdornedBy.GetAdornedElementFromTemplateChild(thumb) is not FrameworkElement owner) return;
 
             // サイズ変更(横)
             if (thumb.HorizontalAlignment != HorizontalAlignment.Center)
@@ -122,10 +123,10 @@ namespace WpfControlSamples.Views.Menus
         private Point? _rotateStartPoint = null;
         private void RotateThumb_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!(sender is FrameworkElement thumb)) return;
+            if (sender is not FrameworkElement thumb) return;
             thumb.CaptureMouse();
 
-            if (!(AdornedBy.GetAdornedElementFromTemplateChild(thumb) is FrameworkElement owner)) return;
+            if (AdornedBy.GetAdornedElementFromTemplateChild(thumb) is not FrameworkElement owner) return;
 
             if (!(owner.RenderTransform is RotateTransform))
             {
@@ -139,7 +140,7 @@ namespace WpfControlSamples.Views.Menus
 
         private void RotateThumb_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (!(sender is FrameworkElement thumb)) return;
+            if (sender is not FrameworkElement thumb) return;
             thumb.ReleaseMouseCapture();
             _rotateStartPoint = null;
         }
@@ -147,10 +148,10 @@ namespace WpfControlSamples.Views.Menus
         private void RotateThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
             if (!_rotateStartPoint.HasValue) return;
-            if (!(sender is Thumb thumb)) return;
+            if (sender is not Thumb thumb) return;
 
             //サイズ変更の対象要素を取得する
-            if (!(AdornedBy.GetAdornedElementFromTemplateChild(thumb) is FrameworkElement owner)) return;
+            if (AdornedBy.GetAdornedElementFromTemplateChild(thumb) is not FrameworkElement owner) return;
 
             // ◆矩形回転時の中点が取得できていない…
             var selfCenterPos = new Point(owner.GetCanvasLeft() + owner.ActualWidth / 2.0, owner.GetCanvasTop() + owner.ActualHeight / 2.0);
@@ -208,7 +209,7 @@ namespace WpfControlSamples.Views.Menus
 
         private void Border_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!(sender is FrameworkElement self)) return;
+            if (sender is not FrameworkElement self) return;
             self.CaptureMouse();
             self.Cursor = Cursors.Hand;
 
@@ -217,7 +218,7 @@ namespace WpfControlSamples.Views.Menus
 
         private void Border_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (!(sender is FrameworkElement self)) return;
+            if (sender is not FrameworkElement self) return;
             self.ReleaseMouseCapture();
             self.Cursor = Cursors.Arrow;
 
@@ -227,7 +228,7 @@ namespace WpfControlSamples.Views.Menus
         private void Border_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (!_dragMove.HasValue) return;
-            if (!(sender is FrameworkElement self)) return;
+            if (sender is not FrameworkElement self) return;
 
             var leftTop = _dragMove.Value.GetNewAddress(self);
             var newLeft = Clamp(leftTop.X, 0, CanvasWidthMax - self.ActualWidth);

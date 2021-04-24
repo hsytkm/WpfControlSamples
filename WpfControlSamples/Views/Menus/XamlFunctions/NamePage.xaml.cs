@@ -35,7 +35,7 @@ namespace WpfControlSamples.Views.Menus
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
             // パターン2
-            if (!(FindName("textBlock2") is TextBlock textBlock)) return;
+            if (FindName("textBlock2") is not TextBlock textBlock) return;
             textBlock.Background = Brushes.LightPink;
         }
 

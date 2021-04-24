@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -112,7 +113,7 @@ namespace WpfControlSamples.Views.Menus
 
         #endregion
 
-        private readonly StringBuilder _stringBuilder = new StringBuilder();
+        private readonly StringBuilder _stringBuilder = new();
 
         private void AppendLog(string message)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Windows.Markup;
 
 namespace WpfControlSamples.Views.MarkupExtensions

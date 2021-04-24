@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -50,7 +51,7 @@ namespace WpfControlSamples.Views.Menus
 
         public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
         {
-            if (!(value is string s))
+            if (value is not string s)
                 return base.ConvertFrom(context, culture, value);
 
             return s.ToLower() switch

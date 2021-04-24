@@ -1,4 +1,5 @@
-﻿using Microsoft.Xaml.Behaviors;
+﻿#nullable disable
+using Microsoft.Xaml.Behaviors;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -16,7 +17,7 @@ namespace WpfControlSamples.Views.Actions
         protected override void Invoke(object parameter)
         {
             if (_isAttached) return;
-            if (!(Window.GetWindow(AssociatedObject) is Window window)) return;
+            if (Window.GetWindow(AssociatedObject) is not Window window) return;
 
             window.PreviewKeyDown += new KeyEventHandler(OnKeyDown);
             _saveWindow = (window.WindowStyle, window.WindowState);
@@ -29,7 +30,7 @@ namespace WpfControlSamples.Views.Actions
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (!(sender is Window window)) return;
+            if (sender is not Window window) return;
             if (e.Key != Key.Escape) return;
 
             window.PreviewKeyDown -= new KeyEventHandler(OnKeyDown);

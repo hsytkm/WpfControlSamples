@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,12 +37,10 @@ namespace WpfControlSamples.Views.Menus
         }
         private int _counter;
 
-        public ICommand IncrementCommand => _incrementCommand ??
-            (_incrementCommand = new MyCommand(() => ++Counter));
+        public ICommand IncrementCommand => _incrementCommand ??= new MyCommand(() => ++Counter);
         private ICommand _incrementCommand;
 
-        public ICommand DecrementCommand => _decrementCommand ??
-            (_decrementCommand = new MyCommand(() => --Counter));
+        public ICommand DecrementCommand => _decrementCommand ??= new MyCommand(() => --Counter);
         private ICommand _decrementCommand;
     }
 }

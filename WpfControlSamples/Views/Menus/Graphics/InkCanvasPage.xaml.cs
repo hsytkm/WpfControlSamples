@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -32,7 +33,7 @@ namespace WpfControlSamples.Views.Menus
 
         private void InkCanvas_StrokeCollected(object sender, InkCanvasStrokeCollectedEventArgs e)
         {
-            if (!(sender is InkCanvas inkCanvas)) return;
+            if (sender is not InkCanvas inkCanvas) return;
 
             var renderTargetBitmap = new RenderTargetBitmap(
                 (int)inkCanvas.ActualWidth, (int)inkCanvas.ActualHeight,

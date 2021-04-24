@@ -1,4 +1,5 @@
-﻿using Microsoft.Xaml.Behaviors;
+﻿#nullable disable
+using Microsoft.Xaml.Behaviors;
 using System.Linq;
 using System.Windows;
 
@@ -16,7 +17,7 @@ namespace WpfControlSamples.Views.AttachedProperties
                 new PropertyMetadata((sender, e) =>
                 {
                     if (e.OldValue == e.NewValue) return;
-                    if (!(e.NewValue is StyleBehaviorCollection value)) return;
+                    if (e.NewValue is not StyleBehaviorCollection value) return;
 
                     var behaviors = Interaction.GetBehaviors(sender);
                     behaviors.Clear();

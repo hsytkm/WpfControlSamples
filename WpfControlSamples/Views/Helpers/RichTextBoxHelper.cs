@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,7 +24,7 @@ namespace WpfControlSamples.Views.Helpers
 
         private static void Document_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (!(d is RichTextBox richTextBox)) return;
+            if (d is not RichTextBox richTextBox) return;
 
             var attachedDocument = GetDocument(richTextBox);
 

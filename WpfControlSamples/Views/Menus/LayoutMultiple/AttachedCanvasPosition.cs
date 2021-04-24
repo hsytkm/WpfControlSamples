@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Diagnostics;
 using System.Windows;
 using WpfControlSamples.Extensions;
@@ -26,8 +27,8 @@ namespace WpfControlSamples.Views.Menus
 
         private static void OnLeftTopPropertyChanged(DependencyObject sender, object oldValue, object newValue)
         {
-            if (!(sender is UIElement element)) return;
-            if (!(newValue is Point leftTop)) return;
+            if (sender is not UIElement element) return;
+            if (newValue is not Point leftTop) return;
             element.SetCanvasLeftTop(leftTop);
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -216,7 +217,7 @@ namespace WpfControlSamples.Views.Controls
 
         private Result ShowDialog(IntPtr owner)
         {
-            if (!(new FileOpenDialogInternal() is IFileOpenDialog dialog))
+            if (new FileOpenDialogInternal() is not IFileOpenDialog dialog)
                 throw new NullReferenceException(nameof(dialog));
 
             try

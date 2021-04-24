@@ -27,7 +27,7 @@ namespace WpfControlSamples.Views.Menus
                 new Point(110,10),
            });
 
-        public Point[] PointArray { get; } =
+        public IReadOnlyList<Point> PointArray { get; } =
             new[]
             {
                 new Point(110,10),
