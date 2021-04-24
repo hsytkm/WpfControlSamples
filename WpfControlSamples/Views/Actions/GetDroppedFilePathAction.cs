@@ -59,7 +59,7 @@ namespace WpfControlSamples.Views.Actions
 
         protected override void Invoke(object parameter)
         {
-            if (!(parameter is DragEventArgs e)) return;
+            if (parameter is not DragEventArgs e) return;
             var paths = GetFilePaths(e.Data).ToArray();
 
             DroppedPath = paths.Any() ? paths[0] : null;

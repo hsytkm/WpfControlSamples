@@ -36,8 +36,8 @@ namespace WpfControlSamples.Views.Actions
 
         protected override void Invoke(object parameter)
         {
-            if (!(parameter is DependencyPropertyChangedEventArgs e)) return;
-            if (!(e.NewValue is double progress)) return;
+            if (parameter is not DependencyPropertyChangedEventArgs e) return;
+            if (e.NewValue is not double progress) return;
 
             // OnAttached() で取得しようとしたができなかったので…
             if (_taskbarItemInfo is null)
@@ -50,7 +50,7 @@ namespace WpfControlSamples.Views.Actions
 
         private static TaskbarItemInfo SetTaskbarItemInfo(FrameworkElement fe)
         {
-            if (!(Window.GetWindow(fe) is Window window)) return null;
+            if (Window.GetWindow(fe) is not Window window) return null;
 
             if (window.TaskbarItemInfo is null)
                 window.TaskbarItemInfo = new TaskbarItemInfo();

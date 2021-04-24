@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Xaml.Behaviors;
+﻿using Microsoft.Xaml.Behaviors;
 using System.Windows;
 using System.Windows.Input;
 
@@ -31,7 +30,7 @@ namespace WpfControlSamples.Views.Behaviors
         /// <param name="e"></param>
         private static void AssociatedObject_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!(sender is IInputElement inputElement)) return;
+            if (sender is not IInputElement inputElement) return;
             inputElement.CaptureMouse();
         }
 
@@ -42,7 +41,7 @@ namespace WpfControlSamples.Views.Behaviors
         /// <param name="e"></param>
         private static void AssociatedObject_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (!(sender is IInputElement inputElement)) return;
+            if (sender is not IInputElement inputElement) return;
             inputElement.ReleaseMouseCapture();
         }
     }

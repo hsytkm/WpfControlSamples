@@ -34,19 +34,19 @@ namespace WpfControlSamples.Views.Actions
 
         protected override void Invoke(object parameter)
         {
-            if (!(parameter is SelectionChangedEventArgs e)) return;
+            if (parameter is not SelectionChangedEventArgs e) return;
 
             var selectedItems = NotifySelectedItemsCollection;
             if (selectedItems is null) return;
 
-            if (e.AddedItems != null)
+            if (e.AddedItems is not null)
             {
                 foreach (var item in e.AddedItems)
                 {
                     selectedItems.Add(item);
                 }
             }
-            if (e.RemovedItems != null)
+            if (e.RemovedItems is not null)
             {
                 foreach (var item in e.RemovedItems)
                 {

@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -17,18 +16,20 @@ namespace WpfControlSamples.Views.TypeConverters
             static int? GetEnumIndex(object value)
             {
                 if (value is not Enum e) return null;
-                return (int)Enum.Parse(e.GetType(), value.ToString());
+                var s = value.ToString();
+                if (s is null) return null;
+                return (int)Enum.Parse(e.GetType(), s);
             }
 
             if (destinationType == typeof(string))
             {
-                if (value != null)
+                if (value is not null)
                 {
-                    var fieldInfo = value.GetType().GetField(value.ToString());
+                    var valueString = value.ToString() ?? throw new NullReferenceException();
+                    var fieldInfo = value.GetType().GetField(valueString);
                     var attributes = fieldInfo?.GetCustomAttributes<DescriptionAttribute>(false);
                     var attribute = attributes?.FirstOrDefault();
-
-                    var desctiption = attribute is null ? value.ToString() : attribute.Description;
+                    var desctiption = attribute is not null ? attribute.Description : valueString;
 
                     // Add enum index
                     var index = GetEnumIndex(value);

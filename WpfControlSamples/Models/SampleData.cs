@@ -1,11 +1,9 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Media;
-using WpfControlSamples.Extensions;
 
 namespace WpfControlSamples.Models
 {
@@ -19,7 +17,7 @@ namespace WpfControlSamples.Models
         /// </summary>
         public static IList<(string Name, Color Color)> WpfColors { get; } =
             typeof(Colors).GetProperties(BindingFlags.Static | BindingFlags.Public)
-                .Select(x => (x.Name, (Color)x.GetValue(null)))
+                .Select(x => (x.Name, (Color)(x.GetValue(null) ?? throw new NullReferenceException())))
                 .ToList();
 
         /// <summary>
@@ -27,7 +25,7 @@ namespace WpfControlSamples.Models
         /// </summary>
         public static IList<(string Name, SolidColorBrush Brush)> WpfSolidColorBrushes { get; } =
             typeof(Brushes).GetProperties(BindingFlags.Static | BindingFlags.Public)
-                .Select(x => (x.Name, (SolidColorBrush)x.GetValue(null)))
+                .Select(x => (x.Name, (SolidColorBrush)(x.GetValue(null) ?? throw new NullReferenceException())))
                 .ToList();
 
     }

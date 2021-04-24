@@ -22,7 +22,7 @@ namespace WpfControlSamples.Views.Actions
         protected override void Invoke(object parameter)
         {
             var image = this.AssociatedObject;
-            if (!(image.Source is BitmapSource bitmapSource)) return;
+            if (image.Source is not BitmapSource bitmapSource) return;
 
             var viewCursorPos = Mouse.GetPosition(image);
 

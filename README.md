@@ -1,9 +1,10 @@
 # WpfControlSamples
 
-.NET Core3.1 + WPF Control Samples
+.NET Core 5 + WPF Control Samples
 
 Created in 2020/05
 
+Updated in 2021/04
 
 
 ## Websites

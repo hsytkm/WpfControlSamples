@@ -1,4 +1,4 @@
-﻿#nullable disable
+﻿#pragma warning disable IDE0042
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -226,7 +226,7 @@ namespace WpfControlSamples.Extensions
             var line1 = GetLineParam(points[0], points[2]);
 
             var bb = line0.param0 - line1.param0;
-            if (bb == 0) throw new ArgumentException();
+            if (bb == 0) throw new ArgumentException("points are invalid.");
 
             var x = (line1.param1 - line0.param1) / bb;
             var y = (line1.param1 * line0.param0 - line0.param1 * line1.param0) / bb;
@@ -240,7 +240,7 @@ namespace WpfControlSamples.Extensions
                 var y1 = p0.Y - p1.Y;
                 var z = (x0 * x1 + y0 * y1) / 2.0;
 
-                if (y0 == 0 && y1 == 0) throw new ArgumentException();
+                if (y0 == 0 && y1 == 0) throw new ArgumentException("points are invalid.");
                 return (y1 != 0) ? (-x1 / y1, z / y1) : (-x0 / y0, z / y0);
             }
         }
@@ -271,7 +271,7 @@ namespace WpfControlSamples.Extensions
 
             var lines = points.GetTriangleLineLength().ToArray();
             var bb = lines.Sum();
-            if (bb == 0) throw new ArgumentException();
+            if (bb == 0) throw new ArgumentException("points are invalid.");
 
             var x = (lines[0] * points[0].X + lines[1] * points[1].X + lines[2] * points[2].X) / bb;
             var y = (lines[0] * points[0].Y + lines[1] * points[1].Y + lines[2] * points[2].Y) / bb;
@@ -289,7 +289,7 @@ namespace WpfControlSamples.Extensions
             if (!IsValidTriangle(points)) return default;
 
             var bb = points.GetTriangleLineLength().Sum();
-            if (bb == 0) throw new ArgumentException();
+            if (bb == 0) throw new ArgumentException("points are invalid.");
 
             var area = GetTriangleArea(points);
 

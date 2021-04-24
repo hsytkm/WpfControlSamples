@@ -64,6 +64,7 @@
             <Setter Property="Margin" Value="0,10" />
             <Setter Property="res:InteractivityItems.Template">
                 <Setter.Value>
+                    <!-- Interaction Triggers in Style in ResourceDictionary WPF -->
                     <res:InteractivityTemplate>
                         <res:InteractivityItems>
                             <res:InteractivityItems.Triggers>

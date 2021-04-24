@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -146,7 +145,7 @@ namespace WpfControlSamples.Views
                 }
             }
         }
-        private TabItemPageParent _selectedTabItemPage;
+        private TabItemPageParent _selectedTabItemPage = default!;
 
         public MainWindowViewModel()
         {

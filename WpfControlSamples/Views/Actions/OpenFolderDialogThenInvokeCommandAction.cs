@@ -33,7 +33,7 @@ namespace WpfControlSamples.Views.Actions
 
         protected override void Invoke(object parameter)
         {
-            if (!(Window.GetWindow(AssociatedObject) is Window window)) return;
+            if (Window.GetWindow(AssociatedObject) is not Window window) return;
 
             var browser = new FolderBrowserDialog(Title);
             var result = browser.ShowDialog(window);

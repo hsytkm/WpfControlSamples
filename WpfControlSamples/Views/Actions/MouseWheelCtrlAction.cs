@@ -19,8 +19,7 @@ namespace WpfControlSamples.Views.Actions
         /// マウスホイール方向の通知
         /// </summary>
         public static readonly DependencyProperty WheelDirectionProperty
-            = DependencyProperty.Register(
-                nameof(WheelDirection), typeof(Direction), typeof(MouseWheelCtrlAction));
+            = DependencyProperty.Register(nameof(WheelDirection), typeof(Direction), typeof(MouseWheelCtrlAction));
 
         public Direction WheelDirection
         {
@@ -30,7 +29,7 @@ namespace WpfControlSamples.Views.Actions
 
         protected override void Invoke(object parameter)
         {
-            if (!(parameter is MouseWheelEventArgs mouseWheelEventArgs)) return;
+            if (parameter is not MouseWheelEventArgs mouseWheelEventArgs) return;
 
             if (!((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)) return;
 

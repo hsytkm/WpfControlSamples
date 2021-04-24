@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Xaml.Behaviors;
+﻿using Microsoft.Xaml.Behaviors;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -23,15 +22,12 @@ namespace WpfControlSamples.Views.Resources
         /// <summary>
         /// Storage for triggers
         /// </summary>
-        public new List<Microsoft.Xaml.Behaviors.TriggerBase> Triggers =>
-            _triggers ??= new List<Microsoft.Xaml.Behaviors.TriggerBase>();
-        private List<Microsoft.Xaml.Behaviors.TriggerBase> _triggers;
+        public new List<Microsoft.Xaml.Behaviors.TriggerBase> Triggers { get; } = new();
 
         /// <summary>
         /// Storage for Behaviors
         /// </summary>
-        public List<Behavior> Behaviors => _behaviors ??= new List<Behavior>();
-        private List<Behavior> _behaviors;
+        public List<Behavior> Behaviors { get; } = new();
 
         #region Template attached property
 

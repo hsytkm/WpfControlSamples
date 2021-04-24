@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Xaml.Behaviors;
+﻿using Microsoft.Xaml.Behaviors;
 using System;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,7 +10,7 @@ namespace WpfControlSamples.Views.Actions
     /// </summary>
     class MouseWheelHorizontalShiftAction : TriggerAction<ScrollViewer>
     {
-        private ScrollViewer _scrollViewer;
+        private ScrollViewer? _scrollViewer;
 
         protected override void OnAttached()
         {
@@ -28,7 +27,7 @@ namespace WpfControlSamples.Views.Actions
         protected override void Invoke(object parameter)
         {
             if (_scrollViewer is null) return;
-            if (!(parameter is MouseWheelEventArgs mouseWheelEventArgs)) return;
+            if (parameter is not MouseWheelEventArgs mouseWheelEventArgs) return;
             if (!((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift)) return;
 
             // Source は、操作の発行元（ScrollViewer の子要素）のことがあるので使用しない

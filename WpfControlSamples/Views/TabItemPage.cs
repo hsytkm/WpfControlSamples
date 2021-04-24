@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
@@ -12,20 +11,20 @@ namespace WpfControlSamples.Views
     {
         public Type PageType { get; }
         public string Name { get; }
-        public Control Content
+        public Control? Content
         {
             get => _content;
             internal set => SetProperty(ref _content, value);
         }
-        private Control _content;
+        private Control? _content;
 
         internal TabItemPage(Type type, string name) => (PageType, Name) = (type, name);
         public TabItemPage(Type type)
             : this(type, type.ToString().Split('.').Last().Replace("Page", "")) { }
         public virtual void LoadContent()
         {
-            if (Content != null) ReleaseContent();
-            Content = (ContentControl)Activator.CreateInstance(PageType);
+            if (Content is not null) ReleaseContent();
+            Content = Activator.CreateInstance(PageType) as ContentControl;
         }
         public virtual void ReleaseContent()
         {

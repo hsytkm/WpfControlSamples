@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Xaml.Behaviors;
+﻿using Microsoft.Xaml.Behaviors;
 using System;
 using System.Windows.Controls.Primitives;
 
@@ -12,7 +11,7 @@ namespace WpfControlSamples.Views.Actions
     {
         protected override void Invoke(object parameter)
         {
-            if (!(this.AssociatedObject is Selector selector)) return;
+            if (this.AssociatedObject is not Selector selector) return;
             selector.SelectedIndex = 0;
         }
     }

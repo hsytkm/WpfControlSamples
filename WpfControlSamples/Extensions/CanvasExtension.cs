@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,8 +19,7 @@ namespace WpfControlSamples.Extensions
         }
 
         public static Point GetCanvasLeftTop(this UIElement element) =>
-            new Point(element.GetCanvasLeft(), element.GetCanvasTop());
-
+            new(element.GetCanvasLeft(), element.GetCanvasTop());
 
         public static void SetCanvasLeftTop(this UIElement element, double left, double top)
         {

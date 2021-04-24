@@ -76,10 +76,10 @@ namespace WpfControlSamples.Views.Adorners
         // テンプレート中の要素から装飾対象を取得するヘルパーメソッド
         public static UIElement GetAdornedElementFromTemplateChild(FrameworkElement contained)
         {
-            if (!(contained.TemplatedParent is FrameworkElement tp) || tp.GetType() != typeof(Control))
+            if (contained.TemplatedParent is not FrameworkElement tp || tp.GetType() != typeof(Control))
                 return null;
 
-            if (!(tp.Parent is AdornedBy me))
+            if (tp.Parent is not AdornedBy me)
                 return null;
 
             return me.AdornedElement;

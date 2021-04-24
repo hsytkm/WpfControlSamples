@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Xaml.Behaviors;
+﻿using Microsoft.Xaml.Behaviors;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,9 +14,9 @@ namespace WpfControlSamples.Views.Actions
     {
         protected override void Invoke(object parameter)
         {
-            if (!(parameter is SizeChangedEventArgs sizeChangedEventArgs)) return;
-            if (!(sizeChangedEventArgs.Source is Image image)) return;
-            if (!(image.Source is BitmapSource bitmapSource)) return;
+            if (parameter is not SizeChangedEventArgs sizeChangedEventArgs) return;
+            if (sizeChangedEventArgs.Source is not Image image) return;
+            if (image.Source is not BitmapSource bitmapSource) return;
 
             var viewSize = sizeChangedEventArgs.NewSize;
             var sourceSize = new Size(bitmapSource.PixelWidth, bitmapSource.PixelHeight);

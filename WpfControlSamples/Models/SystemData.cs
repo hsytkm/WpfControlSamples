@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -27,8 +26,11 @@ namespace WpfControlSamples.Models
                     {
                         try
                         {
-                            var value = x.GetValue(null).ToString();
-                            list.Add(new NameValueKey(x.Name, value));
+                            var value = x.GetValue(null)?.ToString();
+                            if (value is not null)
+                            {
+                                list.Add(new NameValueKey(x.Name, value));
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -40,7 +42,7 @@ namespace WpfControlSamples.Models
                 return _environmentProperties;
             }
         }
-        private static IList<NameValueKey> _environmentProperties;
+        private static IList<NameValueKey> _environmentProperties = default!;
 
         /// <summary>
         /// System.Environmentのstaticプロパティ
@@ -61,7 +63,10 @@ namespace WpfControlSamples.Models
                         {
                             var name = Enum.GetName(type, x);
                             var value = Environment.GetFolderPath(x);
-                            list.Add(new NameValueKey(name, value));
+                            if (name is not null)
+                            {
+                                list.Add(new NameValueKey(name, value));
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -73,7 +78,7 @@ namespace WpfControlSamples.Models
                 return _environmentDirectories;
             }
         }
-        private static IList<NameValueKey> _environmentDirectories;
+        private static IList<NameValueKey> _environmentDirectories = default!;
 
         /// <summary>
         ///  System.Reflection.Assembly
@@ -81,7 +86,7 @@ namespace WpfControlSamples.Models
         public static IList<NameValueKey> AssemblyList { get; } =
             new List<NameValueKey>()
             {
-                new NameValueKey("AssemblyVersion", Assembly.GetExecutingAssembly().GetName().Version.ToString()),
+                new NameValueKey("AssemblyVersion", Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "null"),
             };
 
         /// <summary>
@@ -102,8 +107,11 @@ namespace WpfControlSamples.Models
                     {
                         try
                         {
-                            var value = x.GetValue(info).ToString();
-                            list.Add(new NameValueKey(x.Name, value));
+                            var value = x.GetValue(info)?.ToString();
+                            if (value is not null)
+                            {
+                                list.Add(new NameValueKey(x.Name, value));
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -115,7 +123,7 @@ namespace WpfControlSamples.Models
                 return _fileVersionInfoList;
             }
         }
-        private static IList<NameValueKey> _fileVersionInfoList;
+        private static IList<NameValueKey> _fileVersionInfoList = default!;
 
     }
 }

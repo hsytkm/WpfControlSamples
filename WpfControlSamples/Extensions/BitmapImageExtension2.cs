@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -29,7 +28,8 @@ namespace WpfControlSamples.Extensions
         public static BitmapSource ToGrayScale(this BitmapImage bitmap, int ch)
         {
             if (bitmap is null) throw new ArgumentNullException(nameof(bitmap));
-            if (!(0 <= ch && ch <= 2)) return null;  // chは 0~2 指定を想定
+            if (!(0 <= ch && ch <= 2))
+                throw new ArgumentException("ch is out of range.");  // chは 0~2 指定を想定
 
             // 画素値のbyte配列を取得
             var imagePixels = GetImagePixels(bitmap);
