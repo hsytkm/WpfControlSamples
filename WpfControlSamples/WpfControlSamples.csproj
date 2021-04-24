@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
@@ -37,7 +37,7 @@
     <EmbeddedResource Include="Resources\Images\EmbeddedResource1.png" />
     <EmbeddedResource Include="Resources\Images\EmbeddedResource2.png" />
     <EmbeddedResource Include="Resources\Sounds\EmbeddedResource1.wav" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
     <ProjectReference Include="..\WpfControlSamples.CustomControlNumericUpDown\WpfControlSamples.CustomControlNumericUpDown.csproj" />
     <ProjectReference Include="..\WpfControlSamples.FileDialogLibrary\WpfControlSamples.FileDialogLibrary.csproj" />
     <Resource Include="Resources\Fonts\ionicons.ttf">
