@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -38,24 +39,20 @@ namespace WpfControlSamples.Views.Menus
         private string _message;
 
         #region MessageBoxButton
-        public ICommand OKCommand => _oKCommand ??
-            (_oKCommand = new MyCommand<string>(text =>
-                ShowMessageBox(text, MessageBoxButton.OK)));
+        public ICommand OKCommand => _oKCommand ??= new MyCommand<string>(text =>
+                ShowMessageBox(text, MessageBoxButton.OK));
         private ICommand _oKCommand;
 
-        public ICommand OKCancelCommand => _oKCancelCommand ??
-            (_oKCancelCommand = new MyCommand<string>(text =>
-                ShowMessageBox(text, MessageBoxButton.OKCancel)));
+        public ICommand OKCancelCommand => _oKCancelCommand ??= new MyCommand<string>(text =>
+                ShowMessageBox(text, MessageBoxButton.OKCancel));
         private ICommand _oKCancelCommand;
 
-        public ICommand YesNoCommand => _yesNoCommand ??
-            (_yesNoCommand = new MyCommand<string>(text =>
-                ShowMessageBox(text, MessageBoxButton.YesNo)));
+        public ICommand YesNoCommand => _yesNoCommand ??= new MyCommand<string>(text =>
+                ShowMessageBox(text, MessageBoxButton.YesNo));
         private ICommand _yesNoCommand;
 
-        public ICommand YesNoCancelCommand => _yesNoCancelCommand ??
-            (_yesNoCancelCommand = new MyCommand<string>(text =>
-                ShowMessageBox(text, MessageBoxButton.YesNoCancel)));
+        public ICommand YesNoCancelCommand => _yesNoCancelCommand ??= new MyCommand<string>(text =>
+                ShowMessageBox(text, MessageBoxButton.YesNoCancel));
         private ICommand _yesNoCancelCommand;
         #endregion
 

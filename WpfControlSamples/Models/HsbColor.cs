@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Windows.Media;
 
 namespace WpfControlSamples.Models
@@ -44,7 +45,7 @@ namespace WpfControlSamples.Models
         private double _brightness;
 
         public static HsbColor FromHsb(double h, double s, double b) =>
-            new HsbColor() { Hue = h, Saturation = s, Brightness = b };
+            new() { Hue = h, Saturation = s, Brightness = b };
 
         public override string ToString() => string.Format($"H:{Hue:F0}, S:{Saturation:F2}, B:{Brightness:F2}");
 

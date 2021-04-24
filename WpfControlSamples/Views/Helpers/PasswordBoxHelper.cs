@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -37,7 +38,7 @@ namespace WpfControlSamples.Views.Helpers
 
         private static void IsAttachedProperty_Changed(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            if (!(sender is PasswordBox passwordBox)) return;
+            if (sender is not PasswordBox passwordBox) return;
 
             if ((bool)e.OldValue)
                 passwordBox.PasswordChanged -= PasswordBox_PasswordChanged;
@@ -48,14 +49,14 @@ namespace WpfControlSamples.Views.Helpers
 
         private static void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (!(sender is PasswordBox passwordBox)) return;
+            if (sender is not PasswordBox passwordBox) return;
 
             SetPassword(passwordBox, passwordBox.Password);
         }
 
         private static void PasswordProperty_Changed(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            if (!(sender is PasswordBox passwordBox)) return;
+            if (sender is not PasswordBox passwordBox) return;
             var newPassword = (string)e.NewValue;
 
             if (!GetIsAttached(passwordBox)) SetIsAttached(passwordBox, true);

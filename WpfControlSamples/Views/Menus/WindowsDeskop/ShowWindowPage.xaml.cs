@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -26,7 +27,7 @@ namespace WpfControlSamples.Views.Menus
 
         private void Button_ShowWindow(object sender, RoutedEventArgs e)
         {
-            if (!(Window.GetWindow(this) is MainWindow parentWindow)) return;
+            if (Window.GetWindow(this) is not MainWindow parentWindow) return;
 
             var dialog = new ShowWindowSub
             {

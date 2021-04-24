@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace WpfControlSamples.Views.Menus
     {
         private readonly NavigationService _navigationService;
 
-        private readonly List<Uri> _sourcePages = new List<Uri>()
+        private readonly List<Uri> _sourcePages = new()
         {
             new Uri("Views/Menus/LayoutSingle/NavigationServiceContent1Page.xaml", UriKind.Relative),
             new Uri("Views/Menus/LayoutSingle/NavigationServiceContent2Page.xaml", UriKind.Relative),

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,10 +29,10 @@ namespace WpfControlSamples.Views.Menus
         // リサイズハンドルのイベント処理
         private void ResizeThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            if (!(sender is Thumb thumb)) return;
+            if (sender is not Thumb thumb) return;
 
             //サイズ変更の対象要素を取得する
-            if (!(AdornedBy.GetAdornedElementFromTemplateChild(thumb) is FrameworkElement adored)) return;
+            if (AdornedBy.GetAdornedElementFromTemplateChild(thumb) is not FrameworkElement adored) return;
 
             var lengthMin = 20.0;
             var widthMin = lengthMin;

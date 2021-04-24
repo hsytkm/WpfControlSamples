@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -24,7 +25,7 @@ namespace WpfControlSamples.Views.Menus
 {
     public partial class TrigonometricFunction1Page : ContentControl
     {
-        private readonly TrigonometricFunction1ViewModel _viewModel = new TrigonometricFunction1ViewModel();
+        private readonly TrigonometricFunction1ViewModel _viewModel = new();
 
         private Canvas _parentCanvas;
 
@@ -70,7 +71,7 @@ namespace WpfControlSamples.Views.Menus
             return canvas;
         }
 
-        private static Size GetActualSize(FrameworkElement fe) => new Size(fe.ActualWidth, fe.ActualHeight);
+        private static Size GetActualSize(FrameworkElement fe) => new(fe.ActualWidth, fe.ActualHeight);
 
         private static void SetLineXY(Line line, Point p0, Point p1)
         {
@@ -133,7 +134,7 @@ namespace WpfControlSamples.Views.Menus
         // 点のドラッグシフト
         private void PointThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            if (!(sender is Thumb thumb)) return;
+            if (sender is not Thumb thumb) return;
             ChangeThumbPosition(_parentCanvas, thumb, e.HorizontalChange, e.VerticalChange);
             OnPointThumbChanged();
             e.Handled = true;

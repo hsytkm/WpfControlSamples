@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿#nullable disable
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -40,7 +41,7 @@ namespace WpfControlSamples.Views.Behaviors
         /// <param name="e">イベント引数</param>
         private static void OnIsEnablePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            if (!(sender is UIElement element)) return;
+            if (sender is not UIElement element) return;
 
             if (GetIsEnable(element))
             {
@@ -62,7 +63,7 @@ namespace WpfControlSamples.Views.Behaviors
         /// <param name="e">イベント引数</param>
         private static void Element_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!(sender is FrameworkElement adornedElement)) return;
+            if (sender is not FrameworkElement adornedElement) return;
 
             var parent = e.OriginalSource is FrameworkElement originalElement
                 ? FindAncestor<Panel>(originalElement) : null;

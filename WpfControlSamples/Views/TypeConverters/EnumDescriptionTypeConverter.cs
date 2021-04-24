@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace WpfControlSamples.Views.TypeConverters
         {
             static int? GetEnumIndex(object value)
             {
-                if (!(value is Enum e)) return null;
+                if (value is not Enum e) return null;
                 return (int)Enum.Parse(e.GetType(), value.ToString());
             }
 

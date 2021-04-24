@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -34,7 +35,7 @@ namespace WpfControlSamples.Views.Controls
 
             var newString = (newValue is string s) ? s : newValue.ToString();
 
-            if (!(Content is TextBlock textBlock))
+            if (Content is not TextBlock textBlock)
             {
                 var text = new TextBlock
                 {

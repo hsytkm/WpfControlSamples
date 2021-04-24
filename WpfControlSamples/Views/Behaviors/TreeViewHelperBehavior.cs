@@ -1,4 +1,5 @@
-﻿using Microsoft.Xaml.Behaviors;
+﻿#nullable disable
+using Microsoft.Xaml.Behaviors;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -38,7 +39,7 @@ namespace WpfControlSamples.Views.Behaviors
 
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (!(sender is TreeView tree)) return;
+            if (sender is not TreeView tree) return;
             if (tree.SelectedItem is null) return;
 
             SelectedItem = tree.SelectedItem;

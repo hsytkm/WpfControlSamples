@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,8 +51,7 @@ namespace WpfControlSamples.Views.Menus
         }
         private bool _isProcessing;
 
-        public ICommand StartProcess => _startProcess ??
-            (_startProcess = new MyCommand(async () =>
+        public ICommand StartProcess => _startProcess ??= new MyCommand(async () =>
             {
                 IsProcessing = true;
                 ProgressRatio = 0;
@@ -66,7 +66,7 @@ namespace WpfControlSamples.Views.Menus
 
                 IsProcessing = false;
             },
-            () => !IsProcessing));
+            () => !IsProcessing);
         private ICommand _startProcess;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -178,7 +179,7 @@ namespace WpfControlSamples.Views.Menus
         #region Thumb
         private void CornerThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            if (!(sender is Thumb thumb)) return;
+            if (sender is not Thumb thumb) return;
 
             ChangeThumbPosition(thumb, e.HorizontalChange, e.VerticalChange);
             e.Handled = true;
@@ -226,7 +227,7 @@ namespace WpfControlSamples.Views.Menus
         {
             if (!_canControl) return;
 
-            if (!(sender is FrameworkElement self)) return;
+            if (sender is not FrameworkElement self) return;
             self.CaptureMouse();
             self.Cursor = Cursors.Hand;
 
@@ -235,7 +236,7 @@ namespace WpfControlSamples.Views.Menus
 
         private void Polygon_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (!(sender is FrameworkElement self)) return;
+            if (sender is not FrameworkElement self) return;
             self.ReleaseMouseCapture();
             self.Cursor = Cursors.Arrow;
 
