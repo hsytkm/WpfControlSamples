@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Xaml.Behaviors;
+﻿using Microsoft.Xaml.Behaviors;
 using System.Windows;
 using WpfControlSamples.Views.Controls;
 
@@ -36,9 +35,7 @@ namespace WpfControlSamples.Views.Actions
             var browser = new FolderBrowserDialog(Title);
             var result = browser.ShowDialog(window);
 
-            SelectedFolderPath = (result == FolderBrowserDialog.Result.OK)
-                ? browser.SelectedPath ?? null
-                : null;
+            SelectedFolderPath = (result is FolderBrowserDialog.Result.OK) ? browser.SelectedPath : "";
         }
     }
 }

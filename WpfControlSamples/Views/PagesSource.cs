@@ -31,6 +31,7 @@ namespace WpfControlSamples.Views
             typeof(DoubleAnimationUsingKeyFramesPage),
             typeof(HideControlAnimation1Page),
             typeof(HideControlAnimation2Page),
+            typeof(RotateAngleAnimationPage),
         };
 
         private static readonly IEnumerable<Type> _customControlPages = new[]

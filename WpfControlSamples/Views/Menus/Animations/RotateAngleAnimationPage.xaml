@@ -1,0 +1,100 @@
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.RotateAngleAnimationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
+    xmlns:behavior="clr-namespace:WpfControlSamples.Views.Behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <!--
+        WPF realizes the dynamic scrolling disappearing effect of pictures (Method 2: Use Storyboard)
+        https://www.programmersought.com/article/89755831387/
+        
+        LayoutTransform vs. RenderTransform in WPF
+        https://patconroy.wordpress.com/2009/03/24/layouttransform-vs-rendertransform-in-wpf/
+    -->
+
+    <DockPanel Margin="10">
+        <TextBlock
+            DockPanel.Dock="Top"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="RotateAngleAnimation" />
+
+        <TextBlock
+            Margin="10"
+            DockPanel.Dock="Top"
+            Text="RenderTransform だと回転時に ActualWidth/Height が更新されない。&#xD;&#xA;（90/270度回転で縦が Panel に収まらない）" />
+        <UniformGrid
+            Margin="20,0"
+            Columns="2"
+            DockPanel.Dock="Top">
+            <Button
+                Padding="10"
+                Command="{Binding RenderRotateCounterClockwiseCommand, Mode=OneTime}"
+                Content="RenderTransform -" />
+            <Button
+                Padding="10"
+                Command="{Binding RenderRotateClockwiseCommand, Mode=OneTime}"
+                Content="RenderTransform +" />
+        </UniformGrid>
+
+        <TextBlock
+            Margin="10"
+            DockPanel.Dock="Top"
+            Text="LayoutTransform だと回転時に縦が収まる。Render よりも処理が重いらしい。" />
+        <UniformGrid
+            Margin="20,0"
+            Columns="2"
+            DockPanel.Dock="Top">
+            <Button
+                Padding="10"
+                Command="{Binding LayoutRotateCounterClockwiseCommand, Mode=OneTime}"
+                Content="LayoutTransform -" />
+            <Button
+                Padding="10"
+                Command="{Binding LayoutRotateClockwiseCommand, Mode=OneTime}"
+                Content="LayoutTransform +" />
+        </UniformGrid>
+
+        <TextBlock
+            Margin="10"
+            DockPanel.Dock="Top"
+            FontSize="{StaticResource FontSizeMicro}"
+            Text="{Binding MousePosOnImageSource, Mode=OneWay, StringFormat='Cursor={0}'}" />
+
+        <Grid
+            Margin="10,5"
+            Background="LightGray"
+            ClipToBounds="True">
+            <Image Source="{Binding ImageSource, Mode=OneTime}">
+                <Image.RenderTransform>
+                    <RotateTransform />
+                </Image.RenderTransform>
+
+                <Image.LayoutTransform>
+                    <RotateTransform />
+                </Image.LayoutTransform>
+
+                <i:Interaction.Behaviors>
+                    <behavior:RenderRotateAngleBehavior Angle="{Binding RenderRotateAngle, Mode=OneWay}" />
+                </i:Interaction.Behaviors>
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseMove">
+                        <action:MousePositionOnImagePixelAction MousePosition="{Binding MousePosOnImageSource, Mode=OneWayToSource}" />
+                    </i:EventTrigger>
+
+                    <i:PropertyChangedTrigger Binding="{Binding LayoutRotateAngle, Mode=OneWay}">
+                        <action:LayoutRotateAngleAction />
+                    </i:PropertyChangedTrigger>
+                </i:Interaction.Triggers>
+            </Image>
+        </Grid>
+    </DockPanel>
+</ContentControl>
