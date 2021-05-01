@@ -59,6 +59,8 @@ namespace WpfControlSamples.Views
             typeof(ListBox6Page),
             typeof(ListBox7Page),
             typeof(ListBox8Page),
+            typeof(ListBox9Page),
+            typeof(ListBox10Page),
             typeof(ListView1Page),
             typeof(ListView2Page),
             typeof(ListView3Page),
