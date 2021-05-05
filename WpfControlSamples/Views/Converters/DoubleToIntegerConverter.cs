@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Data;
 
@@ -8,21 +7,18 @@ namespace WpfControlSamples.Views.Converters
     [ValueConversion(typeof(double), typeof(int))]
     class DoubleToIntegerConverter : GenericValueConverter<double, int>
     {
-        public override int Convert(double d, object parameter, CultureInfo culture)
+        public override int Convert(double value, object parameter, CultureInfo culture)
         {
-            var param = GetParameter(parameter);
-            return (int)Math.Round(d * param);
+            var ratio = parameter switch
+            {
+                int i => i,
+                double d => (int)Math.Round(d),
+                string s => double.Parse(s, CultureInfo.InvariantCulture),
+                _ => 1,
+            };
+            return (int)Math.Round(value * ratio);
         }
 
-        public override double ConvertBack(int i, object parameter, CultureInfo culture) => default;
-
-        private static double GetParameter(object parameter)
-        {
-            if (parameter is double d) return (int)Math.Round(d);
-            if (parameter is int i) return i;
-            if (parameter is string s) return double.Parse(s);
-
-            throw new NotSupportedException();
-        }
+        public override double ConvertBack(int value, object parameter, CultureInfo culture) => value;
     }
 }

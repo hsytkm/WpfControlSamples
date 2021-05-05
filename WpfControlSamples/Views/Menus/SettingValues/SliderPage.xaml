@@ -1,47 +1,66 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.SliderPage"
-                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
-                xmlns:vb="clr-namespace:WpfControlSamples.Views.Behaviors"
-                mc:Ignorable="d" 
-                d:DesignHeight="450" d:DesignWidth="800">
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.SliderPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
+    xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vb="clr-namespace:WpfControlSamples.Views.Behaviors"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
-    <StackPanel Margin="10" >
-        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
-                   Text="Slider" />
 
-        <StackPanel Margin="10" Background="LightBlue" >
-            <TextBlock Margin="5" Text="Slider Style default" />
-            <Slider Margin="5" 
-                    Minimum="{Binding SliderMin, Mode=OneTime}"
-                    Maximum="{Binding SliderMax, Mode=OneTime}"
-                    Value="{Binding SliderValue, Mode=TwoWay}" />
+    <StackPanel Margin="10">
+        <TextBlock
+            Margin="0,10,0,0"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="Slider" />
 
-            <!-- Marginがないと画面端が操作しづらい
-                 目盛りは設定できない
-                 SmallChange: 矢印キーで操作したときの変化量
-                 LargeChange: マウスで軸をクリックしたときの変化量
+        <StackPanel
+            Margin="10"
+            Background="LightBlue">
+            <TextBlock
+                Margin="5"
+                Text="Slider Style default" />
+            <Slider
+                Margin="5"
+                Maximum="{Binding SliderMax, Mode=OneTime}"
+                Minimum="{Binding SliderMin, Mode=OneTime}"
+                Value="{Binding SliderValue, Mode=TwoWay}" />
+
+            <!--
+                Marginがないと画面端が操作しづらい
+                目盛りは設定できない
+                SmallChange: 矢印キーで操作したときの変化量
+                LargeChange: マウスで軸をクリックしたときの変化量
             -->
-            <TextBlock Margin="5" Text="Slider Style test" />
-            <Slider Margin="50,5"
-                    SmallChange="0.333333333"
-                    LargeChange="2"
-                    TickPlacement="Both" 
-                    Minimum="{Binding SliderMin, Mode=OneTime}"
-                    Maximum="{Binding SliderMax, Mode=OneTime}"
-                    Value="{Binding SliderValue, Mode=TwoWay}" />
+            <TextBlock
+                Margin="5"
+                Text="Slider Style test" />
+            <Slider
+                Margin="50,5"
+                LargeChange="2"
+                Maximum="{Binding SliderMax, Mode=OneTime}"
+                Minimum="{Binding SliderMin, Mode=OneTime}"
+                SmallChange="0.333333333"
+                TickPlacement="Both"
+                Value="{Binding SliderValue, Mode=TwoWay}" />
 
 
-            <TextBlock Margin="20"
-                       FontSize="{StaticResource FontSizeSmall}"
-                       Text="{Binding SliderValue, Mode=OneWay, StringFormat='SliderValue:  {0}'}" />
+            <TextBlock
+                Margin="20"
+                FontSize="{StaticResource FontSizeSmall}"
+                Text="{Binding SliderValue, Mode=OneWay, StringFormat='SliderValue:  {0}'}" />
         </StackPanel>
 
-        <!-- IntSlider -->
-        <DockPanel Margin="10" Background="LightPink" >
+        <!--  IntSlider  -->
+        <DockPanel
+            Margin="10"
+            Background="LightPink">
             <Panel.Resources>
                 <ResourceDictionary>
                     <Style TargetType="{x:Type Slider}">
@@ -50,46 +69,44 @@
                         <Setter Property="Minimum" Value="{Binding SliderMin, Mode=OneTime}" />
                         <Setter Property="Maximum" Value="{Binding SliderMax, Mode=OneTime}" />
                         <Setter Property="Margin" Value="10" />
+                        <Setter Property="TickFrequency" Value="1" />
+                        <Setter Property="IsSnapToTickEnabled" Value="True" />
                     </Style>
+                    <conv:IntegerToDoubleConverter x:Key="IntToDoubleConverter" />
                 </ResourceDictionary>
             </Panel.Resources>
-            
-            <Slider DockPanel.Dock="Left"
-                    Orientation="Vertical"
-                    TickPlacement="BottomRight" >
-                <i:Interaction.Behaviors>
-                    <vb:IntSliderBehavior IntValue="{Binding SliderIntValue, Mode=OneWayToSource}" />
-                </i:Interaction.Behaviors>
+
+            <!--  Action実装  -->
+            <Slider
+                DockPanel.Dock="Left"
+                Orientation="Vertical"
+                TickPlacement="BottomRight">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="ValueChanged">
+                        <action:IntSliderAction IntValue="{Binding SliderIntValue, Mode=OneWayToSource}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Slider>
+            <Slider
+                DockPanel.Dock="Top"
+                TickPlacement="TopLeft">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="ValueChanged">
+                        <action:IntSliderAction IntValue="{Binding SliderIntValue, Mode=OneWayToSource}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Slider>
 
-            <Slider DockPanel.Dock="Top"
-                    TickPlacement="TopLeft" >
-                <i:Interaction.Behaviors>
-                    <vb:IntSliderBehavior IntValue="{Binding SliderIntValue, Mode=OneWayToSource}" />
-                </i:Interaction.Behaviors>
-            </Slider>
+            <!--  ★Converter実装（これが正解）  -->
+            <Slider
+                Margin="10"
+                DockPanel.Dock="Bottom"
+                Value="{Binding SliderIntValue, Mode=OneWayToSource, Converter={StaticResource IntToDoubleConverter}}" />
 
-            <TextBlock Margin="20"
-                       FontSize="{StaticResource FontSizeSmall}"
-                       Text="{Binding SliderIntValue, Mode=OneWay, StringFormat='SliderIntValue:  {0}'}" />
-        </DockPanel>
-
-        <!-- IntSlider改  https://qiita.com/KamadaKeisuke/items/67f6440ecd8b145076f2 -->
-        <DockPanel Margin="10" Background="LightGreen" >
-            <Slider x:Name="intSliderKai"
-                    DockPanel.Dock="Top" Margin="10"
-                    SmallChange="1" LargeChange="1"
-                    Minimum="{Binding SliderMin, Mode=OneTime}"
-                    Maximum="{Binding SliderMax, Mode=OneTime}"
-                    IsSnapToTickEnabled="True" TickFrequency="1" >
-                <i:Interaction.Behaviors>
-                    <vb:IntSliderBehavior IntValue="{Binding SliderIntValue, Mode=OneWayToSource}" />
-                </i:Interaction.Behaviors>
-            </Slider>
-
-            <TextBlock Margin="20,10"
-                       FontSize="{StaticResource FontSizeSmall}"
-                       Text="{Binding Value, Mode=OneWay, Source={x:Reference Name=intSliderKai}}" />
+            <TextBlock
+                Margin="20"
+                FontSize="{StaticResource FontSizeSmall}"
+                Text="{Binding SliderIntValue, Mode=OneWay, StringFormat='SliderIntValue:  {0}'}" />
         </DockPanel>
 
     </StackPanel>

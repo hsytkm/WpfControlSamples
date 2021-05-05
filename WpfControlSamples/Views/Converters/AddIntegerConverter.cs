@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Data;
 
@@ -8,20 +7,17 @@ namespace WpfControlSamples.Views.Converters
     [ValueConversion(typeof(int), typeof(int))]
     class AddIntegerConverter : GenericValueConverter<int, int>
     {
-        public override int Convert(int x, object parameter, CultureInfo culture)
+        public override int Convert(int value, object parameter, CultureInfo culture)
         {
-            var y = GetParameter(parameter);
-            return x + y;
+            var x = parameter switch
+            {
+                int i => i,
+                string s => int.Parse(s, CultureInfo.InvariantCulture),
+                _ => throw new NotSupportedException()
+            };
+            return value + x;
         }
 
-        private static int GetParameter(object parameter)
-        {
-            if (parameter is int i) return i;
-            if (parameter is string s) return int.Parse(s);
-
-            throw new NotSupportedException();
-        }
-
-        public override int ConvertBack(int brush, object parameter, CultureInfo culture) => default;
+        public override int ConvertBack(int value, object parameter, CultureInfo culture) => default;
     }
 }
