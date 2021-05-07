@@ -207,6 +207,7 @@ namespace WpfControlSamples.Views
             typeof(LabelPage),
             typeof(TextBlockPage),
             typeof(TextBlockLogPage),
+            typeof(BulletinTextPage),
             typeof(ImagePage),
             typeof(ImageThumbnailPage),
             typeof(ImageZoomPage),
