@@ -21,6 +21,7 @@
     <ContentControl.Resources>
         <ResourceDictionary>
             <vc:Array2dToDataTableConverter x:Key="Array2ToTableConverter" />
+            <vc:RowNumberConverter x:Key="RowNumberConverter" />
         </ResourceDictionary>
     </ContentControl.Resources>
 
@@ -35,7 +36,14 @@
             <DockPanel Margin="20,5,0,0">
                 <!-- DataTable を ItemsSource にバインド -->
                 <DataGrid DockPanel.Dock="Left" Margin="0,0,20,0"
-                          ItemsSource="{Binding DataTableSource1, Mode=OneWay}" />
+                          HeadersVisibility="All"
+                          ItemsSource="{Binding DataTableSource1, Mode=OneWay}" >
+                    <DataGrid.RowHeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=., RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowNumberConverter}, ConverterParameter='R{0}'}" />
+                        </DataTemplate>
+                    </DataGrid.RowHeaderTemplate>
+                </DataGrid>
 
                 <!-- 二次元配列 を Converter で DataTable に変換して、ItemsSource にバインド -->
                 <DataGrid DockPanel.Dock="Left" 
