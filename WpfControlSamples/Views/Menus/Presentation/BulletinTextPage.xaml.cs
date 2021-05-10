@@ -28,7 +28,7 @@ namespace WpfControlSamples.Views.Menus
             get => _inputText;
             set => SetProperty(ref _inputText, value);
         }
-        private string _inputText = "";
+        private string _inputText = "Message";
 
         public ICommand AddTextCommand => _addTextCommand ??= new MyCommand(() =>
         {

@@ -43,9 +43,21 @@ namespace WpfControlSamples.Views.Menus
         public HsbColor MyHsbColor
         {
             get => _myHsbColor;
-            private set => SetProperty(ref _myHsbColor, value);
+            private set
+            {
+                if (SetProperty(ref _myHsbColor, value))
+                    MyComplementaryColor = _myHsbColor.ToComplementaryColor();
+            }
         }
         private HsbColor _myHsbColor;
+
+        // 補色
+        public HsbColor MyComplementaryColor
+        {
+            get => _myComplementaryColor;
+            private set => SetProperty(ref _myComplementaryColor, value);
+        }
+        private HsbColor _myComplementaryColor;
 
         #region RGB/HSB
         public int Red

@@ -16,8 +16,8 @@ namespace WpfControlSamples.Models
             set
             {
                 var h = value;
-                while (h < 0) { h += 360; }
-                while (h > 360) { h -= 360; }
+                while (h < 0d) { h += 360d; }
+                while (h > 360d) { h -= 360d; }
                 _hue = h;
             }
         }
@@ -29,7 +29,7 @@ namespace WpfControlSamples.Models
         public double Saturation
         {
             get => _saturation;
-            set => _saturation = Math.Max(0, Math.Min(value, 1));
+            set => _saturation = Math.Clamp(value, 0d, 1d);
         }
         private double _saturation;
 
@@ -39,12 +39,18 @@ namespace WpfControlSamples.Models
         public double Brightness
         {
             get => _brightness;
-            set => _brightness = Math.Max(0, Math.Min(value, 1));
+            set => _brightness = Math.Clamp(value, 0d, 1d);
         }
         private double _brightness;
 
         public static HsbColor FromHsb(double h, double s, double b) =>
             new() { Hue = h, Saturation = s, Brightness = b };
+
+        public HsbColor ToComplementaryColor()
+        {
+            var hue = (Hue < 180d) ? Hue + 180d : Hue - 180d;
+            return FromHsb(hue, Saturation, Brightness);
+        }
 
         public override string ToString() => string.Format($"H:{Hue:F0}, S:{Saturation:F2}, B:{Brightness:F2}");
 
@@ -68,9 +74,9 @@ namespace WpfControlSamples.Models
     {
         public static HsbColor ToHsbColor(this Color source)
         {
-            double nR = source.R / (double)byte.MaxValue;
-            double nG = source.G / (double)byte.MaxValue;
-            double nB = source.B / (double)byte.MaxValue;
+            double nR = source.R / 255d;
+            double nG = source.G / 255d;
+            double nB = source.B / 255d;
 
             double max = Math.Max(nR, Math.Max(nG, nB));
             double min = Math.Min(nR, Math.Min(nG, nB));
@@ -116,8 +122,10 @@ namespace WpfControlSamples.Models
             var saturation = source.Saturation;
             var value = source.Brightness;
 
-            int hi = Convert.ToInt32(Math.Floor(hue / 60d)) % 6;
-            double f = hue / 60d - Math.Floor(hue / 60d);
+            var temp1 = hue / 60d;
+            var temp2 = Math.Floor(temp1);
+            int hi = Convert.ToInt32(temp2) % 6;
+            double f = temp1 - temp2;
 
             value *= 255d;
             var v = Convert.ToByte(value);
@@ -137,5 +145,18 @@ namespace WpfControlSamples.Models
         }
 #endif
 
+    }
+
+    static class ColorExtension
+    {
+        public static double ToLuminanceY(this Color color) => 0.257 * color.R + 0.504 * color.G + 0.098 * color.B;
+
+        // Colorに対する読みやすそうな文字色(B/W)を取得
+        public static Brush GetForegroundBrush(this Color color)
+        {
+            var y = color.ToLuminanceY();
+            var thresh = 128d;              // てきとーだけど割と良い感じ
+            return (y > thresh) ? Brushes.Black : Brushes.White;
+        }
     }
 }

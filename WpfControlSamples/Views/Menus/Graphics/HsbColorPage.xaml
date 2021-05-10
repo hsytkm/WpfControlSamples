@@ -108,7 +108,18 @@
         </Border>
 
         <Border Margin="10,0"
-                Background="{Binding MyRgbColor, Converter={StaticResource ColorToBrushConverter}}" />
-        
+                Background="{Binding MyRgbColor, Converter={StaticResource ColorToBrushConverter}}" >
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock FontSize="{StaticResource FontSizeLarge}" FontWeight="Bold">
+                    <Run Text="補色" Foreground="{Binding MyComplementaryColor, Converter={StaticResource HsbColorToBrushConverter}}" />
+                    <Run Text="黒" Foreground="Black" />
+                    <Run Text="白" Foreground="White" />
+                </TextBlock>
+                <TextBlock FontSize="{StaticResource FontSizeMedium}" FontWeight="Bold"
+                           Text="読みやすそうな文字色（輝度で判定）"
+                           Foreground="{Binding MyRgbColor, Converter={StaticResource ColorToForegroundBrushConverter}}" />
+            </StackPanel>
+        </Border>
+
     </DockPanel>
 </ContentControl>

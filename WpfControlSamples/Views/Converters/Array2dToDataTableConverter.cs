@@ -6,6 +6,7 @@ using System.Windows.Data;
 
 namespace WpfControlSamples.Views.Converters
 {
+    // ViewModelから object[,] を生で公開する設計なので、あんまヨクナイ。
     [ValueConversion(typeof(object), typeof(DataTable))]
     class Array2dToDataTableConverter : GenericValueConverter<object, DataTable>
     {

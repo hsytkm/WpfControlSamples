@@ -126,10 +126,15 @@
         </StackPanel>
 
         <!-- Selected result -->
-        <TextBlock DockPanel.Dock="Top" Margin="30,10" 
+        <TextBlock DockPanel.Dock="Top" Margin="30,5" 
                    VerticalAlignment="Center"
                    FontSize="{StaticResource FontSizeMicro}"
                    Text="{Binding SelectedFolderPath, Mode=OneWay}" />
+
+        <ctrl:HyperlinkTextBlock DockPanel.Dock="Top"
+                                 FontSize="{StaticResource FontSizeMicro}"
+                                 Text="CsWin32 を使用した P/Invoke FolderDialog ◆オススメ"
+                                 NavigateUri="https://github.com/hsytkm/PInvokeFolderOpener"/>
 
         <Border/>
     </DockPanel>

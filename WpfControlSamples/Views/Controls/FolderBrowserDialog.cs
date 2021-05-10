@@ -5,6 +5,11 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 
+/*  CsWin32 を使用した P/Invoke FolderDialog
+ *  https://github.com/hsytkm/PInvokeFolderOpener
+ *  
+ *  ◆コピペするだけなら下記ベタ書きでも良いかも。
+ */
 namespace WpfControlSamples.Views.Controls
 {
     /// <summary>
