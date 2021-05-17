@@ -1,4 +1,4 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.UniformGridPage"
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.UniformGrid1Page"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,7 +9,11 @@
 
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
-                   Text="UniformGrid: Rows=4, Columns=3" />
+                   Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
+                   Text="UniformGrid 1" />
+
+        <TextBlock DockPanel.Dock="Top" Margin="10"
+                   Text="Rows=4, Columns=3" />
 
         <UniformGrid Rows="4" Columns="3" >
             <Button>1</Button>

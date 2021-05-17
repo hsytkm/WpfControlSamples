@@ -181,7 +181,8 @@ namespace WpfControlSamples.Views
         {
             typeof(GridPage),
             typeof(GridSplitterPage),
-            typeof(UniformGridPage),
+            typeof(UniformGrid1Page),
+            typeof(UniformGrid2Page),
             typeof(GroupBoxPage),
             typeof(StackPanelPage),
             typeof(DockPanelPage),

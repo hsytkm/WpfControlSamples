@@ -16,9 +16,9 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class UniformGridPage : ContentControl
+    public partial class UniformGrid1Page : ContentControl
     {
-        public UniformGridPage()
+        public UniformGrid1Page()
         {
             InitializeComponent();
         }
