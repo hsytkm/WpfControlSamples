@@ -14,7 +14,7 @@ namespace WpfControlSamples.ViewModels
         void UpdateValue(T other);
     }
 
-    static class IUpdatableItem
+    static class IUpdatableItemExtension
     {
         /// <summary>
         /// Key が同じ要素があれば Value を更新し、要素がなければ追加します

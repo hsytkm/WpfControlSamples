@@ -197,7 +197,8 @@ namespace WpfControlSamples.Views
         {
             typeof(ContentControlPage),
             typeof(BorderPage),
-            typeof(ScrollViewerPage),
+            typeof(ScrollViewer1Page),
+            typeof(ScrollViewer2Page),
             typeof(ExpanderPage),
             typeof(ViewboxPage),
             typeof(BulletDecoratorPage),

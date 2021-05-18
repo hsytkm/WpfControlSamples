@@ -18,9 +18,9 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class ScrollViewerPage : ContentControl
+    public partial class ScrollViewer1Page : ContentControl
     {
-        public ScrollViewerPage()
+        public ScrollViewer1Page()
         {
             InitializeComponent();
 

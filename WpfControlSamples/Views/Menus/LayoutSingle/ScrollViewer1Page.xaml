@@ -1,4 +1,4 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ScrollViewerPage"
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ScrollViewer1Page"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,7 +10,7 @@
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
                    Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
-                   Text="ScrollViewer" />
+                   Text="ScrollViewer 1" />
 
         <TextBlock DockPanel.Dock="Top"
                    Margin="0,0,0,10"

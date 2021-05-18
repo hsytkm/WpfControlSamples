@@ -1,0 +1,141 @@
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.ScrollViewer2Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behavior="clr-namespace:WpfControlSamples.Views.Behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <ContentControl.Resources>
+        <Style
+            x:Key="titleTextBlock"
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="{StaticResource FontSizeMicro}" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </ContentControl.Resources>
+
+    <DockPanel Margin="10">
+        <TextBlock
+            Margin="0,10"
+            DockPanel.Dock="Top"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="ScrollViewer 2" />
+
+        <TextBlock
+            Margin="0,0,0,10"
+            DockPanel.Dock="Top"
+            Text="ScrollViewer のプロパティを表示する（だけ）。特別ややこしいので" />
+
+        <DockPanel DockPanel.Dock="Left">
+            <TextBlock
+                DockPanel.Dock="Top"
+                Style="{StaticResource titleTextBlock}"
+                Text="ScrollViewer" />
+            <ListView ItemsSource="{Binding ScrollViewerProperties, Mode=OneWay}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+                            Width="100"
+                            DisplayMemberBinding="{Binding Name, Mode=OneWay}"
+                            Header="Name" />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Value, Mode=OneWay, StringFormat='{}{0:f1}'}"
+                            Header="Value" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+
+        <DockPanel DockPanel.Dock="Left">
+            <TextBlock
+                DockPanel.Dock="Top"
+                Style="{StaticResource titleTextBlock}"
+                Text="ContentPresenter" />
+            <ListView
+                DockPanel.Dock="Top"
+                ItemsSource="{Binding ContentPresenterProperties, Mode=OneWay}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+                            Width="100"
+                            DisplayMemberBinding="{Binding Name, Mode=OneWay}"
+                            Header="Name" />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Value, Mode=OneWay, StringFormat='{}{0:f1}'}"
+                            Header="Value" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <TextBlock
+                Margin="0,10,0,0"
+                DockPanel.Dock="Top"
+                Style="{StaticResource titleTextBlock}"
+                Text="HorizontalScrollBar" />
+            <ListView
+                DockPanel.Dock="Top"
+                ItemsSource="{Binding HorizontalScrollBarProperties, Mode=OneWay}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+                            Width="100"
+                            DisplayMemberBinding="{Binding Name, Mode=OneWay}"
+                            Header="Name" />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Value, Mode=OneWay, StringFormat='{}{0:f1}'}"
+                            Header="Value" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <TextBlock
+                Margin="0,10,0,0"
+                DockPanel.Dock="Top"
+                Style="{StaticResource titleTextBlock}"
+                Text="VerticalScrollBar" />
+            <ListView
+                DockPanel.Dock="Top"
+                ItemsSource="{Binding VerticalScrollBarProperties, Mode=OneWay}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+                            Width="100"
+                            DisplayMemberBinding="{Binding Name, Mode=OneWay}"
+                            Header="Name" />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Value, Mode=OneWay, StringFormat='{}{0:f1}'}"
+                            Header="Value" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Border />
+        </DockPanel>
+
+        <ScrollViewer
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto">
+
+            <!--  Behavior で各種プロパティ値を取得  -->
+            <i:Interaction.Behaviors>
+                <behavior:ScrollViewerInspectorBehavior
+                    ContentPresenterProperties="{Binding ContentPresenterPropertiesSource, Mode=OneWayToSource}"
+                    HorizontalScrollBarProperties="{Binding HorizontalScrollBarPropertiesSource, Mode=OneWayToSource}"
+                    ScrollViewerProperties="{Binding ScrollViewerPropertiesSource, Mode=OneWayToSource}"
+                    VerticalScrollBarProperties="{Binding VerticalScrollBarPropertiesSource, Mode=OneWayToSource}" />
+            </i:Interaction.Behaviors>
+
+            <Image
+                Width="1280"
+                Height="960"
+                Source="/Resources/Images/Picture1.jpg" />
+        </ScrollViewer>
+
+    </DockPanel>
+</ContentControl>
