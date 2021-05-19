@@ -1,73 +1,107 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.TextBox2Page"
-                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
-                mc:Ignorable="d" 
-                d:DesignHeight="450" d:DesignWidth="800">
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.TextBox2Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <!--
         IDataErrorInfoの汎用的な実装
-            https://blog.okazuki.jp/entry/20100419/1271686512
-
+        https://blog.okazuki.jp/entry/20100419/1271686512
+        
         [WPF] IDataErrorInfoとValidation.ErrorTemplateを利用してエラーを表示する
-            https://www.pine4.net/Memo/Article/Archives/427
-    
+        https://www.pine4.net/Memo/Article/Archives/427
+        
         WPFでの入力値検証・まとめ
-            http://sourcechord.hatenablog.com/entry/2016/06/15/004441
+        http://sourcechord.hatenablog.com/entry/2016/06/15/004441
     -->
-    <StackPanel Margin="10" >
-        <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
-                   Text="TextBox 2" />
+    <StackPanel Margin="10">
+        <TextBlock
+            Margin="0,10,0,0"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="TextBox 2" />
 
+        <!--  1.ValidationRule  -->
         <TextBlock Margin="10">
-            <Run Text="ValidationRule による検証 " />
-            <LineBreak/>
-            <Run Text="  1～100 の整数ならOK" />
-            <LineBreak/>
+            <Run
+                FontSize="{StaticResource FontSizeMicro}"
+                Text="ValidationRule による検証" /> <LineBreak />
+            <Run Text="  1～100 の整数ならOK" /> <LineBreak />
             <Run Text="  下記2つで xaml の書き方が違うし、Exception(大きい数値を入力)時の動作が異なる（未調査）" />
         </TextBlock>
-                  
+
         <StackPanel Margin="20,0">
             <Panel.Resources>
                 <ControlTemplate x:Key="validationTemplate">
                     <Grid>
-                        <Border Background="Red"
-                                Width="15" Height="15"
-                                HorizontalAlignment="Right"
-                                CornerRadius="5"
-                                Margin="0,0,4,0"
-                                ToolTip="{Binding AdornedElement.(Validation.Errors).CurrentItem.ErrorContent, ElementName=adornedElem}" >
+                        <Border
+                            Width="15"
+                            Height="15"
+                            Margin="0,0,4,0"
+                            HorizontalAlignment="Right"
+                            Background="Red"
+                            CornerRadius="5"
+                            ToolTip="{Binding AdornedElement.(Validation.Errors).CurrentItem.ErrorContent, ElementName=adornedElem}">
 
-                            <TextBlock TextAlignment="Center"
-                                       Foreground="White" FontWeight="Bold"
-                                       VerticalAlignment="Center"
-                                       Text="!" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                Text="!"
+                                TextAlignment="Center" />
                         </Border>
 
-                        <AdornedElementPlaceholder x:Name="adornedElem" >
-                            <Border BorderBrush="Red"
-                                    BorderThickness="2"
-                                    Width="{Binding ElementName=adornedElem, Path=AdornedElement.ActualWidth}" />
+                        <AdornedElementPlaceholder x:Name="adornedElem">
+                            <Border
+                                Width="{Binding ElementName=adornedElem, Path=AdornedElement.ActualWidth}"
+                                BorderBrush="Red"
+                                BorderThickness="2" />
                         </AdornedElementPlaceholder>
                     </Grid>
                 </ControlTemplate>
             </Panel.Resources>
 
-            <TextBox Validation.ErrorTemplate="{StaticResource validationTemplate}" >
+            <TextBox Validation.ErrorTemplate="{StaticResource validationTemplate}">
                 <TextBox.Text>
-                    <Binding Path="Number" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged" >
+                    <Binding
+                        Path="Number"
+                        UpdateSourceTrigger="PropertyChanged"
+                        ValidatesOnDataErrors="True">
                         <Binding.ValidationRules>
                             <local:NumericValidation />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            
-            <TextBox Text="{Binding Number, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
-                     Validation.ErrorTemplate="{StaticResource validationTemplate}" />
+
+            <TextBox
+                Text="{Binding Number, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                Validation.ErrorTemplate="{StaticResource validationTemplate}" />
         </StackPanel>
+
+
+        <!--  2.数値のみ受付け  -->
+        <TextBlock
+            Margin="10,20,0,10"
+            FontSize="{StaticResource FontSizeMicro}"
+            Text="数値キー を5文字までしか受け付けない (コピペも対応)" />
+
+        <TextBox
+            Margin="20,0"
+            MaxLength="5">
+            <i:Interaction.Triggers>
+                <!--<i:EventTrigger EventName="PreviewTextInput">-->
+                <i:EventTrigger EventName="TextChanged">
+                    <action:NumericTextInputAction />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
 
     </StackPanel>
 
