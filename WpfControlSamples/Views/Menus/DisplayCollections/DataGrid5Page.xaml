@@ -1,5 +1,5 @@
 ﻿<ContentControl
-    x:Class="WpfControlSamples.Views.Menus.DataGrid4Page"
+    x:Class="WpfControlSamples.Views.Menus.DataGrid5Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
@@ -11,8 +11,10 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
+    <!--  [[WPF]ExcelのようにDataGridのセルを数値に応じて色付けする - Qiita](https://qiita.com/myoga/items/dadabb5911cdfe36d14d)  -->
+
     <ContentControl.Resources>
-        <ctrl:Array2dDataGridConverter x:Key="Array2dDataGridConverter" />
+        <ctrl:ColoredValueArray2dConverter x:Key="ColoredValueArray2dConverter" />
         <conv:RowNumberConverter x:Key="RowNumberConverter" />
     </ContentControl.Resources>
 
@@ -20,12 +22,14 @@
         <TextBlock
             Margin="0,10"
             FontSize="{StaticResource FontSizeMedium}"
-            Text="DataGrid 4" />
+            Text="DataGrid 5" />
 
         <TextBlock
             Margin="10,0"
-            FontSize="{StaticResource FontSizeMicro}"
-            Text="2次元配列をBindingするDataGrid" />
+            FontSize="{StaticResource FontSizeMicro}">
+            <Run Text="DataGrid4 をベースに Excel っぽく値に応じて色付けする。" /><LineBreak />
+            <Run Text="Qiita から少し改良した。" /><LineBreak />
+        </TextBlock>
 
         <Button
             Margin="10"
@@ -33,7 +37,7 @@
             Command="{Binding UpdateDataCommand, Mode=OneTime}"
             Content="Update Source Array" />
 
-        <ctrl:Array2dIntDataGrid
+        <ctrl:ColoredArray2dIntDataGrid
             Margin="10"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
@@ -44,7 +48,7 @@
             ClipboardCopyMode="IncludeHeader"
             HeadersVisibility="All"
             IsReadOnly="True"
-            ItemsSource="{Binding SourceArray2d, Mode=OneWay, Converter={StaticResource Array2dDataGridConverter}}"
+            ItemsSource="{Binding SourceArray2d, Mode=OneWay, Converter={StaticResource ColoredValueArray2dConverter}}"
             SelectionMode="Extended"
             SelectionUnit="Cell">
             <DataGrid.RowHeaderTemplate>
@@ -52,7 +56,7 @@
                     <TextBlock Text="{Binding Path=., RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, Converter={StaticResource RowNumberConverter}, ConverterParameter='Y{0}'}" />
                 </DataTemplate>
             </DataGrid.RowHeaderTemplate>
-        </ctrl:Array2dIntDataGrid>
+        </ctrl:ColoredArray2dIntDataGrid>
 
     </StackPanel>
 

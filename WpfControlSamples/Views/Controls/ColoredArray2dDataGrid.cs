@@ -82,21 +82,22 @@ namespace WpfControlSamples.Views.Controls
             var columnMax = rowSourceList[0].Count;
             for (int columnIndex = 0; columnIndex < columnMax; columnIndex++)
             {
-                var bindingTarget = $"[{columnIndex}]";
+                var columnIndexString = columnIndex.ToString();
+                var bindingTarget = "[" + columnIndexString + "].";
 
                 var style = new Style(typeof(TextBlock));
                 style.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Center));
 
                 style.Setters.Add(new Setter(TextBlock.BackgroundProperty,
-                    new Binding($"{bindingTarget}.{nameof(ValueColorPair<T>.BackgroundBrush)}") { Mode = BindingMode.OneTime }));
+                    new Binding(bindingTarget + $"{nameof(ValueColorPair<T>.BackgroundBrush)}") { Mode = BindingMode.OneTime }));
 
                 style.Setters.Add(new Setter(TextBlock.ForegroundProperty,
-                    new Binding($"{bindingTarget}.{nameof(ValueColorPair<T>.ForegroundBrush)}") { Mode = BindingMode.OneTime }));
+                    new Binding(bindingTarget + $"{nameof(ValueColorPair<T>.ForegroundBrush)}") { Mode = BindingMode.OneTime }));
 
                 this.Columns.Add(new DataGridTextColumn()
                 {
-                    Header = $"X{columnIndex}",
-                    Binding = new Binding($"{bindingTarget}.{nameof(ValueColorPair<T>.Value)}") { Mode = BindingMode.OneTime },
+                    Header = "X" + columnIndexString,
+                    Binding = new Binding(bindingTarget + $"{nameof(ValueColorPair<T>.Value)}") { Mode = BindingMode.OneTime },
                     ElementStyle = style,
                 });
             }

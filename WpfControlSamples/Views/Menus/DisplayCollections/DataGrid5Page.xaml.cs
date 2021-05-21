@@ -19,31 +19,39 @@ using WpfControlSamples.ViewModels;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class DataGrid4Page : ContentControl
+    public partial class DataGrid5Page : ContentControl
     {
-        public DataGrid4Page()
+        public DataGrid5Page()
         {
-            DataContext = new DataGrid4ViewModel();
+            DataContext = new DataGrid5ViewModel();
             InitializeComponent();
         }
     }
 
-    class DataGrid4ViewModel : MyBindableBase
+    class DataGrid5ViewModel : MyBindableBase
     {
-        public ValueArray2d<int> SourceArray2d
+        public ColoredValueArray2d<int> SourceArray2d
         {
             get => _sourceArray2d;
             private set => SetProperty(ref _sourceArray2d, value);
         }
-        private ValueArray2d<int> _sourceArray2d = default!;
+        private ColoredValueArray2d<int> _sourceArray2d = default!;
 
         public ICommand UpdateDataCommand => _updateDataCommand ??= new MyCommand(UpdateData);
         private ICommand _updateDataCommand = default!;
 
-        public DataGrid4ViewModel()
+        public DataGrid5ViewModel()
         {
             var ary2d = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
-            SourceArray2d = new ValueArray2d<int>(ary2d);
+            var ruleSource = new ColoringRule<int>[]
+            {
+                new(6, Colors.RoyalBlue),
+                new(4, Colors.LightSkyBlue),
+                new(2, Colors.AliceBlue),
+            };
+            var rules = new ColoringRules<int>(ruleSource, isDescendingOrder: true);
+
+            SourceArray2d = new ColoredValueArray2d<int>(ary2d, rules);
         }
 
         private readonly Random _random = new();
@@ -59,7 +67,16 @@ namespace WpfControlSamples.Views.Menus
                 array[i] = _random.Next(maxValue);
             }
 
-            SourceArray2d = new ValueArray2d<int>(columns, rows, array);
+            var ruleSource = new ColoringRule<int>[]
+            {
+                new(){ Threshold = maxValue / 4     , Color = Colors.AliceBlue    },
+                new(){ Threshold = maxValue * 2 / 4 , Color = Colors.LightSkyBlue },
+                new(){ Threshold = maxValue * 3 / 4 , Color = Colors.DodgerBlue   },
+                new(){ Threshold = maxValue         , Color = Colors.RoyalBlue    },
+            };
+            var rules = new ColoringRules<int>(ruleSource, isDescendingOrder : false);
+
+            SourceArray2d = new ColoredValueArray2d<int>(columns, rows, array, rules);
         }
     }
 }

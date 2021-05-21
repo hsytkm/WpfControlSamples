@@ -10,8 +10,9 @@ namespace WpfControlSamples.ViewModels
     {
         public int Width { get; }
         public int Height { get; }
-        public int Rows => Height;
+
         public int Columns => Width;
+        public int Rows => Height;
 
         protected T[] _source;
         public ReadOnlySpan<T> GetSpan() => _source.AsSpan();
@@ -55,7 +56,6 @@ namespace WpfControlSamples.ViewModels
         protected bool IsOutOfRangeX(int x) => x < 0 || Width <= x;
         protected bool IsOutOfRangeY(int y) => y < 0 || Height <= y;
 
-#if false
         /// <summary>指定行の要素を全て列挙します</summary>
         public ReadOnlySpan<T> GetRowSpan(int y)
         {
@@ -63,9 +63,7 @@ namespace WpfControlSamples.ViewModels
             return _source.AsSpan(Width * y, Width);
         }
 
-        /// <summary>指定行の要素を全て列挙します</summary>
-        public IReadOnlyList<T> GetRowList(int y) => GetRowSpan(y).ToArray();
-
+#if false
         /// <summary>指定行の要素を全て列挙します</summary>
         public IReadOnlyList<IReadOnlyList<T>> GetRowsList()
         {
