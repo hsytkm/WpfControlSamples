@@ -1,0 +1,59 @@
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.DDataContextPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{x:Static local:Design.DDataContextViewModel}"
+    d:DesignHeight="200"
+    d:DesignWidth="600"
+    mc:Ignorable="d">
+
+    <ContentControl.DataContext>
+        <local:DDataContextViewModel />
+    </ContentControl.DataContext>
+
+    <!--    コレ(static)以外の書き方もある。 static が一番ズボラな気がする。
+                d:DataContext="{x:Static local:Design.DDataContextViewModel}"
+
+            例1
+                d:DataContext="{d:DesignInstance {x:Type local:DDataContextViewModel}, IsDesignTimeCreatable=True}"
+
+            例2
+                <d:DesignDataExtension.DataContext>
+                    <local:DDataContextViewModel />
+                </d:DesignDataExtension.DataContext>
+
+            例2 より 例1 の方が便利らしい（xaml から F12 でジャンプできる）が、
+            IsDesignTimeCreatable=True の指定が必要で、
+            デフォルトctor を定義しておく必要があるらしい。
+    -->
+
+    <StackPanel
+        Margin="10"
+        d:Background="White">
+
+        <TextBlock
+            Margin="0,10,0,0"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="d:DataContext" />
+
+        <TextBlock
+            Margin="10"
+            FontSize="{StaticResource FontSizeMicro}">
+            <Run Text="d:DataContext に static の ViewModel を流し込んで、" /><LineBreak />
+            <Run Text="デザイン モードで Binding 値を表示させます。" /><LineBreak /><LineBreak />
+            <Run Text="いつもF5実行して見ちゃうので、あまり使わないかも。" />
+        </TextBlock>
+
+        <TextBlock
+            Margin="20"
+            HorizontalAlignment="Center"
+            FontSize="{StaticResource FontSizeSmall}"
+            Foreground="Blue"
+            Text="{Binding Message, Mode=OneWay}" />
+
+    </StackPanel>
+
+</ContentControl>

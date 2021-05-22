@@ -297,6 +297,7 @@ namespace WpfControlSamples.Views
             typeof(AttachedEventPage),
             typeof(DynamicXamlLoadPage),
             typeof(ParseXamlPage),
+            typeof(DDataContextPage),
         };
 
         public static IEnumerable<PageTable> AllPageTables { get; } = new[]
