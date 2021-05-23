@@ -15,7 +15,7 @@
 
     <ContentControl.Resources>
         <ctrl:ColoredValueArray2dConverter x:Key="ColoredValueArray2dConverter" />
-        <conv:RowNumberConverter x:Key="RowNumberConverter" />
+        <conv:DataGridRowIndexConverter x:Key="DataGridRowIndexConverter" />
     </ContentControl.Resources>
 
     <StackPanel Margin="10">
@@ -24,9 +24,7 @@
             FontSize="{StaticResource FontSizeMedium}"
             Text="DataGrid 5" />
 
-        <TextBlock
-            Margin="10,0"
-            FontSize="{StaticResource FontSizeMicro}">
+        <TextBlock Margin="10,0" FontSize="{StaticResource FontSizeMicro}">
             <Run Text="DataGrid4 をベースに Excel っぽく値に応じて色付けする。" /><LineBreak />
             <Run Text="Qiita から少し改良した。" /><LineBreak />
         </TextBlock>
@@ -39,6 +37,7 @@
 
         <ctrl:ColoredArray2dIntDataGrid
             Margin="10"
+            AutoGenerateColumns="False"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             CanUserReorderColumns="False"
@@ -51,9 +50,11 @@
             ItemsSource="{Binding SourceArray2d, Mode=OneWay, Converter={StaticResource ColoredValueArray2dConverter}}"
             SelectionMode="Extended"
             SelectionUnit="Cell">
+
+            <!--  DataGridRowIndexConverter は仮想化に対応していません  -->
             <DataGrid.RowHeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Path=., RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, Converter={StaticResource RowNumberConverter}, ConverterParameter='Y{0}'}" />
+                    <TextBlock Text="{Binding Path=., RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, Converter={StaticResource DataGridRowIndexConverter}, ConverterParameter='Y{0}'}" />
                 </DataTemplate>
             </DataGrid.RowHeaderTemplate>
         </ctrl:ColoredArray2dIntDataGrid>

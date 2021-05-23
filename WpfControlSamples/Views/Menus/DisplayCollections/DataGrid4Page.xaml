@@ -13,7 +13,7 @@
 
     <ContentControl.Resources>
         <ctrl:Array2dDataGridConverter x:Key="Array2dDataGridConverter" />
-        <conv:RowNumberConverter x:Key="RowNumberConverter" />
+        <conv:DataGridRowIndexConverter x:Key="DataGridRowIndexConverter" />
     </ContentControl.Resources>
 
     <StackPanel Margin="10">
@@ -35,6 +35,7 @@
 
         <ctrl:Array2dIntDataGrid
             Margin="10"
+            AutoGenerateColumns="False"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             CanUserReorderColumns="False"
@@ -47,9 +48,11 @@
             ItemsSource="{Binding SourceArray2d, Mode=OneWay, Converter={StaticResource Array2dDataGridConverter}}"
             SelectionMode="Extended"
             SelectionUnit="Cell">
+
+            <!--  DataGridRowIndexConverter は仮想化に対応していません  -->
             <DataGrid.RowHeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Path=., RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, Converter={StaticResource RowNumberConverter}, ConverterParameter='Y{0}'}" />
+                    <TextBlock Text="{Binding Path=., RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, Converter={StaticResource DataGridRowIndexConverter}, ConverterParameter='Y{0}'}" />
                 </DataTemplate>
             </DataGrid.RowHeaderTemplate>
         </ctrl:Array2dIntDataGrid>

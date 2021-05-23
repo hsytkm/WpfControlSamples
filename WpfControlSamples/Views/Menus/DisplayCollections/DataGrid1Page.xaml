@@ -21,7 +21,7 @@
     <ContentControl.Resources>
         <ResourceDictionary>
             <vc:Array2dToDataTableConverter x:Key="Array2ToTableConverter" />
-            <vc:RowNumberConverter x:Key="RowNumberConverter" />
+            <vc:DataGridRowIndexConverter x:Key="DataGridRowIndexConverter" />
         </ResourceDictionary>
     </ContentControl.Resources>
 
@@ -38,9 +38,11 @@
                 <DataGrid DockPanel.Dock="Left" Margin="0,0,20,0"
                           HeadersVisibility="All"
                           ItemsSource="{Binding DataTableSource1, Mode=OneWay}" >
+
+                    <!-- DataGridRowIndexConverter は仮想化に対応していません -->
                     <DataGrid.RowHeaderTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=., RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowNumberConverter}, ConverterParameter='R{0}'}" />
+                            <TextBlock Text="{Binding Path=., RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, Converter={StaticResource DataGridRowIndexConverter}, ConverterParameter='R{0}'}" />
                         </DataTemplate>
                     </DataGrid.RowHeaderTemplate>
                 </DataGrid>

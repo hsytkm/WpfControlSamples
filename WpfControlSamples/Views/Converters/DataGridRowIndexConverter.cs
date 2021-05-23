@@ -6,7 +6,9 @@ using System.Windows.Data;
 // https://blog.magnusmontin.net/2014/08/18/right-aligned-row-numbers-datagridrowheader-wpf/
 namespace WpfControlSamples.Views.Converters
 {
-    public class RowNumberConverter : IValueConverter
+    // DataGrid が仮想化されている場合、Index値 がずれます。
+    // DataGridRowIndexAction を使いましょう。（常にそちらを使っとけば良い気もします）
+    public class DataGridRowIndexConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
