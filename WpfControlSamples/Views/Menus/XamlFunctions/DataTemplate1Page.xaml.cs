@@ -17,9 +17,9 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class DataTemplatePage : ContentControl
+    public partial class DataTemplate1Page : ContentControl
     {
-        public DataTemplatePage()
+        public DataTemplate1Page()
         {
             InitializeComponent();
 

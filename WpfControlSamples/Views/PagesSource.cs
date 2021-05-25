@@ -174,7 +174,6 @@ namespace WpfControlSamples.Views
 
         private static readonly IEnumerable<Type> _itemTemplatePages = new[]
         {
-            typeof(DataTemplatePage),
             typeof(VisualStateManagerPage),
             typeof(ItemTemplateSelectorPage),
         };
@@ -299,6 +298,8 @@ namespace WpfControlSamples.Views
             typeof(DynamicXamlLoadPage),
             typeof(ParseXamlPage),
             typeof(DDataContextPage),
+            typeof(DataTemplate1Page),
+            typeof(DataTemplate2Page),
         };
 
         public static IEnumerable<PageTable> AllPageTables { get; } = new[]
