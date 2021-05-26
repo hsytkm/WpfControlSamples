@@ -37,9 +37,10 @@
             FontSize="{StaticResource FontSizeMicro}"
             Text="DataGrid の仮想化（仮想化しないと 100x100 で数秒＋300MB使用とかに）" />
 
-        <TextBlock Margin="10" DockPanel.Dock="Top">
-            <Run Text="EnableColumnVirtualization (default=false) / EnableRowVirtualization (default=true) を true にする" />
-        </TextBlock>
+        <TextBlock
+            Margin="10"
+            DockPanel.Dock="Top"
+            Text="EnableColumnVirtualization (default=false) / EnableRowVirtualization (default=true) を true にする" />
 
         <DockPanel Margin="10,10,0,0" DockPanel.Dock="Top">
             <TextBlock DockPanel.Dock="Left" Text="Row/Column Length :" />

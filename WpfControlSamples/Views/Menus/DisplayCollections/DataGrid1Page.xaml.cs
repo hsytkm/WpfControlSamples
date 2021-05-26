@@ -70,41 +70,56 @@ namespace WpfControlSamples.Views.Menus
         }
         #endregion
 
-        public IList<DataGridProduct> Products { get; } = new List<DataGridProduct>()
+        public IReadOnlyList<DataGridProduct> Products { get; } = DataGridProduct.Products;
+    }
+
+    class DataGridProduct : MyBindableBase
+    {
+        public enum ProductMaker { Panasonic, Sony, Canon };
+
+        // setterがないので Bland のみ View で書き換えられない
+        public string Bland { get; }
+        public string Name
+        {
+            get => _name;
+            set => SetProperty(ref _name, value);
+        }
+        private string _name;
+        public int Price
+        {
+            get => _price;
+            set => SetProperty(ref _price, value);
+        }
+        private int _price;
+        public bool HasStock
+        {
+            get => _hasStock;
+            set => SetProperty(ref _hasStock, value);
+        }
+        private bool _hasStock;
+        public ProductMaker Maker
+        {
+            get => _maker;
+            set => SetProperty(ref _maker, value);
+        }
+        private ProductMaker _maker;
+        public DateTime ReleaseDate
+        {
+            get => _releaseDate;
+            set => SetProperty(ref _releaseDate, value);
+        }
+        private DateTime _releaseDate;
+
+        public DataGridProduct(string bland, string name, int price, bool hasStock, ProductMaker maker, DateTime releaseDate) =>
+            (Bland, Name, Price, HasStock, Maker, ReleaseDate) = (bland, name, price, hasStock, maker, releaseDate);
+
+        public static IReadOnlyList<DataGridProduct> Products = new DataGridProduct[]
         {
             new DataGridProduct("Lumix", "GH5", 5555, true, DataGridProduct.ProductMaker.Panasonic, new DateTime(2017,3,23)),
             new DataGridProduct("α", "α7", 777, false, DataGridProduct.ProductMaker.Sony, new DateTime(2013,11,15)),
             new DataGridProduct("EOS", "1DX", 10000, true, DataGridProduct.ProductMaker.Canon, new DateTime(2012,6,20)),
             new DataGridProduct("Kiss","X7", 3000, true, DataGridProduct.ProductMaker.Canon, new DateTime(2013,4,24)),
         };
-    }
-
-    class DataGridProduct
-    {
-        public enum ProductMaker { Panasonic, Sony, Canon };
-
-        // setterがないので Bland のみ View で書き換えられない
-        public string Bland { get; }
-        public string Name { get; set; }
-        public int Price { get; set; }
-        public bool HasStock { get; set; }
-        public ProductMaker Maker { get; set; }
-        public DateTime ReleaseDate
-        {
-            get => _releaseDate;
-            set
-            {
-                if (_releaseDate != value)
-                {
-                    _releaseDate = value;
-                    Debug.WriteLine(_releaseDate);
-                }
-            }
-        }
-        private DateTime _releaseDate;
-
-        public DataGridProduct(string bland, string name, int price, bool hasStock, ProductMaker maker, DateTime releaseDate) =>
-            (Bland, Name, Price, HasStock, Maker, ReleaseDate) = (bland, name, price, hasStock, maker, releaseDate);
     }
 
     class ProductMakerToComboBox

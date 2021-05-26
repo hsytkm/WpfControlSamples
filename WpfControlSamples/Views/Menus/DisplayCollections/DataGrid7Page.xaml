@@ -1,0 +1,120 @@
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.DataGrid7Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
+    xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+    xmlns:ctrl="clr-namespace:WpfControlSamples.Views.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <ContentControl.Resources>
+        <conv:DataGridRowIndexConverter x:Key="DataGridRowIndexConverter" />
+    </ContentControl.Resources>
+
+    <DockPanel Margin="10">
+        <TextBlock
+            Margin="0,10"
+            DockPanel.Dock="Top"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="DataGrid 7" />
+
+        <TextBlock
+            Margin="10,0"
+            DockPanel.Dock="Top"
+            FontSize="{StaticResource FontSizeMicro}">
+            <Run Text="DataGrid の行列入れ替え" /> <LineBreak />
+            <Run Text="別 DataGrid の値反映が即時行われないけど まぁいいや（調べてない）" />
+        </TextBlock>
+
+        <TextBlock
+            Margin="10,10,10,0"
+            DockPanel.Dock="Top"
+            Text="通常の行列" />
+
+        <DataGrid
+            Margin="10"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserReorderColumns="False"
+            CanUserResizeColumns="False"
+            CanUserResizeRows="False"
+            CanUserSortColumns="False"
+            ClipboardCopyMode="IncludeHeader"
+            DockPanel.Dock="Top"
+            HeadersVisibility="All"
+            ItemsSource="{Binding Products, Mode=OneWay}"
+            SelectionMode="Extended"
+            SelectionUnit="Cell">
+
+            <!--  DataGridRowIndexConverter は仮想化に対応していません  -->
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=., RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, Converter={StaticResource DataGridRowIndexConverter}, ConverterParameter='No. {0}'}" />
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+        </DataGrid>
+
+        <TextBlock
+            Margin="10,10,10,0"
+            DockPanel.Dock="Top"
+            Text="行列入れ替え版（ItemsSource は同じ、xamlのみの対応）" />
+
+        <DataGrid
+            Margin="10"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserReorderColumns="False"
+            CanUserResizeColumns="False"
+            CanUserResizeRows="False"
+            CanUserSortColumns="False"
+            ClipboardCopyMode="IncludeHeader"
+            DockPanel.Dock="Top"
+            HeadersVisibility="All"
+            ItemsSource="{Binding Products, Mode=OneWay}"
+            SelectionMode="Extended"
+            SelectionUnit="Cell">
+
+            <!--  DataGridの行列入れ替え（xamlのみで対応可能）ここから https://archive.codeplex.com/?p=rotatedwpfdatagrid  -->
+            <DataGrid.Resources>
+                <Style x:Key="DataGridBase" TargetType="{x:Type Control}">
+                    <Setter Property="LayoutTransform">
+                        <Setter.Value>
+                            <TransformGroup>
+                                <RotateTransform Angle="-90" />
+                                <ScaleTransform ScaleX="1" ScaleY="-1" />
+                            </TransformGroup>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+                </Style>
+                <Style BasedOn="{StaticResource DataGridBase}" TargetType="{x:Type DataGridCell}" />
+                <Style BasedOn="{StaticResource DataGridBase}" TargetType="{x:Type DataGridColumnHeader}" />
+                <Style BasedOn="{StaticResource DataGridBase}" TargetType="{x:Type DataGridRowHeader}" />
+            </DataGrid.Resources>
+
+            <DataGrid.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="90" />
+                    <MatrixTransform Matrix="-1, 0, 0, 1, 0, 0" />
+                </TransformGroup>
+            </DataGrid.LayoutTransform>
+            <!--  DataGridの行列入れ替え（xamlのみで対応可能）ここまで  -->
+
+            <!--  DataGridRowIndexConverter は仮想化に対応していません  -->
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=., RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, Converter={StaticResource DataGridRowIndexConverter}, ConverterParameter='No. {0}'}" />
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+        </DataGrid>
+
+        <Border />
+    </DockPanel>
+
+</ContentControl>
