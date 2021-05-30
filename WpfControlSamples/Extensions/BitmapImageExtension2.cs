@@ -43,7 +43,7 @@ namespace WpfControlSamples.Extensions
             {
                 for (int n = y; n < y + imagePixels.Stride; n += imagePixels.BytesPerPixel)
                 {
-                    var pixel = pixels[n + ch];
+                    var pixel = pixels[n + ch];     // ◆画素数のstructにCastした方が速そう
 
                     // BGRA
                     pixels[n + 0] = pixel;
@@ -73,8 +73,8 @@ namespace WpfControlSamples.Extensions
             int imageHeight = bitmap.PixelHeight;
             int pixelsByte = (bitmap.Format.BitsPerPixel + 7) / 8; // bit→Byte変換
 
-            pointX = Math.Max(0, Math.Min(imageWidth - 1, pointX));
-            pointY = Math.Max(0, Math.Min(imageHeight - 1, pointY));
+            pointX = Math.Clamp(pointX, 0, imageWidth - 1);
+            pointY = Math.Clamp(pointY, 0, imageHeight - 1);
 
             var roi = new Int32Rect(pointX, pointY, 1, 1);
             var stride = roi.Width * pixelsByte;
@@ -112,22 +112,14 @@ namespace WpfControlSamples.Extensions
         /// <returns></returns>
         private static WriteableBitmap CreateWriteableBitmap(ImagePixels image)
         {
-            var dpi = 96.0;
+            const double dpi = 96.0;
             var pixelFormat = PixelFormats.Bgra32;
             var bitmap = new WriteableBitmap(image.Width, image.Height, dpi, dpi, pixelFormat, null);
 
-            try
-            {
-                bitmap.Lock();
+            bitmap.WritePixels(
+                new Int32Rect(0, 0, image.Width, image.Height),
+                image.Pixels, image.Stride, 0);
 
-                bitmap.WritePixels(
-                    new Int32Rect(0, 0, image.Width, image.Height),
-                    image.Pixels, image.Stride, 0);
-            }
-            finally
-            {
-                bitmap.Unlock();
-            }
             return bitmap;
         }
 

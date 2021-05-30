@@ -6,7 +6,7 @@ using System.ComponentModel;
 namespace WpfControlSamples.ViewModels
 {
     /// <summary>
-    /// ObservableCollection と SelectedItem をペアで管理する
+    /// ObservableCollection&lt;T&gt; と SelectedItem をペアで管理する
     /// （where T : struct の動作が自信ない。 T? をちゃんと理解してない）
     /// </summary>
     sealed class ObservableCollectionSelectedItemPair<T> : ObservableCollection<T>
@@ -28,8 +28,7 @@ namespace WpfControlSamples.ViewModels
         private T? _selectedItem;
 
         public ObservableCollectionSelectedItemPair() { }
-        public ObservableCollectionSelectedItemPair(IEnumerable<T> items)
-            : this() => AddRange(items);
+        public ObservableCollectionSelectedItemPair(IEnumerable<T> items) => AddRange(items);
 
         public void AddRange(IEnumerable<T> items)
         {
@@ -55,22 +54,22 @@ namespace WpfControlSamples.ViewModels
         {
             if (SelectedItem is not null)
             {
-                var selectedIndex = this.IndexOf(SelectedItem);
+                var selectedIndex = IndexOf(SelectedItem);
                 if (index == selectedIndex)
                 {
-                    if (this.Count <= 1)
-                    {
-                        SelectedItem = default;
-                    }
-                    else
-                    {
-                        SelectedItem = (0 < selectedIndex)
+                    SelectedItem = Count <= 1
+                        ? default
+                        : (0 < selectedIndex)
                             ? this[selectedIndex - 1]
                             : this[selectedIndex + 1];
-                    }
                 }
             }
             base.RemoveItem(index);
         }
+    }
+
+    static class ObservableCollectionSelectedItemPair
+    {
+        public static ObservableCollectionSelectedItemPair<T> Create<T>(IEnumerable<T> items) => new(items);
     }
 }

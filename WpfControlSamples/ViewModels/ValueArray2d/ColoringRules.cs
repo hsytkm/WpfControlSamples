@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Windows.Media;
 
@@ -10,7 +11,7 @@ namespace WpfControlSamples.ViewModels
     public record ColoringRules<T> where T : struct, IComparable<T>
     {
         /// <summary>色付けルールです。先頭の要素から順に判定されます。</summary>
-        public IReadOnlyList<ColoringRule<T>> Rules { get; }
+        public IImmutableList<ColoringRule<T>> Rules { get; }
 
         /// <summary>色付けの判定順序（デフォは昇順）</summary>
         public bool IsDescendingOrder { get; }
@@ -18,7 +19,7 @@ namespace WpfControlSamples.ViewModels
         public ColoringRules(IEnumerable<ColoringRule<T>> coloringRules, bool isDescendingOrder = false)
         {
             IsDescendingOrder = isDescendingOrder;
-            Rules = (coloringRules is IReadOnlyList<ColoringRule<T>> list) ? list : coloringRules.ToArray();
+            Rules = ImmutableArray.CreateRange(coloringRules);
         }
 
         public Color GetColor(T value)
@@ -44,7 +45,7 @@ namespace WpfControlSamples.ViewModels
             Equal, LessThan, LessThanOrEqualTo, GreaterThan, GreaterThanOrEqualTo,
         }
 
-        public T Threshold { get; init; } = default;
+        public T Threshold { get; init; }
         public Color Color { get; init; } = Colors.Black;
 
         public ColoringRule() { }
@@ -58,9 +59,9 @@ namespace WpfControlSamples.ViewModels
             {
                 CompareOperator.Equal => compare == 0,
                 CompareOperator.LessThan => compare < 0,
-                CompareOperator.LessThanOrEqualTo => compare < 0 || compare == 0,
+                CompareOperator.LessThanOrEqualTo => compare is < 0 or 0,
                 CompareOperator.GreaterThan => compare > 0,
-                CompareOperator.GreaterThanOrEqualTo => compare > 0 || compare == 0,
+                CompareOperator.GreaterThanOrEqualTo => compare is > 0 or 0,
                 _ => throw new NotImplementedException()
             };
 

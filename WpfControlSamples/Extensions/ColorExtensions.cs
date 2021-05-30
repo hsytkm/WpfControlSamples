@@ -5,10 +5,10 @@ namespace WpfControlSamples.Extensions
 {
     static class ColorExtensions
     {
-        public static SolidColorBrush ToFreezedSolidColorBrush(this Color color)
+        public static SolidColorBrush ToSolidColorBrush(this Color color, bool isFrozen = true)
         {
             var brush = new SolidColorBrush(color);
-            brush.Freeze();
+            if (isFrozen) brush.Freeze();
             return brush;
         }
 

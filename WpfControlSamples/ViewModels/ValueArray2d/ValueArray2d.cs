@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WpfControlSamples.ViewModels
 {
@@ -14,7 +15,7 @@ namespace WpfControlSamples.ViewModels
         public int Columns => Width;
         public int Rows => Height;
 
-        protected T[] _source;
+        private readonly T[] _source;
         public ReadOnlySpan<T> GetSpan() => _source.AsSpan();
 
         public ValueArray2d(int width, int height, IEnumerable<T> source)
@@ -25,23 +26,13 @@ namespace WpfControlSamples.ViewModels
             int n = 0;
             foreach (var data in source)
             {
-                if (n >= _source.Length) throw new IndexOutOfRangeException();
                 _source[n++] = data;
             }
         }
 
         public ValueArray2d(T[,] array2d)
-        {
-            (Width, Height) = (array2d.GetLength(1), array2d.GetLength(0));
-            _source = new T[Width * Height];
-
-            int n = 0;
-            foreach (var data in array2d)
-            {
-                if (n >= _source.Length) throw new IndexOutOfRangeException();
-                _source[n++] = data;
-            }
-        }
+            : this(array2d.GetLength(1), array2d.GetLength(0), array2d.Cast<T>())
+        { }
 
         public ref T this[int x, int y]
         {
@@ -49,7 +40,7 @@ namespace WpfControlSamples.ViewModels
             {
                 if (IsOutOfRangeX(x)) throw new ArgumentOutOfRangeException(nameof(x));
                 if (IsOutOfRangeY(y)) throw new ArgumentOutOfRangeException(nameof(y));
-                return ref _source[Width * y + x];
+                return ref _source[(Width * y) + x];
             }
         }
 

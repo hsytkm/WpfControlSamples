@@ -26,17 +26,17 @@ namespace WpfControlSamples.Extensions
         }
 
         // 直線の妥当性チェック
-        public static bool IsValidLine(in Point p0, in Point p1) => p0 != p1;
+        public static bool IsValidLine(Point p0, Point p1) => p0 != p1;
 
         // 傾き
-        public static double GetSlope(in Point p0, in Point p1)
+        public static double GetSlope(Point p0, Point p1)
         {
             var bb = p1.X - p0.X;
             return bb == 0 ? 0 : (p1.Y - p0.Y) / bb;
         }
 
         // 切片
-        public static double GetIntercept(in Point p0, double slope) => p0.Y - (slope * p0.X);
+        public static double GetIntercept(Point p0, double slope) => p0.Y - (slope * p0.X);
 
 
         // 2本の直線(傾き/切片)から交点を求める(線分を2点の外側に延長して計算する)
@@ -85,7 +85,7 @@ namespace WpfControlSamples.Extensions
         }
 
         // P2 が P0, P1 の範囲内に存在するかチェック
-        public static bool IsInsidePoint(in Point p0, in Point p1, in Point p2)
+        public static bool IsInsidePoint(Point p0, Point p1, Point p2)
         {
             var xmin = Math.Min(p0.X, p1.X);
             var xmax = Math.Max(p0.X, p1.X);

@@ -57,7 +57,7 @@ namespace WpfControlSamples.Views.Menus
         public DataTemplateChildViewModel(string name, Color color)
         {
             Name = name;
-            BgBrush = color.ToFreezedSolidColorBrush();
+            BgBrush = color.ToSolidColorBrush();
         }
 
         // xaml用

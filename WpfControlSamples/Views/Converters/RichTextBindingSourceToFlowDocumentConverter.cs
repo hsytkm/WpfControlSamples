@@ -21,7 +21,7 @@ namespace WpfControlSamples.Views.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(value is RichTextBindingSource bindingSource))
+            if (value is not RichTextBindingSource bindingSource)
                 return Binding.DoNothing;
 
             var paragraph = new Paragraph();
@@ -29,7 +29,7 @@ namespace WpfControlSamples.Views.Converters
             paragraph.Inlines.Add(new Run()
             {
                 Text = bindingSource.Text,
-                Foreground = bindingSource.Color.ToFreezedSolidColorBrush(),
+                Foreground = bindingSource.Color.ToSolidColorBrush(),
                 FontSize = bindingSource.FontSize,
                 //FontWeight = FontWeights.UltraBold,
             });

@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Xaml.Behaviors;
+﻿using Microsoft.Xaml.Behaviors;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -8,16 +7,17 @@ using System.Windows.Controls.Primitives;
 
 namespace WpfControlSamples.Views.Actions
 {
-    // Selector.SelectedItems に setter がないので TriggerAction で対応
-    //
-    //  <i:Interaction.Triggers>
-    //      <i:EventTrigger EventName="SelectionChanged" >
-    //          <action:NotifySelectedItemsAction NotifySelectedItemsCollection="{Binding NotifySelectedItems, Mode=OneTime}" />
-    //       </i:EventTrigger>
-    //  </i:Interaction.Triggers>
-    //
-    // Generic クラスにしたいけど、WPF は x:TypeArguments(XAML2009) が使えないっぽい。なんでやねん
-
+    /* Selector.SelectedItems に setter がないので TriggerAction で対応
+     *
+     *  <i:Interaction.Triggers>
+     *      <i:EventTrigger EventName="SelectionChanged" >
+     *          <action:NotifySelectedItemsAction NotifySelectedItemsCollection="{Binding NotifySelectedItems, Mode=OneTime}" />
+     *       </i:EventTrigger>
+     *  </i:Interaction.Triggers>
+     *
+     * Generic クラスにしたいけど、WPF の x:TypeArguments はルート要素じゃないと使えないっぽい。なんでやねん
+     * https://docs.microsoft.com/ja-jp/dotnet/desktop/xaml-services/generics
+     */
     class NotifySelectedItemsAction : TriggerAction<Selector>
     {
         public static readonly DependencyProperty NotifySelectedItemsCollectionProperty =

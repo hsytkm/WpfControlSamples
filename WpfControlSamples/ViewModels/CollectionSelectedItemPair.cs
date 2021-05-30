@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.ComponentModel;
-using System.Linq;
 
 namespace WpfControlSamples.ViewModels
 {
     /// <summary>
-    /// IReadOnlyList と SelectedItem をペアで管理する。
+    /// IImmutableList&lt;T&gt; と SelectedItem をペアで管理する。
     /// コレクションが変化しない場合に使用する（変化する場合は ObservableCollectionSelectedItemPair）
     /// </summary>
-    public sealed class CollectionSelectedItemPair<T> : INotifyPropertyChanged
+    sealed class CollectionSelectedItemPair<T> : INotifyPropertyChanged
     {
-        public IReadOnlyList<T> Collection { get; }
+        public IImmutableList<T> Collection { get; }
 
         public T? SelectedItem
         {
@@ -31,10 +31,15 @@ namespace WpfControlSamples.ViewModels
 
         public CollectionSelectedItemPair(IEnumerable<T> items)
         {
-            Collection = items.ToArray();
+            Collection = ImmutableArray.CreateRange(items);
 
             if (Collection.Count == 0) throw new ArgumentException("items is empty.");
             SelectedItem = Collection[0];
         }
+    }
+
+    static class CollectionSelectedItemPair
+    {
+        public static CollectionSelectedItemPair<T> Create<T>(IEnumerable<T> items) => new(items);
     }
 }

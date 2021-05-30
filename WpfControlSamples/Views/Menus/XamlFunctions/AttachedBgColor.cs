@@ -42,7 +42,7 @@ namespace WpfControlSamples.Views.Menus
             if (sender is Control control && newValue is string name)
             {
                 var color = GetExistColorKeyValue(name).Color;
-                control.Background = color.ToFreezedSolidColorBrush();
+                control.Background = color.ToSolidColorBrush();
             }
             //Debug.WriteLine($"{nameof(AttachedBgColor)}_propertyChanged: {oldValue} -> {newValue}");
         }
