@@ -76,6 +76,7 @@ namespace WpfControlSamples.Views
             typeof(DataGrid5Page),
             typeof(DataGrid6Page),
             typeof(DataGrid7Page),
+            typeof(DataGrid8Page),
             typeof(CollectionView1Page),
             typeof(CollectionView2Page),
             typeof(CollectionView3Page),
