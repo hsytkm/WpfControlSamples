@@ -27,6 +27,7 @@ namespace WpfControlSamples.ViewModels
                     foreach (var coloredText in GetColoredTextProperties())
                     {
                         sb.Append(coloredText.Text.ToLowerInvariant());
+                        sb.Append(CompositeColoredText.Separator);      // ワードが密着すると意図通りに色付けされない
                     }
                     _concatLowerText = sb.ToString();
                 }

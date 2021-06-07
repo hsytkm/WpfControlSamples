@@ -117,5 +117,28 @@ namespace WpfControlSamples.Views.Behaviors
             get => (string)GetValue(FilterWordProperty);
             set => SetValue(FilterWordProperty, value);
         }
+
+        protected override void OnAttached()
+        {
+            base.OnAttached();
+
+            var dpd = DependencyPropertyDescriptor.FromProperty(ItemsControl.ItemsSourceProperty, typeof(DataGrid));
+            dpd?.AddValueChanged(AssociatedObject, AssociatedObject_ItemsSourceChanged);
+        }
+
+        protected override void OnDetaching()
+        {
+            var dpd = DependencyPropertyDescriptor.FromProperty(ItemsControl.ItemsSourceProperty, typeof(DataGrid));
+            dpd?.RemoveValueChanged(AssociatedObject, AssociatedObject_ItemsSourceChanged);
+
+            base.OnDetaching();
+        }
+
+        /// <summary>ItemsSource変化時の絞り込み</summary>
+        private static void AssociatedObject_ItemsSourceChanged(object? sender, EventArgs e)
+        {
+            if (sender is not DataGrid dataGrid) return;
+            OnFilterWordPropertyChanged(dataGrid);
+        }
     }
 }

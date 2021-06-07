@@ -110,6 +110,8 @@ namespace WpfControlSamples.Views.Behaviors
 
             if (ct.ColoredRanges.Count > 0)         // may be faster than Any()
             {
+                textBlock.Text = "";
+
                 if (textBlock.Inlines.Count == 0)   // duplicate display when scrolling
                     textBlock.Inlines.AddRange(CreateRuns(ct));
             }

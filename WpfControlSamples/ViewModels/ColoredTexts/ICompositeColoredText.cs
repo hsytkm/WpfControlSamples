@@ -24,6 +24,9 @@ namespace WpfControlSamples.ViewModels
 
     static class CompositeColoredText
     {
+        /// <summary>複数の検索文字列の区切り</summary>
+        public const char Separator = ' ';
+
         /// <summary>
         /// 引数の検索語がTagにヒットするかを判定する Predicate を返します。
         /// CollectionView.Filter に設定します
@@ -34,7 +37,7 @@ namespace WpfControlSamples.ViewModels
         {
             // 空白で単語を分けて検索する（IgnoreCaseの仕様なので小文字化して渡す）
             var lowerWords = word.ToLowerInvariant()
-                .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                .Split(Separator, StringSplitOptions.RemoveEmptyEntries);
 
             return lowerWords.Length > 0
             ? obj =>
