@@ -100,9 +100,12 @@ namespace WpfControlSamples.Models
                 {
                     var list = new List<NameValueKey>();
 
-                    var type = typeof(FileVersionInfo);
-                    var info = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
-                    var source = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+                    // Assembly.GetExecutingAssembly().Location は、単一ファイルアプリで空文字を返すので使用しない!!
+                    // ダメ: Assembly.GetExecutingAssembly().Location
+                    var exePath = Environment.GetCommandLineArgs()[0];
+
+                    FileVersionInfo info = FileVersionInfo.GetVersionInfo(exePath);
+                    var source = typeof(FileVersionInfo).GetProperties(BindingFlags.Instance | BindingFlags.Public);
                     foreach (var x in source)
                     {
                         try

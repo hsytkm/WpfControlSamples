@@ -6,8 +6,9 @@ namespace WpfControlSamples.Models
 {
     class SampleModelContext
     {
-        public string AppName { get; } =
-            FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location)?.ProductName ?? "unknown";
+        // Assembly.GetExecutingAssembly().Location は、単一ファイルアプリで空文字を返すので使用しない!!
+        // ダメ: FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location)?.ProductName
+        public string AppName { get; } = Assembly.GetExecutingAssembly().GetName().Name ?? "unknown";
 
     }
 }
