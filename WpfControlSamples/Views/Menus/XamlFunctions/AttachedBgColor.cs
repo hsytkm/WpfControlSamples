@@ -63,9 +63,9 @@ namespace WpfControlSamples.Views.Menus
         // 引数の名前が存在したらColorを返す(存在しなければデフォ色)
         private static (string Name, Color Color) GetExistColorKeyValue(string name)
         {
-            var n = name.ToLower();
+            var n = name.ToLowerInvariant();
             var key = Models.SampleData.WpfColors
-                .FirstOrDefault(x => x.Name.ToLower() == n);
+                .FirstOrDefault(x => x.Name.ToLowerInvariant() == n);
 
             return (key != default) ? key : GetDefaultBgColorKeyValue();
         }

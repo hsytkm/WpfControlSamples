@@ -58,7 +58,7 @@ namespace WpfControlSamples.Views.Menus
         private string _inputText3;
 
         public ICommand TextEnterCommand => _textEnterCommand ??=
-            new MyCommand<string>(text => InputText2 = text.ToUpper());
+            new MyCommand<string>(text => InputText2 = text.ToUpperInvariant());
         private ICommand _textEnterCommand;
 
     }

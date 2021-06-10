@@ -32,7 +32,7 @@ namespace WpfControlSamples.Views.Menus
 
         public bool? ResourceMyBoolean
         {
-            get => Properties.Resources.MyBoolean.ToLower() switch
+            get => Properties.Resources.MyBoolean.ToLowerInvariant() switch
             {
                 "true" => true,
                 "false" => false,

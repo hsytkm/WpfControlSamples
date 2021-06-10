@@ -54,7 +54,7 @@ namespace WpfControlSamples.Views.Menus
             if (value is not string s)
                 return base.ConvertFrom(context, culture, value);
 
-            return s.ToLower() switch
+            return s.ToLowerInvariant() switch
             {
                 "jojo1" => new CharactorProfile("Jonathan", "Jostar"),
                 "jojo2" => new CharactorProfile("Joseph", "Jostar"),
