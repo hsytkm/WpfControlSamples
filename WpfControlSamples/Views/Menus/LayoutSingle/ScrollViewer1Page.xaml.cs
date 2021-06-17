@@ -35,11 +35,18 @@ namespace WpfControlSamples.Views.Menus
 
         private void ScrollViewer_ScrollToCenter(object sender, RoutedEventArgs e)
         {
+            var ratioRequest = 0.5;
+            var ratio = Math.Clamp(ratioRequest, 0d, 1d);
+
             var extentHeight = scrollViewer.ExtentHeight;
             var viewportHeight = scrollViewer.ViewportHeight;
 
             // 表示範囲(Viewport)の中央がセンターになるようにする
-            var offset = (extentHeight / 2d) - (viewportHeight / 2d);
+            var offset = (extentHeight * ratio) - (viewportHeight / 2d);
+
+            var max = extentHeight - viewportHeight;
+            offset = Math.Clamp(offset, 0d, max);
+
             scrollViewer.ScrollToVerticalOffset(offset);
         }
 

@@ -148,6 +148,7 @@ namespace WpfControlSamples.Views
             typeof(RemoveItemInListBoxActionPage),
             typeof(CustomTriggerAction1Page),
             typeof(CustomTriggerAction2Page),
+            typeof(CustomTriggerAction3Page),
         };
 
         private static readonly IEnumerable<Type> _interactionBehaviorPages = new[]

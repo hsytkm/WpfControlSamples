@@ -87,7 +87,7 @@ namespace WpfControlSamples.Views.Menus
 
         protected override void OnSelected(RoutedEventArgs e)
         {
-            if (Content is IDisposable d) d.Dispose();
+            (Content as IDisposable)?.Dispose();
             Content = Activator.CreateInstance(_contentType);
 
             _writeLog($"LazyTabItem_Create : {Header}");
@@ -97,7 +97,7 @@ namespace WpfControlSamples.Views.Menus
 
         protected override void OnUnselected(RoutedEventArgs e)
         {
-            if (Content is IDisposable d) d.Dispose();
+            (Content as IDisposable)?.Dispose();
             Content = null;
 
             _writeLog($"LazyTabItem_Release : {Header}");
@@ -112,18 +112,18 @@ namespace WpfControlSamples.Views.Menus
 
         protected override void OnSelected(RoutedEventArgs e)
         {
-            if (Content is IDisposable d) d.Dispose();
-            Content = null;
+            (Content as IDisposable)?.Dispose();
 
-            if (!(ContentType is null))
-                Content = Activator.CreateInstance(ContentType);
+            Content = (ContentType is not null)
+                ? Activator.CreateInstance(ContentType)
+                : null;
 
             base.OnSelected(e);
         }
 
         protected override void OnUnselected(RoutedEventArgs e)
         {
-            if (Content is IDisposable d) d.Dispose();
+            (Content as IDisposable)?.Dispose();
             Content = null;
 
             base.OnUnselected(e);
