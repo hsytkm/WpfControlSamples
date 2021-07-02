@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Microsoft.Xaml.Behaviors;
 using System.Windows;
 
@@ -8,8 +7,7 @@ namespace WpfControlSamples.Views.Actions
     class OpenFileDialogAction : TriggerAction<DependencyObject>
     {
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register(
-                nameof(Title), typeof(string), typeof(OpenFileDialogAction),
+            DependencyProperty.Register(nameof(Title), typeof(string), typeof(OpenFileDialogAction),
                 new FrameworkPropertyMetadata("Open File"));
 
         public string Title
@@ -19,8 +17,7 @@ namespace WpfControlSamples.Views.Actions
         }
 
         public static readonly DependencyProperty FilterProperty =
-            DependencyProperty.Register(
-                nameof(Filter), typeof(string), typeof(OpenFileDialogAction),
+            DependencyProperty.Register(nameof(Filter), typeof(string), typeof(OpenFileDialogAction),
                 new FrameworkPropertyMetadata("All Files(*.*)|*.*"));
 
         public string Filter
@@ -30,9 +27,8 @@ namespace WpfControlSamples.Views.Actions
         }
 
         public static readonly DependencyProperty SelectedFilePathProperty =
-            DependencyProperty.Register(
-                nameof(SelectedFilePath), typeof(string), typeof(OpenFileDialogAction),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+            DependencyProperty.Register(nameof(SelectedFilePath), typeof(string), typeof(OpenFileDialogAction),
+                new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public string SelectedFilePath
         {
@@ -44,12 +40,15 @@ namespace WpfControlSamples.Views.Actions
         {
             var dialog = new OpenFileDialog
             {
-                Title = this.Title,
-                Filter = this.Filter
+                Title = Title,
+                Filter = Filter
             };
 
             var ret = dialog.ShowDialog();
-            SelectedFilePath = (ret.HasValue && ret.Value) ? dialog.FileName : null;
+            if (ret.HasValue && ret.Value)
+            {
+                SelectedFilePath = dialog.FileName;
+            }
         }
     }
 }

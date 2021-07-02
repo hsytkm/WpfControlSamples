@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.Xaml.Behaviors;
+﻿using Microsoft.Xaml.Behaviors;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,15 +8,15 @@ using System.Windows.Input;
 
 namespace WpfControlSamples.Views.Actions
 {
-    class GetDroppedFilePathAction : TriggerAction<DependencyObject>
+    public sealed class GetDroppedFilePathAction : TriggerAction<DependencyObject>
     {
         #region DroppedPath
         /// <summary>
         /// ドロップされた先頭ファイルPATH
         /// </summary>
-        public static readonly DependencyProperty DroppedPathProperty
-            = DependencyProperty.Register(
-                nameof(DroppedPath), typeof(string), typeof(GetDroppedFilePathAction));
+        public static readonly DependencyProperty DroppedPathProperty =
+            DependencyProperty.Register(nameof(DroppedPath), typeof(string), typeof(GetDroppedFilePathAction),
+                new FrameworkPropertyMetadata(""));
 
         public string DroppedPath
         {
@@ -30,9 +29,8 @@ namespace WpfControlSamples.Views.Actions
         /// <summary>
         /// ドロップされた全ファイルPATH
         /// </summary>
-        public static readonly DependencyProperty DroppedPathsProperty
-            = DependencyProperty.Register(
-                nameof(DroppedPaths), typeof(ObservableCollection<string>), typeof(GetDroppedFilePathAction));
+        public static readonly DependencyProperty DroppedPathsProperty =
+            DependencyProperty.Register(nameof(DroppedPaths), typeof(ObservableCollection<string>), typeof(GetDroppedFilePathAction));
 
         public ObservableCollection<string> DroppedPaths
         {
@@ -47,6 +45,16 @@ namespace WpfControlSamples.Views.Actions
 
             if (AssociatedObject is UIElement element)
                 element.AllowDrop = true;
+
+            if (AssociatedObject is System.Windows.Controls.TextBox)
+            {
+                /* TextBox に Attach する場合は、TextBoxDroppedFilePathBehaviors を使いましょう。
+                 * 本当は this(GetDroppedFilePathAction) を使いたいけど、Action での実装だと
+                 * 実行時に DataObjectPastingEventArgs.FormatToApply で Exception が発生して対処できなかった。
+                 * shoganai ので専用の Behavior 実装でで対応しました。
+                 */
+                throw new NotSupportedException($"Use {nameof(Behaviors.TextBoxDroppedFilePathBehaviors)}!");
+            }
         }
 
         protected override void OnDetaching()
@@ -57,12 +65,14 @@ namespace WpfControlSamples.Views.Actions
             base.OnDetaching();
         }
 
+        private void TextBox_PreviewDragOver(object sender, DragEventArgs e) => e.Handled = true;
+
         protected override void Invoke(object parameter)
         {
             if (parameter is not DragEventArgs e) return;
             var paths = GetFilePaths(e.Data).ToArray();
 
-            DroppedPath = paths.Any() ? paths[0] : null;
+            DroppedPath = paths.Length > 0 ? paths[0] : "";
 
             // Ctrl押下じゃなければ既登録分を削除
             var isPressCtrlKey = (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control;
@@ -76,7 +86,7 @@ namespace WpfControlSamples.Views.Actions
             }
         }
 
-        private static IEnumerable<string> GetFilePaths(IDataObject data)
+        internal static IEnumerable<string> GetFilePaths(IDataObject data)
         {
             if (data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -85,11 +95,14 @@ namespace WpfControlSamples.Views.Actions
                     foreach (var s in ss)
                         yield return s;
                 }
-                else { throw new FormatException(); }
+                else
+                {
+                    throw new FormatException();
+                }
             }
             else
             {
-                var path = data.GetData(DataFormats.Text)?.ToString();
+                var path = data.GetData(DataFormats.Text)?.ToString() ?? "";
                 yield return path;
             }
         }

@@ -280,6 +280,7 @@ namespace WpfControlSamples.Views
             typeof(FileDropPage),
             typeof(FolderDialogPage),
             typeof(FullScreenPage),
+            typeof(ProcessStartPage),
         };
 
         private static readonly IEnumerable<Type> _xamlFunctionPages = new[]
