@@ -19,7 +19,8 @@ namespace WpfControlSamples.Views.Controls
             {
                 ValueArray2d<int> i => ToRowsList(i),
                 ValueArray2d<double> d => ToRowsList(d),
-                _ => null,
+                null => null,
+                _ => throw new NotSupportedException(value.GetType().FullName),
             };
 
             static IReadOnlyList<T>[] ToRowsList<T>(ValueArray2d<T> array2d) where T : struct
@@ -43,27 +44,31 @@ namespace WpfControlSamples.Views.Controls
     /// <typeparam name="T"></typeparam>
     public class Array2dDataGrid<T> : DataGrid where T : struct
     {
+        public static readonly DependencyProperty TextBlockStyleProperty =
+            DependencyProperty.Register(nameof(TextBlockStyle), typeof(Style), typeof(Array2dDataGrid<T>));
+        public Style TextBlockStyle
+        {
+            get => (Style)GetValue(TextBlockStyleProperty);
+            set => SetValue(TextBlockStyleProperty, value);
+        }
+
         protected override void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
         {
             base.OnItemsSourceChanged(oldValue, newValue);
 
-            if (newValue is not IReadOnlyList<T>[] rowSourceList) return;
-
             this.Columns.Clear();
-
-            var style = new Style(typeof(TextBlock));
-            style.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Center));
+            if (newValue is not IReadOnlyList<T>[] rowSourceList) return;
 
             var columnMax = rowSourceList[0].Count;
             for (int columnIndex = 0; columnIndex < columnMax; columnIndex++)
             {
-                var columnIndexString = columnIndex.ToString();
+                var columnIndexString = $"{columnIndex}";
 
                 this.Columns.Add(new DataGridTextColumn()
                 {
                     Header = "X" + columnIndexString,
                     Binding = new Binding("[" + columnIndexString + "]") { Mode = BindingMode.OneTime },
-                    ElementStyle = style,
+                    ElementStyle = TextBlockStyle,
                 });
             }
         }
