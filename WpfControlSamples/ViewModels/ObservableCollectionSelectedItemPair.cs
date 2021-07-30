@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 
 namespace WpfControlSamples.ViewModels
 {
@@ -20,6 +21,7 @@ namespace WpfControlSamples.ViewModels
             {
                 if (_selectedItem is null && value is null) return;
                 if (_selectedItem?.Equals(value) ?? false) return;
+                if (value is not null && Collection.FirstOrDefault<T>(x => EqualityComparer<T>.Default.Equals(value, x)) is null) return;
 
                 _selectedItem = value;
                 OnPropertyChanged(new PropertyChangedEventArgs(nameof(SelectedItem)));

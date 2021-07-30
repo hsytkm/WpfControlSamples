@@ -27,6 +27,7 @@
             DockPanel.Dock="Top" />
 
         <DataGrid
+            AlternatingRowBackground="LightGray"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             CanUserReorderColumns="False"

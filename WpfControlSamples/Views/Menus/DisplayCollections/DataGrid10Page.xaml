@@ -22,6 +22,7 @@
         <TextBlock DockPanel.Dock="Top">
             <Run Text="3回目のクリックで DataGrid の Sort をクリアします（デフォは一度クリックするとクリアできない）" /><LineBreak />
             <Run Text="左：通常　／　右：対応版" />
+            <Run Text="右は添付プロパティで最終列を伸ばしています" /><LineBreak />
         </TextBlock>
 
         <UniformGrid Margin="5,10" Columns="2">
@@ -39,7 +40,11 @@
 
             <DataGrid ItemsSource="{Binding Collection, Mode=OneTime}" />
 
-            <DataGrid atprop:DataGridRefreshSorting.CanRefreshSorting="True" ItemsSource="{Binding Collection, Mode=OneTime}" />
+            <DataGrid
+                atprop:DataGridLastColumnStar.IsLastColumnStar="True"
+                atprop:DataGridRefreshSorting.CanRefreshSorting="True"
+                AlternatingRowBackground="LightGray"
+                ItemsSource="{Binding Collection, Mode=OneTime}" />
         </UniformGrid>
     </DockPanel>
 

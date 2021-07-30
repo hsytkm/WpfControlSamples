@@ -27,6 +27,7 @@
         <TextBlock Margin="10,0" FontSize="{StaticResource FontSizeMicro}">
             <Run Text="DataGrid4 をベースに Excel っぽく値に応じて色付けする。" /><LineBreak />
             <Run Text="Qiita から少し改良した。" /><LineBreak />
+            <Run Text="HorizontalAlignment=Left にして、右下の余白部が非表示にしてます。" /><LineBreak />
         </TextBlock>
 
         <Button
@@ -37,6 +38,7 @@
 
         <ctrl:ColoredArray2dIntDataGrid
             Margin="10"
+            HorizontalAlignment="Left"
             AutoGenerateColumns="False"
             CanUserAddRows="False"
             CanUserDeleteRows="False"

@@ -12,6 +12,9 @@ namespace WpfControlSamples.ViewModels
 
         /// <summary>プロパティ値を更新します</summary>
         void UpdateValue(T other);
+
+        // インスタンスを新規作成した方がバグ減りそう。実装面倒＋冗長やけど…
+        //T Clone();
     }
 
     static class IUpdatableItemExtension
