@@ -282,6 +282,7 @@ namespace WpfControlSamples.Views
             typeof(FolderDialogPage),
             typeof(FullScreenPage),
             typeof(ProcessStartPage),
+            typeof(ShortcutLinkPage),
         };
 
         private static readonly IEnumerable<Type> _xamlFunctionPages = new[]

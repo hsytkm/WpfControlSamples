@@ -30,7 +30,8 @@ namespace WpfControlSamples.Views.Actions
         /// ドロップされた全ファイルPATH
         /// </summary>
         public static readonly DependencyProperty DroppedPathsProperty =
-            DependencyProperty.Register(nameof(DroppedPaths), typeof(ObservableCollection<string>), typeof(GetDroppedFilePathAction));
+            DependencyProperty.Register(nameof(DroppedPaths), typeof(ObservableCollection<string>), typeof(GetDroppedFilePathAction),
+                new FrameworkPropertyMetadata(null));
 
         public ObservableCollection<string> DroppedPaths
         {
@@ -70,40 +71,39 @@ namespace WpfControlSamples.Views.Actions
         protected override void Invoke(object parameter)
         {
             if (parameter is not DragEventArgs e) return;
-            var paths = GetFilePaths(e.Data).ToArray();
+            var paths = GetFilePaths(e.Data);
 
-            DroppedPath = paths.Length > 0 ? paths[0] : "";
+            DroppedPath = paths.Count > 0 ? paths[0] : "";
 
             // Ctrl押下じゃなければ既登録分を削除
-            var isPressCtrlKey = (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control;
-            if (!isPressCtrlKey) DroppedPaths.Clear();
-
-            foreach (var path in paths)
+            if (DroppedPaths is not null)
             {
-                // 重複登録のチェックが必要
-                if (!DroppedPaths.Contains(path))
-                    DroppedPaths.Add(path);
+                var isPressCtrlKey = (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control;
+                if (!isPressCtrlKey) DroppedPaths.Clear();
+
+                foreach (var path in paths)
+                {
+                    // 重複登録のチェックが必要
+                    if (!DroppedPaths.Contains(path))
+                        DroppedPaths.Add(path);
+                }
             }
         }
 
-        internal static IEnumerable<string> GetFilePaths(IDataObject data)
+        internal static IReadOnlyList<string> GetFilePaths(IDataObject data)
         {
             if (data.GetDataPresent(DataFormats.FileDrop))
             {
-                if (data.GetData(DataFormats.FileDrop) is string[] ss)
+                return data.GetData(DataFormats.FileDrop) switch
                 {
-                    foreach (var s in ss)
-                        yield return s;
-                }
-                else
-                {
-                    throw new FormatException();
-                }
+                    string[] ss => ss,
+                    _ => throw new FormatException()
+                };
             }
             else
             {
                 var path = data.GetData(DataFormats.Text)?.ToString() ?? "";
-                yield return path;
+                return new[] { path };
             }
         }
     }
