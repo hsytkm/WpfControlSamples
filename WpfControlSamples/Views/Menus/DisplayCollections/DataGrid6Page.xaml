@@ -91,7 +91,7 @@
             ScrollViewer.HorizontalScrollBarVisibility="Visible"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
             SelectionMode="Extended"
-            SelectionUnit="Cell">
+            SelectionUnit="CellOrRowHeader">
             <!--
                 起動時に ItemsSource の Binding を行う場合は 上階層でリソースを定義して、
                 設定しないと間に合わない。 see DataGrid4Page.xaml

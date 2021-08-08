@@ -50,7 +50,7 @@
             HeadersVisibility="All"
             ItemsSource="{Binding Products, Mode=OneWay}"
             SelectionMode="Extended"
-            SelectionUnit="Cell">
+            SelectionUnit="CellOrRowHeader">
 
             <!--  DataGridRowIndexConverter は仮想化に対応していません  -->
             <DataGrid.RowHeaderTemplate>
@@ -78,7 +78,7 @@
             HeadersVisibility="All"
             ItemsSource="{Binding Products, Mode=OneWay}"
             SelectionMode="Extended"
-            SelectionUnit="Cell">
+            SelectionUnit="CellOrRowHeader">
 
             <!--  DataGridの行列入れ替え（xamlのみで対応可能）ここから https://archive.codeplex.com/?p=rotatedwpfdatagrid  -->
             <DataGrid.Resources>
