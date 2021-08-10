@@ -45,7 +45,7 @@ namespace WpfControlSamples.Views.Controls
 
         private void OnNavigateUriPropertyChanged(object oldValue, object newValue)
         {
-            if (newValue is null || !(newValue is Uri uri))
+            if (newValue is null || newValue is not Uri uri)
             {
                 foreach (var inline in Inlines)
                 {

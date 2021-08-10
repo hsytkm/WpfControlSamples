@@ -42,12 +42,8 @@
             DockPanel.Dock="Top"
             Text="EnableColumnVirtualization (default=false) / EnableRowVirtualization (default=true) を true にする" />
 
-        <DockPanel
-            Margin="10,10,0,0"
-            DockPanel.Dock="Top">
-            <TextBlock
-                DockPanel.Dock="Left"
-                Text="Row/Column Length :" />
+        <DockPanel Margin="10,10,0,0" DockPanel.Dock="Top">
+            <TextBlock DockPanel.Dock="Left" Text="Row/Column Length :" />
 
             <TextBlock
                 Width="50"
@@ -97,12 +93,12 @@
                 設定しないと間に合わない。 see DataGrid4Page.xaml
                 以下の実装の方がスコープを狭められる点ではGood。
             -->
-            <ctrl:Array2dIntDataGrid.TextBlockStyle>
+            <ctrl:Array2dIntDataGrid.CellTextBlockStyle>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="TextAlignment" Value="Center" />
                     <Setter Property="Foreground" Value="Green" />
                 </Style>
-            </ctrl:Array2dIntDataGrid.TextBlockStyle>
+            </ctrl:Array2dIntDataGrid.CellTextBlockStyle>
 
             <!--  仮想化に対応したRow連番（自作DataGrid 内に含めた方がすっきりすると思うけどサンプルなので）  -->
             <i:Interaction.Triggers>

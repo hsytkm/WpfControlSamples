@@ -15,9 +15,7 @@
         <ctrl:Array2dDataGridConverter x:Key="Array2dDataGridConverter" />
         <conv:DataGridRowIndexConverter x:Key="DataGridRowIndexConverter" />
 
-        <Style
-            x:Key="dataGridTextBlockStyleKey"
-            TargetType="{x:Type TextBlock}">
+        <Style x:Key="dataGridTextBlockStyleKey" TargetType="{x:Type TextBlock}">
             <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="Foreground" Value="Red" />
         </Style>
@@ -49,6 +47,7 @@
             CanUserResizeColumns="False"
             CanUserResizeRows="False"
             CanUserSortColumns="False"
+            CellTextBlockStyle="{StaticResource dataGridTextBlockStyleKey}"
             ClipboardCopyMode="IncludeHeader"
             EnableColumnVirtualization="True"
             EnableRowVirtualization="True"
@@ -58,8 +57,7 @@
             ScrollViewer.HorizontalScrollBarVisibility="Visible"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
             SelectionMode="Extended"
-            SelectionUnit="CellOrRowHeader"
-            TextBlockStyle="{StaticResource dataGridTextBlockStyleKey}">
+            SelectionUnit="CellOrRowHeader">
 
             <!--  DataGridRowIndexConverter は仮想化に対応していません  -->
             <DataGrid.RowHeaderTemplate>

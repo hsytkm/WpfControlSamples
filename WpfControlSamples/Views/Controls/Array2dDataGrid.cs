@@ -44,12 +44,12 @@ namespace WpfControlSamples.Views.Controls
     /// <typeparam name="T"></typeparam>
     public class Array2dDataGrid<T> : DataGrid where T : struct
     {
-        public static readonly DependencyProperty TextBlockStyleProperty =
-            DependencyProperty.Register(nameof(TextBlockStyle), typeof(Style), typeof(Array2dDataGrid<T>));
-        public Style TextBlockStyle
+        public static readonly DependencyProperty CellTextBlockStyleProperty =
+            DependencyProperty.Register(nameof(CellTextBlockStyle), typeof(Style), typeof(Array2dDataGrid<T>));
+        public Style CellTextBlockStyle
         {
-            get => (Style)GetValue(TextBlockStyleProperty);
-            set => SetValue(TextBlockStyleProperty, value);
+            get => (Style)GetValue(CellTextBlockStyleProperty);
+            set => SetValue(CellTextBlockStyleProperty, value);
         }
 
         protected override void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
@@ -64,11 +64,14 @@ namespace WpfControlSamples.Views.Controls
             {
                 var columnIndexString = $"{columnIndex}";
 
-                this.Columns.Add(new DataGridTextColumn()
+                // セル選択時の文字色
+                // see -> https://github.com/hsytkm/LumE2pTextViewer/blob/trunk/src/LumE2pTextViewer.Mvvm/Controls/ColoredArray2dDataGrid.cs
+
+                Columns.Add(new DataGridTextColumn()
                 {
                     Header = "X" + columnIndexString,
                     Binding = new Binding("[" + columnIndexString + "]") { Mode = BindingMode.OneTime },
-                    ElementStyle = TextBlockStyle,
+                    ElementStyle = CellTextBlockStyle,
                 });
             }
         }

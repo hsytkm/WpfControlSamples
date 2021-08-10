@@ -71,6 +71,14 @@ namespace WpfControlSamples.Views.Controls
     /// <typeparam name="T"></typeparam>
     public class ColoredArray2dDataGrid<T> : DataGrid where T : struct, IComparable<T>
     {
+        public static readonly DependencyProperty CellTextBlockStyleProperty =
+            DependencyProperty.Register(nameof(CellTextBlockStyle), typeof(Style), typeof(ColoredArray2dDataGrid<T>));
+        public Style CellTextBlockStyle
+        {
+            get => (Style)GetValue(CellTextBlockStyleProperty);
+            set => SetValue(CellTextBlockStyleProperty, value);
+        }
+
         protected override void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
         {
             base.OnItemsSourceChanged(oldValue, newValue);
@@ -84,21 +92,25 @@ namespace WpfControlSamples.Views.Controls
             {
                 var columnIndexString = columnIndex.ToString();
                 var bindingTarget = "[" + columnIndexString + "].";
+                var bindingFore = new Binding(bindingTarget + nameof(ValueColorPair<T>.ForegroundBrush)) { Mode = BindingMode.OneTime };
+                var bindingBack = new Binding(bindingTarget + nameof(ValueColorPair<T>.BackgroundBrush)) { Mode = BindingMode.OneTime };
 
-                var style = new Style(typeof(TextBlock));
-                style.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Center));
+                var cellStyle = new Style(typeof(DataGridCell));
+                cellStyle.Setters.Add(new Setter(DataGridCell.ForegroundProperty, bindingFore));
+                cellStyle.Setters.Add(new Setter(DataGridCell.BackgroundProperty, bindingBack));
 
-                style.Setters.Add(new Setter(TextBlock.BackgroundProperty,
-                    new Binding(bindingTarget + $"{nameof(ValueColorPair<T>.BackgroundBrush)}") { Mode = BindingMode.OneTime }));
+                // セル選択時の文字色
+                // see -> https://github.com/hsytkm/LumE2pTextViewer/blob/trunk/src/LumE2pTextViewer.Mvvm/Controls/ColoredArray2dDataGrid.cs
+                //var trigger = new Trigger() { Property = DataGridCell.IsSelectedProperty, Value = true };
+                //trigger.Setters.Add(new Setter(ForegroundProperty, binding));
+                //cellStyle.Triggers.Add(trigger);
 
-                style.Setters.Add(new Setter(TextBlock.ForegroundProperty,
-                    new Binding(bindingTarget + $"{nameof(ValueColorPair<T>.ForegroundBrush)}") { Mode = BindingMode.OneTime }));
-
-                this.Columns.Add(new DataGridTextColumn()
+                Columns.Add(new DataGridTextColumn()
                 {
                     Header = "X" + columnIndexString,
-                    Binding = new Binding(bindingTarget + $"{nameof(ValueColorPair<T>.Value)}") { Mode = BindingMode.OneTime },
-                    ElementStyle = style,
+                    Binding = new Binding(bindingTarget + nameof(ValueColorPair<T>.Value)) { Mode = BindingMode.OneTime },
+                    CellStyle = cellStyle,
+                    ElementStyle = CellTextBlockStyle,
                 });
             }
         }

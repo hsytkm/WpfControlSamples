@@ -16,6 +16,12 @@
     <ContentControl.Resources>
         <ctrl:ColoredValueArray2dConverter x:Key="ColoredValueArray2dConverter" />
         <conv:DataGridRowIndexConverter x:Key="DataGridRowIndexConverter" />
+
+        <Style x:Key="dataGridTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5,3" />
+        </Style>
     </ContentControl.Resources>
 
     <StackPanel Margin="10">
@@ -46,6 +52,7 @@
             CanUserResizeColumns="False"
             CanUserResizeRows="False"
             CanUserSortColumns="False"
+            CellTextBlockStyle="{StaticResource dataGridTextBlockStyle}"
             ClipboardCopyMode="IncludeHeader"
             HeadersVisibility="All"
             IsReadOnly="True"
