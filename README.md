@@ -33,8 +33,6 @@ Updated in 2021/04
 
 [【WPF】ViewModelがINotifyPropertyChangedを実装していないとメモリリークする件 - aridai.NET](https://aridai.net/articles/15.html)
 
-
-
 ### Per-Monitor DPI
 
 [Developing a Per-Monitor DPI-Aware WPF Application - MSDN](http://msdn.microsoft.com/en-us/library/windows/desktop/ee308410(v=vs.85).aspx)
@@ -52,15 +50,11 @@ Updated in 2021/04
 [.Net 4.6.2以降でのWPFのPer-Monitor DPI対応 - SourceChord](http://sourcechord.hatenablog.com/entry/2016/12/14/081112)
 
 
-
-
-## stackoverflow
+### stackoverflow
 
 [What's the difference betwen a UserControl and a ContentControl?](https://stackoverflow.com/questions/18781679/whats-the-difference-betwen-a-usercontrol-and-a-contentcontrol)
 
-
-
-## Assets
+### Assets
 
 [Ionicons](https://ionicons.com/)
 
@@ -68,9 +62,7 @@ Updated in 2021/04
 
 [Transforming SVG graphics to XAML Metro Icons](https://blogs.u2u.be/diederik/post/Transforming-SVG-graphics-to-XAML-Metro-Icons)
 
-
-
-## GitHub
+### GitHub
 
 [Carlos487/awesome-wpf](https://github.com/Carlos487/awesome-wpf)
 
@@ -78,6 +70,39 @@ Updated in 2021/04
 
 [aybe/Windows-API-Code-Pack-1.1](https://github.com/aybe/Windows-API-Code-Pack-1.1)
 
+## Memo
+
+##### [.NET5]自己完結リリースで単一ファイルにならない対応
+
+.NET5 で `PublishSingleFile` を `True` で Publish したときに、9個くらい dll (*1) ができちゃう対策は、`IncludeNativeLibrariesForSelfExtract` を `True` にする。
+
+参考：[.NET 5でシングルバイナリを作る | OPCDiary](https://opcdiary.net/net-5%E3%81%A7%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%90%E3%82%A4%E3%83%8A%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8B/)
+
+*1) clrcompression.dll clrjit.dll coreclr.dll D3DCompiler_47_cor3.dll mscordaccore.dll PenImc_cor3.dll PresentationNative_cor3.dll vcruntime140_cor3.dll wpfgfx_cor3.dll
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration>Release</Configuration>
+    <Platform>Any CPU</Platform>
+    <PublishDir>bin\Release\net5.0-windows\publish\</PublishDir>
+    <PublishProtocol>FileSystem</PublishProtocol>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>True</PublishSingleFile>
+    <PublishReadyToRun>False</PublishReadyToRun>
+    <PublishTrimmed>False</PublishTrimmed>
+    <IncludeNativeLibrariesForSelfExtract>True</IncludeNativeLibrariesForSelfExtract>
+  </PropertyGroup>
+</Project>
+```
 
 
-以上
+
+EOF
+
