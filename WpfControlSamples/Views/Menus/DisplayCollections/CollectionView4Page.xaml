@@ -10,7 +10,7 @@
     <!-- WPF 4.5での新機能 リアルタイムソート、グルーピング、フィルタリング(LiveShaping)
             https://blog.okazuki.jp/entry/2013/12/07/000341
     -->
-    
+
     <DockPanel Margin="10" >
         <TextBlock DockPanel.Dock="Top"
                    Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
@@ -33,12 +33,22 @@
             <Button Margin="10,0" Padding="10,5" Content="転職"
                     Command="{Binding UpdateSalaryCommand, Mode=OneTime}" />
         </StackPanel>
-        
-        <DataGrid Margin="20,10" AutoGenerateColumns="False"
-                  ItemsSource="{Binding People, Mode=OneTime}" >
+
+        <DataGrid
+            Margin="20,10"
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding People, Mode=OneTime}">
+
+            <!--  DataGridTextColumn.Width の DataGridLength型 は * を設定できる  -->
             <DataGrid.Columns>
-                <DataGridTextColumn Header="名前" Binding="{Binding Name, Mode=OneTime}" />
-                <DataGridTextColumn Header="給料" Binding="{Binding Salary, Mode=OneWay}" />
+                <DataGridTextColumn
+                    Width="1*"
+                    Binding="{Binding Name, Mode=OneTime}"
+                    Header="名前" />
+                <DataGridTextColumn
+                    Width="2*"
+                    Binding="{Binding Salary, Mode=OneWay}"
+                    Header="給料" />
             </DataGrid.Columns>
         </DataGrid>
 
