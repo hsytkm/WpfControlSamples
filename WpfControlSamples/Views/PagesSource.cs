@@ -240,7 +240,7 @@ namespace WpfControlSamples.Views
 
         private static readonly IEnumerable<Type> _systemPages = new[]
         {
-            //typeof(BlankPage),
+            typeof(CopyImageToClipboardPage),
             //typeof(BlankPage),
             typeof(SystemTopPage),
             typeof(EnvironmentPage),
@@ -283,6 +283,7 @@ namespace WpfControlSamples.Views
             typeof(FullScreenPage),
             typeof(ProcessStartPage),
             typeof(ShortcutLinkPage),
+            typeof(CopyImageToClipboardPage),
         };
 
         private static readonly IEnumerable<Type> _xamlFunctionPages = new[]
