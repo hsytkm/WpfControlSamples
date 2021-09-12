@@ -5,9 +5,9 @@ using System.Windows.Media.Imaging;
 namespace WpfControlSamples.Drawing
 {
     /// <summary>
-    /// BitmapSource To Drawing.Bitmap
+    /// BitmapSource to Drawing.Bitmap
     /// </summary>
-    /// <see cref="https://github.com/hsytkm/CsharpImageConverter/blob/master/CsharpImageConverter.Core/DrawingBitmapExtension.cs"/>
+    /// <see cref="https://github.com/hsytkm/CsharpImageConverter/blob/master/CsharpImageConverter.Core/BitmapSourceExtension.cs"/>
     public static class BitmapSourceExtension
     {
         /// <summary>BitmapSourceに異常がないかチェックします</summary>

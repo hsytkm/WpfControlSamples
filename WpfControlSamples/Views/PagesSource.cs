@@ -240,7 +240,7 @@ namespace WpfControlSamples.Views
 
         private static readonly IEnumerable<Type> _systemPages = new[]
         {
-            typeof(CopyImageToClipboardPage),
+            //typeof(BlankPage),
             //typeof(BlankPage),
             typeof(SystemTopPage),
             typeof(EnvironmentPage),

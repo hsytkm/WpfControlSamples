@@ -24,6 +24,7 @@
     <None Remove="Resources\Images\Resource1.png" />
     <None Remove="Resources\Images\Resource2.png" />
     <None Remove="Resources\Images\Resource3.png" />
+    <None Remove="Resources\Images\Resource4.png" />
     <None Remove="Resources\Sounds\EmbeddedResource1.wav" />
     <None Remove="Resources\Sounds\Resource1.wav" />
     <None Remove="Resources\Sounds\sound2.mp3" />
@@ -49,6 +50,7 @@
     <Resource Include="Resources\Images\Resource1.png" />
     <Resource Include="Resources\Images\Resource2.png" />
     <Resource Include="Resources\Images\Resource3.png" />
+    <Resource Include="Resources\Images\Resource4.png" />
     <Resource Include="Resources\Sounds\Resource1.wav" />
     <Resource Include="Views\Menus\XamlFunctions\DynamicLoadTarget.xaml" />
   </ItemGroup>

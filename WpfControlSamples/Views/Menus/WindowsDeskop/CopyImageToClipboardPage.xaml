@@ -16,27 +16,60 @@
             FontSize="{StaticResource FontSizeMedium}"
             Text="CopyImageToClipboard" />
 
+        <TextBlock
+            Margin="10,5"
+            DockPanel.Dock="Top"
+            FontSize="{StaticResource FontSizeMicro}">
+            <Run Text="透過色を無理やりクリップボードに押し込みます。" /><LineBreak />
+            <Run Text="Excel には貼り付けられましたが、MSPaint は透過色死んで無理でした。" />
+        </TextBlock>
+
         <StackPanel
-            Margin="10,20"
-            Background="LightGray"
+            Margin="10"
+            Background="LightBlue"
             DockPanel.Dock="Top">
-            <TextBlock FontSize="{StaticResource FontSizeMicro}" Text="下記画像(PNG)の背景は透過色で、Gray はコントロールの背景です。" />
-            <Image Height="100" Source="{Binding MyImage}" />
+            <TextBlock Text="下記画像(PNG)の背景は透過色で、Blue はコントロールの背景です。" />
+            <Image Height="100" Source="{Binding ImageSource, Mode=OneTime}" />
         </StackPanel>
 
         <UniformGrid
-            Margin="10,20"
+            Margin="10,10,10,0"
             Columns="2"
-            DockPanel.Dock="Top">
+            DockPanel.Dock="Top"
+            Rows="2">
             <Button
                 Padding="10"
                 Command="{Binding CopyToClipboardWithoutAlphaCommand}"
-                Content="CopyToClipboard (透過色なし)" />
+                Content="To Clipboard (透過色なし)" />
             <Button
                 Padding="10"
                 Command="{Binding CopyToClipboardWithAlphaCommand}"
-                Content="CopyToClipboard (透過色あり)" />
+                Content="To Clipboard (透過色あり)" />
+
+            <Button
+                Padding="10"
+                Command="{Binding CopyFromClipboardWithoutAlphaCommand}"
+                Content="From Clipboard (標準メソッドで Get)" />
+            <Button
+                Padding="10"
+                Command="{Binding CopyFromClipboardWithAlphaCommand}"
+                Content="From Clipboard (自作メソッドで Get)" />
         </UniformGrid>
+
+        <Button
+            Margin="10,0"
+            Padding="10"
+            Command="{Binding ClearImageCommand}"
+            Content="Clear Image"
+            DockPanel.Dock="Top" />
+
+        <StackPanel
+            Margin="10,20"
+            Background="LightPink"
+            DockPanel.Dock="Top">
+            <TextBlock Text="下記画像(PNG)の背景は透過色で、Pink はコントロールの背景です。" />
+            <Image Height="100" Source="{Binding CopiedImage, Mode=OneWay}" />
+        </StackPanel>
 
         <Border />
 
