@@ -1,15 +1,19 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Threading;
 using System.Windows.Threading;
 
-namespace WpfControlSamples.Views.Menus
+namespace WpfControlSamples.ViewModels
 {
-    // マルチスレッド環境下でのコレクションの操作
-    //   https://blog.okazuki.jp/entry/20100112/1263267397
+    /* マルチスレッド環境下でのコレクションの操作
+     *  https://blog.okazuki.jp/entry/20100112/1263267397
+     * 
+     * 本クラスを使用しなくても以下でも対応できる。
+     * WPF 4.5の新機能「複数スレッドからのコレクションの操作」
+     *  https://blog.okazuki.jp/entry/20120520/1337503048
+     */
 
     class DispatchObservableCollection<T> : ObservableCollection<T>
     {

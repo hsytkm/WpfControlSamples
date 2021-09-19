@@ -1,111 +1,165 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.DispatcherCollectionPage"
-                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
-                mc:Ignorable="d" 
-                d:DesignHeight="450" d:DesignWidth="800">
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.DispatcherCollectionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
-    <!-- マルチスレッド環境下でのコレクションの操作
-           https://blog.okazuki.jp/entry/20100112/1263267397
+    <!--
+        マルチスレッド環境下でのコレクションの操作
+        https://blog.okazuki.jp/entry/20100112/1263267397
     -->
+    <ContentControl.Resources>
+        <ResourceDictionary>
+            <system:Int32 x:Key="One">1</system:Int32>
+            <system:Int32 x:Key="Two">2</system:Int32>
+            <system:Int32 x:Key="Three">3</system:Int32>
 
-    <DockPanel Margin="10" >
-        <TextBlock DockPanel.Dock="Top"
-                   Margin="0,10" FontSize="{StaticResource FontSizeMedium}"
-                   Text="DispatcherCollection" />
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="10,0" />
+                <Setter Property="Padding" Value="5" />
+            </Style>
 
-        <TextBlock DockPanel.Dock="Top" Margin="10,0,10,5"
-                   Text="UIスレッド以外からのコレクション操作" />
+            <Style TargetType="{x:Type ScrollViewer}">
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="HorizontalScrollBarVisibility" Value="Visible" />
+                <Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
+            </Style>
+        </ResourceDictionary>
+    </ContentControl.Resources>
 
-        <TextBlock DockPanel.Dock="Top"
-                   Margin="15,10,10,0" FontSize="{StaticResource FontSizeSmall}"
-                   Text="ObservableCollection&lt;T&gt;" />
-        <DockPanel DockPanel.Dock="Top" Margin="20,10" >
-            <WrapPanel DockPanel.Dock="Top"
-                       Orientation="Horizontal" >
-                <Button Margin="10,0" Padding="10,5" 
-                        Content="Add item on UI Thread"
-                        Command="{Binding AddItem1OnUIThreadCommand, Mode=OneTime}" />
+    <DockPanel Margin="10">
+        <TextBlock
+            Margin="0,10"
+            DockPanel.Dock="Top"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="DispatcherCollection" />
 
-                <Button Margin="10,0" Padding="10,5" Foreground="Red"
-                        Content="Add item on Task (Exception)"
-                        Command="{Binding AddItem1OnTaskCommand, Mode=OneTime}" />
+        <TextBlock
+            Margin="10,0,10,10"
+            DockPanel.Dock="Top"
+            Text="UIスレッド以外からのコレクション操作" />
 
-                <Button Margin="10,0" Padding="10,5" 
-                        Content="Add item on Task (use Dispatcher)"
-                        Command="{Binding AddItem1OnTaskUseDispatcherCommand, Mode=OneTime}" />
+        <!--  コレクション1  -->
+        <StackPanel Margin="15,0" DockPanel.Dock="Top">
+            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="ObservableCollection&lt;T&gt;" />
+            <TextBlock Margin="10,5" Text=".NET 標準の OC。 （通常使用では）UIスレッド以外からコレクションを操作できない。" />
+
+            <WrapPanel Margin="10,5,0,0" Orientation="Horizontal">
+                <Button
+                    Command="{Binding AddItemOnUIThreadCommand, Mode=OneTime}"
+                    CommandParameter="{StaticResource One}"
+                    Content="on UI Thread" />
+                <Button
+                    Command="{Binding AddItemOnTaskCommand, Mode=OneTime}"
+                    CommandParameter="{StaticResource One}"
+                    Content="on Task (Exception)"
+                    Foreground="Red" />
+                <Button
+                    Command="{Binding AddItemOnTaskUseDispatcherCommand, Mode=OneTime}"
+                    CommandParameter="{StaticResource One}"
+                    Content="on Task (use Dispatcher)" />
             </WrapPanel>
-
-            <ScrollViewer DockPanel.Dock="Top" Margin="10"
-                          Background="CornflowerBlue"
-                          HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" >
-                <ItemsControl ItemsSource="{Binding Items1, Mode=OneWay}" >
+            <ScrollViewer Background="CornflowerBlue">
+                <ItemsControl ItemsSource="{Binding Items1, Mode=OneWay}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="10,5" Background="LightBlue" >
-                                <TextBlock Padding="5,3" Text="{Binding ., Mode=OneTime}" />
+                            <Border Margin="5,2" Background="LightBlue">
+                                <TextBlock Text="{Binding ., Mode=OneTime}" />
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-        </DockPanel>
+        </StackPanel>
 
-        <TextBlock DockPanel.Dock="Top"
-                   Margin="15,10,10,0" FontSize="{StaticResource FontSizeSmall}"
-                   Text="自作DispatchObservableCollection&lt;T&gt;" />
-        <DockPanel DockPanel.Dock="Top" Margin="20,10" >
-            <TextBlock DockPanel.Dock="Top" Margin="10,0,10,10">
-                ObservableCollection&lt;T&gt; を 継承した自作クラスを使用した版
-                <LineBreak/>
-                クラス内でスレッドをチェックして、UIスレッドからコレクションを操作する。
-            </TextBlock>
+        <!--  コレクション2  -->
+        <StackPanel Margin="15,0" DockPanel.Dock="Top">
+            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="DispatchObservableCollection&lt;T&gt; (自作)" />
+            <TextBlock Margin="10,5" Text="自作クラス内でスレッドをチェックして、UIスレッドからコレクションを操作する。" />
 
-            <WrapPanel DockPanel.Dock="Top"
-                       Orientation="Horizontal" >
-                <Button Margin="10,0" Padding="10,5" 
-                        Content="Add item on UI Thread"
-                        Command="{Binding AddItem2OnUIThreadCommand, Mode=OneTime}" />
-
-                <Button Margin="10,0" Padding="10,5" 
-                        Content="Add item on Task (OK)" Foreground="Blue"
-                        Command="{Binding AddItem2OnTaskCommand, Mode=OneTime}" />
-
-                <Button Margin="10,0" Padding="10,5" 
-                        Content="Add item on Task (use Dispatcher)"
-                        Command="{Binding AddItem2OnTaskUseDispatcherCommand, Mode=OneTime}" />
+            <WrapPanel Margin="10,5,0,0" Orientation="Horizontal">
+                <Button
+                    Command="{Binding AddItemOnUIThreadCommand, Mode=OneTime}"
+                    CommandParameter="{StaticResource Two}"
+                    Content="on UI Thread" />
+                <Button
+                    Command="{Binding AddItemOnTaskCommand, Mode=OneTime}"
+                    CommandParameter="{StaticResource Two}"
+                    Content="on Task (OK)"
+                    Foreground="Blue" />
+                <Button
+                    Command="{Binding AddItemOnTaskUseDispatcherCommand, Mode=OneTime}"
+                    CommandParameter="{StaticResource Two}"
+                    Content="on Task (use Dispatcher)" />
             </WrapPanel>
-
-            <ScrollViewer DockPanel.Dock="Top" Margin="10"
-                          Background="HotPink"
-                          HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" >
-                <ItemsControl ItemsSource="{Binding Items2, Mode=OneWay}" >
+            <ScrollViewer Background="HotPink">
+                <ItemsControl ItemsSource="{Binding Items2, Mode=OneWay}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="10,5" Background="LightPink" >
-                                <TextBlock Padding="5,3" Text="{Binding ., Mode=OneTime}" />
+                            <Border Margin="5,2" Background="LightPink">
+                                <TextBlock Text="{Binding ., Mode=OneTime}" />
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-        </DockPanel>
+        </StackPanel>
+
+        <!--  コレクション3  -->
+
+        <StackPanel Margin="15,0" DockPanel.Dock="Top">
+            <TextBlock FontSize="{StaticResource FontSizeSmall}" Text="ObservableCollection&lt;T&gt;" />
+            <TextBlock Margin="10,5" Text="BindingOperations.EnableCollectionSynchronization() でUIスレッド以外から追加。" />
+
+            <WrapPanel Margin="10,5,0,0" Orientation="Horizontal">
+                <Button
+                    Command="{Binding AddItemOnUIThreadCommand, Mode=OneTime}"
+                    CommandParameter="{StaticResource Three}"
+                    Content="on UI Thread" />
+                <Button
+                    Command="{Binding AddItemOnTaskCommand, Mode=OneTime}"
+                    CommandParameter="{StaticResource Three}"
+                    Content="on Task (OK)"
+                    Foreground="Blue" />
+                <Button
+                    Command="{Binding AddItemOnTaskUseDispatcherCommand, Mode=OneTime}"
+                    CommandParameter="{StaticResource Three}"
+                    Content="on Task (use Dispatcher)" />
+            </WrapPanel>
+            <ScrollViewer Background="LightSeaGreen">
+                <ItemsControl ItemsSource="{Binding Items3, Mode=OneWay}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="5,2" Background="LightGreen">
+                                <TextBlock Text="{Binding ., Mode=OneTime}" />
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
 
         <Border />
     </DockPanel>
-
 </ContentControl>

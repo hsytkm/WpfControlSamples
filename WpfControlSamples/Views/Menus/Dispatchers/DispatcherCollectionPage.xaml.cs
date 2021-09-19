@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using WpfControlSamples.Extensions;
 using WpfControlSamples.Infrastructures;
+using WpfControlSamples.ViewModels;
 
 namespace WpfControlSamples.Views.Menus
 {
@@ -32,97 +33,63 @@ namespace WpfControlSamples.Views.Menus
 
     class DispatcherCollectionViewModel : MyBindableBase
     {
-        #region ObservableCollection<T>
-        public ObservableCollection<string> Items1 { get; } =
-            new ObservableCollection<string>(Enumerable.Range(0, 3).Select(x => GetData(x)).Reverse());
+        private static string GetData(int x) => $"Data{x}";
 
-        public ICommand AddItem1OnUIThreadCommand =>
-            _addItem1OnUIThreadCommand ??= new MyCommand(() => Items1.Insert(0, GetData(Items1.Count)));
-        private ICommand _addItem1OnUIThreadCommand;
+        private readonly static IReadOnlyList<string> _itemsSource = Enumerable.Range(0, 2).Select(x => GetData(x)).Reverse().ToArray();
+        public ObservableCollection<string> Items1 { get; } = new(_itemsSource);
+        public DispatchObservableCollection<string> Items2 { get; } = new(_itemsSource);
+        public ObservableCollection<string> Items3 { get; } = new(_itemsSource);
 
-        public ICommand AddItem1OnTaskCommand =>
-            _addItem1OnTaskCommand ??= new MyCommand(async () =>
+        private void AddItem(int x)
+        {
+            var items = x switch
             {
-                // Task(UIスレッド以外)からコレクション操作するので例外が発生する
-                await Task.Run(() =>
-                {
-                    try
-                    {
-                        //Items1.Insert(0, GetData(Items1.Count)); 例外が発生すると以降のコレクション操作できないので無効化
-                    }
-                    catch (Exception ex)
-                    {
-                        // System.NotSupportedException: この型の CollectionView は、
-                        // Dispatcher スレッドとは異なるスレッドからその SourceCollection への変更をサポートしません。
-                        Debug.WriteLine(ex);
-                    }
-                });
-            });
-        private ICommand _addItem1OnTaskCommand;
+                1 => Items1,
+                2 => Items2,
+                3 => Items3,
+                _ => throw new NotImplementedException()
+            };
+            items.Insert(0, GetData(items.Count));
+        }
 
-        public ICommand AddItem1OnTaskUseDispatcherCommand =>
-            _addItem1OnTaskUseDispatcherCommand ??= new MyCommand(async () =>
+        public ICommand AddItemOnUIThreadCommand => _addItemOnUIThreadCommand ??= new MyCommand<int>(x => AddItem(x));
+        private ICommand _addItemOnUIThreadCommand;
+
+        public ICommand AddItemOnTaskCommand => _addItemOnTaskCommand ??= new MyCommand<int>(async x =>
+        {
+            // Task(UIスレッド以外)からコレクション操作するので例外が発生する
+            await Task.Run(() =>
             {
-                // Task(UIスレッド以外)からコレクション操作する場合は、Dispatcher にお願いする
-                var d = Dispatcher.CurrentDispatcher;
-                await Task.Run(() =>
+                try
                 {
-                    d.Invoke(() =>
-                    {
-                        Items1.Insert(0, GetData(Items1.Count));
-                    });
-                });
-            });
-        private ICommand _addItem1OnTaskUseDispatcherCommand;
-
-        #endregion
-
-        #region DispatchObservableCollection<T>
-
-        public DispatchObservableCollection<string> Items2 { get; } =
-            new DispatchObservableCollection<string>(Enumerable.Range(0, 3).Select(x => GetData(x)).Reverse());
-
-        public ICommand AddItem2OnUIThreadCommand =>
-            _addItem2OnUIThreadCommand ??= new MyCommand(() => Items2.Insert(0, GetData(Items2.Count)));
-        private ICommand _addItem2OnUIThreadCommand;
-
-        public ICommand AddItem2OnTaskCommand =>
-            _addItem2OnTaskCommand ??= new MyCommand(async () =>
-            {
-                // Task(UIスレッド以外)からコレクション操作するので例外が発生する
-                await Task.Run(() =>
+                    // 例外が発生して追加できない
+                    AddItem(x);
+                }
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        Items2.Insert(0, GetData(Items2.Count));
-                    }
-                    catch (Exception ex)
-                    {
-                        // System.NotSupportedException: この型の CollectionView は、
-                        // Dispatcher スレッドとは異なるスレッドからその SourceCollection への変更をサポートしません。
-                        Debug.WriteLine(ex);
-                    }
-                });
+                    // System.NotSupportedException: この型の CollectionView は、
+                    // Dispatcher スレッドとは異なるスレッドからその SourceCollection への変更をサポートしません。
+                    Debug.WriteLine(ex);
+                    MessageBox.Show(ex.Message);
+                }
             });
-        private ICommand _addItem2OnTaskCommand;
+        });
+        private ICommand _addItemOnTaskCommand;
 
-        public ICommand AddItem2OnTaskUseDispatcherCommand =>
-            _addItem2OnTaskUseDispatcherCommand ??= new MyCommand(async () =>
-            {
-                // Task(UIスレッド以外)からコレクション操作する場合は、Dispatcher にお願いする
-                var d = Dispatcher.CurrentDispatcher;
-                await Task.Run(() =>
-                {
-                    d.Invoke(() =>
-                    {
-                        Items2.Insert(0, GetData(Items2.Count));
-                    });
-                });
-            });
-        private ICommand _addItem2OnTaskUseDispatcherCommand;
+        public ICommand AddItemOnTaskUseDispatcherCommand => _addItemOnTaskUseDispatcherCommand ??= new MyCommand<int>(async x =>
+        {
+            // Task(UIスレッド以外)からコレクション操作する場合は、Dispatcher にお願いする
+            var d = Dispatcher.CurrentDispatcher;   // Task外でインスタンスを取得するのがポイント
+            await Task.Run(() => d.Invoke(() => AddItem(x)));
+        });
+        private ICommand _addItemOnTaskUseDispatcherCommand;
 
-        #endregion
-
-        private static string GetData(int x) => "Data" + x.ToString();
+        public DispatcherCollectionViewModel()
+        {
+            // WPF 4.5の新機能「複数スレッドからのコレクションの操作」 https://blog.okazuki.jp/entry/20120520/1337503048
+            // Items に対してUIスレッド以外から要素を変更しても大丈夫になる。
+            // （自作の DispatchObservableCollection<T> が不要になる）
+            BindingOperations.EnableCollectionSynchronization(Items3, lockObject: new object());
+        }
     }
 }
