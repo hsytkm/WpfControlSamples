@@ -308,6 +308,7 @@ namespace WpfControlSamples.Views
             typeof(DDataContextPage),
             typeof(DataTemplate1Page),
             typeof(DataTemplate2Page),
+            typeof(BuildConditionalPage),
         };
 
         public static IEnumerable<PageTable> AllPageTables { get; } = new[]

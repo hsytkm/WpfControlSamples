@@ -1,0 +1,77 @@
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.BuildConditionalPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dbg="debug-mode"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mkup="clr-namespace:WpfControlSamples.Views.MarkupExtensions"
+    mc:Ignorable="dbg mc">
+
+    <!--
+        c# - Does XAML have a conditional compiler directive for debug mode? - Stack Overflow
+        https://stackoverflow.com/questions/8732307/does-xaml-have-a-conditional-compiler-directive-for-debug-mode
+        
+        c# - WPF AlternateContent not working - Stack Overflow
+        https://stackoverflow.com/questions/36150073/wpf-alternatecontent-not-working
+        → WPF の XmlnsDefinition  は別プロジェクトを参照した場合でないと動作しないらしい。
+    -->
+
+    <ContentControl.Resources>
+        <Style x:Key="textBodyKey" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </ContentControl.Resources>
+
+    <DockPanel Margin="10">
+        <TextBlock
+            Margin="0,10,0,0"
+            DockPanel.Dock="Top"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="Build Conditional on xaml" />
+
+        <StackPanel Margin="20" DockPanel.Dock="Top">
+            <TextBlock Text="AssemblyInfo.cs の XmlnsDefinition で切り替えています。" />
+
+            <mc:AlternateContent>
+                <mc:Choice Requires="dbg">
+                    <TextBlock
+                        FontWeight="Bold"
+                        Foreground="Red"
+                        Style="{StaticResource textBodyKey}"
+                        Text="Debug build!!" />
+                </mc:Choice>
+                <mc:Fallback>
+                    <TextBlock
+                        FontStyle="Italic"
+                        Foreground="Blue"
+                        Style="{StaticResource textBodyKey}"
+                        Text="Release build!!" />
+                </mc:Fallback>
+            </mc:AlternateContent>
+        </StackPanel>
+
+        <StackPanel Margin="20" DockPanel.Dock="Top">
+            <Panel.Resources>
+                <Brush x:Key="DebugBrushKey">Red</Brush>
+                <Brush x:Key="ReleaseBrushKey">Blue</Brush>
+            </Panel.Resources>
+            <TextBlock>
+                <Run Text="MarkupExtension の code behind で切り替えています。" /><LineBreak />
+                <Run Text="上の XmlnsDefinition は別アセンブリを用意する必要があり面倒なので、こちらがオススメです。" />
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource textBodyKey}">
+                <TextBlock.Text>
+                    <mkup:ConditionalObject Debug="Debug build!!" Release="Release build!!" />
+                </TextBlock.Text>
+                <TextBlock.Foreground>
+                    <mkup:ConditionalObject Debug="{StaticResource DebugBrushKey}" Release="{StaticResource ReleaseBrushKey}" />
+                </TextBlock.Foreground>
+            </TextBlock>
+        </StackPanel>
+
+        <ContentControl />
+    </DockPanel>
+</ContentControl>
