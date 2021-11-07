@@ -18,15 +18,15 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class ContextMenuPage : ContentControl
+    public partial class ContextMenu1Page : ContentControl
     {
-        public ContextMenuPage()
+        public ContextMenu1Page()
         {
             InitializeComponent();
         }
     }
 
-    class ContextMenuViewModel : MyBindableBase
+    class ContextMenu1ViewModel : MyBindableBase
     {
         public ICommand ClickCommand => _clickCommand ??
             (_clickCommand = new MyCommand<object>(prm => Message = prm.ToString()));

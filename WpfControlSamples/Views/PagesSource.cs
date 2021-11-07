@@ -120,7 +120,7 @@ namespace WpfControlSamples.Views
         {
             typeof(MenuPage),
             typeof(ToolBarPage),
-            typeof(ContextMenuPage),
+            typeof(ContextMenu1Page),
             typeof(PopupPage),
             typeof(ToolTipPage),
             typeof(ThumbPage),

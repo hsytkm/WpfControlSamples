@@ -51,7 +51,8 @@
                     CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" />
             
             <Button Margin="10,0"
-                    Content="ボタン2 (Padding)"
+                    Content="ボタン2 (Padding)  ★デフォルト"
+                    IsDefault="True"
                     Padding="20"
                     Command="{Binding .}"
                     CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" />
