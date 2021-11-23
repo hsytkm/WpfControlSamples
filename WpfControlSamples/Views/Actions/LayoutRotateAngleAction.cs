@@ -15,21 +15,24 @@ namespace WpfControlSamples.Views.Actions
      */
     class LayoutRotateAngleAction : TargetedTriggerAction<FrameworkElement>
     {
+        private readonly static TimeSpan _duration = TimeSpan.FromMilliseconds(150);
         private Storyboard? _storyboard;
 
         protected override void Invoke(object parameter)
         {
-            if (AssociatedObject is not FrameworkElement fe) return;
-            if (fe.LayoutTransform is not RotateTransform rotate) return;
             if (parameter is not DependencyPropertyChangedEventArgs args) return;
             if (args.NewValue is not double newAngle) return;
+
+            if (AssociatedObject is not FrameworkElement fe) return;
+            var rotate = GetRotateTransform(fe);
+            if (rotate is null) return;
 
             rotate.CenterX = fe.ActualWidth / 2d;
             rotate.CenterY = fe.ActualHeight / 2d;
 
             var animation = new DoubleAnimation
             {
-                Duration = TimeSpan.FromMilliseconds(200),
+                Duration = _duration,
                 From = rotate.Angle,
                 To = newAngle,
             };
@@ -39,6 +42,16 @@ namespace WpfControlSamples.Views.Actions
             _storyboard ??= new Storyboard();
             _storyboard.Children.Add(animation);
             _storyboard.Begin();
+        }
+
+        private static RotateTransform? GetRotateTransform(FrameworkElement fe)
+        {
+            if (fe.LayoutTransform is RotateTransform rotate1)
+                return rotate1;
+
+            var rotate2 = new RotateTransform();
+            fe.LayoutTransform = rotate2;
+            return rotate2;
         }
     }
 }

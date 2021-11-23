@@ -77,10 +77,6 @@
                     <RotateTransform />
                 </Image.RenderTransform>
 
-                <Image.LayoutTransform>
-                    <RotateTransform />
-                </Image.LayoutTransform>
-
                 <i:Interaction.Behaviors>
                     <behavior:RenderRotateAngleBehavior Angle="{Binding RenderRotateAngle, Mode=OneWay}" />
                 </i:Interaction.Behaviors>
