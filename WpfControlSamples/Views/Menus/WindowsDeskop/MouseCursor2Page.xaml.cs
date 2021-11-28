@@ -21,21 +21,16 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class MouseCursorPage : ContentControl
+    public partial class MouseCursor2Page : ContentControl
     {
-        private static readonly IList<Cursor> _mouseCursors =
-            typeof(Cursors).GetProperties(BindingFlags.Static | BindingFlags.Public)
-                .Select(x => (Cursor)x.GetValue(null))
-                .ToList();
-
-        public ICommand RadioButtonChangedCommand =>
-            _radioButtonChangedCommand ??= new MyCommand<Cursor>(cursor => previewArea.Cursor = cursor);
-        private ICommand _radioButtonChangedCommand;
-
-        public MouseCursorPage()
+        public MouseCursor2Page()
         {
             InitializeComponent();
-            DataContext = _mouseCursors;
+
+            var uri = new Uri("pack://application:,,,/WpfControlSamples;component/Resources/Cursors/zoom_mag.cur");
+            using var stream = Application.GetResourceStream(uri).Stream;
+            /*using */var myCursor1 = new Cursor(stream, true);
+            border.Cursor = myCursor1;
         }
     }
 }

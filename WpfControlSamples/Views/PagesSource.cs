@@ -273,7 +273,8 @@ namespace WpfControlSamples.Views
         private static readonly IEnumerable<Type> _windowsDeskopPages = new[]
         {
             typeof(SystemColorsPage),
-            typeof(MouseCursorPage),
+            typeof(MouseCursor1Page),
+            typeof(MouseCursor2Page),
             typeof(MessageBoxPage),
             typeof(ShowWindowPage),
             typeof(ApplicationCommandsPage),

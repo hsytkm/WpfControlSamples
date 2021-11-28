@@ -17,6 +17,7 @@
   <ItemGroup>
     <None Remove=".gitattributes" />
     <None Remove=".gitignore" />
+    <None Remove="Resources\Cursors\zoom_mag.cur" />
     <None Remove="Resources\Fonts\ionicons.ttf" />
     <None Remove="Resources\Images\EmbeddedResource1.png" />
     <None Remove="Resources\Images\EmbeddedResource2.png" />
@@ -44,6 +45,7 @@
     <ProjectReference Include="..\WpfControlSamples.CustomControlNumericUpDown\WpfControlSamples.CustomControlNumericUpDown.csproj" />
     <ProjectReference Include="..\WpfControlSamples.Drawing\WpfControlSamples.Drawing.csproj" />
     <ProjectReference Include="..\WpfControlSamples.FileDialogLibrary\WpfControlSamples.FileDialogLibrary.csproj" />
+    <Resource Include="Resources\Cursors\zoom_mag.cur" />
     <Resource Include="Resources\Fonts\ionicons.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
