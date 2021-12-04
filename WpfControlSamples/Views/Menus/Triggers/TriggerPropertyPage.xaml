@@ -30,7 +30,41 @@
                 </Style>
             </Ellipse.Style>
         </Ellipse>
-        
+
+        <Ellipse StrokeThickness="5" Stroke="Blue"
+                 Fill="Transparent"
+                 Opacity="0.3"
+                 Width="60" Height="60" >
+            <Ellipse.Resources>
+                <Storyboard x:Key="mouseEnterKey">
+                    <DoubleAnimation
+                        Storyboard.TargetProperty="Opacity"
+                        To="0.9"
+                        Duration="0:0:0.2" />
+                </Storyboard>
+                <Storyboard x:Key="mouseLeaveKey">
+                    <DoubleAnimation
+                        Storyboard.TargetProperty="Opacity"
+                        To="0.3"
+                        Duration="0:0:0.4" />
+                </Storyboard>
+            </Ellipse.Resources>
+            <Ellipse.Style>
+                <Style TargetType="{x:Type Ellipse}" >
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource mouseEnterKey}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource mouseLeaveKey}" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
+
     </StackPanel>
 
 </ContentControl>

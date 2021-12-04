@@ -132,6 +132,7 @@ namespace WpfControlSamples.Views
             typeof(Button1Page),
             typeof(Button2Page),
             typeof(Button3Page),
+            typeof(Button4Page),
             typeof(RepeatButtonPage),
             typeof(ToggleButton1Page),
         };
@@ -285,6 +286,7 @@ namespace WpfControlSamples.Views
             typeof(ProcessStartPage),
             typeof(ShortcutLinkPage),
             typeof(CopyImageToClipboardPage),
+            typeof(MouseWheelTiltPage),
         };
 
         private static readonly IEnumerable<Type> _xamlFunctionPages = new[]
