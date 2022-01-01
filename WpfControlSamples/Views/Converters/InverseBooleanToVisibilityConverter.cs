@@ -6,7 +6,13 @@ using System.Windows.Data;
 
 namespace WpfControlSamples.Views.Converters
 {
-    // DataTrigger + NotBooleanConverter で代替できるはずなので無効化
+    /* DataTrigger + NotBooleanConverter で代替できるはずなので無効化
+     * 
+     * 上のコメントがどういう記述をさしてるのか分からんくなった。多分以下のイメージやと思う。
+     *  <DataTrigger Binding="{Binding IsSelected, Mode=OneWay}" Value="False" >
+     *    <Setter Property="Visibility" Value="Collapsed" />
+     *  </DataTrigger>
+     */
 
     //[ValueConversion(typeof(bool), typeof(Visibility))]
     //class InverseBooleanToVisibilityConverter : IValueConverter

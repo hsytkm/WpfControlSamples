@@ -1,10 +1,10 @@
 # WpfControlSamples
 
-.NET Core 5 + WPF Control Samples
+.NET Core 6 + WPF Control Samples
 
 Created in 2020/05
 
-Updated in 2021/04
+Updated in 2022/01
 
 
 ## Websites
@@ -62,6 +62,8 @@ Updated in 2021/04
 
 [Transforming SVG graphics to XAML Metro Icons](https://blogs.u2u.be/diederik/post/Transforming-SVG-graphics-to-XAML-Metro-Icons)
 
+[MahApps/MahApps.Metro.IconPacks: Awesome icon packs for WPF and UWP in one library](https://github.com/MahApps/MahApps.Metro.IconPacks)
+
 ### GitHub
 
 [Carlos487/awesome-wpf](https://github.com/Carlos487/awesome-wpf)
@@ -89,9 +91,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
   <PropertyGroup>
     <Configuration>Release</Configuration>
     <Platform>Any CPU</Platform>
-    <PublishDir>bin\Release\net5.0-windows\publish\</PublishDir>
+    <PublishDir>bin\Release\net6.0-windows\publish\</PublishDir>
     <PublishProtocol>FileSystem</PublishProtocol>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>false</SelfContained>
     <PublishSingleFile>True</PublishSingleFile>
