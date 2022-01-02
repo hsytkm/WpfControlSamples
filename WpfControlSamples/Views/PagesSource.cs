@@ -297,6 +297,7 @@ namespace WpfControlSamples.Views
             typeof(MarkupPage),
             typeof(TypeConverterPage),
             typeof(ValueConverterPage),
+            typeof(ValueConverterListPage),
             typeof(BindingSourcePage),
             typeof(MultiBinding1Page),
             typeof(MultiBinding2Page),

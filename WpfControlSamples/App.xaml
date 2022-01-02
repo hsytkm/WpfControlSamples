@@ -18,6 +18,11 @@
             <vc:EmptyStringToTrueConverter x:Key="EmptyStringToTrueConverter" />
             <vc:BooleansAreAllFalseConverter x:Key="BooleansAreAllFalseConverter" />
 
+            <vc:ValueConverterAggregator x:Key="NotBoolToVisiConverter">
+                <vc:NotBooleanConverter />
+                <BooleanToVisibilityConverter />
+            </vc:ValueConverterAggregator>
+
             <!--  Xamarin(UWP)のフォントサイズを定義  -->
             <sys:Double x:Key="FontSizeDefault">14</sys:Double>
             <sys:Double x:Key="FontSizeMicro">15.667</sys:Double>
