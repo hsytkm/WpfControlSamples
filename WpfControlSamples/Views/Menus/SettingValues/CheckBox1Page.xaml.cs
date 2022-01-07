@@ -17,20 +17,20 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class CheckBoxPage : ContentControl
+    public partial class CheckBox1Page : ContentControl
     {
-        public CheckBoxPage()
+        public CheckBox1Page()
         {
             InitializeComponent();
 
-            DataContext = new CheckBoxViewModel();
+            DataContext = new CheckBox1ViewModel();
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e) { }
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e) { }
+        private void CheckBox1_Checked(object sender, RoutedEventArgs e) { }
+        private void CheckBox1_Unchecked(object sender, RoutedEventArgs e) { }
     }
 
-    class CheckBoxViewModel : MyBindableBase
+    class CheckBox1ViewModel : MyBindableBase
     {
         public bool CheckFlag
         {

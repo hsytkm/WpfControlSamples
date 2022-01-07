@@ -1,4 +1,4 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.CheckBoxPage"
+﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.CheckBox1Page"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -27,13 +27,13 @@
 
     <StackPanel Margin="10" >
         <TextBlock Margin="0,10,0,0" FontSize="{StaticResource FontSizeMedium}"
-                   Text="CheckBox" />
+                   Text="CheckBox 1" />
 
         <StackPanel Margin="10,5" Background="LightBlue" >
             <CheckBox Content="Default"
                       IsChecked="{Binding CheckFlag, Mode=TwoWay}"
-                      Checked="CheckBox_Checked"
-                      Unchecked="CheckBox_Unchecked" />
+                      Checked="CheckBox1_Checked"
+                      Unchecked="CheckBox1_Unchecked" />
 
             <CheckBox Content="Background=Red"
                       Background="Red"
