@@ -6,8 +6,8 @@
                 xmlns:system="clr-namespace:System;assembly=System.Runtime"
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
                 xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
-                xmlns:mkup="clr-namespace:WpfControlSamples.Views.MarkupExtensions"
-                mc:Ignorable="d" 
+                xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                mc:Ignorable="d options" 
                 d:DesignHeight="450" d:DesignWidth="800">
 
     <ContentControl.Resources>
@@ -25,7 +25,7 @@
             </Style>
 
             <!-- Resource1(Button_Click1) と同じ設定にしています -->
-            <SolidColorBrush x:Key="MyColorBrushKey" Color="Blue" />
+            <SolidColorBrush x:Key="MyColorBrushKey" Color="Blue" options:Freeze="True" />
             <ImageBrush x:Key="MyImageBrushKey" ImageSource="/Resources/Images/Resource1.png" />
             <system:String x:Key="MyMessageKey">リソース１</system:String>
 

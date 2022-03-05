@@ -33,7 +33,7 @@ namespace WpfControlSamples.Views.Menus
 
             if (!string.IsNullOrEmpty(homeDir))
             {
-                System.Diagnostics.Process.Start("explorer.exe", homeDir);
+                using var process = System.Diagnostics.Process.Start("explorer.exe", homeDir);
             }
         }
     }

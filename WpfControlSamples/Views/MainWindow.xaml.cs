@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -26,6 +27,11 @@ namespace WpfControlSamples.Views
             DataContext = new MainWindowViewModel();
 
             this.Loaded += MainWindow_Loaded;
+
+#if DEBUG
+            // Binding の警告レベルを変更する（デフォは Warning)
+            //PresentationTraceSources.DataBindingSource.Switch.Level = SourceLevels.Critical;
+#endif
         }
 
         #region CustomContextMenu
