@@ -37,7 +37,7 @@
                                    CommandParameter="{Binding Key, Mode=OneTime, RelativeSource={RelativeSource AncestorType={x:Type i:KeyTrigger}}}" />
         </i:KeyTrigger>
 
-        <!-- 全ての入力キーを表示したいなら、別の方法がありそう（未調査） -->
+        <!-- コードビハインドで全てのキー入力を表示させています -->
     </i:Interaction.Triggers>
 
     <StackPanel Margin="10" >
@@ -73,7 +73,11 @@
             <LineBreak/>
             Key は UIElement.InputBindings を使っても検出できる。
         </TextBlock>
-        
+
+        <TextBlock
+            Margin="20"
+            FontSize="18"
+            Text="{Binding KeyText, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}, StringFormat='Input key is {0}'}" />
     </StackPanel>
 
 </ContentControl>
