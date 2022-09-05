@@ -34,68 +34,6 @@ namespace WpfControlSamples.Views.Menus
         public IList<ColorListViewItem> SourceColors { get; } =
             Models.SampleData.WpfColors.Select(x => new ColorListViewItem(x)).ToList();
 
-        #region Filter
-        public ICommand FilterCommand => _filterCommand ??
-            (_filterCommand = new MyCommand<string>(name =>
-            {
-                var collectionView = CollectionViewSource.GetDefaultView(SourceColors);
-                if (string.IsNullOrEmpty(name))
-                {
-                    collectionView.Filter = null;   // clear
-                }
-                else
-                {
-                    collectionView.Filter = x =>
-                    {
-                        var color = (ColorListViewItem)x;
-                        return color.Name.Contains(name);
-                    };
-                }
-            }));
-        private ICommand _filterCommand;
-        #endregion
-
-        #region Sort
-        public ICommand SortNameCommand => _sortNameCommand ??
-            (_sortNameCommand = new MyCommand<int?>(pattern => SortDescription(nameof(ColorListViewItem.Name), pattern)));
-        private ICommand _sortNameCommand;
-
-        public ICommand SortHueCommand => _sortHueCommand ??
-            (_sortHueCommand = new MyCommand<int?>(pattern => SortDescription(nameof(ColorListViewItem.Hue), pattern)));
-        private ICommand _sortHueCommand;
-
-        private void SortDescription(string name, int? pattern)
-        {
-            ListSortDirection? direction = null;
-            if (pattern.HasValue)
-                direction = (pattern.Value == 0) ? ListSortDirection.Ascending : ListSortDirection.Descending;
-
-            var collectionView = CollectionViewSource.GetDefaultView(SourceColors);
-            collectionView.SortDescriptions.Clear();    // 必ずクリア
-
-            if (direction.HasValue)
-            {
-                collectionView.SortDescriptions.Add(new SortDescription(name, direction.Value));
-            }
-        }
-        #endregion
-
-        #region Group
-        public ICommand GroupCommand => _groupCommand ??
-            (_groupCommand = new MyCommand<int?>(groupPattern =>
-            {
-                var collectionView = CollectionViewSource.GetDefaultView(SourceColors);
-
-                collectionView.GroupDescriptions.Clear();
-                if (groupPattern.HasValue)
-                {
-                    // Hueプロパティの10の位の値でグルーピングする
-                    collectionView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(ColorListViewItem.Hue), new HueGroupConverter()));
-                }
-            }));
-        private ICommand _groupCommand;
-        #endregion
-
+        // フィルタルールは xaml で対応しています
     }
-
 }

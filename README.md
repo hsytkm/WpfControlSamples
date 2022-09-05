@@ -72,6 +72,10 @@ Updated in 2022/01
 
 [aybe/Windows-API-Code-Pack-1.1](https://github.com/aybe/Windows-API-Code-Pack-1.1)
 
+[snoopwpf/snoopwpf: Snoop - The WPF Spy Utility](https://github.com/snoopwpf/snoopwpf)
+
+Ctrl + Shift で詮索対象のコントロールに移動します。
+
 ## Memo
 
 **[.NET5]自己完結リリースで単一ファイルにならない対応**
@@ -104,6 +108,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <IncludeNativeLibrariesForSelfExtract>True</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
 </Project>
+```
+
+**発行の出力言語指定（動作未確認）**
+
+[Microsoft.NET.Sdk の MSBuild プロパティ - .NET | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/core/project-sdk/msbuild-props#satelliteresourcelanguages)
+
+```xml
+<PropertyGroup>
+  <SatelliteResourceLanguages>ja-JP;en-US</SatelliteResourceLanguages>
+</PropertyGroup>
 ```
 
 **ビルド時にリソースをコピーする**
