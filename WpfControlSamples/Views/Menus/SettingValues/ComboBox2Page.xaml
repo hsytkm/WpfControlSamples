@@ -56,7 +56,7 @@
         <TextBlock Margin="10,20,0,5" FontSize="{StaticResource FontSizeMicro}"
                    Text="3. Binding Enum" />
         <ComboBox Margin="20,0"
-                  ItemsSource="{markup:EnumBindingSource local:JoJoStoryEnum}"
+                  ItemsSource="{markup:EnumBindingSource local:ComboBox2ViewModel+JoJoStoryEnum}"
                   SelectedValue="{Binding SelectedStory, Mode=TwoWay}" />
         <TextBlock Margin="20,10"
                    FontSize="{StaticResource FontSizeMicro}"
@@ -65,7 +65,7 @@
         <TextBlock Margin="10,20,0,5" FontSize="{StaticResource FontSizeMicro}"
                    Text="4. Binding Enum with Description" />
         <ComboBox Margin="20,0"
-                  ItemsSource="{markup:EnumBindingSource local:JoJoStoryEnumWithDescription}" />
+                  ItemsSource="{markup:EnumBindingSource local:ComboBox2ViewModel+JoJoStoryEnumWithDescription}" />
 
     </StackPanel>
 

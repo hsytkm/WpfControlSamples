@@ -98,36 +98,33 @@ namespace WpfControlSamples.Views.Menus
         private JoJoStoryEnum _selectedStory = JoJoStoryEnum.StardustCrusaders;
         #endregion
 
+        public enum JoJoStoryEnum
+        {
+            PhantomBlood,
+            BattleTendency,
+            StardustCrusaders,
+            DiamondIsUnbreakable,
+            GoldenWind,
+            StoneOcean,
+            SteelBallRun,
+            JoJolion
+        };
+
+        [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+        public enum JoJoStoryEnumWithDescription
+        {
+            [Description("ファントムブラッド")]
+            PhantomBlood = 1,
+            [Description("戦闘潮流")]
+            BattleTendency,
+            [Description("スターダストクルセイダース")]
+            StardustCrusaders,
+            [Description("ダイヤモンドは砕けない")]
+            DiamondIsUnbreakable,
+            GoldenWind,
+            StoneOcean,
+            SteelBallRun,
+            JoJolion
+        };
     }
-
-    // ◆本当は ComboBox2ViewModelクラス の中に定義したかったけど、xamlからのTypeの参照実装が分からなかった…
-    public enum JoJoStoryEnum
-    {
-        PhantomBlood,
-        BattleTendency,
-        StardustCrusaders,
-        DiamondIsUnbreakable,
-        GoldenWind,
-        StoneOcean,
-        SteelBallRun,
-        JoJolion
-    };
-
-    // ◆本当は ComboBox2ViewModelクラス の中に定義したかったけど、xamlからのTypeの参照実装が分からなかった…
-    [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-    public enum JoJoStoryEnumWithDescription
-    {
-        [Description("ファントムブラッド")]
-        PhantomBlood = 1,
-        [Description("戦闘潮流")]
-        BattleTendency,
-        [Description("スターダストクルセイダース")]
-        StardustCrusaders,
-        [Description("ダイヤモンドは砕けない")]
-        DiamondIsUnbreakable,
-        GoldenWind,
-        StoneOcean,
-        SteelBallRun,
-        JoJolion
-    };
 }
