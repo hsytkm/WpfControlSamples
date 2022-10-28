@@ -170,6 +170,7 @@ namespace WpfControlSamples.Views
 
         private static readonly IEnumerable<Type> _interactionTriggerPages = new[]
         {
+            typeof(TriggerStylePage),
             typeof(BehaviorsEventTriggerPage),
             typeof(BehaviorsDataTriggerPage),
             typeof(KeyTriggerPage),

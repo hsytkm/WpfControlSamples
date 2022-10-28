@@ -12,19 +12,15 @@ namespace WpfControlSamples.Views.AttachedProperties
     // [【WPF】カラムを３回押したときにソートを解除できるようにする - Qiita](https://qiita.com/denpadokei/items/838cc83269cf703aecbd)
     public sealed class DataGridRefreshSorting
     {
-        public static readonly DependencyProperty CanRefreshSorting =
-            DependencyProperty.RegisterAttached("CanRefreshSortingProperty", typeof(bool), typeof(DataGridRefreshSorting),
+        public static readonly DependencyProperty CanRefreshSortingProperty =
+            DependencyProperty.RegisterAttached("CanRefreshSorting", typeof(bool), typeof(DataGridRefreshSorting),
                 new PropertyMetadata(OnCanRefreshSprtingChanged));
 
-        public static bool GetCanRefreshSorting(DependencyObject dependencyObject)
-        {
-            return (bool)dependencyObject.GetValue(CanRefreshSorting);
-        }
+        public static bool GetCanRefreshSorting(DependencyObject dependencyObject) =>
+            (bool)dependencyObject.GetValue(CanRefreshSortingProperty);
 
-        public static void SetCanRefreshSorting(DependencyObject dependencyObject, bool value)
-        {
-            dependencyObject.SetValue(CanRefreshSorting, value);
-        }
+        public static void SetCanRefreshSorting(DependencyObject dependencyObject, bool value) =>
+            dependencyObject.SetValue(CanRefreshSortingProperty, value);
 
         private static void OnCanRefreshSprtingChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {

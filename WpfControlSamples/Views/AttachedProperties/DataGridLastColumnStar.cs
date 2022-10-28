@@ -9,19 +9,15 @@ namespace WpfControlSamples.Views.AttachedProperties
     // DataGrid.AutoGenerateColumns=true 時に最終列の幅を最大にします
     public sealed class DataGridLastColumnStar
     {
-        public static readonly DependencyProperty IsLastColumnStar =
-            DependencyProperty.RegisterAttached("IsLastColumnStarProperty", typeof(bool), typeof(DataGridLastColumnStar),
+        public static readonly DependencyProperty IsLastColumnStarProperty =
+            DependencyProperty.RegisterAttached("IsLastColumnStar", typeof(bool), typeof(DataGridLastColumnStar),
                 new PropertyMetadata(OnIsLastColumnStarChanged));
 
-        public static bool GetIsLastColumnStar(DependencyObject dependencyObject)
-        {
-            return (bool)dependencyObject.GetValue(IsLastColumnStar);
-        }
+        public static bool GetIsLastColumnStar(DependencyObject dependencyObject) =>
+            (bool)dependencyObject.GetValue(IsLastColumnStarProperty);
 
-        public static void SetIsLastColumnStar(DependencyObject dependencyObject, bool value)
-        {
-            dependencyObject.SetValue(IsLastColumnStar, value);
-        }
+        public static void SetIsLastColumnStar(DependencyObject dependencyObject, bool value) =>
+            dependencyObject.SetValue(IsLastColumnStarProperty, value);
 
         private static void OnIsLastColumnStarChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
