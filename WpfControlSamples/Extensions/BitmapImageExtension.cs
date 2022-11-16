@@ -37,7 +37,7 @@ namespace WpfControlSamples.Extensions
             bi.EndInit();
             bi.Freeze();
 
-            if (bi.Width == 1 && bi.Height == 1) throw new OutOfMemoryException();
+            //if (bi.Width == 1 && bi.Height == 1) throw new OutOfMemoryException();
             return bi;
         }
 

@@ -2,16 +2,10 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,7 +34,7 @@
     <EmbeddedResource Include="Resources\Images\EmbeddedResource2.png" />
     <EmbeddedResource Include="Resources\Sounds\EmbeddedResource1.wav" />
     <None Include="..\.editorconfig" Link=".editorconfig" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <ProjectReference Include="..\WpfControlSamples.Conditional\WpfControlSamples.Conditional.csproj" />
     <ProjectReference Include="..\WpfControlSamples.CustomControlNumericUpDown\WpfControlSamples.CustomControlNumericUpDown.csproj" />
     <ProjectReference Include="..\WpfControlSamples.Drawing\WpfControlSamples.Drawing.csproj" />
