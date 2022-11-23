@@ -1,9 +1,12 @@
 ﻿#nullable disable
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -98,33 +101,70 @@ namespace WpfControlSamples.Views.Menus
         private JoJoStoryEnum _selectedStory = JoJoStoryEnum.StardustCrusaders;
         #endregion
 
-        public enum JoJoStoryEnum
+        public JoJoStoryEnumWithDescription SelectedValue4
         {
-            PhantomBlood,
-            BattleTendency,
-            StardustCrusaders,
-            DiamondIsUnbreakable,
-            GoldenWind,
-            StoneOcean,
-            SteelBallRun,
-            JoJolion
-        };
+            get => _selectedValue4;
+            set => SetProperty(ref _selectedValue4, value);
+        }
+        private JoJoStoryEnumWithDescription _selectedValue4;
 
-        [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-        public enum JoJoStoryEnumWithDescription
+        public JoJoStoryEnumWithDescription SelectedValue5
         {
-            [Description("ファントムブラッド")]
-            PhantomBlood = 1,
-            [Description("戦闘潮流")]
-            BattleTendency,
-            [Description("スターダストクルセイダース")]
-            StardustCrusaders,
-            [Description("ダイヤモンドは砕けない")]
-            DiamondIsUnbreakable,
-            GoldenWind,
-            StoneOcean,
-            SteelBallRun,
-            JoJolion
-        };
+            get => _selectedValue5;
+            set => SetProperty(ref _selectedValue5, value);
+        }
+        private JoJoStoryEnumWithDescription _selectedValue5;
+    }
+
+    // ◆本当は ComboBox2ViewModelクラス の中に定義したかったけど、xamlからのTypeの参照実装が分からなかった…
+    public enum JoJoStoryEnum
+    {
+        PhantomBlood,
+        BattleTendency,
+        StardustCrusaders,
+        DiamondIsUnbreakable,
+        GoldenWind,
+        StoneOcean,
+        SteelBallRun,
+        JoJolion
+    };
+
+    // ◆本当は ComboBox2ViewModelクラス の中に定義したかったけど、xamlからのTypeの参照実装が分からなかった…
+    [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+    public enum JoJoStoryEnumWithDescription
+    {
+        [Description("ファントムブラッド")]
+        PhantomBlood = 1,
+        [Description("戦闘潮流")]
+        BattleTendency,
+        [Description("スターダストクルセイダース")]
+        StardustCrusaders,
+        [Description("ダイヤモンドは砕けない")]
+        DiamondIsUnbreakable,
+        GoldenWind,
+        StoneOcean,
+        SteelBallRun,
+        JoJolion
+    };
+
+    // https://stackoverflow.com/questions/4306743/wpf-data-binding-how-to-data-bind-an-enum-to-combo-box-using-xaml
+    public class EnumDescriptionConverter : IValueConverter
+    {
+        public static readonly EnumDescriptionConverter Shared = new();
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var valueText = value.ToString();
+            if (value is Enum)
+            {
+                var fieldInfo = value.GetType().GetField(valueText);
+                var attributes = fieldInfo?.GetCustomAttributes<DescriptionAttribute>(false);
+                return attributes?.FirstOrDefault()?.Description ?? valueText;
+            }
+            return valueText;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) =>
+            throw new NotImplementedException();
     }
 }

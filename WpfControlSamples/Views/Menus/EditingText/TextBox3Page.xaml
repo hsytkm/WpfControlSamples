@@ -1,0 +1,30 @@
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.TextBox3Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:action="clr-namespace:WpfControlSamples.Views.Actions"
+    xmlns:ctrl="clr-namespace:WpfControlSamples.Views.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <StackPanel Margin="10">
+        <TextBlock
+            Margin="0,10,0,0"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="TextBox 3" />
+
+        <TextBlock Margin="10">
+            <Run FontSize="{StaticResource FontSizeMicro}" Text="IP address 入力用の TextBox" /> <LineBreak />
+            <Run Text="  3桁入力したら次の枠に移動する の対応は導入していません。" /> <LineBreak />
+            <Run Text="  数値しか入力できない の対応も導入していません。 NumericValidation と組み合わせて対応して下さい。" />
+        </TextBlock>
+
+        <ctrl:IpAddrTextBox Margin="20" />
+
+    </StackPanel>
+</ContentControl>

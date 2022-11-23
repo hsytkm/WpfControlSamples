@@ -89,6 +89,7 @@ namespace WpfControlSamples.Views
         {
             typeof(TextBox1Page),
             typeof(TextBox2Page),
+            typeof(TextBox3Page),
             typeof(PasswordBoxPage),
             typeof(RichTextBoxPage),
             typeof(WatermarkPage),
@@ -170,7 +171,6 @@ namespace WpfControlSamples.Views
 
         private static readonly IEnumerable<Type> _interactionTriggerPages = new[]
         {
-            typeof(TriggerStylePage),
             typeof(BehaviorsEventTriggerPage),
             typeof(BehaviorsDataTriggerPage),
             typeof(KeyTriggerPage),

@@ -1,34 +1,53 @@
-﻿<ContentControl x:Class="WpfControlSamples.Views.Menus.ComboBox2Page"
-                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
-                xmlns:markup="clr-namespace:WpfControlSamples.Views.MarkupExtensions"
-                mc:Ignorable="d" 
-                d:DesignHeight="450" d:DesignWidth="800">
+﻿<ContentControl
+    x:Class="WpfControlSamples.Views.Menus.ComboBox2Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
+    xmlns:markup="clr-namespace:WpfControlSamples.Views.MarkupExtensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
-    <StackPanel Margin="10" >
+    <ContentControl.Resources>
+        <ObjectDataProvider
+            x:Key="JoJoStoryEnumsSource5"
+            MethodName="GetValues"
+            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:JoJoStoryEnumWithDescription" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </ContentControl.Resources>
 
-        <TextBlock Margin="0,0,0,5"
-                   FontSize="{StaticResource FontSizeMedium}"
-                   Text="ComboBox (2)" />
+    <StackPanel Margin="10">
 
-        <!-- ComboBox.ItemsSource に ListCollectionView を直接バインドしているが、
-             CollectionViewPage.xaml.cs のように CollectionViewSource.GetDefaultView() を使った方が
-             疎結合でベターだと思う。
+        <TextBlock
+            Margin="0,0,0,5"
+            FontSize="{StaticResource FontSizeMedium}"
+            Text="ComboBox (2)" />
+
+        <!--
+            ComboBox.ItemsSource に ListCollectionView を直接バインドしているが、
+            CollectionViewPage.xaml.cs のように CollectionViewSource.GetDefaultView() を使った方が
+            疎結合でベターだと思う。
         -->
-        <TextBlock Margin="10,0,0,5" FontSize="{StaticResource FontSizeMicro}"
-                   Text="1. Grouping of collection items" />
-        <ComboBox Margin="20,0"
-                  ItemsSource="{Binding ItemsSource, Mode=OneTime}" >
+        <TextBlock
+            Margin="10,0,0,5"
+            FontSize="{StaticResource FontSizeMicro}"
+            Text="1. Grouping of collection items" />
+        <ComboBox Margin="20,0" ItemsSource="{Binding ItemsSource, Mode=OneTime}">
             <ComboBox.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate>
-                            <Border Background="LightPink" >
-                                <TextBlock Text="{Binding Name, Mode=OneTime}"
-                                           Margin="10,3" FontWeight="Bold" />
+                            <Border Background="LightPink">
+                                <TextBlock
+                                    Margin="10,3"
+                                    FontWeight="Bold"
+                                    Text="{Binding Name, Mode=OneTime}" />
                             </Border>
                         </DataTemplate>
                     </GroupStyle.HeaderTemplate>
@@ -42,30 +61,57 @@
             </ItemsControl.ItemTemplate>
         </ComboBox>
 
-        <TextBlock Margin="10,20,0,5" FontSize="{StaticResource FontSizeMicro}"
-                   Text="2. Binding Dictionary" />
-        <ComboBox Margin="20,0"
-                  ItemsSource="{Binding CharactorsDictionary, Mode=OneTime}"
-                  DisplayMemberPath="Key"
-                  SelectedValuePath="Value"
-                  SelectedValue="{Binding SelectedCharactorName, Mode=TwoWay}" />
-        <TextBlock Margin="20,10"
-                   FontSize="{StaticResource FontSizeMicro}"
-                   Text="{Binding SelectedCharactorName, Mode=OneWay, StringFormat='Selected Stand is {0}.'}" />
+        <TextBlock
+            Margin="10,20,0,5"
+            FontSize="{StaticResource FontSizeMicro}"
+            Text="2. Binding Dictionary" />
+        <ComboBox
+            Margin="20,0"
+            DisplayMemberPath="Key"
+            ItemsSource="{Binding CharactorsDictionary, Mode=OneTime}"
+            SelectedValue="{Binding SelectedCharactorName, Mode=TwoWay}"
+            SelectedValuePath="Value" />
+        <TextBlock
+            Margin="20,10"
+            FontSize="{StaticResource FontSizeMicro}"
+            Text="{Binding SelectedCharactorName, Mode=OneWay, StringFormat='Selected Stand is {0}.'}" />
 
-        <TextBlock Margin="10,20,0,5" FontSize="{StaticResource FontSizeMicro}"
-                   Text="3. Binding Enum" />
-        <ComboBox Margin="20,0"
-                  ItemsSource="{markup:EnumBindingSource local:ComboBox2ViewModel+JoJoStoryEnum}"
-                  SelectedValue="{Binding SelectedStory, Mode=TwoWay}" />
-        <TextBlock Margin="20,10"
-                   FontSize="{StaticResource FontSizeMicro}"
-                   Text="{Binding SelectedStory, Mode=OneWay, StringFormat='Selected Story is {0}.'}" />
+        <TextBlock
+            Margin="10,20,0,5"
+            FontSize="{StaticResource FontSizeMicro}"
+            Text="3. Binding Enum" />
+        <ComboBox
+            Margin="20,0"
+            ItemsSource="{markup:EnumBindingSource local:JoJoStoryEnum}"
+            SelectedValue="{Binding SelectedStory, Mode=TwoWay}" />
+        <TextBlock
+            Margin="20,10"
+            FontSize="{StaticResource FontSizeMicro}"
+            Text="{Binding SelectedStory, Mode=OneWay, StringFormat='Selected Story is {0}.'}" />
 
-        <TextBlock Margin="10,20,0,5" FontSize="{StaticResource FontSizeMicro}"
-                   Text="4. Binding Enum with Description" />
-        <ComboBox Margin="20,0"
-                  ItemsSource="{markup:EnumBindingSource local:ComboBox2ViewModel+JoJoStoryEnumWithDescription}" />
+        <TextBlock
+            Margin="10,20,0,5"
+            FontSize="{StaticResource FontSizeMicro}"
+            Text="4. Binding Enum with Description" />
+        <ComboBox
+            Margin="20,0"
+            ItemsSource="{markup:EnumBindingSource local:JoJoStoryEnumWithDescription}"
+            SelectedValue="{Binding SelectedValue4, Mode=TwoWay}" />
+
+        <TextBlock
+            Margin="10,20,0,5"
+            FontSize="{StaticResource FontSizeMicro}"
+            Text="5. Binding Enum with Description (using ObjectDataProvider)" />
+        <ComboBox
+            Margin="20,0"
+            ItemsSource="{Binding Source={StaticResource JoJoStoryEnumsSource5}}"
+            SelectedValue="{Binding SelectedValue5, Mode=TwoWay}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding ., Mode=OneTime, Converter={x:Static local:EnumDescriptionConverter.Shared}}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ComboBox>
 
     </StackPanel>
 
