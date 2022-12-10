@@ -136,6 +136,7 @@ namespace WpfControlSamples.Views
             typeof(Button4Page),
             typeof(RepeatButtonPage),
             typeof(ToggleButton1Page),
+            typeof(MarkupCommandPage),
         };
 
         private static readonly IEnumerable<Type> _interactionActionPages = new[]

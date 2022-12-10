@@ -12,6 +12,12 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
+    <!--
+        FocusManager.FocusedElement でフォーカスが移行した時の初期フォーカスを指定できるようでしたが、
+        このケース（Control読み込みでフォーカス移動）では期待通りに動作しませんでした。
+        ダイアログのポップアップでパスワード入力のようなシチュエーションでは使用できるのかもしれません。（未確認）
+    -->
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <action:MoveFocusAction TargetName="targetTextBox" />
@@ -26,6 +32,7 @@
 
         <TextBlock Margin="10,0" Text="Loaded のタイミングで Focus を移動させます。" />
 
+        <!--  FocusManager.FocusedElement="{Binding ElementName=targetTextBox}"  -->
         <StackPanel Margin="20,10">
             <Panel.Resources>
                 <Style TargetType="{x:Type TextBox}">
