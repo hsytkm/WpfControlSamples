@@ -5,7 +5,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:system="clr-namespace:System;assembly=System.Runtime"
                 xmlns:local="clr-namespace:WpfControlSamples.Views.Menus"
-                xmlns:conv="clr-namespace:WpfControlSamples.Views.Converters"
+                xmlns:helpers="clr-namespace:WpfControlSamples.Views.Helpers"
                 xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                 mc:Ignorable="d options" 
                 d:DesignHeight="450" d:DesignWidth="800">
@@ -33,7 +33,7 @@
 
             <!-- DynamicResource に Converter を適用するための対応
                  https://stackoverflow.com/questions/4805351/use-ivalueconverter-with-dynamicresource -->
-            <conv:BindingProxy x:Key="MyColorBrushKeyProxy" Data="{DynamicResource MyColorBrushKey}" />
+            <helpers:BindingProxy x:Key="MyColorBrushKeyProxy" Data="{DynamicResource MyColorBrushKey}" />
         </ResourceDictionary>
     </ContentControl.Resources>
 

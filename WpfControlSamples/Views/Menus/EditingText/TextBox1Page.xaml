@@ -37,25 +37,6 @@
                        Text="TextBlock.Text に int をバインドしている場合に 数値 でなければ、Validation.HasError が true になる。" />
         </DockPanel>
 
-        <!-- 入力用(EnterKeyで確定) -->
-        <Border Margin="10,2" Padding="20,10" Background="LightPink" >
-            <StackPanel>
-                <TextBlock Text="ToUpper when enter key is pushed." />
-
-                <TextBox>
-                    <TextBox.InputBindings>
-                        <KeyBinding Gesture="Enter"
-                                    Command="{Binding TextEnterCommand, Mode=OneTime}"
-                                    CommandParameter="{Binding Text, Mode=OneWay,
-                                                               RelativeSource={RelativeSource FindAncestor, AncestorType=TextBox}}" />
-                    </TextBox.InputBindings>
-                </TextBox>
-
-                <TextBlock Margin="0,10,0,0" Background="LightGray"
-                           Text="{Binding InputText2, Mode=OneWay}" />
-            </StackPanel>
-        </Border>
-
         <!-- 読み出し専用 -->
         <Border Margin="10,2" Padding="20,10" Background="LightGreen" >
             <StackPanel>
@@ -77,10 +58,10 @@
                          VerticalContentAlignment="Top"
                          Height="100"
                          VerticalScrollBarVisibility="Visible"
-                         Text="{Binding InputText3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                         Text="{Binding InputText2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock Margin="0,10,0,0" Background="LightGray"
-                           Text="{Binding InputText3, Mode=OneWay}" />
+                           Text="{Binding InputText2, Mode=OneWay}" />
             </StackPanel>
         </Border>
 

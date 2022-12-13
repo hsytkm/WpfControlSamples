@@ -90,6 +90,7 @@ namespace WpfControlSamples.Views
             typeof(TextBox1Page),
             typeof(TextBox2Page),
             typeof(TextBox3Page),
+            typeof(TextBox4Page),
             typeof(PasswordBoxPage),
             typeof(RichTextBoxPage),
             typeof(WatermarkPage),

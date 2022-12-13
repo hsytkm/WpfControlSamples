@@ -1,18 +1,5 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WpfControlSamples.Extensions;
 using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
@@ -46,20 +33,8 @@ namespace WpfControlSamples.Views.Menus
         public string InputText2
         {
             get => _inputText2;
-            private set => SetProperty(ref _inputText2, value);
+            set => SetProperty(ref _inputText2, value);
         }
         private string _inputText2;
-
-        public string InputText3
-        {
-            get => _inputText3;
-            set => SetProperty(ref _inputText3, value);
-        }
-        private string _inputText3;
-
-        public ICommand TextEnterCommand => _textEnterCommand ??=
-            new MyCommand<string>(text => InputText2 = text.ToUpperInvariant());
-        private ICommand _textEnterCommand;
-
     }
 }
