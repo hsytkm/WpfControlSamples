@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WpfControlSamples.Models
 {
@@ -9,5 +10,13 @@ namespace WpfControlSamples.Models
 
         public NameValueKey(string name, string value) =>
             (Name, Value) = (name, value);
+
+        public static readonly IReadOnlyList<NameValueKey> Data = new NameValueKey[]
+        {
+            new("Jotaro", "Star Platinum"),
+            new("DIO", "World 21"),
+            new("Joseph", "Hermit Purple"),
+            new("Polnareff", "Silver Chariot"),
+        };
     }
 }
