@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfControlSamples", "WpfControlSamples\WpfControlSamples.csproj", "{0D0A28A6-916A-4CD0-AF76-4B2FA9746BC7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfControlSamples.CustomControlNumericUpDown", "WpfControlSamples.CustomControlNumericUpDown\WpfControlSamples.CustomControlNumericUpDown.csproj", "{959859A5-7954-4A6A-9B36-5ED6603436D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfControlSamples.CustomControls", "WpfControlSamples.CustomControls\WpfControlSamples.CustomControls.csproj", "{959859A5-7954-4A6A-9B36-5ED6603436D2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfControlSamples.FileDialogLibrary", "WpfControlSamples.FileDialogLibrary\WpfControlSamples.FileDialogLibrary.csproj", "{5FB2D2A8-D6E1-451C-B97C-6629F5B8BB17}"
 EndProject

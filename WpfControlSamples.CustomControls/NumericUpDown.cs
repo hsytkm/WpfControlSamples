@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace WpfControlSamples.CustomControlNumericUpDown
+namespace WpfControlSamples.CustomControls
 {
     #region
     /// <summary>
@@ -14,14 +14,14 @@ namespace WpfControlSamples.CustomControlNumericUpDown
     /// Add this XmlNamespace attribute to the root element of the markup file where it is
     /// to be used:
     ///
-    ///     xmlns:MyNamespace="clr-namespace:WpfControlSamples.CustomControlNumericUpDown"
+    ///     xmlns:MyNamespace="clr-namespace:WpfControlSamples.CustomControls"
     ///
     ///
     /// Step 1b) Using this custom control in a XAML file that exists in a different project.
     /// Add this XmlNamespace attribute to the root element of the markup file where it is
     /// to be used:
     ///
-    ///     xmlns:MyNamespace="clr-namespace:WpfControlSamples.CustomControlNumericUpDown;assembly=WpfControlSamples.CustomControlNumericUpDown"
+    ///     xmlns:MyNamespace="clr-namespace:WpfControlSamples.CustomControls;assembly=WpfControlSamples.CustomControls"
     ///
     /// You will also need to add a project reference from the project where the XAML file lives
     /// to this project and Rebuild to avoid compilation errors:

@@ -36,7 +36,7 @@
     <None Include="..\.editorconfig" Link=".editorconfig" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <ProjectReference Include="..\WpfControlSamples.Conditional\WpfControlSamples.Conditional.csproj" />
-    <ProjectReference Include="..\WpfControlSamples.CustomControlNumericUpDown\WpfControlSamples.CustomControlNumericUpDown.csproj" />
+    <ProjectReference Include="..\WpfControlSamples.CustomControls\WpfControlSamples.CustomControls.csproj" />
     <ProjectReference Include="..\WpfControlSamples.Drawing\WpfControlSamples.Drawing.csproj" />
     <ProjectReference Include="..\WpfControlSamples.FileDialogLibrary\WpfControlSamples.FileDialogLibrary.csproj" />
     <Resource Include="Resources\Cursors\zoom_mag.cur" />
