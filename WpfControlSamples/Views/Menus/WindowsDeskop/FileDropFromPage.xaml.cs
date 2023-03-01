@@ -21,15 +21,15 @@ using WpfControlSamples.Infrastructures;
 
 namespace WpfControlSamples.Views.Menus
 {
-    public partial class FileDropPage : ContentControl
+    public partial class FileDropFromPage : ContentControl
     {
-        public FileDropPage()
+        public FileDropFromPage()
         {
             InitializeComponent();
         }
     }
 
-    class FileDropViewModel : MyBindableBase
+    class FileDropFromViewModel : MyBindableBase
     {
         public string DroppedPath
         {
@@ -40,7 +40,7 @@ namespace WpfControlSamples.Views.Menus
 
         public ObservableCollection<string> DroppedPaths { get; } = new ObservableCollection<string>();
 
-        public FileDropViewModel()
+        public FileDropFromViewModel()
         {
             DroppedPaths.CollectionChanged += DroppedPaths_CollectionChanged;
         }
