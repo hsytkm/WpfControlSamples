@@ -40,4 +40,18 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
+
+    <!--
+        タスクバー上の右クリックで表示されるタスク操作
+        (最近使ったファイルを表示するためには、拡張子に関連付けされてないとダメなようです)
+    -->
+    <JumpList.JumpList>
+        <JumpList ShowFrequentCategory="True" ShowRecentCategory="True">
+            <JumpTask
+                Title="Notepad"
+                ApplicationPath="C:\Windows\notepad.exe"
+                Description="Open Notepad."
+                IconResourcePath="C:\Windows\notepad.exe" />
+        </JumpList>
+    </JumpList.JumpList>
 </Application>
