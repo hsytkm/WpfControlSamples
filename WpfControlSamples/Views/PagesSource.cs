@@ -293,6 +293,7 @@ namespace WpfControlSamples.Views
             typeof(ShortcutLinkPage),
             typeof(CopyImageToClipboardPage),
             typeof(MouseWheelTiltPage),
+            typeof(JumpListPage),
         };
 
         private static readonly IEnumerable<Type> _xamlFunctionPages = new[]

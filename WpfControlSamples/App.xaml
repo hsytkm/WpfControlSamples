@@ -46,7 +46,7 @@
         (最近使ったファイルを表示するためには、拡張子に関連付けされてないとダメなようです)
     -->
     <JumpList.JumpList>
-        <JumpList ShowFrequentCategory="True" ShowRecentCategory="True">
+        <JumpList ShowFrequentCategory="False" ShowRecentCategory="True">
             <JumpTask
                 Title="Notepad"
                 ApplicationPath="C:\Windows\notepad.exe"
