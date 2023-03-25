@@ -6,6 +6,21 @@
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!--<ApplicationIcon>app.ico</ApplicationIcon>-->
+
+    <!-- 右クリックのプロパティに下記の順番で表示されます -->
+    <FileVersion>1.2.3.4</FileVersion>
+    <Product>Product</Product>
+    <Version>5.6.7</Version>
+    <Copyright>Copyright</Copyright>
+
+    <!-- どこから確認するか分かっていませんが 空白 にすることが多いです
+    <Authors>Authors</Authors>
+    <Company>Company</Company>
+    <PackageId>PackageId</PackageId>
+    <Title>Title</Title>
+    <Description>Description</Description>
+    -->
   </PropertyGroup>
 
   <ItemGroup>

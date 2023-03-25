@@ -5,8 +5,9 @@
     xmlns:local="clr-namespace:WpfControlSamples"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:vc="clr-namespace:WpfControlSamples.Views.Converters"
-    DispatcherUnhandledException="Application_DispatcherUnhandledException"
-    StartupUri="Views/MainWindow.xaml">
+    xmlns:views="clr-namespace:WpfControlSamples.Views"
+    DispatcherUnhandledException="App_DispatcherUnhandledException"
+    Startup="App_OnStartup">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -54,4 +55,9 @@
                 IconResourcePath="C:\Windows\notepad.exe" />
         </JumpList>
     </JumpList.JumpList>
+
+    <!--  App内で MainWindow のインスタンスを取得するためxamlで定義しています  -->
+    <Application.MainWindow>
+        <views:MainWindow Visibility="Visible" />
+    </Application.MainWindow>
 </Application>
