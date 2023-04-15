@@ -34,7 +34,7 @@ namespace WpfControlSamples.Views.Menus
 
         public ICommand ShowValueCommand => new MyCommand<string>(x => MessageBox.Show($"Value = {x ?? "null"}"));
 
-        public ObservableCollectionSelectedItemPair<string> CollectionItemPair { get; } = new();
+        public ObservableCollectionWithSelectedItem<string> CollectionItemPair { get; } = new();
 
         private int _counter;
         public ICommand AddFirstItemCommand => _addFirstItemCommand ??= new MyCommand(() =>

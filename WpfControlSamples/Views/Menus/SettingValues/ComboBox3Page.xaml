@@ -98,8 +98,8 @@
                 Height="30"
                 VerticalContentAlignment="Center"
                 DockPanel.Dock="Left"
-                IsEnabled="{Binding CollectionItemPair.Collection.Count, Mode=OneWay, Converter={StaticResource IntToBoolConverter}}"
-                ItemsSource="{Binding CollectionItemPair.Collection, Mode=OneWay}"
+                IsEnabled="{Binding CollectionItemPair.Count, Mode=OneWay, Converter={StaticResource IntToBoolConverter}}"
+                ItemsSource="{Binding CollectionItemPair, Mode=OneWay}"
                 SelectedItem="{Binding CollectionItemPair.SelectedItem, Mode=TwoWay}" />
 
             <StackPanel>
@@ -110,7 +110,7 @@
                 <TextBlock
                     Margin="20,0,0,5"
                     FontSize="{StaticResource FontSizeMicro}"
-                    Text="{Binding CollectionItemPair.Collection.Count, Mode=OneWay, StringFormat='Collection count is {0}.'}" />
+                    Text="{Binding CollectionItemPair.Count, Mode=OneWay, StringFormat='Collection count is {0}.'}" />
             </StackPanel>
         </DockPanel>
     </StackPanel>

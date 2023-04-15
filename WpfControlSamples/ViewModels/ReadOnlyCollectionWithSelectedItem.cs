@@ -7,7 +7,7 @@ namespace WpfControlSamples.ViewModels;
 
 /// <summary>
 /// IReadOnlyList&lt;T&gt; と SelectedItem をペアで管理します。
-/// コレクション要素が変化する場合は ObservableCollectionSelectedItemPair を使用してください
+/// コレクション要素が変化する場合は ObservableCollectionSelectedItemPair を使用してください。
 /// </summary>
 public sealed class ReadOnlyCollectionWithSelectedItem<T> : IReadOnlyList<T>, INotifyPropertyChanged
     where T : class?    // struct で要素が存在しない場合の挙動を未規定なので(defaultの扱い)
@@ -15,6 +15,8 @@ public sealed class ReadOnlyCollectionWithSelectedItem<T> : IReadOnlyList<T>, IN
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private readonly List<T> _items;
+
+    // IEnumerable を継承しているのでxamlからインスタンスを直参照すれば動作します。
     public IReadOnlyList<T> Items => _items;
 
     public T? SelectedItem
@@ -49,7 +51,7 @@ public sealed class ReadOnlyCollectionWithSelectedItem<T> : IReadOnlyList<T>, IN
         SelectedItem = items.Count > 0 ? items[0] : null;
     }
 
-    public ReadOnlyCollectionWithSelectedItem(IEnumerable<T> items) : this(items.ToList()) { }
+    public ReadOnlyCollectionWithSelectedItem(IEnumerable<T> collection) : this(collection.ToList()) { }
 
     public IEnumerator<T> GetEnumerator() => _items.GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -58,5 +60,5 @@ public sealed class ReadOnlyCollectionWithSelectedItem<T> : IReadOnlyList<T>, IN
 public static class ReadOnlyCollectionWithSelectedItem
 {
     public static ReadOnlyCollectionWithSelectedItem<T> Create<T>(List<T> items) where T : class? => new(items);
-    public static ReadOnlyCollectionWithSelectedItem<T> Create<T>(IEnumerable<T> items) where T : class? => new(items);
+    public static ReadOnlyCollectionWithSelectedItem<T> Create<T>(IEnumerable<T> collection) where T : class? => new(collection);
 }
