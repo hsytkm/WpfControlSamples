@@ -1,19 +1,7 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfControlSamples.Infrastructures;
 using WpfControlSamples.ViewModels;
 
@@ -30,7 +18,7 @@ namespace WpfControlSamples.Views.Menus
 
     class ListBox9ViewModel : MyBindableBase
     {
-        public CollectionSelectedItemPair<ListBox9Item> ItemsSource { get; } =
+        public ReadOnlyCollectionWithSelectedItem<ListBox9Item> ItemsSource { get; } =
             new(Models.SampleData.WpfColors.Select(x => new ListBox9Item(x.Name, x.Color)));
     }
 

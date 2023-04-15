@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if false   // ReadOnlyCollectionWithSelectedItem を使用する方が xaml がスッキリすると思います。
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.ComponentModel;
@@ -45,3 +46,4 @@ namespace WpfControlSamples.ViewModels
         public static CollectionSelectedItemPair<T> Create<T>(IEnumerable<T> items) => new(items);
     }
 }
+#endif

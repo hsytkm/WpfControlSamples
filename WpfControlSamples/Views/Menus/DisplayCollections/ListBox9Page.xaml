@@ -24,13 +24,9 @@
             FontSize="{StaticResource FontSizeMicro}"
             Text="ListBox の選択項目が表示するようにスクロールします。" />
 
-        <TextBlock
-            Margin="20,5,0,10"
-            DockPanel.Dock="Top">
+        <TextBlock Margin="20,5,0,10" DockPanel.Dock="Top">
             <Run Text="ListBox から選ぶと動作を見れないので ComboBox からアイテムを選択して下さい。" /> <LineBreak />
-            <Run
-                Foreground="Red"
-                Text="ListBox.ScrollIntoView() を使っていますが、SelectedItem がドセンターに表示されないので 少し不満です…" />
+            <Run Foreground="Red" Text="ListBox.ScrollIntoView() を使っていますが、SelectedItem がドセンターに表示されないので 少し不満です…" />
         </TextBlock>
 
         <TextBlock
@@ -46,7 +42,7 @@
             Margin="10"
             Padding="5"
             DockPanel.Dock="Bottom"
-            ItemsSource="{Binding ItemsSource.Collection, Mode=OneTime}"
+            ItemsSource="{Binding ItemsSource, Mode=OneTime}"
             SelectedItem="{Binding ItemsSource.SelectedItem, Mode=TwoWay}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -68,7 +64,7 @@
         <ListBox
             Margin="10"
             HorizontalContentAlignment="Stretch"
-            ItemsSource="{Binding ItemsSource.Collection, Mode=OneTime}"
+            ItemsSource="{Binding ItemsSource, Mode=OneTime}"
             SelectedItem="{Binding ItemsSource.SelectedItem, Mode=TwoWay}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
