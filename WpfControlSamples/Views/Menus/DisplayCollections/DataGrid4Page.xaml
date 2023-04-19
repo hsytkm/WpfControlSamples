@@ -59,6 +59,13 @@
             SelectionMode="Extended"
             SelectionUnit="CellOrRowHeader">
 
+            <!--  列ヘッダのクリックで全列を選択する対応(xamlのみでの対応版) https://stackoverflow.com/a/24119018
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <EventSetter Event="Click" Handler="DataGridColumnHeader_Click" />
+                </Style>
+            </DataGrid.Resources>-->
+
             <!--  DataGridRowIndexConverter は仮想化に対応していません  -->
             <DataGrid.RowHeaderTemplate>
                 <DataTemplate>

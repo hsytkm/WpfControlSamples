@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using WpfControlSamples.ViewModels;
 
@@ -50,6 +50,12 @@ namespace WpfControlSamples.Views.Controls
         {
             get => (Style)GetValue(CellTextBlockStyleProperty);
             set => SetValue(CellTextBlockStyleProperty, value);
+        }
+
+        public Array2dDataGrid()
+        {
+            // 列ヘッダのクリックで全列を選択する対応
+            this.Resources.Add(typeof(DataGridColumnHeader), DataGridColumnHeaderStyles.SelectAllColumnsStyle());
         }
 
         protected override void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)

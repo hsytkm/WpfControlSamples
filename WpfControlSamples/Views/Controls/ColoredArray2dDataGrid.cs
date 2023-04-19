@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Media;
+using WpfControlSamples.Extensions;
 using WpfControlSamples.Models;
 using WpfControlSamples.ViewModels;
 
@@ -77,6 +78,12 @@ namespace WpfControlSamples.Views.Controls
         {
             get => (Style)GetValue(CellTextBlockStyleProperty);
             set => SetValue(CellTextBlockStyleProperty, value);
+        }
+
+        public ColoredArray2dDataGrid()
+        {
+            // 列ヘッダのクリックで全列を選択する対応
+            this.Resources.Add(typeof(DataGridColumnHeader), DataGridColumnHeaderStyles.SelectAllColumnsStyle());
         }
 
         protected override void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
