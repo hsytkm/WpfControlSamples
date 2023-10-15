@@ -80,34 +80,13 @@ Ctrl + Shift で詮索対象のコントロールに移動します。
 
 **[.NET5]自己完結リリースで単一ファイルにならない対応**
 
-.NET5 で `PublishSingleFile` を `True` で Publish したときに、9個くらい dll (*1) ができちゃう対策は、`IncludeNativeLibrariesForSelfExtract` を `True` にする。
-
-*1) clrcompression.dll clrjit.dll coreclr.dll D3DCompiler_47_cor3.dll mscordaccore.dll PenImc_cor3.dll PresentationNative_cor3.dll vcruntime140_cor3.dll wpfgfx_cor3.dll
-
-参考：[.NET 5でシングルバイナリを作る | OPCDiary](https://opcdiary.net/net-5%E3%81%A7%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%90%E3%82%A4%E3%83%8A%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8B/)
-
-PATH : `Properties\PublishProfiles\FolderProfile.pubxml`
+.NET5 で `PublishSingleFile` を `True` で Publish したときに複数個の dll が生成されちゃう対策。
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-https://go.microsoft.com/fwlink/?LinkID=208121. 
--->
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration>Release</Configuration>
-    <Platform>Any CPU</Platform>
-    <PublishDir>bin\Release\net6.0-windows\publish\</PublishDir>
-    <PublishProtocol>FileSystem</PublishProtocol>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <SelfContained>false</SelfContained>
-    <PublishSingleFile>True</PublishSingleFile>
-    <PublishReadyToRun>False</PublishReadyToRun>
-    <PublishTrimmed>False</PublishTrimmed>
-    <IncludeNativeLibrariesForSelfExtract>True</IncludeNativeLibrariesForSelfExtract>
-  </PropertyGroup>
-</Project>
+<!-- *.csproj -->
+<PropertyGroup>
+  <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+</PropertyGroup>
 ```
 
 **発行の出力言語指定（動作未確認）**

@@ -4,8 +4,10 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <!--<ApplicationIcon>app.ico</ApplicationIcon>-->
 
     <!-- 右クリックのプロパティに下記の順番で表示されます -->
